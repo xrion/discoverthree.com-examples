@@ -1,0 +1,39 @@
+{
+  "name": "discoverthreejs.com-examples",
+  "version": "1.0.0",
+  "description": "Code examples for the book Discover three.js",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/looeee/discoverthree.com-examples.git"
+  },
+  "keywords": [
+    "three.js",
+    "web",
+    "animation",
+    "javascript",
+    "examples",
+    "tutorials",
+    "blog",
+    "book"
+  ],
+  "author": "Lewy Blue",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/looeee/discoverthree.com-examples/issues"
+  },
+  "homepage": "https://discoverthreejs.com",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "three": "^0.91.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.6.1",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  }
+}
