@@ -4,6 +4,13 @@ body {
   overflow: hidden;
 }
 
+a {
+  color: white;
+}
+a:hover{
+  color: red;
+}
+
 .title {
   position: absolute;
   top: 0.5rem;

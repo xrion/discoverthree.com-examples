@@ -1,7 +1,7 @@
 {
   "name": "Discoverthreejs.com - Ch 1: Getting Started",
   "version": "1.0.0",
-  "description": "Final code from Ch 1 of Discovering three.js",
+  "description": "Final code from Ch 1 of Discover three.js",
   "main": "index.html",
   "repository": {
     "type": "git",
