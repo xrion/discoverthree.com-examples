@@ -26,14 +26,13 @@ function init() {
 
   const textureLoader = new THREE.TextureLoader();
 
-  textureLoader.setCrossOrigin( null );
-
   const texture = textureLoader.load( 'textures/crate.jpg' );
 
   // if you are trying to load the file from your local file system, you will
   // run into security errors. You'll need to set up a server to load the
-  // files, but for now a workaround is to load them from another website:
-  // const texture = textureLoader.load( 'textures/crate.jpg' );
+  // files, but for now a workaround is to load them from another website.
+  // Replace the above line with this one:
+  // const texture = textureLoader.load( 'https://raw.githubusercontent.com/looeee/discoverthree.com-examples/master/section-1/ch-4-textures-intro/textures/crate.jpg' );
 
   // create a material
   const material = new THREE.MeshStandardMaterial( {
@@ -76,7 +75,7 @@ function init() {
 
 }
 
-// perform an updates to the scene, called once per frame
+// perform any updates to the scene, called once per frame
 // avoid heavy computation here
 function update() {
 

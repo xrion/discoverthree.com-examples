@@ -62,7 +62,7 @@ function init() {
 
 }
 
-// perform an updates to the scene, called once per frame
+// perform any updates to the scene, called once per frame
 // avoid heavy computation here
 function update() {
 
