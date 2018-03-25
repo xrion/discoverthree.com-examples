@@ -1,7 +1,7 @@
 {
-  "name": "Discoverthreejs.com-Basic Template",
+  "name": "Discoverthreejs.com - Bare Template",
   "version": "1.0.0",
-  "description": "Basic Template for code examples used in the book Discover three.js",
+  "description": "Bare Template for code examples used in the book Discover three.js",
   "main": "index.html",
   "repository": {
     "type": "git",
