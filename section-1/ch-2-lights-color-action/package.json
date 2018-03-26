@@ -1,5 +1,5 @@
 {
-  "name": "Discoverthreejs.com - Ch 2: Lights! Color! Action! final code",
+  "name": "discoverthreejscom-ch-2-lights-color-action-final-code",
   "version": "1.0.0",
   "description": "Final code from Ch 2 of Discover three.js",
   "main": "index.html",
@@ -7,16 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/looeee/discoverthree.com-examples.git"
   },
-  "keywords": [
-    "three.js",
-    "web",
-    "animation",
-    "javascript",
-    "examples",
-    "tutorials",
-    "blog",
-    "book"
-  ],
+  "keywords": [],
   "author": "Lewy Blue",
   "license": "MIT",
   "bugs": {
