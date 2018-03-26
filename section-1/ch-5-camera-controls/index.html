@@ -1,0 +1,65 @@
+<html>
+
+	<head>
+		<title>Discoverthreejs.com - Ch 5: Camera controls</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8" />
+
+		<link href="styles/main.css" rel="stylesheet" type="text/css">
+
+		<!--
+
+			Include the main three.js script.
+
+			The global variable THREE will be available for use in any scripts loaded
+			after this one.
+
+			Note that this is not the ideal way of including this script - in a production app you
+			would be importing it as a module in some way. We could do that here,
+			but unfortunately plugins such as OrbitControls are not yet available as modules
+			so we will include it the old fashioned way for now.
+
+		-->
+
+		<script src="https://threejs.org/build/three.js"></script>
+
+		<!--
+
+			Include the OrbitControls script.
+
+			This must be included AFTER the three.js script as it
+			needs to use the global THREE variable
+
+		-->
+
+		<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+
+	</head>
+
+	<body>
+
+		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 5 Final Code</h1>
+
+		<div id="container">
+			<!-- This div will hold our scene-->
+		</div>
+
+		<footer>
+
+			<!--
+				Finally, include the script that runs your three.js app.
+
+				We include this in the footer, since it means that all html elements have
+				loaded and we can operate on them in our app.
+
+				If we included it in the <head> section then we might run into a problem
+				where the <body> section has not finished loading by the time we are trying to use it.
+			-->
+
+			<script src="js/app.js"></script>
+
+		</footer>
+
+	</body>
+
+</html>
