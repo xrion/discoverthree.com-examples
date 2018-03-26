@@ -34,7 +34,7 @@ function init() {
   // Replace the above line with this one:
   // const texture = textureLoader.load( 'https://raw.githubusercontent.com/looeee/discoverthree.com-examples/master/section-1/ch-4-textures-intro/textures/crate.jpg' );
 
-  // create a material
+  // create a Standard material
   const material = new THREE.MeshStandardMaterial( {
     color: 0xffffff,
     map: texture,

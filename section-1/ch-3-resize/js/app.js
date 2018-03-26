@@ -24,7 +24,7 @@ function init() {
   // create a geometry
   const geometry = new THREE.TorusKnotBufferGeometry( 5, 1 );
 
-  // create a purple MeshStandardMaterial
+  // create a purple Standard material
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
 
   // create a Mesh containing the geometry and material

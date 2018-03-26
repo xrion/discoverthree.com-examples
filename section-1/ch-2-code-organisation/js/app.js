@@ -24,8 +24,8 @@ function init() {
   // create a geometry
   const geometry = new THREE.TorusKnotBufferGeometry( 5, 1 );
 
-  // create a purple Standard material
-  const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
+  // create a default (white) Basic material
+  const material = new THREE.MeshBasicMaterial();
 
   // create a Mesh containing the geometry and material
   mesh = new THREE.Mesh( geometry, material );
@@ -33,42 +33,18 @@ function init() {
   // add the mesh to the scene object
   scene.add( mesh );
 
-  // create a global illumination light
-  const ambientLight = new THREE.AmbientLight( 0xffffff, 1.0 );
-
-  // remember to add the light to the scene
-  scene.add( ambientLight );
-
-  // Create an omnidirectional point light
-  const pointLight = new THREE.PointLight( 0xffffff, 1.0 );
-
-  pointLight.position.set( 0, 0, 20 );
-
-  scene.add( pointLight );
-
   // create a WebGLRenderer and set its width and height
-  renderer = new THREE.WebGLRenderer( { antialias: true } );
+  renderer = new THREE.WebGLRenderer();
   renderer.setSize( window.innerWidth, window.innerHeight );
 
   // add the automatically created <canvas> element to the page
   document.querySelector( '#container' ).appendChild( renderer.domElement );
 
-
 }
 
 function animate() {
 
-  // call animate recursively
-  requestAnimationFrame( animate );
-
-  // increase the mesh's rotation each frame
-  mesh.rotation.z += 0.01;
-  mesh.rotation.x += 0.01;
-  mesh.rotation.y += 0.01;
-
   // render, or 'create a still image', of the scene
-  // this will create one still image / frame each time the animate
-  // function calls itself
   renderer.render( scene, camera );
 
 }

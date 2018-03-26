@@ -46,7 +46,7 @@ function initMeshes() {
 
   scene.add( boxMesh );
 
-  const ringGeometry = new THREE.RingBufferGeometry( 20, 15, 64 );
+  const ringGeometry = new THREE.RingBufferGeometry( 15, 20, 64 );
   const ringMaterials = new THREE.MeshPhongMaterial( { color: 0xff0000, side: THREE.DoubleSide } ); // red color
   const ringMesh = new THREE.Mesh( ringGeometry, ringMaterials );
 

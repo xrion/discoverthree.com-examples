@@ -26,11 +26,11 @@ const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 
 // set up the renderer
-const renderer = new THREE.WebGLRenderer( { antialias: true } );
+const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 
 // add the automatically created <canvas> element to the page
 document.querySelector( '#container' ).appendChild( renderer.domElement );
 
-// 'render', or 'create a still image', of the scene
+// render, or 'create a still image', of the scene
 renderer.render( scene, camera );
