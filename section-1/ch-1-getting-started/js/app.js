@@ -2,7 +2,7 @@
 const scene = new THREE.Scene();
 
 // Create a Camera
-const fov = 35; // AKA "Field of View"
+const fov = 35; // AKA Field of View
 const aspect = window.innerWidth / window.innerHeight;
 const near = 0.1; // the near clipping plane
 const far = 1000; // the far clipping plane

@@ -48,13 +48,12 @@ function init() {
   renderer.animate( () => {
     renderer.render( scene, camera );
 
-    // DNA.rotation.z += 0.001;
+    DNA.rotation.z += 0.001;
 
     // required of controls.enableDamping is set, see above
     controls.update();
   } );
 }
-
 
 function randomColor() {
   return new THREE.Color( Math.random(), Math.random(), Math.random() );
