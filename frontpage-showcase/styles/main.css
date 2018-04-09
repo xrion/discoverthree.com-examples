@@ -2,6 +2,8 @@ body {
   background-color: #000;
   margin: 0px;
   overflow: hidden;
+  color: white;
+  text-align: center;
 }
 
 a {
@@ -11,10 +13,10 @@ a:hover{
   color: red;
 }
 
-.title {
+#container {
   position: absolute;
-  top: 0.5rem;
+  top: 0;
+  z-index: -1;
   width: 100%;
-  text-align: center;
-  color: white;
+  height: 100%;
 }
