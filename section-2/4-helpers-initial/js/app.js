@@ -23,7 +23,7 @@ const container = document.querySelector( '#container' );
 let scene;
 let camera;
 let renderer;
-
+let spiral;
 
 // The init function will do all of the heavy lifting to create and animate the scene
 function init() {
@@ -32,8 +32,22 @@ function init() {
   scene = new THREE.Scene();
 
   initCameras();
-  const spiral = initSpiral();
+  spiral = initSpiral();
   scene.add( spiral );
+
+  addArrowHelper();
+
+  addAxesHelper();
+
+  addBoxHelper();
+
+  addBox3Helper();
+
+  addGridHelper();
+
+  addPolarGridHelper();
+
+  addPlaneHelper();
 
   // set up the renderer
   renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -63,8 +77,6 @@ function initSpiral() {
   const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
   const sphere = new THREE.Mesh( geometry, material );
 
-  // const radius = 8;
-
   for ( let i = -500; i < 500; i++ ) {
 
     const nextSphere = sphere.clone();
@@ -81,15 +93,29 @@ function initCameras() {
 
   const near = 1; // the near clipping plane
   const far = 100; // the far clipping plane
-  const fov = 35; // AKA "Field of View"
+  const fov = 50; // AKA "Field of View"
   const aspect = container.clientWidth / container.clientHeight;
 
   camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-  camera.position.set( 0, 0, 10 );
+  camera.position.set( 0, 0, 5 );
 
   const controls = new THREE.OrbitControls( camera );
 
 }
+
+function addArrowHelper() { /* TODO */ }
+
+function addAxesHelper() { /* TODO */ }
+
+function addBoxHelper() { /* TODO */ }
+
+function addBox3Helper() { /* TODO */ }
+
+function addGridHelper() { /* TODO */ }
+
+function addPolarGridHelper() { /* TODO */ }
+
+function addPlaneHelper() { /* TODO */ }
 
 // set up automatic resizing - much simpler than normal since the
 // container is always square!
