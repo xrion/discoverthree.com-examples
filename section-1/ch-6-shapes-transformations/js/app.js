@@ -1,4 +1,5 @@
 // these need to be accessed inside more than one function so we'll declare them first
+let container;
 let camera;
 let renderer;
 let scene;
@@ -24,10 +25,10 @@ function init() {
 
   // create a WebGLRenderer and set its width and height
   renderer = new THREE.WebGLRenderer( { antialias: true } );
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize( container.clientWidth, container.clientHeight );
 
   // add the automatically created <canvas> element to the page
-  document.querySelector( '#container' ).appendChild( renderer.domElement );
+  container.appendChild( renderer.domElement );
 
   renderer.animate( () => {
 
@@ -109,13 +110,13 @@ function render() {
 function onWindowResize() {
 
   // set the aspect ratio to match the new browser window aspect ratio
-  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.aspect = container.clientWidth / container.clientHeight;
 
   // update the camera's frustum
   camera.updateProjectionMatrix();
 
   // update the size of the renderer AND the canvas
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize( container.clientWidth, container.clientHeight );
 
 }
 

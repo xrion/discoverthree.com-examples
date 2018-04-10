@@ -1,6 +1,6 @@
 
 // this vector will be reused so that we don't create a new one for each point
-let vec = new THREE.Vector3();
+const vec = new THREE.Vector3();
 const a = 0.009; // spiral param
 
 // formula for a spherical spiral here: http://mathworld.wolfram.com/SphericalSpiral.html
@@ -14,12 +14,12 @@ function pointOnShericalSpiral( t ) {
   const z = -Math.sin( c );
 
 
-  return vec.set( x, y, z )
+  return vec.set( x, y, z );
 
 }
 
 // declare any variables used in multiple functions here
-const container = document.querySelector( '#container' );
+let container;
 let scene;
 let camera;
 let renderer;
@@ -28,10 +28,13 @@ let spiral;
 // The init function will do all of the heavy lifting to create and animate the scene
 function init() {
 
+  container = document.querySelector( '#container' );
+
   // Create the Scene
   scene = new THREE.Scene();
 
   initCameras();
+
   spiral = initSpiral();
   scene.add( spiral );
 

@@ -1,4 +1,5 @@
 // the camera and renderer are used in more than one function so we'll declare them first
+let container;
 let camera;
 let renderer;
 
@@ -9,7 +10,7 @@ function init() {
 
   // Create the Camera
   const fov = 35; // AKA "Field of View"
-  const aspect = window.innerWidth / window.innerHeight;
+  const aspect = container.clientWidth / container.innerHeight;
   const near = 0.1; // the near clipping plane
   const far = 1000; // the far clipping plane
 
@@ -34,7 +35,7 @@ function init() {
 
   // set up the renderer
   renderer = new THREE.WebGLRenderer( { antialias: true } );
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize( container.clientWidth, container.clientHeight );
   renderer.setClearColor( 0xffffff, 1 );
 
 
@@ -129,10 +130,10 @@ function createDNA() {
 // set up automatic resizing
 function onWindowResize() {
   // reset the camera's aspect ratio to the new size
-  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.aspect = container.clientWidth / container.clientHeight;
   camera.updateProjectionMatrix();
 
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setSize( container.clientWidth, container.clientHeight );
 }
 
 // add an event listener to the window which will fire when it changes size

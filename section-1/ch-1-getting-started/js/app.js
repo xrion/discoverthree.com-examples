@@ -1,9 +1,12 @@
+// Get a reference to the container element that will hold our scene
+const container = document.querySelector( '#container' );
+
 // create a Scene
 const scene = new THREE.Scene();
 
 // Create a Camera
 const fov = 35; // AKA Field of View
-const aspect = window.innerWidth / window.innerHeight;
+const aspect = container.clientWidth / container.innerHeight;
 const near = 0.1; // the near clipping plane
 const far = 1000; // the far clipping plane
 
@@ -14,7 +17,7 @@ const camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
 camera.position.set( 0, 0, 40 );
 
 // create a geometry
-const geometry = new THREE.TorusKnotBufferGeometry( 5, 1 );
+const geometry = new THREE.BoxBufferGeometry( 5, 5, 5 );
 
 // create a default (white) Basic material
 const material = new THREE.MeshBasicMaterial();
@@ -25,12 +28,13 @@ const mesh = new THREE.Mesh( geometry, material );
 // add the mesh to the scene
 scene.add( mesh );
 
+
 // set up the renderer
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
+renderer.setSize( container.clientWidth, container.clientHeight );
 
 // add the automatically created <canvas> element to the page
-document.querySelector( '#container' ).appendChild( renderer.domElement );
+container.appendChild( renderer.domElement );
 
 // render, or 'create a still image', of the scene
 renderer.render( scene, camera );

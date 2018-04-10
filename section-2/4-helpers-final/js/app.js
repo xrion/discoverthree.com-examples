@@ -19,7 +19,7 @@ function pointOnShericalSpiral( t ) {
 }
 
 // declare any variables used in multiple functions here
-const container = document.querySelector( '#container' );
+let container;
 let scene;
 let camera;
 let renderer;
@@ -28,10 +28,13 @@ let spiral;
 // The init function will do all of the heavy lifting to create and animate the scene
 function init() {
 
+  container = document.querySelector( '#container' );
+
   // Create the Scene
   scene = new THREE.Scene();
 
   initCameras();
+
   spiral = initSpiral();
   scene.add( spiral );
 
