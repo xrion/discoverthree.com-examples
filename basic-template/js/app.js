@@ -36,7 +36,7 @@ function init() {
   renderer.setSize( container.clientWidth, container.clientHeight );
 
   // add the automatically created <canvas> element to the page
-  document.querySelector( '#container' ).appendChild( renderer.domElement );
+  container.appendChild( renderer.domElement );
 
   // create a box
   const boxGeometry = new THREE.BoxBufferGeometry( 12, 12, 12 );

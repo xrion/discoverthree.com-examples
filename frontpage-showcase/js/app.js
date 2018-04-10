@@ -40,7 +40,7 @@ function init() {
 
 
   // add the automatically created <canvas> element to the page
-  document.querySelector( '#container' ).appendChild( renderer.domElement );
+  container.appendChild( renderer.domElement );
 
   const DNA = createDNA();
   scene.add( DNA );
