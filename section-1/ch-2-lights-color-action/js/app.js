@@ -26,7 +26,7 @@ function init() {
   camera.position.set( 0, 0, 40 );
 
   // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 5, 5, 5 );
+  const geometry = new THREE.BoxBufferGeometry( 8, 8, 8 );
 
   // create a purple Standard material
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );

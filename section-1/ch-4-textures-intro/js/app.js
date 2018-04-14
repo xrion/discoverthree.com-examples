@@ -23,7 +23,7 @@ function init() {
   camera.position.set( 0, 0, 40 );
 
   // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 15, 15, 15 );
+  const geometry = new THREE.BoxBufferGeometry( 8, 8, 8 );
 
   const textureLoader = new THREE.TextureLoader();
 

@@ -17,7 +17,7 @@ const camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
 camera.position.set( 0, 0, 40 );
 
 // create a geometry
-const geometry = new THREE.BoxBufferGeometry( 5, 5, 5 );
+const geometry = new THREE.BoxBufferGeometry( 8, 8, 8 );
 
 // create a default (white) Basic material
 const material = new THREE.MeshBasicMaterial();
