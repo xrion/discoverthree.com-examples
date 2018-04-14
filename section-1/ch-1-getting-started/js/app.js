@@ -28,8 +28,7 @@ const mesh = new THREE.Mesh( geometry, material );
 // add the mesh to the scene
 scene.add( mesh );
 
-
-// set up the renderer
+// create the renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( container.clientWidth, container.clientHeight );
 
