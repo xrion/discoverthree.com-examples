@@ -5,12 +5,15 @@ let renderer;
 
 // The init function will do all of the heavy lifting to create and animate the scene
 function init() {
+
+  container = document.querySelector( '#container' );
+
   // Create the Scene
   const scene = new THREE.Scene();
 
   // Create the Camera
   const fov = 35; // AKA "Field of View"
-  const aspect = container.clientWidth / container.innerHeight;
+  const aspect = container.clientWidth / container.clientHeight;
   const near = 0.1; // the near clipping plane
   const far = 1000; // the far clipping plane
 
@@ -63,6 +66,7 @@ function onWindowResize() {
   camera.updateProjectionMatrix();
 
   renderer.setSize( container.clientWidth, container.clientHeight );
+
 }
 
 // add an event listener to the window which will fire when it changes size

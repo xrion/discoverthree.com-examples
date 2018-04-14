@@ -12,7 +12,7 @@ function init() {
 
   // set up the options for a perspective camera
   const fov = 35; // fov = Field Of View
-  const aspect = container.clientWidth / container.innerHeight;
+  const aspect = container.clientWidth / container.clientHeight;
   const near = 0.1;
   const far = 1000;
 
