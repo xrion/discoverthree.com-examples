@@ -28,15 +28,12 @@ function init() {
   // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 8, 8, 8 );
 
+  // create a texture loader. See the note in chapter 4 on working locally, or the page
+  // https://threejs.org/docs/#manual/introduction/How-to-run-things-locally
+  // if you run into problems here
   const textureLoader = new THREE.TextureLoader();
 
   const texture = textureLoader.load( 'textures/crate.jpg' );
-
-  // if you are trying to load the file from your local file system, you will
-  // run into security errors. You'll need to set up a server to load the
-  // files, but for now a workaround is to load them from another website.
-  // Replace the above line with this one:
-  // const texture = textureLoader.load( 'https://raw.githubusercontent.com/looeee/discoverthree.com-examples/master/section-1/ch-4-textures-intro/textures/crate.jpg' );
 
   // create a Standard material
   const material = new THREE.MeshStandardMaterial( {
