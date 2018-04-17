@@ -33,7 +33,7 @@ function init() {
   // if you run into problems here
   const textureLoader = new THREE.TextureLoader();
 
-  const texture = textureLoader.load( 'textures/uv_test.jpg' );
+  const texture = textureLoader.load( 'textures/uv_test.png' );
 
   // here's another texture for you to try. Replace the above line with this one
   // const texture = textureLoader.load( 'textures/crate.jpg' );
