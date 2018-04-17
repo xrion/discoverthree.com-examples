@@ -26,22 +26,17 @@ function init() {
   camera.position.set( 0, 0, 40 );
 
   // Set up camera controls
-  controls = new THREE.OrbitControls( camera );
+  controls = new THREE.OrbitControls( camera, container );
   controls.enableDamping = true; // gives a feeling of "weight" to the controls
-
 
   // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 8, 8, 8 );
 
   const textureLoader = new THREE.TextureLoader();
 
-  // const texture = textureLoader.load( 'textures/crate.jpg' );
+  const texture = textureLoader.load( 'textures/uv_test.png' );
 
-  // if you are trying to load the file from your local file system, you will
-  // run into security errors. You'll need to set up a server to load the
-  // files, but for now a workaround is to load them from another website.
-  // Replace the above line with this one:
-  const texture = textureLoader.load( 'https://raw.githubusercontent.com/looeee/discoverthree.com-examples/master/section-1/ch-4-textures-intro/textures/crate.jpg' );
+  // const texture = textureLoader.load( 'textures/crate.jpg' );
 
   // create a Standard material
   const material = new THREE.MeshStandardMaterial( {
