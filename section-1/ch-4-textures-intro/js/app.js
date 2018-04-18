@@ -17,16 +17,16 @@ function init() {
   const fov = 35; // fov = Field Of View
   const aspect = container.clientWidth / container.clientHeight;
   const near = 0.1;
-  const far = 1000;
+  const far = 100;
 
   camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
 
   // every object is initially created at ( 0, 0, 0 )
   // we'll move the camera back a bit so that we can view the scene
-  camera.position.set( 0, 0, 40 );
+  camera.position.set( 0, 0, 10 );
 
   // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 8, 8, 8 );
+  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
 
   // create a texture loader. See the note in chapter 4 on working locally, or the page
   // https://threejs.org/docs/#manual/introduction/How-to-run-things-locally
@@ -59,7 +59,7 @@ function init() {
   // Create an omnidirectional point light
   const pointLight = new THREE.PointLight( 0xffffff, 1.0 );
 
-  pointLight.position.set( 0, 0, 20 );
+  pointLight.position.set( 0, 0, 2 );
 
   scene.add( pointLight );
 

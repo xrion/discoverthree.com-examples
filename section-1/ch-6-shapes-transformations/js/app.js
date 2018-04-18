@@ -13,17 +13,16 @@ function init() {
   // create a Scene
   scene = new THREE.Scene();
 
-  camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 100 );
 
   // move the camera back a bit so that we can view the scene
-  camera.position.set( 0, 0, 100 );
+  camera.position.set( 0, 0, 10 );
 
   // Set up camera controls
   controls = new THREE.OrbitControls( camera );
   controls.enableDamping = true; // gives a feeling of "weight" to the controls
 
   initMeshes();
-
   initLights();
 
   // create a WebGLRenderer and set its width and height
@@ -44,39 +43,39 @@ function init() {
 
 function initMeshes() {
 
-  const boxGeometry = new THREE.BoxBufferGeometry( 15, 15, 15 );
-  const boxMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff } );
+  const boxGeometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
+  const boxMaterial = new THREE.MeshStandardMaterial( { color: 0xffffff } );
   const boxMesh = new THREE.Mesh( boxGeometry, boxMaterial );
 
   scene.add( boxMesh );
 
-  const ringGeometry = new THREE.RingBufferGeometry( 15, 20, 64 );
-  const ringMaterials = new THREE.MeshPhongMaterial( { color: 0xff0000, side: THREE.DoubleSide } ); // red color
+  const ringGeometry = new THREE.RingBufferGeometry( 1.5, 2.0, 64 );
+  const ringMaterials = new THREE.MeshStandardMaterial( { color: 0xff0000, side: THREE.DoubleSide } ); // red color
   const ringMesh = new THREE.Mesh( ringGeometry, ringMaterials );
 
   ringMesh.scale.set( 1.02, 1.02, 1.02 );
 
   scene.add( ringMesh );
 
-  const octaGeometry = new THREE.OctahedronBufferGeometry( 4 );
+  const octaGeometry = new THREE.OctahedronBufferGeometry( 0.4 );
 
-  const octaMaterial = new THREE.MeshPhongMaterial( { color: 0x0000ff } );
+  const octaMaterial = new THREE.MeshStandardMaterial( { color: 0x0000ff } );
 
   const octaMesh1 = new THREE.Mesh( octaGeometry, octaMaterial );
 
-  octaMesh1.position.set( -20, 0, 0 ); // move 20 units to the left
+  octaMesh1.position.set( -2, 0, 0 ); // move 20 units to the left
 
   const octaMesh2 = new THREE.Mesh( octaGeometry, octaMaterial );
 
-  octaMesh2.position.set( 20, 0, 0 ); // move 20 units to the right
+  octaMesh2.position.set( 2, 0, 0 ); // move 20 units to the right
 
   const octaMesh3 = new THREE.Mesh( octaGeometry, octaMaterial );
 
-  octaMesh3.position.set( 0, 20, 0 ); // move 20 units up
+  octaMesh3.position.set( 0, 2, 0 ); // move 20 units up
 
   const octaMesh4 = octaMesh3.clone();
 
-  octaMesh4.position.set( 0, -20, 0 ); // move 20 units down
+  octaMesh4.position.set( 0, -2, 0 ); // move 20 units down
 
   scene.add( octaMesh1, octaMesh2, octaMesh3, octaMesh4 );
 
@@ -88,7 +87,7 @@ function initLights() {
   scene.add( ambientLight );
 
   const pointLight = new THREE.PointLight( 0xffffff, 1.0 );
-  pointLight.position.set( 0, 0, 20 );
+  pointLight.position.set( 0, 0, 2 );
   scene.add( pointLight );
 
 }

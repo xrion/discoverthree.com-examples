@@ -8,16 +8,16 @@ const scene = new THREE.Scene();
 const fov = 35; // AKA Field of View
 const aspect = container.clientWidth / container.clientHeight;
 const near = 0.1; // the near clipping plane
-const far = 1000; // the far clipping plane
+const far = 100; // the far clipping plane
 
 const camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
 
 // every object is initially created at ( 0, 0, 0 )
 // we'll move the camera back a bit so that we can view the scene
-camera.position.set( 0, 0, 40 );
+camera.position.set( 0, 0, 10 );
 
 // create a geometry
-const geometry = new THREE.BoxBufferGeometry( 8, 8, 8 );
+const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
 
 // create a default (white) Basic material
 const material = new THREE.MeshBasicMaterial();
