@@ -84,19 +84,19 @@ function initMeshes() {
   const octaMaterial = new THREE.MeshStandardMaterial( { color: 0x0000ff } );
 
   const octaMesh1 = new THREE.Mesh( octaGeometry, octaMaterial );
-  // move 20 units to the left
+  // move 2 units to the left
   octaMesh1.position.set( -2, 0, 0 );
 
   const octaMesh2 = new THREE.Mesh( octaGeometry, octaMaterial );
-  // move 20 units to the right
+  // move 2 units to the right
   octaMesh2.position.set( 2, 0, 0 );
 
   const octaMesh3 = new THREE.Mesh( octaGeometry, octaMaterial );
-  // move 20 units up
+  // move 2 units up
   octaMesh3.position.set( 0, 2, 0 );
 
   const octaMesh4 = octaMesh3.clone();
-  // move 20 units down
+  // move 2 units down
   octaMesh4.position.set( 0, -2, 0 );
 
   scene.add( octaMesh1, octaMesh2, octaMesh3, octaMesh4 );
