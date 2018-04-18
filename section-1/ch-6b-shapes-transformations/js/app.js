@@ -13,24 +13,11 @@ function init() {
   // create a Scene
   scene = new THREE.Scene();
 
-  camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 100 );
-
-  // move the camera back a bit so that we can view the scene
-  camera.position.set( 0, 0, 10 );
-
-  // Set up camera controls
-  controls = new THREE.OrbitControls( camera );
-  controls.enableDamping = true; // gives a feeling of "weight" to the controls
-
-  initMeshes();
+  initCamera();
+  initControls();
   initLights();
-
-  // create a WebGLRenderer and set its width and height
-  renderer = new THREE.WebGLRenderer( { antialias: true } );
-  renderer.setSize( container.clientWidth, container.clientHeight );
-
-  // add the automatically created <canvas> element to the page
-  container.appendChild( renderer.domElement );
+  initMeshes();
+  initRenderer();
 
   renderer.animate( () => {
 
@@ -38,6 +25,42 @@ function init() {
     render();
 
   } );
+
+}
+
+function initCamera() {
+
+  camera = new THREE.PerspectiveCamera(
+    35, // FOV
+    container.clientWidth / container.clientHeight, // aspect
+    0.1, // near clipping plane
+    100, // far clipping plane
+  );
+
+  // move the camera back a bit so that we can view the scene
+  camera.position.set( 0, 0, 10 );
+
+}
+
+function initControls() {
+
+  controls = new THREE.OrbitControls( camera, container );
+
+  // gives a feeling of "weight" to the controls
+  controls.enableDamping = true;
+}
+
+function initLights() {
+
+  const ambientLight = new THREE.AmbientLight( 0xffffff, 1.0 );
+  scene.add( ambientLight );
+
+  const pointLight = new THREE.PointLight( 0xffffff, 1.0 );
+
+  // the "light-in-camera" pattern. This works very well with OrbitControls, since it
+  // guarantees that a light is always shining on the target we are orbiting around
+  camera.add( pointLight );
+  scene.add( camera );
 
 }
 
@@ -50,45 +73,44 @@ function initMeshes() {
   scene.add( boxMesh );
 
   const ringGeometry = new THREE.RingBufferGeometry( 1.5, 2.0, 64 );
-  const ringMaterials = new THREE.MeshStandardMaterial( { color: 0xff0000, side: THREE.DoubleSide } ); // red color
-  const ringMesh = new THREE.Mesh( ringGeometry, ringMaterials );
+  const ringMaterial = new THREE.MeshStandardMaterial( { color: 0xff0000, side: THREE.DoubleSide } ); // red color
+  const ringMesh = new THREE.Mesh( ringGeometry, ringMaterial );
 
   ringMesh.scale.set( 1.02, 1.02, 1.02 );
 
   scene.add( ringMesh );
 
   const octaGeometry = new THREE.OctahedronBufferGeometry( 0.4 );
-
   const octaMaterial = new THREE.MeshStandardMaterial( { color: 0x0000ff } );
 
   const octaMesh1 = new THREE.Mesh( octaGeometry, octaMaterial );
-
-  octaMesh1.position.set( -2, 0, 0 ); // move 20 units to the left
+  // move 20 units to the left
+  octaMesh1.position.set( -2, 0, 0 );
 
   const octaMesh2 = new THREE.Mesh( octaGeometry, octaMaterial );
-
-  octaMesh2.position.set( 2, 0, 0 ); // move 20 units to the right
+  // move 20 units to the right
+  octaMesh2.position.set( 2, 0, 0 );
 
   const octaMesh3 = new THREE.Mesh( octaGeometry, octaMaterial );
-
-  octaMesh3.position.set( 0, 2, 0 ); // move 20 units up
+  // move 20 units up
+  octaMesh3.position.set( 0, 2, 0 );
 
   const octaMesh4 = octaMesh3.clone();
-
-  octaMesh4.position.set( 0, -2, 0 ); // move 20 units down
+  // move 20 units down
+  octaMesh4.position.set( 0, -2, 0 );
 
   scene.add( octaMesh1, octaMesh2, octaMesh3, octaMesh4 );
 
 }
 
-function initLights() {
+function initRenderer() {
 
-  const ambientLight = new THREE.AmbientLight( 0xffffff, 1.0 );
-  scene.add( ambientLight );
+  // create a WebGLRenderer and set its width and height
+  renderer = new THREE.WebGLRenderer( { antialias: true } );
+  renderer.setSize( container.clientWidth, container.clientHeight );
 
-  const pointLight = new THREE.PointLight( 0xffffff, 1.0 );
-  pointLight.position.set( 0, 0, 2 );
-  scene.add( pointLight );
+  // add the automatically created <canvas> element to the page
+  container.appendChild( renderer.domElement );
 
 }
 

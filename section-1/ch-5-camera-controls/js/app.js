@@ -27,7 +27,9 @@ function init() {
 
   // Set up camera controls
   controls = new THREE.OrbitControls( camera, container );
-  controls.enableDamping = true; // gives a feeling of "weight" to the controls
+
+  // gives a feeling of "weight" to the controls
+  controls.enableDamping = true;
 
   // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
