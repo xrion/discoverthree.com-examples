@@ -28,9 +28,6 @@ function init() {
   // Set up camera controls
   controls = new THREE.OrbitControls( camera, container );
 
-  // gives a feeling of "weight" to the controls
-  controls.enableDamping = true;
-
   // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
 
@@ -85,7 +82,7 @@ function init() {
 // avoid heavy computation here
 function update() {
 
-  controls.update();
+  // Don't delete this function!
 
 }
 

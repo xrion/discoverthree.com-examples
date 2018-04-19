@@ -46,8 +46,6 @@ function initControls() {
 
   controls = new THREE.OrbitControls( camera, container );
 
-  // gives a feeling of "weight" to the controls
-  controls.enableDamping = true;
 }
 
 function initLights() {
@@ -191,7 +189,7 @@ function initRenderer() {
 // avoid heavy computation here
 function update() {
 
-  controls.update();
+  // Don't delete this function
 
 }
 
