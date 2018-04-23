@@ -34,6 +34,7 @@ function init() {
   const textureLoader = new THREE.TextureLoader();
 
   const texture = textureLoader.load( 'textures/uv_test.png' );
+  texture.anisotropy = 16;
 
   // const texture = textureLoader.load( 'textures/crate.jpg' );
 

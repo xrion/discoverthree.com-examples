@@ -5,6 +5,12 @@ let renderer;
 let scene;
 let controls;
 
+let boxMesh;
+let octaMesh1;
+let octaMesh2;
+let octaMesh3;
+let octaMesh4;
+
 function init() {
 
   // Get a reference to the container element that will hold our scene
@@ -66,7 +72,9 @@ function initMeshes() {
 
   const boxGeometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
   const boxMaterial = new THREE.MeshStandardMaterial( { color: 0xffffff } );
-  const boxMesh = new THREE.Mesh( boxGeometry, boxMaterial );
+  boxMesh = new THREE.Mesh( boxGeometry, boxMaterial );
+
+  boxMesh.scale.set( 0.8, 0.8, 0.8 );
 
   scene.add( boxMesh );
 
@@ -81,19 +89,19 @@ function initMeshes() {
   const octaGeometry = new THREE.OctahedronBufferGeometry( 0.4 );
   const octaMaterial = new THREE.MeshStandardMaterial( { color: 0x0000ff } );
 
-  const octaMesh1 = new THREE.Mesh( octaGeometry, octaMaterial );
+  octaMesh1 = new THREE.Mesh( octaGeometry, octaMaterial );
   // move 2 units to the left
   octaMesh1.position.set( -2, 0, 0 );
 
-  const octaMesh2 = new THREE.Mesh( octaGeometry, octaMaterial );
+  octaMesh2 = new THREE.Mesh( octaGeometry, octaMaterial );
   // move 2 units to the right
   octaMesh2.position.set( 2, 0, 0 );
 
-  const octaMesh3 = new THREE.Mesh( octaGeometry, octaMaterial );
+  octaMesh3 = new THREE.Mesh( octaGeometry, octaMaterial );
   // move 2 units up
   octaMesh3.position.set( 0, 2, 0 );
 
-  const octaMesh4 = octaMesh3.clone();
+  octaMesh4 = octaMesh3.clone();
   // move 2 units down
   octaMesh4.position.set( 0, -2, 0 );
 
@@ -116,7 +124,14 @@ function initRenderer() {
 // avoid heavy computation here
 function update() {
 
-  // Don't delete this function
+  octaMesh1.rotation.y += 0.01;
+  octaMesh2.rotation.y += 0.01;
+  octaMesh3.rotation.x += 0.01;
+  octaMesh4.rotation.x += 0.01;
+
+  boxMesh.rotation.x += 0.0033;
+  boxMesh.rotation.y += 0.0033;
+  boxMesh.rotation.z += 0.0033;
 
 }
 
