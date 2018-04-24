@@ -71,18 +71,18 @@ function initLights() {
 function initMaterial() {
 
   const textureLoader = new THREE.TextureLoader();
-  const diffuseMap = textureLoader.load( '/images/textures/uv_test.png' );
-  // const diffuseMap = textureLoader.load( 'textures/bamboo-diffuse.png' );
+
+  // const diffuseMap = textureLoader.load( 'textures/uv_test.png' );
+  const diffuseMap = textureLoader.load( 'textures/bamboo-diffuse.png' );
   diffuseMap.anisotropy = 16;
 
-  // const normalMap = textureLoader.load( 'textures/bamboo-normal.png' );
-  // const roughnessMap = textureLoader.load( 'textures/bamboo-roughness.png' );
+  const normalMap = textureLoader.load( 'textures/bamboo-normal.png' );
+  const roughnessMap = textureLoader.load( 'textures/bamboo-roughness.png' );
 
   return new THREE.MeshStandardMaterial( {
-    color: 0xffffff,
     map: diffuseMap,
-    // normalMap,
-    // roughnessMap,
+    normalMap,
+    roughnessMap,
     roughness: 0.25,
     metalness: 0,
   } );
