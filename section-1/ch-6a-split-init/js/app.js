@@ -37,7 +37,6 @@ function initCamera() {
     100, // far clipping plane
   );
 
-  // move the camera back a bit so that we can view the scene
   camera.position.set( 0, 0, 10 );
 
 }
@@ -63,10 +62,21 @@ function initLights() {
 function initMeshes() {
 
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
-  const material = new THREE.MeshStandardMaterial( { color: 0xffffff } );
+
+  const textureLoader = new THREE.TextureLoader();
+
+  const texture = textureLoader.load( 'textures/uv_test.png' );
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial( {
+    color: 0xffffff,
+    map: texture,
+  } );
 
   const mesh = new THREE.Mesh( geometry, material );
+
   scene.add( mesh );
+
 }
 
 function initRenderer() {
@@ -76,6 +86,7 @@ function initRenderer() {
 
   // add the automatically created <canvas> element to the page
   container.appendChild( renderer.domElement );
+
 }
 
 // perform any updates to the scene, called once per frame

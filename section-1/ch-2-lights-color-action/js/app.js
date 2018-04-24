@@ -12,6 +12,7 @@ function init() {
 
   // create a Scene
   scene = new THREE.Scene();
+  scene.background = new THREE.Color( 0x8FBCD4 );
 
   // set up the options for a perspective camera
   const fov = 35; // fov = Field Of View
