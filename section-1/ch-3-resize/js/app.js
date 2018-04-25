@@ -38,18 +38,14 @@ function init() {
   // add the mesh to the scene object
   scene.add( mesh );
 
-  // create a global illumination light
-  const ambientLight = new THREE.AmbientLight( 0xffffff, 1.0 );
+  // Create a directional light
+  const light = new THREE.DirectionalLight( 0xffffff, 5.0 );
+
+  // move the light back and up a bit
+  light.position.set( 0, 3, 3 );
 
   // remember to add the light to the scene
-  scene.add( ambientLight );
-
-  // Create an omnidirectional point light
-  const pointLight = new THREE.PointLight( 0xffffff, 1.0 );
-
-  pointLight.position.set( 0, 0, 2 );
-
-  scene.add( pointLight );
+  scene.add( light );
 
   // create a WebGLRenderer and set its width and height
   renderer = new THREE.WebGLRenderer( { antialias: true } );

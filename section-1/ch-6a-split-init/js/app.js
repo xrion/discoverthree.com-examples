@@ -49,14 +49,15 @@ function initControls() {
 
 function initLights() {
 
-  const ambientLight = new THREE.AmbientLight( 0xffffff, 1.0 );
-  scene.add( ambientLight );
+  // Create a directional light
+  const light = new THREE.DirectionalLight( 0xffffff, 5.0 );
 
+  // move the light back and up a bit
+  light.position.set( 0, 3, 3 );
 
-  const pointLight = new THREE.PointLight( 0xffffff, 1.0 );
-  pointLight.position.set( 0, 0, 2 );
+  // remember to add the light to the scene
+  scene.add( light );
 
-  scene.add( pointLight );
 }
 
 function initMeshes() {
