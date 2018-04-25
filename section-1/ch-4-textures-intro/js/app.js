@@ -36,12 +36,8 @@ function init() {
 
   const texture = textureLoader.load( 'textures/uv_test.png' );
 
-  // here's another texture for you to try. Replace the above line with this one
-  // const texture = textureLoader.load( 'textures/crate.jpg' );
-
   // create a Standard material using the texture we just loaded as a color map
   const material = new THREE.MeshStandardMaterial( {
-    color: 0xffffff,
     map: texture,
   } );
 

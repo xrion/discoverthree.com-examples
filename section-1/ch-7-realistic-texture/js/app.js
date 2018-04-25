@@ -17,6 +17,7 @@ function init() {
 
   // create a Scene
   scene = new THREE.Scene();
+  scene.background = new THREE.Color( 0x8FBCD4 );
 
   initCamera();
   initControls();
@@ -70,18 +71,15 @@ function initLights() {
 function initMaterial() {
 
   const textureLoader = new THREE.TextureLoader();
+
   // const diffuseMap = textureLoader.load( 'textures/uv_test.png' );
-  const diffuseMap = textureLoader.load( 'textures/bamboo-diffuse.png' );
+  const diffuseMap = textureLoader.load( 'textures/bamboo-diffuse.jpg' );
   diffuseMap.anisotropy = 16;
 
-  const normalMap = textureLoader.load( 'textures/bamboo-normal.png' );
-  normalMap.anisotropy = 16;
-
-  const roughnessMap = textureLoader.load( 'textures/bamboo-roughness.png' );
-  roughnessMap.anisotropy = 16;
+  const normalMap = textureLoader.load( 'textures/bamboo-normal.jpg' );
+  const roughnessMap = textureLoader.load( 'textures/bamboo-roughness.jpg' );
 
   return new THREE.MeshStandardMaterial( {
-    color: 0xffffff,
     map: diffuseMap,
     normalMap,
     roughnessMap,
@@ -93,35 +91,39 @@ function initMaterial() {
 
 function initMeshes() {
 
+  // create a Group to hold the pieces of the car
   const car = new THREE.Group();
   scene.add( car );
 
   const material = initMaterial();
 
-  const bodyGeometry = new THREE.BoxBufferGeometry( 3, 1, 1 );
+  const bodyGeometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
   const body = new THREE.Mesh( bodyGeometry, material );
-  // body.scale.set( 1.5, 0.5, 0.5 );
+  body.scale.set( 1.5, 0.5, 0.5 );
   car.add( body );
 
-  const wheelGeo = new THREE.CylinderBufferGeometry( 0.4, 0.4, 0.15, 64, 64 );
+  const wheelGeo = new THREE.CylinderBufferGeometry( 0.4, 0.4, 0.15, 64 );
   wheelGeo.rotateX( Math.PI / 2 );
 
   wheelFrontLeft = new THREE.Mesh( wheelGeo, material );
   wheelFrontLeft.position.set( -1, -0.5, 0.6 );
+  car.add( wheelFrontLeft );
 
   wheelFrontRight = new THREE.Mesh( wheelGeo, material );
   wheelFrontRight.position.set( -1, -0.5, -0.6 );
   wheelFrontRight.rotation.z += 2.5;
+  car.add( wheelFrontRight );
 
   wheelRearLeft = wheelFrontLeft.clone();
   wheelRearLeft.position.x = 1;
-  wheelRearLeft.rotation.z += 2.5;
+  wheelRearLeft.rotation.z -= 2.5;
+  car.add( wheelRearLeft );
 
   wheelRearRight = wheelFrontRight.clone();
   wheelRearRight.position.x = 1;
   wheelRearRight.rotation.z += 1.75;
+  car.add( wheelRearRight );
 
-  scene.add( wheelFrontLeft, wheelFrontRight, wheelRearLeft, wheelRearRight );
 }
 
 function initRenderer() {

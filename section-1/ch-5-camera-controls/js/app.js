@@ -37,8 +37,6 @@ function init() {
   const texture = textureLoader.load( 'textures/uv_test.png' );
   texture.anisotropy = 16;
 
-  // const texture = textureLoader.load( 'textures/crate.jpg' );
-
   // create a Standard material
   const material = new THREE.MeshStandardMaterial( {
     color: 0xffffff,
@@ -57,8 +55,10 @@ function init() {
   // move the light back and up a bit
   light.position.set( 0, 3, 3 );
 
-  // remember to add the light to the scene
-  scene.add( light );
+  // the "light-in-camera" pattern. This works very well with OrbitControls, since it
+  // guarantees that a light is always shining on the target we are orbiting around
+  camera.add( light );
+  scene.add( camera );
 
   // create a WebGLRenderer and set its width and height
   renderer = new THREE.WebGLRenderer( { antialias: true } );

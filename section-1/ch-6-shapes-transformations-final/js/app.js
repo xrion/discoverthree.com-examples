@@ -59,7 +59,7 @@ function initLights() {
   const ambientLight = new THREE.AmbientLight( 0x333333, 1.0 );
   scene.add( ambientLight );
 
-  const mainLight = new THREE.DirectionalLight( 0xffffff, 1, 100, 1 );
+  const mainLight = new THREE.PointLight( 0xffffff, 1, 100, 1 );
 
   // the "light-in-camera" pattern. This works very well with OrbitControls, since it
   // guarantees that a light is always shining on the target we are orbiting around
@@ -72,19 +72,10 @@ function initMaterial() {
 
   const textureLoader = new THREE.TextureLoader();
 
-  // const diffuseMap = textureLoader.load( 'textures/uv_test.png' );
-  const diffuseMap = textureLoader.load( 'textures/bamboo-diffuse.jpg' );
-  diffuseMap.anisotropy = 16;
-
-  const normalMap = textureLoader.load( 'textures/bamboo-normal.jpg' );
-  const roughnessMap = textureLoader.load( 'textures/bamboo-roughness.jpg' );
+  const diffuseMap = textureLoader.load( 'textures/uv_test.png' );
 
   return new THREE.MeshStandardMaterial( {
     map: diffuseMap,
-    normalMap,
-    roughnessMap,
-    roughness: 0.25,
-    metalness: 0,
   } );
 
 }

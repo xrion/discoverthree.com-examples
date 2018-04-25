@@ -50,7 +50,7 @@ function initControls() {
 function initLights() {
 
   // Create a directional light
-  const light = new THREE.DirectionalLight( 0xffffff, 5.0 );
+  const light = new THREE.DirectionalLight( 0xffffff, 1.0 );
 
   // move the light back and up a bit
   light.position.set( 0, 3, 3 );
