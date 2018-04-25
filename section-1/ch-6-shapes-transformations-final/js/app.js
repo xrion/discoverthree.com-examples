@@ -73,11 +73,11 @@ function initMaterial() {
   const textureLoader = new THREE.TextureLoader();
 
   // const diffuseMap = textureLoader.load( 'textures/uv_test.png' );
-  const diffuseMap = textureLoader.load( 'textures/bamboo-diffuse.png' );
+  const diffuseMap = textureLoader.load( 'textures/bamboo-diffuse.jpg' );
   diffuseMap.anisotropy = 16;
 
-  const normalMap = textureLoader.load( 'textures/bamboo-normal.png' );
-  const roughnessMap = textureLoader.load( 'textures/bamboo-roughness.png' );
+  const normalMap = textureLoader.load( 'textures/bamboo-normal.jpg' );
+  const roughnessMap = textureLoader.load( 'textures/bamboo-roughness.jpg' );
 
   return new THREE.MeshStandardMaterial( {
     map: diffuseMap,
