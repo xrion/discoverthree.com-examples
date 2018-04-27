@@ -1,71 +1,22 @@
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
 let camera;
+let controls;
 let renderer;
 let scene;
-let controls;
+let mesh;
 
 function init() {
 
   // Get a reference to the container element that will hold our scene
   container = document.querySelector( '#container' );
 
-  // create a Scene
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color( 0x8FBCD4 );
-
-  // set up the options for a perspective camera
-  const fov = 35; // fov = Field Of View
-  const aspect = container.clientWidth / container.clientHeight;
-  const near = 0.1;
-  const far = 100;
-
-  camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-
-  // every object is initially created at ( 0, 0, 0 )
-  // we'll move the camera back a bit so that we can view the scene
-  camera.position.set( 0, 0, 10 );
-
-  // Set up camera controls
-  controls = new THREE.OrbitControls( camera, container );
-
-  // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
-
-  const textureLoader = new THREE.TextureLoader();
-
-  const texture = textureLoader.load( 'textures/uv_test.png' );
-  texture.anisotropy = 16;
-
-  // create a Standard material
-  const material = new THREE.MeshStandardMaterial( {
-    color: 0xffffff,
-    map: texture,
-  } );
-
-  // create a Mesh containing the geometry and material
-  const mesh = new THREE.Mesh( geometry, material );
-
-  // add the mesh to the scene object
-  scene.add( mesh );
-
-  // Create a directional light
-  const light = new THREE.DirectionalLight( 0xffffff, 5.0 );
-
-  // move the light back and up a bit
-  light.position.set( 0, 3, 3 );
-
-  // the "light-in-camera" pattern. This works very well with OrbitControls, since it
-  // guarantees that a light is always shining on the target we are orbiting around
-  camera.add( light );
-  scene.add( camera );
-
-  // create a WebGLRenderer and set its width and height
-  renderer = new THREE.WebGLRenderer( { antialias: true } );
-  renderer.setSize( container.clientWidth, container.clientHeight );
-
-  // add the automatically created <canvas> element to the page
-  container.appendChild( renderer.domElement );
+  initScene();
+  initCamera();
+  initControls();
+  initLights();
+  initMeshes();
+  initRenderer();
 
   renderer.animate( () => {
 
@@ -73,6 +24,79 @@ function init() {
     render();
 
   } );
+
+}
+
+function initScene() {
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color( 0x8FBCD4 );
+
+}
+
+function initCamera() {
+
+  camera = new THREE.PerspectiveCamera(
+    35, // FOV
+    container.clientWidth / container.clientHeight, // aspect
+    0.1, // near clipping plane
+    100, // far clipping plane
+  );
+
+  camera.position.set( 0, 0, 10 );
+
+}
+
+function initControls() {
+
+  controls = new THREE.OrbitControls( camera, container );
+
+}
+
+function initLights() {
+
+  const key = new THREE.DirectionalLight( 0xffffff, 2.0 );
+  key.position.set( 30, 10, 30 );
+
+  const fill = new THREE.DirectionalLight( 0xffffff, 0.5 );
+  fill.position.set( -30, 10, 30 );
+
+  const back = new THREE.DirectionalLight( 0xffffff, 1.0 );
+  back.position.set( 300, 30, -30 );
+
+  const ambient = new THREE.AmbientLight( 0xffffff );
+
+  scene.add( key, fill, back, ambient );
+
+}
+
+function initMeshes() {
+
+  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
+
+  const textureLoader = new THREE.TextureLoader();
+
+  const texture = textureLoader.load( 'textures/uv_test.png' );
+  texture.anisotropy = 16;
+
+  const material = new THREE.MeshStandardMaterial( {
+    color: 0xffffff,
+    map: texture,
+  } );
+
+  mesh = new THREE.Mesh( geometry, material );
+
+  scene.add( mesh );
+
+}
+
+function initRenderer() {
+
+  renderer = new THREE.WebGLRenderer( { antialias: true } );
+  renderer.setSize( container.clientWidth, container.clientHeight );
+
+  // add the automatically created <canvas> element to the page
+  container.appendChild( renderer.domElement );
 
 }
 

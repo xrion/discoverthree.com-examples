@@ -24,7 +24,7 @@ function init() {
 
   // every object is initially created at ( 0, 0, 0 )
   // we'll move the camera back a bit so that we can view the scene
-  camera.position.set( 0, 0, 6 );
+  camera.position.set( 0, 0, 10 );
 
   // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
