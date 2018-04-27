@@ -24,7 +24,7 @@ function init() {
 
   // every object is initially created at ( 0, 0, 0 )
   // we'll move the camera back a bit so that we can view the scene
-  camera.position.set( 0, 0, 10 );
+  camera.position.set( 0, 0, 6 );
 
   // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
@@ -35,6 +35,8 @@ function init() {
   const textureLoader = new THREE.TextureLoader();
 
   const texture = textureLoader.load( 'textures/uv_test.png' );
+
+  texture.anisotropy = 16;
 
   // create a Standard material using the texture we just loaded as a color map
   const material = new THREE.MeshStandardMaterial( {
@@ -48,7 +50,7 @@ function init() {
   scene.add( mesh );
 
   // Create a directional light
-  const light = new THREE.DirectionalLight( 0xffffff, 5.0 );
+  const light = new THREE.DirectionalLight( 0xffffff, 3.0 );
 
   // move the light back and up a bit
   light.position.set( 0, 3, 3 );
@@ -76,7 +78,7 @@ function init() {
 // avoid heavy computation here
 function update() {
 
-  // increase the mesh's rotation each frame
+  increase the mesh's rotation each frame
   mesh.rotation.z += 0.01;
   mesh.rotation.x += 0.01;
   mesh.rotation.y += 0.01;
