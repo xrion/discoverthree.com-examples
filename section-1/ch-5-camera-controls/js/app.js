@@ -55,18 +55,15 @@ function initControls() {
 
 function initLights() {
 
-  const key = new THREE.DirectionalLight( 0xffffff, 2.0 );
-  key.position.set( 30, 10, 30 );
+  const ambientLight = new THREE.AmbientLight( 0xffffff, 1.0 );
+  scene.add( ambientLight );
 
-  const fill = new THREE.DirectionalLight( 0xffffff, 0.5 );
-  fill.position.set( -30, 10, 30 );
+  const mainLight = new THREE.DirectionalLight( 0xffffff, 0.75 );
 
-  const back = new THREE.DirectionalLight( 0xffffff, 1.0 );
-  back.position.set( 300, 30, -30 );
-
-  const ambient = new THREE.AmbientLight( 0xffffff );
-
-  scene.add( key, fill, back, ambient );
+  // the "light-in-camera" pattern. This works very well with OrbitControls, since it
+  // guarantees that a light is always shining on the target we are orbiting around
+  camera.add( mainLight );
+  scene.add( camera );
 
 }
 
