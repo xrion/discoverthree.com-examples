@@ -72,10 +72,11 @@ function initMaterial() {
 
   const textureLoader = new THREE.TextureLoader();
 
-  const diffuseMap = textureLoader.load( 'textures/uv_test.png' );
+  const texture = textureLoader.load( 'textures/uv_test.png' );
+  texture.anisotropy = 16;
 
   return new THREE.MeshStandardMaterial( {
-    map: diffuseMap,
+    map: texture,
   } );
 
 }

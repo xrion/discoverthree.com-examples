@@ -77,7 +77,6 @@ function initMeshes() {
   texture.anisotropy = 16;
 
   const material = new THREE.MeshStandardMaterial( {
-    color: 0xffffff,
     map: texture,
   } );
 
