@@ -1,7 +1,7 @@
 {
-  "name": "Discoverthreejs.com - Frontpage Showcase",
+  "name": "Discoverthreejs.com - Frontpage showcase",
   "version": "1.0.0",
-  "description": "Showcase example for the front page of Discoverthreejs.com",
+  "description": "Discoverthreejs.com - Frontpage showcase",
   "main": "index.html",
   "repository": {
     "type": "git",

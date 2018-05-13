@@ -1,143 +1,257 @@
-// the camera and renderer are used in more than one function so we'll declare them first
+// ////////////////////////////////////////////////////////////////////////
+// /// UTILITY FUNCTIONS //////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////
+const vec = new THREE.Vector3();
+const a = 0.009; // spiral param
+
+// formula for a spherical spiral here: http://mathworld.wolfram.com/SphericalSpiral.html
+const pointOnSphericalSpiral = ( t ) => {
+
+  const c = Math.atan( a * t );
+  const cosC = Math.cos( c );
+
+  const x = Math.cos( t ) * cosC;
+  const y = Math.sin( t ) * cosC;
+  const z = -Math.sin( c );
+
+  return vec.set( x, y, z );
+
+};
+
+// ////////////////////////////////////////////////////////////////////////
+// /// SHADERS //////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////
+const vertexShader = `
+  precision highp float;
+
+    uniform mat4 modelViewMatrix;
+    uniform mat4 projectionMatrix;
+
+    uniform float time;
+
+    attribute vec3 position;
+    attribute vec3 offset;
+    attribute float instanceIndex;
+
+    varying vec4 color;
+
+    mat3 rotateZ( in float angle ) {
+      return mat3(
+        cos(angle),		-sin(angle),	0,
+        sin(angle),		cos(angle),		0,
+        0,				0,		1
+      );
+    }
+
+    float easeExpoOut(float p) {
+      return 1.0 - pow(2.0, -10.0 * p);
+    }
+
+    float easeQuadOut(float t) {
+      return -t * (t - 2.0);
+    }
+
+    float easeCircOut(float t) {
+      return sqrt(1.0 - (t = t - 1.0) * t);
+    }
+
+    float easeBackOut(float t, float amplitude) {
+      return ((t = t - 1.0) * t * ((amplitude + 1.0) * t + amplitude) + 1.0);
+    }
+
+    // if t < cutoff return 1, if cutoff < t < 1.0 return decreasing range [1.0, 0.0]
+    float easeOutAtEnd( float t, float cutoff) {
+      return 1.0 - ( max( 1.0, cutoff + t ) - 1.0 ) * ( 1.0 / cutoff );
+    }
+
+    void main() {
+
+      float tFactor = mod( time + instanceIndex, 1.0 );
+
+      float scaleFactor = easeBackOut( tFactor, 1.5 ) * 5.0;
+      float rotationFactor = easeCircOut( tFactor );
+      float colorFactor = easeCircOut( tFactor );
+      float alphaFactor = easeOutAtEnd( tFactor, 0.1 );
+
+      color = vec4( cos(colorFactor), sin(colorFactor), sin( 1.0-colorFactor ), alphaFactor );
+
+      vec3 mvPosition = ( offset + position * ( scaleFactor * 0.2 ) ) * scaleFactor;
+      mat3 rot = rotateZ( rotationFactor * 10.0 );
+      vec3 qmvPosition = mvPosition * rot;
+
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( qmvPosition, 1.0 );
+
+    }
+`;
+
+const fragmentShader = `
+  precision highp float;
+
+  varying vec4 color;
+
+  void main() {
+
+    gl_FragColor = color;
+
+  }
+`;
+
+// these need to be accessed inside more than one function so we'll declare them first
 let container;
+let scene;
 let camera;
+let controls;
 let renderer;
+let material;
 
-// The init function will do all of the heavy lifting to create and animate the scene
 function init() {
-  // Create the Scene
-  const scene = new THREE.Scene();
 
-  // Create the Camera
-  const fov = 35; // AKA "Field of View"
-  const aspect = container.clientWidth / container.clientHeight;
-  const near = 0.1; // the near clipping plane
-  const far = 1000; // the far clipping plane
+  // Get a reference to the container element that will hold our scene
+  container = document.querySelector( '#container' );
 
-  camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
+  // create a Scene
+  scene = new THREE.Scene();
 
-  camera.position.set( 40, 20, 40 );
+  initCamera();
+  initControls();
+  initLights();
+  initMaterial();
+  initSpiral();
+  initRenderer();
 
-  // Set up camera controls
-  const controls = new THREE.OrbitControls( camera );
-  controls.enableDamping = true; // gives a feeling of "weight" to the controls
-  // controls.autoRotate = true;
-  // controls.autoRotateSpeed = 0.1;
+  renderer.animate( () => {
 
-  // create a global illumination light
-  const ambientLight = new THREE.AmbientLight( 0x333333, 1.0 );
-  scene.add( ambientLight );
+    update();
+    render();
 
-  // create an omnidirectional light
-  const pointLight = new THREE.PointLight( 0xffffff, 0.5 );
-  pointLight.position.set( 0, 0, 20 );
-  scene.add( pointLight );
+  } );
 
-  // set up the renderer
+}
+
+function initCamera() {
+
+  camera = new THREE.PerspectiveCamera(
+    35, // FOV
+    container.clientWidth / container.clientHeight, // aspect
+    0.1, // near clipping plane
+    100, // far clipping plane
+  );
+
+  camera.position.set( -10, 0, -8 );
+
+}
+
+function initControls() {
+
+  controls = new THREE.OrbitControls( camera, container );
+  controls.rotateSpeed = 0.25;
+  controls.zoomSpeed = 0.5;
+  controls.enableDamping = true;
+
+}
+
+function initLights() {
+
+  // no lights needed for this scene
+
+}
+
+function initMaterial() {
+  material = new THREE.RawShaderMaterial( {
+    uniforms: {
+      time: { value: 0.0 },
+    },
+    vertexShader: vertexShader,
+    fragmentShader: fragmentShader,
+    transparent: true,
+
+  } );
+}
+
+function initSpiral() {
+
+  const offsets = [];
+  const instanceIndex = [];
+
+  const instancedSphericalGeo = new THREE.InstancedBufferGeometry();
+
+  const sphereGeo = new THREE.SphereBufferGeometry( 0.015, 16, 16 );
+
+  instancedSphericalGeo.index = sphereGeo.index;
+  instancedSphericalGeo.attributes.position = sphereGeo.attributes.position;
+
+  for ( let i = -5000; i < 5000; i++ ) {
+
+    const t = ( 4000 + i ) * ( 5000 / 4000 );
+
+    const position = pointOnSphericalSpiral( t );
+    offsets.push( position.x, position.y, position.z );
+    instanceIndex.push( ( Math.abs( i ) % 10 * 0.1 ) );
+  }
+
+  const offsetAttribute = new THREE.InstancedBufferAttribute( new Float32Array( offsets ), 3 );
+  instancedSphericalGeo.addAttribute( 'offset', offsetAttribute );
+
+  const indexAttribute = new THREE.InstancedBufferAttribute( new Float32Array( instanceIndex ), 1 );
+  instancedSphericalGeo.addAttribute( 'instanceIndex', indexAttribute );
+
+  const spiral = new THREE.Mesh( instancedSphericalGeo, material );
+  spiral.scale.multiplyScalar( 0.6 );
+  scene.add( spiral );
+}
+
+function initRenderer() {
+
+  // create a WebGLRenderer and set its width and height
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize( container.clientWidth, container.clientHeight );
-  renderer.setClearColor( 0xffffff, 1 );
-
 
   // add the automatically created <canvas> element to the page
   container.appendChild( renderer.domElement );
 
-  const DNA = createDNA();
-  scene.add( DNA );
-
-  // set up a simple animation loop
-  renderer.animate( () => {
-    renderer.render( scene, camera );
-
-    DNA.rotation.z += 0.001;
-
-    // required of controls.enableDamping is set, see above
-    controls.update();
-  } );
 }
 
-function randomColor() {
-  return new THREE.Color( Math.random(), Math.random(), Math.random() );
+// These variables will only be used in the update function
+let time = 0.0;
+const clock = new THREE.Clock();
+
+// perform any updates to the scene, called once per frame
+// avoid heavy computation here
+function update() {
+
+  // needed when control.enableDamping = true;
+  controls.update();
+
+  // amount to update the spiral by each frame
+  time += clock.getDelta() / 30;
+  material.uniforms.time.value = time;
 }
 
-// formula for a point on a DNA helix as described by Crick And Watson
-function helixPoint( a, b, t ) {
+// render, or 'draw a still image', of the scene
+function render() {
 
-  return new THREE.Vector3( a * Math.cos( t ), a * Math.sin( t ), b * t );
-
-}
-
-function helixPointsArray( a, b ) {
-
-  const curvePoints = [];
-
-  for ( let t = -20; t < 12; t += 0.5 ) {
-
-    curvePoints.push( helixPoint( a, b, t ) );
-
-  }
-
-  return curvePoints;
+  renderer.render( scene, camera );
 
 }
 
-function helixMesh( pointsOnCurve, color ) {
-
-  const curve = new THREE.CatmullRomCurve3( pointsOnCurve );
-
-  const geometry = new THREE.TubeBufferGeometry( curve, 100, 0.25, 12, false );
-  const material = new THREE.MeshToonMaterial( { color } );
-  return new THREE.Mesh( geometry, material );
-
-}
-
-// assume same number of upper and lower points for simplicity
-function createConnectingRods( DNA, upperHelixPoints, lowerHelixPoints ) {
-
-  upperHelixPoints.forEach( ( upperPoint, index ) => {
-
-    if( index % 2 !== 0 ) return;
-
-    const lowerPoint = lowerHelixPoints[ index ];
-
-    const curve = new THREE.LineCurve3( upperPoint, lowerPoint );
-
-    const geometry = new THREE.TubeBufferGeometry( curve, 100, 0.25, 12, false );
-    const material = new THREE.MeshToonMaterial( { color: randomColor() } );
-    DNA.add( new THREE.Mesh( geometry, material ) );
-
-  } );
-}
-
-function createDNA() {
-
-  const DNA = new THREE.Group();
-
-  const upperHelixPoints = helixPointsArray( 3, 3.1, 0xff00ff );
-  const lowerHelixPoints = helixPointsArray( -3, 2.9 );
-
-  const upperHelix = helixMesh( upperHelixPoints, 0xff00ff );
-  const lowerHelix = helixMesh( lowerHelixPoints, 0x00ff00 );
-
-  DNA.add( upperHelix, lowerHelix );
-
-  createConnectingRods( DNA, upperHelixPoints, lowerHelixPoints );
-
-  return DNA;
-
-}
-
-// set up automatic resizing
+// a function that will be called every time the window gets resized.
+// It can get called a lot, so don't put any heavy computation in here!
 function onWindowResize() {
-  // reset the camera's aspect ratio to the new size
+
+  // set the aspect ratio to match the new browser window aspect ratio
   camera.aspect = container.clientWidth / container.clientHeight;
+
+  // update the camera's frustum
   camera.updateProjectionMatrix();
 
+  // update the size of the renderer AND the canvas
   renderer.setSize( container.clientWidth, container.clientHeight );
+
 }
 
-// add an event listener to the window which will fire when it changes size
 window.addEventListener( 'resize', onWindowResize );
 
-// call the init function to create the scene and start animating
+// call the init function to set everything up
 init();
+
+
