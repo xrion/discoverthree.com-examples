@@ -34,6 +34,8 @@ scene.add( mesh );
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize( container.clientWidth, container.clientHeight );
 
+renderer.setPixelRatio( window.devicePixelRatio );
+
 // add the automatically created <canvas> element to the page
 container.appendChild( renderer.domElement );
 

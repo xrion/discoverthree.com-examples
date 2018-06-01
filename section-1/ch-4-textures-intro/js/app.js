@@ -62,6 +62,8 @@ function init() {
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize( container.clientWidth, container.clientHeight );
 
+  renderer.setPixelRatio( window.devicePixelRatio );
+
   // add the automatically created <canvas> element to the page
   container.appendChild( renderer.domElement );
 
