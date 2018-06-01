@@ -1,9 +1,9 @@
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
 let camera;
+let controls;
 let renderer;
 let scene;
-let controls;
 
 let wheelFrontLeft;
 let wheelFrontRight;
@@ -12,39 +12,31 @@ let wheelRearRight;
 
 function init() {
 
-  // Get a reference to the container element that will hold our scene
   container = document.querySelector( '#container' );
 
-  // create a Scene
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color( 0x8FBCD4 );
-
+  initScene();
   initCamera();
   initControls();
   initLights();
   initMeshes();
   initRenderer();
 
-  renderer.setAnimationLoop( () => {
+  start();
 
-    update();
-    render();
+}
 
-  } );
+function initScene() {
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color( 0x8FBCD4 );
 
 }
 
 function initCamera() {
 
-  camera = new THREE.PerspectiveCamera(
-    35, // FOV
-    container.clientWidth / container.clientHeight, // aspect
-    0.1, // near clipping plane
-    100, // far clipping plane
-  );
+  camera = new THREE.PerspectiveCamera( 35, container.clientWidth / container.clientHeight, 0.1, 100 );
 
-  // move the camera back a bit so that we can view the scene
-  camera.position.set( 0, 0, 10 );
+  camera.position.set( 0, 0, 7 );
 
 }
 
@@ -61,8 +53,7 @@ function initLights() {
 
   const mainLight = new THREE.DirectionalLight( 0xffffff, 0.75 );
 
-  // the "light-in-camera" pattern. This works very well with OrbitControls, since it
-  // guarantees that a light is always shining on the target we are orbiting around
+  // the "light-in-camera" pattern
   camera.add( mainLight );
   scene.add( camera );
 
@@ -120,7 +111,6 @@ function initMeshes() {
 
 function initRenderer() {
 
-  // create a WebGLRenderer and set its width and height
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize( container.clientWidth, container.clientHeight );
 
@@ -131,8 +121,23 @@ function initRenderer() {
 
 }
 
-// perform any updates to the scene, called once per frame
-// avoid heavy computation here
+function start() {
+
+  renderer.setAnimationLoop( () => {
+
+    update();
+    render();
+
+  } );
+
+}
+
+function stop() {
+
+  renderer.setAnimationLoop( null );
+
+}
+
 function update() {
 
   const rotationSpeed = 0.01;
@@ -144,29 +149,23 @@ function update() {
 
 }
 
-// render, or 'draw a still image', of the scene
 function render() {
 
   renderer.render( scene, camera );
 
 }
 
-// a function that will be called every time the window gets resized.
-// It can get called a lot, so don't put any heavy computation in here!
 function onWindowResize() {
 
-  // set the aspect ratio to match the new browser window aspect ratio
   camera.aspect = container.clientWidth / container.clientHeight;
 
   // update the camera's frustum
   camera.updateProjectionMatrix();
 
-  // update the size of the renderer AND the canvas
   renderer.setSize( container.clientWidth, container.clientHeight );
 
 }
 
 window.addEventListener( 'resize', onWindowResize );
 
-// call the init function to set everything up
 init();
