@@ -33,7 +33,7 @@ function init() {
   // add the automatically created <canvas> element to the page
   container.appendChild( renderer.domElement );
 
-  renderer.animate( () => {
+  renderer.setAnimationLoop( () => {
 
     update();
     render();

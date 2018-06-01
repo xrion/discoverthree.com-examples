@@ -34,7 +34,7 @@ function init() {
   container.appendChild( renderer.domElement );
 
   // set up a simple animation loop
-  renderer.animate( () => {
+  renderer.setAnimationLoop( () => {
 
     renderer.render( scene, currentCamera );
 

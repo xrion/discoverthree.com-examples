@@ -119,7 +119,7 @@ function init() {
   initSpiral();
   initRenderer();
 
-  renderer.animate( () => {
+  renderer.setAnimationLoop( () => {
 
     update();
     render();

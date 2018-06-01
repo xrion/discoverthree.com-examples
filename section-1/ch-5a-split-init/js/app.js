@@ -16,12 +16,8 @@ function init() {
   initMeshes();
   initRenderer();
 
-  renderer.animate( () => {
-
-    update();
-    render();
-
-  } );
+  // start the animation loop
+  start();
 
 }
 
@@ -85,6 +81,23 @@ function initRenderer() {
 
   // add the automatically created <canvas> element to the page
   container.appendChild( renderer.domElement );
+
+}
+
+function start() {
+
+  renderer.setAnimationLoop( () => {
+
+    update();
+    render();
+
+  } );
+
+}
+
+function stop() {
+
+  renderer.setAnimationLoop( null );
 
 }
 

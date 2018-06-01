@@ -19,7 +19,7 @@ function init() {
   initMeshes();
   initRenderer();
 
-  renderer.animate( () => {
+  renderer.setAnimationLoop( () => {
 
     update();
     render();
