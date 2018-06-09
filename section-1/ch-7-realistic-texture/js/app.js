@@ -56,7 +56,7 @@ function initControls() {
 
 function initLights() {
 
-  const ambientLight = new THREE.AmbientLight( 0xffffff, 1.0 );
+  const ambientLight = new THREE.AmbientLight( 0x333333 );
   scene.add( ambientLight );
 
   const mainLight = new THREE.DirectionalLight( 0xffffff, 0.75 );
