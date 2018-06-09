@@ -44,7 +44,7 @@ function initCamera() {
   );
 
   // move the camera back a bit so that we can view the scene
-  camera.position.set( 0, 0, 10 );
+  camera.position.set( 0, 0, 7 );
 
 }
 
