@@ -138,9 +138,9 @@ function stop() {
 
 }
 
-function update() {
+const rotationSpeed = 0.01;
 
-  const rotationSpeed = 0.01;
+function update() {
 
   wheelFrontLeft.rotation.z += rotationSpeed;
   wheelFrontRight.rotation.z += rotationSpeed;
