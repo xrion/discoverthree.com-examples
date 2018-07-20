@@ -59,7 +59,7 @@ function initLights() {
 
 }
 
-function initMaterial() {
+function initMaterials() {
 
   const textureLoader = new THREE.TextureLoader();
 
@@ -78,7 +78,7 @@ function initMeshes() {
   const car = new THREE.Group();
   scene.add( car );
 
-  const material = initMaterial();
+  const material = initMaterials();
 
   const bodyGeometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
   const body = new THREE.Mesh( bodyGeometry, material );

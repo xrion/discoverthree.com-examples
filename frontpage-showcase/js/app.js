@@ -115,7 +115,7 @@ function init() {
   initCamera();
   initControls();
   initLights();
-  initMaterial();
+  initMaterials();
   initSpiral();
   initRenderer();
 
@@ -156,7 +156,7 @@ function initLights() {
 
 }
 
-function initMaterial() {
+function initMaterials() {
   material = new THREE.RawShaderMaterial( {
     uniforms: {
       time: { value: 0.0 },
