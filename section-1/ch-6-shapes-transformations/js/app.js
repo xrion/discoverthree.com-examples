@@ -94,17 +94,17 @@ function initMeshes() {
 
   wheelFrontRight = new THREE.Mesh( wheelGeo, material );
   wheelFrontRight.position.set( -1, -0.5, -0.6 );
-  wheelFrontRight.rotation.z += 2.5;
+  wheelFrontRight.rotation.z = 2.5;
   car.add( wheelFrontRight );
 
   wheelRearLeft = wheelFrontLeft.clone();
   wheelRearLeft.position.x = 1;
-  wheelRearLeft.rotation.z -= 2.5;
+  wheelRearLeft.rotation.z = -2.5;
   car.add( wheelRearLeft );
 
   wheelRearRight = wheelFrontRight.clone();
   wheelRearRight.position.x = 1;
-  wheelRearRight.rotation.z += 1.75;
+  wheelRearRight.rotation.z = 1.75;
   car.add( wheelRearRight );
 
 }
