@@ -147,6 +147,7 @@ function initControls() {
   controls.rotateSpeed = 0.25;
   controls.zoomSpeed = 0.5;
   controls.enableDamping = true;
+  controls.enablePan = false;
 
 }
 
