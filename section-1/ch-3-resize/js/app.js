@@ -57,24 +57,12 @@ function init() {
   container.appendChild( renderer.domElement );
 
   // start the animation loop
-  start();
-
-}
-
-function start() {
-
   renderer.setAnimationLoop( () => {
 
     update();
     render();
 
   } );
-
-}
-
-function stop() {
-
-  renderer.setAnimationLoop( null );
 
 }
 
