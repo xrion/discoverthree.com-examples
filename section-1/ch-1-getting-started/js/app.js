@@ -4,7 +4,7 @@ const container = document.querySelector( '#container' );
 // create a Scene
 const scene = new THREE.Scene();
 // Set the background color
-scene.background = new THREE.Color( 0x8FBCD4 );
+scene.background = new THREE.Color( 'skyblue' );
 
 // Create a Camera
 const fov = 35; // AKA Field of View
@@ -32,8 +32,8 @@ scene.add( mesh );
 
 // create the renderer
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize( container.clientWidth, container.clientHeight );
 
+renderer.setSize( container.clientWidth, container.clientHeight );
 renderer.setPixelRatio( window.devicePixelRatio );
 
 // add the automatically created <canvas> element to the page
