@@ -19,7 +19,12 @@ function init() {
   initRenderer();
 
   // start the animation loop
-  start();
+  renderer.setAnimationLoop( () => {
+
+    update();
+    render();
+
+  } );
 
 }
 
@@ -93,24 +98,6 @@ function initRenderer() {
   container.appendChild( renderer.domElement );
 
 }
-
-function start() {
-
-  renderer.setAnimationLoop( () => {
-
-    update();
-    render();
-
-  } );
-
-}
-
-function stop() {
-
-  renderer.setAnimationLoop( null );
-
-}
-
 
 // perform any updates to the scene, called once per frame
 // avoid heavy computation here
