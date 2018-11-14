@@ -34,7 +34,7 @@ function init() {
   // if you run into problems here
   const textureLoader = new THREE.TextureLoader();
 
-  const texture = textureLoader.load( 'textures/uv_test.png' );
+  const texture = textureLoader.load( 'textures/uv_test_bw.png' );
 
   texture.anisotropy = 16;
 
@@ -67,25 +67,12 @@ function init() {
   // add the automatically created <canvas> element to the page
   container.appendChild( renderer.domElement );
 
-  // start the animation loop
-  start();
-
-}
-
-function start() {
-
   renderer.setAnimationLoop( () => {
 
     update();
     render();
 
   } );
-
-}
-
-function stop() {
-
-  renderer.setAnimationLoop( null );
 
 }
 
