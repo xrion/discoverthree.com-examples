@@ -38,7 +38,7 @@ function initCamera() {
     100, // far clipping plane
   );
 
-  camera.position.set( 0, 0, 10 );
+  camera.position.set( -4, 4, 10 );
 
 }
 
