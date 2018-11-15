@@ -48,14 +48,16 @@ function initControls() {
 
 function initLights() {
 
-  const ambientLight = new THREE.AmbientLight( 0xffffff, 1.0 );
+  const ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
   scene.add( ambientLight );
 
-  const mainLight = new THREE.DirectionalLight( 0xffffff, 0.75 );
+  const frontLight = new THREE.DirectionalLight( 0xffffff, 1 );
+  frontLight.position.set( 10, 10, 10 );
 
-  // the "light-in-camera" pattern
-  camera.add( mainLight );
-  scene.add( camera );
+  const backLight = new THREE.DirectionalLight( 0xffffff, 1 );
+  backLight.position.set( -10, 10, -10 );
+
+  scene.add( frontLight, backLight );
 
 }
 
@@ -63,7 +65,7 @@ function initMaterials() {
 
   const textureLoader = new THREE.TextureLoader();
 
-  const texture = textureLoader.load( 'textures/uv_test.png' );
+  const texture = textureLoader.load( 'textures/uv_test_bw.png' );
   texture.anisotropy = 16;
 
   return new THREE.MeshStandardMaterial( {

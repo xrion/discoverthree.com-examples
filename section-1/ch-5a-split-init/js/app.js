@@ -58,7 +58,7 @@ function initMeshes() {
 
   const textureLoader = new THREE.TextureLoader();
 
-  const texture = textureLoader.load( 'textures/uv_test.png' );
+  const texture = textureLoader.load( 'textures/uv_test_bw.png' );
   texture.anisotropy = 16;
 
   const material = new THREE.MeshStandardMaterial( {
