@@ -1,9 +1,9 @@
 // these need to be accessed inside more than one function so we'll declare them first
 let container;
 let camera;
+let controls;
 let renderer;
 let scene;
-let controls;
 
 let wheelFrontLeft;
 let wheelFrontRight;
@@ -12,10 +12,8 @@ let wheelRearRight;
 
 function init() {
 
-  // Get a reference to the container element that will hold our scene
   container = document.querySelector( '#container' );
 
-  // create a Scene
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0x8FBCD4 );
 

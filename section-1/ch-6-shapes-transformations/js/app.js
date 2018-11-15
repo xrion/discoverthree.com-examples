@@ -4,6 +4,7 @@ let camera;
 let controls;
 let renderer;
 let scene;
+let mesh;
 
 let wheelFrontLeft;
 let wheelFrontRight;
@@ -14,7 +15,9 @@ function init() {
 
   container = document.querySelector( '#container' );
 
-  initScene();
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color( 0x8FBCD4 );
+
   initCamera();
   initControls();
   initLights();
@@ -30,17 +33,9 @@ function init() {
 
 }
 
-function initScene() {
-
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color( 0x8FBCD4 );
-
-}
-
 function initCamera() {
 
   camera = new THREE.PerspectiveCamera( 35, container.clientWidth / container.clientHeight, 0.1, 100 );
-
   camera.position.set( 0, 0, 7 );
 
 }

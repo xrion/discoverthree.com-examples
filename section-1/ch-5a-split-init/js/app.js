@@ -7,10 +7,11 @@ let mesh;
 
 function init() {
 
-  // Get a reference to the container element that will hold our scene
   container = document.querySelector( '#container' );
 
-  initScene();
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color( 0x8FBCD4 );
+
   initCamera();
   initLights();
   initMeshes();
@@ -22,13 +23,6 @@ function init() {
     render();
 
   } );
-
-}
-
-function initScene() {
-
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color( 0x8FBCD4 );
 
 }
 
