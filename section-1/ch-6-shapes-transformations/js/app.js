@@ -61,49 +61,41 @@ function initLights() {
 
 }
 
-function initMaterials() {
-
-  const textureLoader = new THREE.TextureLoader();
-
-  const texture = textureLoader.load( 'textures/uv_test_bw.png' );
-  texture.anisotropy = 16;
-
-  return new THREE.MeshStandardMaterial( {
-    map: texture,
-    flatShading: true,
-    roughness: 0.75,
-    metalness: 0.1,
-  } );
-
-}
-
 function initMeshes() {
 
-  // create a Group to hold the pieces of the car
-  const car = new THREE.Group();
-  scene.add( car );
+  // create a Group to hold the pieces of the train
+  const train = new THREE.Group();
+  scene.add( train );
 
-  const material = initMaterials();
+  const bodyMaterial = new THREE.MeshStandardMaterial( {
+    color: 0xff3333,
+    flatShading: true,
+  } );
 
-  const noseGeometry = new THREE.CylinderBufferGeometry( 0.75, 0.75, 3, 8 );
-  const nose = new THREE.Mesh( noseGeometry, material );
+  const wheelMaterial = new THREE.MeshStandardMaterial( {
+    color: 0x333333,
+    flatShading: true,
+  } );
+
+  const noseGeometry = new THREE.CylinderBufferGeometry( 0.75, 0.75, 3, 12 );
+  const nose = new THREE.Mesh( noseGeometry, bodyMaterial );
   nose.rotation.set( Math.PI / 2, 0, Math.PI / 2 );
   nose.position.x = -1.5;
 
   const cabinGeometry = new THREE.BoxBufferGeometry( 2, 2.25, 1.5 );
-  const cabin = new THREE.Mesh( cabinGeometry, material );
+  const cabin = new THREE.Mesh( cabinGeometry, bodyMaterial );
   cabin.position.set( 1, 0.4, 0 );
 
   const chimneyGeometry = new THREE.CylinderBufferGeometry( 0.3, 0.1, 0.5 );
-  const chimney = new THREE.Mesh( chimneyGeometry, material );
+  const chimney = new THREE.Mesh( chimneyGeometry, wheelMaterial );
   chimney.position.set( -2.5, 0.9, 0 );
 
-  car.add( cabin, nose, chimney );
+  train.add( cabin, nose, chimney );
 
   const wheelGeo = new THREE.CylinderBufferGeometry( 0.4, 0.4, 1.75, 16 );
   wheelGeo.rotateX( Math.PI / 2 );
 
-  const smallWheelRear = new THREE.Mesh( wheelGeo, material );
+  const smallWheelRear = new THREE.Mesh( wheelGeo, wheelMaterial );
   smallWheelRear.position.set( -0.5, -0.5, 0 );
 
   const smallWheelCenter = smallWheelRear.clone();
@@ -116,7 +108,7 @@ function initMeshes() {
   bigWheel.scale.set( 2, 2, 1.25 );
   bigWheel.position.set( 1, -0.1, 0 );
 
-  car.add( smallWheelRear, smallWheelCenter, smallWheelFront, bigWheel );
+  train.add( smallWheelRear, smallWheelCenter, smallWheelFront, bigWheel );
 
 
 }
