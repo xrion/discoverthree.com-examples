@@ -66,14 +66,14 @@ function initMeshes() {
     flatShading: true,
   } );
 
-  const wheelMaterial = new THREE.MeshStandardMaterial( {
+  const detailMaterial = new THREE.MeshStandardMaterial( {
     color: 0x333333, // dark grey
     flatShading: true,
   } );
 
   const noseGeometry = new THREE.CylinderBufferGeometry( 0.75, 0.75, 3, 12 );
   const nose = new THREE.Mesh( noseGeometry, bodyMaterial );
-  nose.rotation.set( Math.PI / 2, 0, Math.PI / 2 );
+  nose.rotation.set( 0, 0, Math.PI / 2 );
   nose.position.x = -1.5;
 
   const cabinGeometry = new THREE.BoxBufferGeometry( 2, 2.25, 1.5 );
@@ -81,7 +81,7 @@ function initMeshes() {
   cabin.position.set( 1, 0.4, 0 );
 
   const chimneyGeometry = new THREE.CylinderBufferGeometry( 0.3, 0.1, 0.5 );
-  const chimney = new THREE.Mesh( chimneyGeometry, wheelMaterial );
+  const chimney = new THREE.Mesh( chimneyGeometry, detailMaterial );
   chimney.position.set( -2.5, 0.9, 0 );
 
   train.add( cabin, nose, chimney );
@@ -89,7 +89,7 @@ function initMeshes() {
   const wheelGeo = new THREE.CylinderBufferGeometry( 0.4, 0.4, 1.75, 16 );
   wheelGeo.rotateX( Math.PI / 2 );
 
-  const smallWheelRear = new THREE.Mesh( wheelGeo, wheelMaterial );
+  const smallWheelRear = new THREE.Mesh( wheelGeo, detailMaterial );
   smallWheelRear.position.set( -0.5, -0.5, 0 );
 
   const smallWheelCenter = smallWheelRear.clone();
