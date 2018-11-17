@@ -4,12 +4,6 @@ let camera;
 let controls;
 let renderer;
 let scene;
-let mesh;
-
-let wheelFrontLeft;
-let wheelFrontRight;
-let wheelRearLeft;
-let wheelRearRight;
 
 function init() {
 
@@ -36,7 +30,7 @@ function init() {
 function initCamera() {
 
   camera = new THREE.PerspectiveCamera( 35, container.clientWidth / container.clientHeight, 0.1, 100 );
-  camera.position.set( 0, 0, 15 );
+  camera.position.set( -5, 5, 10 );
 
 }
 
@@ -68,12 +62,12 @@ function initMeshes() {
   scene.add( train );
 
   const bodyMaterial = new THREE.MeshStandardMaterial( {
-    color: 0xff3333,
+    color: 0xff3333, // red
     flatShading: true,
   } );
 
   const wheelMaterial = new THREE.MeshStandardMaterial( {
-    color: 0x333333,
+    color: 0x333333, // dark grey
     flatShading: true,
   } );
 
@@ -109,7 +103,6 @@ function initMeshes() {
   bigWheel.position.set( 1, -0.1, 0 );
 
   train.add( smallWheelRear, smallWheelCenter, smallWheelFront, bigWheel );
-
 
 }
 
