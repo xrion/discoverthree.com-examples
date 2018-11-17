@@ -73,7 +73,7 @@ function initMeshes() {
 
   const noseGeometry = new THREE.CylinderBufferGeometry( 0.75, 0.75, 3, 12 );
   const nose = new THREE.Mesh( noseGeometry, bodyMaterial );
-  nose.rotation.set( 0, 0, Math.PI / 2 );
+  nose.rotation.z = Math.PI / 2;
   nose.position.x = -1.5;
 
   const cabinGeometry = new THREE.BoxBufferGeometry( 2, 2.25, 1.5 );
