@@ -133,8 +133,6 @@ function initRenderer() {
 
 }
 
-const rotationSpeed = 0.01;
-
 function update() {
 
   // wheelFrontLeft.rotation.z += rotationSpeed;
