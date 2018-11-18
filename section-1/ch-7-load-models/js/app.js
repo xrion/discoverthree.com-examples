@@ -60,33 +60,61 @@ function initLights() {
 
 function loadModels() {
 
+  const loader = new THREE.GLTFLoader();
+
+  // the loader will report the loading progress to this function as it loads the file.
+  // We'll ignore this for now though to keep things simples
+  const onProgress = () => {};
+
+  // The loader will send any error messages to this function, and we'll log
+  // them to to console
+  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+
+  // A reusable function to setup the models. We're passing in a position parameter
+  // so that they can be individually placed around the scene
   const setupModel = ( gltf, position ) => {
 
-    const bird = gltf.scene;
-    bird.position.copy( position );
+    const model = gltf.scene;
+    model.position.copy( position );
 
     const animation = gltf.animations[ 0 ];
 
-    const mixer = new THREE.AnimationMixer( bird );
+    const mixer = new THREE.AnimationMixer( model );
     mixers.push( mixer );
 
     const action = mixer.clipAction( animation );
     action.play();
 
-    scene.add( bird );
+    scene.add( model );
 
   };
 
-  const loader = new THREE.GLTFLoader();
+  // load the first model. Each model is loaded asynchronously,
+  // so there is no way to know which one will finish loading first
+  loader.load( 'models/parrot.glb', ( gltf ) => {
 
-  const parrotPosition = new THREE.Vector3( 0, 0, 50 );
-  loader.load( 'models/parrot.glb', ( gltf ) => { setupModel( gltf, parrotPosition ); } );
+    // create a Vector3 specifying the position of the model
+    const parrotPosition = new THREE.Vector3( 0, 0, 50 );
+    // call the setupModel function with the custom position
+    setupModel( gltf, parrotPosition );
 
-  const flamingoPosition = new THREE.Vector3( 150, 00, -200 );
-  loader.load( 'models/flamingo.glb', ( gltf ) => { setupModel( gltf, flamingoPosition ); } );
+  }, onProgress, onError );
 
-  const storkPosition = new THREE.Vector3( 0, -50, -200 );
-  loader.load( 'models/stork.glb', ( gltf ) => { setupModel( gltf, storkPosition ); } );
+  // load the second model
+  loader.load( 'models/flamingo.glb', ( gltf ) => {
+
+    const flamingoPosition = new THREE.Vector3( 150, 0, -200 );
+    setupModel( gltf, flamingoPosition );
+
+  }, onProgress, onError );
+
+  // load the third model
+  loader.load( 'models/stork.glb', ( gltf ) => {
+
+    const storkPosition = new THREE.Vector3( 0, -50, -200 );
+    setupModel( gltf, storkPosition );
+
+  }, onProgress, onError );
 
 }
 
