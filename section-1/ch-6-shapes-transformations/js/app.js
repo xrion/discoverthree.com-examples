@@ -120,14 +120,7 @@ function initRenderer() {
 
 }
 
-function update() {
-
-  // wheelFrontLeft.rotation.z += rotationSpeed;
-  // wheelFrontRight.rotation.z += rotationSpeed;
-  // wheelRearLeft.rotation.z += rotationSpeed;
-  // wheelRearRight.rotation.z += rotationSpeed;
-
-}
+function update() {}
 
 function render() {
 
