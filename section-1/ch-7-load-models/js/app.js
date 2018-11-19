@@ -92,15 +92,15 @@ function loadModels() {
   // load the first model. Each model is loaded asynchronously,
   // so don't make any assumption about which one will finish loading first
   const parrotPosition = new THREE.Vector3( 0, 0, 50 );
-  loader.load( 'models/parrot.glb', ( gltf ) => onLoad( gltf, parrotPosition ), onProgress, onError );
+  loader.load( 'models/Parrot.glb', ( gltf ) => onLoad( gltf, parrotPosition ), onProgress, onError );
 
   // load the second model
   const flamingoPosition = new THREE.Vector3( 150, 0, -200 );
-  loader.load( 'models/flamingo.glb', ( gltf ) => onLoad( gltf, flamingoPosition ), onProgress, onError );
+  loader.load( 'models/Flamingo.glb', ( gltf ) => onLoad( gltf, flamingoPosition ), onProgress, onError );
 
   // load the third model
   const storkPosition = new THREE.Vector3( 0, -50, -200 );
-  loader.load( 'models/stork.glb', ( gltf ) => onLoad( gltf, storkPosition ), onProgress, onError );
+  loader.load( 'models/Stork.glb', ( gltf ) => onLoad( gltf, storkPosition ), onProgress, onError );
 
 }
 
