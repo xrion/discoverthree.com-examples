@@ -5,7 +5,7 @@ let controls;
 let renderer;
 let scene;
 
-let mixers = [];
+const mixers = [];
 const clock = new THREE.Clock();
 
 function init() {
@@ -66,7 +66,6 @@ function loadModels() {
   // so that they can be individually placed around the scene
   const onLoad = ( gltf, position ) => {
 
-    console.log( gltf );
     const model = gltf.scene.children[ 0 ];
     model.position.copy( position );
 
@@ -80,7 +79,7 @@ function loadModels() {
 
     scene.add( model );
 
-  }
+  };
 
   // the loader will report the loading progress to this function as it loads the file.
   const onProgress = () => {};
@@ -92,15 +91,15 @@ function loadModels() {
   // load the first model. Each model is loaded asynchronously,
   // so don't make any assumption about which one will finish loading first
   const parrotPosition = new THREE.Vector3( 0, 0, 50 );
-  loader.load( 'models/Parrot.glb', ( gltf ) => onLoad( gltf, parrotPosition ), onProgress, onError );
+  loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, parrotPosition ), onProgress, onError );
 
   // load the second model
   const flamingoPosition = new THREE.Vector3( 150, 0, -200 );
-  loader.load( 'models/Flamingo.glb', ( gltf ) => onLoad( gltf, flamingoPosition ), onProgress, onError );
+  loader.load( 'models/Flamingo.glb', gltf => onLoad( gltf, flamingoPosition ), onProgress, onError );
 
   // load the third model
   const storkPosition = new THREE.Vector3( 0, -50, -200 );
-  loader.load( 'models/Stork.glb', ( gltf ) => onLoad( gltf, storkPosition ), onProgress, onError );
+  loader.load( 'models/Stork.glb', gltf => onLoad( gltf, storkPosition ), onProgress, onError );
 
 }
 
@@ -121,7 +120,7 @@ function update() {
 
   const delta = clock.getDelta();
 
-  mixers.forEach( ( mixer ) => { mixer.update( delta ) } );
+  mixers.forEach( ( mixer ) => { mixer.update( delta ); } );
 
 }
 
