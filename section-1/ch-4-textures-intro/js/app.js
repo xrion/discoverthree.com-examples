@@ -29,11 +29,12 @@ function init() {
   // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
 
-  // create a texture loader. See the note in chapter 4 on working locally, or the page
-  // https://threejs.org/docs/#manual/introduction/How-to-run-things-locally
-  // if you run into problems here
+  // create a texture loader.
   const textureLoader = new THREE.TextureLoader();
 
+  // Load a texture. See the note in chapter 4 on working locally, or the page
+  // https://threejs.org/docs/#manual/introduction/How-to-run-things-locally
+  // if you run into problems here
   const texture = textureLoader.load( 'textures/uv_test_bw.png' );
 
   texture.anisotropy = 16;
