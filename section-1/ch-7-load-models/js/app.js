@@ -81,10 +81,10 @@ function loadModels() {
 
   };
 
-  // the loader will report the loading progress to this function as it loads the file.
+  // the loader will report the loading progress to this function
   const onProgress = () => {};
 
-  // The loader will send any error messages to this function, and we'll log
+  // the loader will send any error messages to this function, and we'll log
   // them to to console
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
