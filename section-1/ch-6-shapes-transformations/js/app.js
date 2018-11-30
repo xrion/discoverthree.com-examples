@@ -80,7 +80,7 @@ function initMeshes() {
   const cabin = new THREE.Mesh( cabinGeometry, bodyMaterial );
   cabin.position.set( 1.5, 0.4, 0 );
 
-  train.add( cabin, nose );
+  train.add( nose, cabin );
 
   const wheelGeo = new THREE.CylinderBufferGeometry( 0.4, 0.4, 1.75, 16 );
   wheelGeo.rotateX( Math.PI / 2 );
