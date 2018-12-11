@@ -101,6 +101,10 @@ class App {
 
   start() {
 
+    // clear previous delta to prevent large delta values when
+    // starting and stopping the app
+    this.clock.getDelta();
+
     this.renderer.setAnimationLoop( () => {
 
       this.update();
