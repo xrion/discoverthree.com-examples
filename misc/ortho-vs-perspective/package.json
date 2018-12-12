@@ -1,5 +1,5 @@
 {
-  "name": "Discoverthreejs.com - OrthoGraphic Vs Perspective projection",
+  "name": "discoverthreejs-com-ortho-graphic-vs-perspective-projection",
   "version": "1.1.0",
   "description": "A simple example to illustrate the difference between the two camera types",
   "main": "index.html",
