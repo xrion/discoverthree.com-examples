@@ -1,4 +1,4 @@
-class App {
+class THREE_APP {
 
   constructor( containerID ) {
 
