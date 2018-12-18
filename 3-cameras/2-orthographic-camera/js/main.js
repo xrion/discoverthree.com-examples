@@ -18,10 +18,9 @@ function initLights() {
 function initMeshes() {
 
   // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
+  const geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
 
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
-
 
   mesh = new THREE.Mesh( geometry, material );
 
@@ -42,9 +41,6 @@ function loadModels() {
     if( position ) model.position.copy( position );
     if( rotation ) model.rotation.copy( rotation );
     if( scale ) model.scale.copy( scale );
-
-
-    console.log(model);
 
     if( gltf.animations[ 0 ] ) {
 
@@ -74,7 +70,7 @@ function loadModels() {
   // so don't make any assumption about which one will finish loading first
   const position = new THREE.Vector3( 0, 2, 0 );
   const rotation = new THREE.Euler();
-  const scale = new THREE.Vector3( 0.05, 0.05, 0.05 );
+  const scale = new THREE.Vector3( 10, 10, 10 );
   app.loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, position, rotation, scale ), null, onError );
 
 }
@@ -83,13 +79,24 @@ function init() {
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 4, 4, 10 );
+  // the standard resize function will not work for the OrthograpicCamera
+  app.autoResize = false;
 
-  app.controls.target.y = 1;
+  // call this before app.start()
+
+  const container = document.querySelector( '#container' );
+
+  const left = - container.clientWidth / 2;
+  const right = container.clientWidth / 2;
+  const top = container.clientHeight / 2;
+  const bottom = - container.clientHeight / 2;
+  app.camera = new THREE.OrthographicCamera( left, right, top, bottom, 0.1, 1000 );
+
+  app.scene.background = new THREE.Color( 0x8FBCD4 );
+  app.camera.position.set( 0, 0, 500 );
 
   initLights();
-  initMeshes();
+  // initMeshes();
   loadModels();
 
   app.start();
