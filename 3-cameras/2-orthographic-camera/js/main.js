@@ -115,7 +115,6 @@ function init() {
 
   app.scene.add( new THREE.CameraHelper( app.camera ) );
 
-
   initLights();
   initMeshes();
 
