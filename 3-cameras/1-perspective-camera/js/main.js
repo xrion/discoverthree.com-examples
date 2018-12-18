@@ -30,9 +30,9 @@ function loadModels() {
 
       bird = model.clone();
 
-      const x = THREE.Math.randFloat( -20, 20 );
-      const y = THREE.Math.randFloat( -20, 20 );
-      const z = THREE.Math.randFloat( -20, 20 );
+      const x = THREE.Math.randFloatSpread( -20, 20 );
+      const y = THREE.Math.randFloatSpread( -20, 20 );
+      const z = THREE.Math.randFloatSpread( -20, 20 );
 
       bird.position.set( x, y, z );
 
