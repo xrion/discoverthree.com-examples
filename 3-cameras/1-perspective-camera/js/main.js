@@ -1,4 +1,4 @@
-const app = new App( 'container' );
+const app = new THREE_APP( '#container' );
 
 function initLights() {
 
@@ -15,67 +15,109 @@ function initLights() {
 
 }
 
-function initMeshes() {
-
-  // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
-
-  const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
-
-
-  mesh = new THREE.Mesh( geometry, material );
-
-  app.scene.add( mesh );
-
-}
-
-
 function loadModels() {
 
   // A reusable function to setup the models
   // assumes that the gltf file contains a single model
   // and up to one animation track
-  const onLoad = ( gltf, position, rotation, scale ) => {
+  const onLoad = ( gltf ) => {
 
     const model = gltf.scene.children[ 0 ];
+    model.scale.set(  0.05, 0.05, 0.05 );
+    // model.material = new THREE.MeshBasicMaterial( { morphTargets: true, flatShading: true, vertexColors: true } );
 
-    if( position ) model.position.copy( position );
-    if( rotation ) model.rotation.copy( rotation );
-    if( scale ) model.scale.copy( scale );
+    for( let i = 0; i < 100; i++ ) {
+
+      bird = model.clone();
+
+      const x = THREE.Math.randFloat( -20, 20 );
+      const y = THREE.Math.randFloat( -20, 20 );
+      const z = THREE.Math.randFloat( -20, 20 );
+
+      bird.position.set( x, y, z );
+
+      if( gltf.animations[ 0 ] ) {
+
+        const animation = gltf.animations[ 0 ];
+        const mixer = new THREE.AnimationMixer( bird );
+
+        // we'll check every object in the scene for
+        // this function and call it once per frame
+        bird.userData.onUpdate = ( delta ) => {
+
+          mixer.update( delta );
+
+        };
+
+        const action = mixer.clipAction( animation );
+        action.play();
+
+      }
 
 
-    console.log(model);
 
-    if( gltf.animations[ 0 ] ) {
-
-      const animation = gltf.animations[ 0 ];
-      const mixer = new THREE.AnimationMixer( model );
-
-      // we'll check every object in the scene for
-      // this function and call it once per frame
-      model.userData.onUpdate = ( delta ) => {
-
-        mixer.update( delta );
-
-      };
-
-      const action = mixer.clipAction( animation );
-      action.play();
+      app.scene.add( bird );
 
     }
 
-    app.scene.add( model );
+
 
   };
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  // load the first model. Each model is loaded asynchronously,
-  // so don't make any assumption about which one will finish loading first
-  const position = new THREE.Vector3( 0, 2, 0 );
-  const rotation = new THREE.Euler();
-  const scale = new THREE.Vector3( 0.05, 0.05, 0.05 );
-  app.loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, position, rotation, scale ), null, onError );
+  app.loader.load( 'models/Parrot.glb', gltf => onLoad( gltf ), null, onError );
+
+}
+
+function initFOVSlider() {
+
+  const slider = document.querySelector( '#fov-slider' );
+  const value = document.querySelector( '#fov-value' );
+
+  slider.addEventListener( 'input', ( e ) => {
+
+    value.textContent = slider.value;
+    app.camera.fov = parseFloat( slider.value );
+    app.camera.updateProjectionMatrix();
+
+    e.preventDefault();
+
+  } );
+
+}
+
+function initNearSlider() {
+
+  const slider = document.querySelector( '#near-slider' );
+  const value = document.querySelector( '#near-value' );
+
+  slider.addEventListener( 'input', ( e ) => {
+
+    value.textContent = slider.value;
+    app.camera.near = parseFloat( slider.value );
+    app.camera.updateProjectionMatrix();
+
+    e.preventDefault();
+
+  } );
+
+}
+
+function initFarSlider() {
+
+  const slider = document.querySelector( '#far-slider' );
+  const value = document.querySelector( '#far-value' );
+
+  slider.addEventListener( 'input', ( e ) => {
+
+    value.textContent = slider.value;
+    app.camera.far = parseFloat( slider.value );
+    app.camera.updateProjectionMatrix();
+
+    e.preventDefault();
+
+  } );
 
 }
 
@@ -84,13 +126,23 @@ function init() {
   app.init();
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 4, 4, 10 );
+  app.camera.position.set( 5, 5, 10 );
+
+  // reduce the far clipping plane from the default of 100
+  // so that we can see its effect more easily
+  app.camera.far = 100;
+  app.camera.updateProjectionMatrix();
 
   app.controls.target.y = 1;
 
   initLights();
-  initMeshes();
   loadModels();
+
+  initFOVSlider();
+  initNearSlider();
+  initFarSlider();
+
+
 
   app.start();
 
