@@ -1,4 +1,4 @@
-const app = new THREE_APP( 'container' );
+const app = new THREE_APP( '#container' );
 
 function initLights() {
 

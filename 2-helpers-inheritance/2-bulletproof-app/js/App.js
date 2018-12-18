@@ -1,14 +1,14 @@
 class THREE_APP {
 
-  constructor( containerID ) {
+  constructor( container ) {
 
-    containerID = containerID || 'container'; // default ID if none provided
+    container = container || '#container'; // default ID if none provided
 
-    this.container = document.getElementById( containerID );
+    this.container = document.querySelector( container );
 
     if ( !this.container ) {
 
-      console.error( `Couldn't find the container element with ID #${containerID}!` );
+      console.error( `Couldn't find the container element: ${container}` );
 
       return;
 
@@ -23,8 +23,17 @@ class THREE_APP {
     // since they can't be changed without creating a new WebGLRenderer
     this.alpha = false;
     this.antialias = true;
+    this.powerPreference = 'high-performance';
+    this.stencil = false;
 
+    // this also needs to be set before calling init()
     this.autoResize = true;
+
+    // set this to a value less than 3 to increase performance on low power mobile devices with high pixel ratio
+    this.maxPixelRatio = Infinity;
+
+    this.onUpdate = null;
+    this.onResize = null;
 
   }
 
@@ -35,17 +44,20 @@ class THREE_APP {
     this.initLoader();
     this.initRenderer();
 
-    window.addEventListener( 'resize', () => this.onWindowResize() );
+    if ( this.autoResize ) window.addEventListener( 'resize', () => this.onWindowResize() );
 
   }
 
   initCamera() {
 
-    this.camera = new THREE.PerspectiveCamera( 35, this.container.clientWidth / this.container.clientHeight, 1, 1000 );
+    if ( !this.camera ) this.camera = new THREE.PerspectiveCamera( 35, this.container.clientWidth / this.container.clientHeight, 1, 1000 );
 
   }
 
   initControls() {
+
+    // allow custom controls to be set up
+    if ( this.controls ) return;
 
     // if the controls script was loaded, we'll set them up
     if ( typeof THREE.OrbitControls === 'function' ) this.controls = new THREE.OrbitControls( this.camera, this.container );
@@ -60,20 +72,27 @@ class THREE_APP {
 
   initLoader() {
 
+    // allow custom loader to be set up
+    if ( this.loader ) return;
+
     if ( typeof THREE.GLTFLoader === 'function' ) this.loader = new THREE.GLTFLoader();
 
   }
 
   initRenderer() {
 
+    // allow custom renderer to be set up
+    if ( this.renderer ) return;
+
     this.renderer = new THREE.WebGLRenderer( {
-      powerPreference: 'high-performance',
+      powerPreference: this.powerPreference,
       alpha: this.alpha,
       antialias: this.antialias,
+      stencil: this.stencil,
     } );
 
     this.renderer.setSize( this.container.clientWidth, this.container.clientHeight );
-    this.renderer.setPixelRatio( window.devicePixelRatio );
+    this.renderer.setPixelRatio( Math.min( window.devicePixelRatio, this.maxPixelRatio ) );
 
     // to avoid page pulling
     this.renderer.domElement.addEventListener( 'touchstart', e => e.preventDefault() );
@@ -92,7 +111,7 @@ class THREE_APP {
 
     const delta = this.clock.getDelta();
 
-    if ( this.controls ) this.controls.update();
+    if ( this.controls && this.controls.update ) this.controls.update();
 
     // step through the scene and call custom onUpdate functions on any object
     // for which we have defined them
@@ -101,6 +120,8 @@ class THREE_APP {
       if ( child.userData.onUpdate ) child.userData.onUpdate( delta );
 
     } );
+
+    if ( this.onUpdate ) this.onUpdate( delta );
 
   }
 
@@ -131,16 +152,19 @@ class THREE_APP {
 
   onWindowResize() {
 
-    if( ! this.autoResize ) return;
+    if( !this.autoResize ) return;
 
     this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
 
     this.camera.updateProjectionMatrix();
 
     this.renderer.setSize( this.container.clientWidth, this.container.clientHeight );
+    this.renderer.setPixelRatio( Math.min( window.devicePixelRatio, this.maxPixelRatio ) );
 
     // render an extra frame to prevent jank
     this.renderer.render( this.scene, this.camera );
+
+    if ( this.onResize ) this.onResize();
 
   }
 
