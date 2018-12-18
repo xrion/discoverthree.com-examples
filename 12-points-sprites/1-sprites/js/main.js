@@ -1,4 +1,4 @@
-const app = new App( 'container' );
+const app = new THREE_APP( '#container' );
 
 function initLights() {
 
@@ -15,82 +15,76 @@ function initLights() {
 
 }
 
-function initMeshes() {
+function initSprites() {
 
-  // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
+  const spriteGroup = new THREE.Group();
+  app.scene.add( spriteGroup );
 
-  const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
+  spriteGroup.userData.onUpdate = ( delta ) => {
+    spriteGroup.rotation.x += delta;
+  }
 
+  const loader = new THREE.TextureLoader();
 
-  mesh = new THREE.Mesh( geometry, material );
+  const spriteMap = loader.load( '../textures/leaf_rgba8.png' );
+  spriteMap.encoding = THREE.sRGBEncoding;
 
-  app.scene.add( mesh );
+  const spriteMaterial = new THREE.SpriteMaterial( {
+    map: spriteMap,
+    // sizeAttenuation: false,
+   } );
 
-}
+  for( let i = 0; i < 1000; i ++ ) {
 
+    const sprite = new THREE.Sprite( spriteMaterial.clone() );
 
-function loadModels() {
+    sprite.position.set(
+      THREE.Math.randFloatSpread( -15, 15 ),
+      THREE.Math.randFloatSpread( -15, 15 ),
+      THREE.Math.randFloatSpread( -15, 15 )
+    );
 
-  // A reusable function to setup the models
-  // assumes that the gltf file contains a single model
-  // and up to one animation track
-  const onLoad = ( gltf, position, rotation, scale ) => {
+    sprite.rotation.x += Math.PI / 2
+    sprite.rotation.y += Math.PI / 2
+    sprite.rotation.z += Math.PI / 2
 
-    const model = gltf.scene.children[ 0 ];
+    const factor = THREE.Math.randFloat( -5, 5 );
 
-    if( position ) model.position.copy( position );
-    if( rotation ) model.rotation.copy( rotation );
-    if( scale ) model.scale.copy( scale );
+    sprite.userData.onUpdate = function ( delta ) {
 
-
-    console.log(model);
-
-    if( gltf.animations[ 0 ] ) {
-
-      const animation = gltf.animations[ 0 ];
-      const mixer = new THREE.AnimationMixer( model );
-
-      // we'll check every object in the scene for
-      // this function and call it once per frame
-      model.userData.onUpdate = ( delta ) => {
-
-        mixer.update( delta );
-
-      };
-
-      const action = mixer.clipAction( animation );
-      action.play();
+      sprite.material.rotation += delta * factor;
 
     }
 
-    app.scene.add( model );
+    spriteGroup.add( sprite );
 
-  };
-
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
-
-  // load the first model. Each model is loaded asynchronously,
-  // so don't make any assumption about which one will finish loading first
-  const position = new THREE.Vector3( 0, 2, 0 );
-  const rotation = new THREE.Euler();
-  const scale = new THREE.Vector3( 0.05, 0.05, 0.05 );
-  app.loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, position, rotation, scale ), null, onError );
-
+  }
 }
 
 function init() {
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 4, 4, 10 );
+  // app.scene.background = new THREE.Color( 0x8FBCD4 );
+  app.camera.position.set( -1, 1, 15 );
+  app.camera.far = 100;
+  app.camera.updateProjectionMatrix();
 
-  app.controls.target.y = 1;
+  app.renderer.gammaOutput = true;
+  app.renderer.gammaFactor = 2.2;
+
+  // app.renderer.toneMapping = THREE.NoToneMapping;
+  // app.renderer.toneMapping = THREE.LinearToneMapping;
+  // app.renderer.toneMapping = THREE.ReinhardToneMapping;
+  // app.renderer.toneMapping = THREE.Uncharted2ToneMapping;
+  // app.renderer.toneMapping = THREE.CineonToneMapping;
+  // app.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  // app.renderer.toneMappingExposure = 2;
+  // app.renderer.toneMappingWhitePoint = 5;
 
   initLights();
-  initMeshes();
-  loadModels();
+
+  initSprites();
 
   app.start();
 
