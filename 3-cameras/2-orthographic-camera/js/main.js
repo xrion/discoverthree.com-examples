@@ -1,4 +1,6 @@
 const app = new THREE_APP( '#container' );
+const container = document.querySelector( '#container' );
+let orthographicCamera, perspectiveCamera;
 
 function initLights() {
 
@@ -18,60 +20,83 @@ function initLights() {
 function initMeshes() {
 
   // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 200, 200, 200 );
+  const geometry = new THREE.BoxBufferGeometry( 5, 5, 5 );
 
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
 
-  mesh = new THREE.Mesh( geometry, material );
+  for( let i = 0; i < 100; i++ ) {
 
-  app.scene.add( mesh );
+    const mesh = new THREE.Mesh( geometry, material );
 
-}
+    mesh.position.set(
+      THREE.Math.randFloatSpread( -100, 100 ),
+      THREE.Math.randFloatSpread( -100, 100 ),
+      THREE.Math.randFloatSpread( -100, 100 )
+    );
 
+    const factor = THREE.Math.randFloat( -1, 1 );
 
-function loadModels() {
+    mesh.userData.onUpdate = function ( delta ) {
 
-  // A reusable function to setup the models
-  // assumes that the gltf file contains a single model
-  // and up to one animation track
-  const onLoad = ( gltf, position, rotation, scale ) => {
-
-    const model = gltf.scene.children[ 0 ];
-
-    if( position ) model.position.copy( position );
-    if( rotation ) model.rotation.copy( rotation );
-    if( scale ) model.scale.copy( scale );
-
-    if( gltf.animations[ 0 ] ) {
-
-      const animation = gltf.animations[ 0 ];
-      const mixer = new THREE.AnimationMixer( model );
-
-      // we'll check every object in the scene for
-      // this function and call it once per frame
-      model.userData.onUpdate = ( delta ) => {
-
-        mixer.update( delta );
-
-      };
-
-      const action = mixer.clipAction( animation );
-      action.play();
+      mesh.rotation.x += delta * factor;
+      mesh.rotation.y += delta * factor;
+      mesh.rotation.z += delta * factor;
 
     }
 
-    app.scene.add( model );
+    app.scene.add( mesh );
 
-  };
+  }
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  // load the first model. Each model is loaded asynchronously,
-  // so don't make any assumption about which one will finish loading first
-  const position = new THREE.Vector3( 0, 2, 0 );
-  const rotation = new THREE.Euler();
-  const scale = new THREE.Vector3( 10, 10, 10 );
-  app.loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, position, rotation, scale ), null, onError );
+
+}
+
+function initOrthographicCamera() {
+
+  const left = - container.clientWidth / 2;
+  const right = container.clientWidth / 2;
+  const top = container.clientHeight / 2;
+  const bottom = - container.clientHeight / 2;
+
+  orthographicCamera =  new THREE.OrthographicCamera( left, right, top, bottom, 0.1, 100 );
+
+  new THREE.OrbitControls( orthographicCamera );
+
+}
+
+function onWindowResizeOrtho () {
+
+  if( ! orthographicCamera ) return;
+
+  orthographicCamera.left = - container.clientWidth / 2;
+  orthographicCamera.right = container.clientWidth / 2;
+  orthographicCamera.top = container.clientHeight / 2;
+  orthographicCamera.bottom = - container.clientHeight / 2;
+
+  orthographicCamera.updateProjectionMatrix();
+
+}
+
+window.addEventListener( 'resize', onWindowResizeOrtho );
+
+function initCameraToggle() {
+
+  const info = document.querySelector( '#active-camera' );
+  const button = document.querySelector( '#toggle-camera' );
+
+  button.addEventListener( 'click', () => {
+
+    if( app.camera.isOrthographicCamera  ) {
+      app.camera = perspectiveCamera;
+      info.textContent = 'Perspective';
+    }
+    else {
+      app.camera = orthographicCamera;
+      info.textContent = 'Orthographic';
+    }
+
+  } );
 
 }
 
@@ -79,25 +104,22 @@ function init() {
 
   app.init();
 
-  // the standard resize function will not work for the OrthograpicCamera
-  app.autoResize = false;
+  perspectiveCamera = app.camera;
 
-  // call this before app.start()
+  initOrthographicCamera();
 
-  const container = document.querySelector( '#container' );
-
-  const left = - container.clientWidth / 2;
-  const right = container.clientWidth / 2;
-  const top = container.clientHeight / 2;
-  const bottom = - container.clientHeight / 2;
-  app.camera = new THREE.OrthographicCamera( left, right, top, bottom, 0.1, 1000 );
+  app.camera = orthographicCamera;
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 0, 0, 500 );
+  app.camera.position.set( 0, 0, 100 );
+
+  app.scene.add( new THREE.CameraHelper( app.camera ) );
+
 
   initLights();
-  // initMeshes();
-  loadModels();
+  initMeshes();
+
+  initCameraToggle();
 
   app.start();
 
