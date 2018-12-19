@@ -1,5 +1,5 @@
 const app = new THREE_APP( '#container' );
-let material;
+let materials = [];
 
 function initLights() {
 
@@ -18,9 +18,17 @@ function initLights() {
 
 function initMaterials() {
 
-  material = new THREE.MeshBasicMaterial( {
-    color: 0x800080
+  const material =  new THREE.MeshBasicMaterial( {
+    // alphaTest: 0.5, this requires a transparent texture to work, we'll come back to it in Ch 4.10
+    transparent: true, // only set this to true if you need to!
+    opacity: 1.0,
+    // color: 0x800080,
+
+
   } );
+
+  // add the material to our material array so that we can control its parameters
+  materials.push( material );
 
 }
 
@@ -28,12 +36,11 @@ function initMeshes() {
 
   // create a geometry
   const boxGeo = new THREE.BoxBufferGeometry( 2, 2, 2 );
-  mesh = new THREE.Mesh( boxGeo, material );
+  mesh = new THREE.Mesh( boxGeo, materials[ 0 ] );
 
   app.scene.add( mesh );
 
 }
-
 
 function loadModels() {
 
@@ -43,17 +50,23 @@ function loadModels() {
   const onLoad = ( gltf, position, rotation, scale ) => {
 
     const model = gltf.scene.children[ 0 ];
-    model.material = material.clone();
-    model.material.morphTargets = true;
-    model.material.vertexColors = THREE.VertexColors;
 
+    // the loaded material is not set up for transparency so
+    // we'll need to change this setting
+    model.material.transparent = true;
+
+    // add the parrots material to our material array so that
+    // we can control its parameters
+    materials.push( model.material );
+
+    // log the material to the console so that you can take a
+    // look at it's properties.
+    // Take special note of material.morphTargets and material.flatShading!
+    console.log( model.material );
 
     if( position ) model.position.copy( position );
     if( rotation ) model.rotation.copy( rotation );
     if( scale ) model.scale.copy( scale );
-
-
-    console.log(model);
 
     if( gltf.animations[ 0 ] ) {
 
@@ -88,25 +101,130 @@ function loadModels() {
 
 }
 
+function initOpacitySlider() {
+
+  const slider = document.querySelector( '#opacity-slider' );
+  const value = document.querySelector( '#opacity-value' );
+
+  slider.addEventListener( 'input', ( e ) => {
+
+    value.textContent = slider.value;
+
+    materials.forEach( ( material ) => {
+
+      material.opacity = slider.value;
+
+    } );
+
+    e.preventDefault();
+
+  } );
+
+}
+
+function initColorPicker() {
+
+  const colorPicker = document.querySelector( '#color-picker' );
+
+  const updateColor = ( e ) => {
+
+    materials.forEach( ( material ) => {
+
+      // Note that the color is returned as a CSS hex string,
+      // e.g. "#cccccc"
+      // Fortunately, the color.set method is smart enough to
+      // understand these
+      material.color.set( e.target.value );
+
+    } );
+
+  }
+
+  colorPicker.addEventListener("input", updateColor);
+
+}
+
+function initSideSelector() {
+
+  const sideSelector = document.querySelector( '#side-select' );
+
+  const updateSide = ( e ) => {
+
+    materials.forEach( ( material ) => {
+
+      // e.target.value is a string, either "FrontSide", "BackSide", or "DoubleSide"
+      // so we can access the correct contanst on the global THREE variable using
+      // bracket notation
+      material.side = THREE[ e.target.value ];
+
+    } );
+
+  }
+
+  sideSelector.addEventListener( 'input', updateSide);
+
+}
+
+function initFlatShadingCheckbox() {
+
+  const checkbox = document.querySelector( '#flatshading-checkbox' );
+
+  const updateFlatShading = ( e ) => {
+
+    console.log(e.target.checked);
+
+    materials.forEach( ( material ) => {
+
+      material.flatShading = e.target.checked;
+      material.needsUpdate = true;
+
+    } );
+
+  }
+
+  checkbox.addEventListener( 'input', updateFlatShading);
+
+}
+
+function initVertexColorsSelector() {
+
+  const vertexColorsSelector = document.querySelector( '#vertexColors-select' );
+
+  const updateVertexColors = ( e ) => {
+
+    materials.forEach( ( material ) => {
+
+      material.vertexColors = THREE[ e.target.value ];
+      material.needsUpdate = true;
+
+    } );
+
+  }
+
+  vertexColorsSelector.addEventListener( 'input', updateVertexColors );
+
+}
+
+
 function init() {
 
   app.init();
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 0, 0, 25 );
+  app.camera.position.set( 0, 0, 15 );
 
   initMaterials();
   initLights();
   initMeshes();
   loadModels();
 
+  initOpacitySlider();
+  initColorPicker();
+  initSideSelector();
+  initFlatShadingCheckbox();
+  initVertexColorsSelector();
+
   app.start();
-
-  app.container.addEventListener( 'click', () => {
-
-    app.running ? app.stop() : app.start();
-
-  } );
 
 }
 
