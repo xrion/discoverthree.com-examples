@@ -113,7 +113,7 @@ loadTextures() {
       B: textureLoader.load( '../texture/'),
       C: textureLoader.load( '../texture/'),
       D: textureLoader.load( '../texture/'),
-    }
+    },
     // Basic, Depth, Lambert, Phong, Standard, Physical, Toon
     map: {
       none: undefined,
@@ -123,7 +123,7 @@ loadTextures() {
       brick: textureLoader.load( '../texture/brick_diffuse.jpg'),
       lava: textureLoader.load( '../texture/lavatile,jpg'),
       perlin: textureLoader.load( '../texture/perlin-512.png'),
-    }
+    },
     // Basic, Lambert, Phong, Toon
     specularMap: {
       none: undefined,
@@ -131,7 +131,7 @@ loadTextures() {
       B: textureLoader.load( '../texture/'),
       C: textureLoader.load( '../texture/'),
       D: textureLoader.load( '../texture/'),
-    }
+    },
     // Lambert, Phong, Standard, Physical, Toon
     emissiveMap: {
       none: undefined,
@@ -139,7 +139,7 @@ loadTextures() {
       B: textureLoader.load( '../texture/'),
       C: textureLoader.load( '../texture/'),
       D: textureLoader.load( '../texture/'),
-    }
+    },
     // Phong, Standard, Physical, Toon
     bumpMap: {
       none: undefined,
@@ -147,7 +147,7 @@ loadTextures() {
       B: textureLoader.load( '../texture/tri_pattern.jpg'),
       C: textureLoader.load( '../texture/'),
       D: textureLoader.load( '../texture/'),
-    }
+    },
     // Phong, Depth
     displacementMap: {
       none: undefined,
@@ -155,7 +155,7 @@ loadTextures() {
       B: textureLoader.load( '../texture/'),
       C: textureLoader.load( '../texture/'),
       D: textureLoader.load( '../texture/'),
-    }
+    },
     // Phong
     normalMap: {
       none: undefined,
@@ -179,7 +179,7 @@ loadTextures() {
       B: textureLoader.load( '../texture/'),
       C: textureLoader.load( '../texture/'),
       D: textureLoader.load( '../texture/'),
-    }
+    },
     // Standard, Physical
     metalnessMap:{
       none: undefined,
