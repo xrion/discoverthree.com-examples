@@ -171,8 +171,6 @@ function initFlatShadingCheckbox() {
 
   const updateFlatShading = ( e ) => {
 
-    console.log(e.target.checked);
-
     materials.forEach( ( material ) => {
 
       material.flatShading = e.target.checked;
@@ -205,6 +203,24 @@ function initVertexColorsSelector() {
 
 }
 
+function initVisibleCheckbox() {
+
+  const checkbox = document.querySelector( '#visible-checkbox' );
+
+  const updateVisibility = ( e ) => {
+
+    materials.forEach( ( material ) => {
+
+      material.visible = e.target.checked;
+
+    } );
+
+  }
+
+  checkbox.addEventListener( 'input', updateVisibility );
+
+}
+
 
 function init() {
 
@@ -223,6 +239,7 @@ function init() {
   initSideSelector();
   initFlatShadingCheckbox();
   initVertexColorsSelector();
+  initVisibleCheckbox();
 
   app.start();
 
