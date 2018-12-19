@@ -34,7 +34,7 @@ function initSprites() {
     // sizeAttenuation: false,
    } );
 
-  for( let i = 0; i < 1000; i ++ ) {
+  for( let i = 0; i < 250; i ++ ) {
 
     const sprite = new THREE.Sprite( spriteMaterial.clone() );
 
