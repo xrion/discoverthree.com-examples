@@ -15,54 +15,27 @@ function initLights() {
 
 }
 
-function initMeshes() {
-
-  // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
-
-  const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
-
-
-  mesh = new THREE.Mesh( geometry, material );
-
-  app.scene.add( mesh );
-
-}
-
-
 function loadModels() {
 
   // A reusable function to setup the models
-  // assumes that the gltf file contains a single model
-  // and up to one animation track
-  const onLoad = ( gltf, position, rotation, scale ) => {
+  const onLoad = ( gltf, position ) => {
 
     const model = gltf.scene.children[ 0 ];
+    model.position.copy( position );
 
-    if( position ) model.position.copy( position );
-    if( rotation ) model.rotation.copy( rotation );
-    if( scale ) model.scale.copy( scale );
+    const animation = gltf.animations[ 0 ];
+    const mixer = new THREE.AnimationMixer( model );
 
+    // we'll check every object in the scene for
+    // this function and call it once per frame
+    model.userData.onUpdate = ( delta ) => {
 
-    console.log(model);
+      mixer.update( delta );
 
-    if( gltf.animations[ 0 ] ) {
+    };
 
-      const animation = gltf.animations[ 0 ];
-      const mixer = new THREE.AnimationMixer( model );
-
-      // we'll check every object in the scene for
-      // this function and call it once per frame
-      model.userData.onUpdate = ( delta ) => {
-
-        mixer.update( delta );
-
-      };
-
-      const action = mixer.clipAction( animation );
-      action.play();
-
-    }
+    const action = mixer.clipAction( animation );
+    action.play();
 
     app.scene.add( model );
 
@@ -72,10 +45,14 @@ function loadModels() {
 
   // load the first model. Each model is loaded asynchronously,
   // so don't make any assumption about which one will finish loading first
-  const position = new THREE.Vector3( 0, 2, 0 );
-  const rotation = new THREE.Euler();
-  const scale = new THREE.Vector3( 0.05, 0.05, 0.05 );
-  app.loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, position, rotation, scale ), null, onError );
+  const parrotPosition = new THREE.Vector3( 0, 0, 50 );
+  app.loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, parrotPosition ), null, onError );
+
+  const flamingoPosition = new THREE.Vector3( 150, 0, -200 );
+  app.loader.load( 'models/Flamingo.glb', gltf => onLoad( gltf, flamingoPosition ), null, onError );
+
+  const storkPosition = new THREE.Vector3( 0, -50, -200 );
+  app.loader.load( 'models/Stork.glb', gltf => onLoad( gltf, storkPosition ), null, onError );
 
 }
 
@@ -84,15 +61,18 @@ function init() {
   app.init();
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 4, 4, 10 );
-
-  app.controls.target.y = 1;
+  app.camera.position.set( -50, 50, 150 );
 
   initLights();
-  initMeshes();
   loadModels();
 
   app.start();
+
+  app.container.addEventListener( 'click', () => {
+
+    app.running ? app.stop() : app.start();
+
+  } );
 
 }
 

@@ -29,7 +29,6 @@ function initMeshes() {
 
 }
 
-
 function loadModels() {
 
   // A reusable function to setup the models

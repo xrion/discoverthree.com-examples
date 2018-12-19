@@ -1,4 +1,5 @@
-const app = new App( 'container' );
+const app = new THREE_APP( '#container' );
+let material;
 
 function initLights() {
 
@@ -15,15 +16,19 @@ function initLights() {
 
 }
 
+function initMaterials() {
+
+  material = new THREE.MeshBasicMaterial( {
+    color: 0x800080
+  } );
+
+}
+
 function initMeshes() {
 
   // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
-
-  const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
-
-
-  mesh = new THREE.Mesh( geometry, material );
+  const boxGeo = new THREE.BoxBufferGeometry( 2, 2, 2 );
+  mesh = new THREE.Mesh( boxGeo, material );
 
   app.scene.add( mesh );
 
@@ -38,6 +43,10 @@ function loadModels() {
   const onLoad = ( gltf, position, rotation, scale ) => {
 
     const model = gltf.scene.children[ 0 ];
+    model.material = material.clone();
+    model.material.morphTargets = true;
+    model.material.vertexColors = THREE.VertexColors;
+
 
     if( position ) model.position.copy( position );
     if( rotation ) model.rotation.copy( rotation );
@@ -84,15 +93,20 @@ function init() {
   app.init();
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 4, 4, 10 );
+  app.camera.position.set( 0, 0, 25 );
 
-  app.controls.target.y = 1;
-
+  initMaterials();
   initLights();
   initMeshes();
   loadModels();
 
   app.start();
+
+  app.container.addEventListener( 'click', () => {
+
+    app.running ? app.stop() : app.start();
+
+  } );
 
 }
 
