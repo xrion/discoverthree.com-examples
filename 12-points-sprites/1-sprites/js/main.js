@@ -21,7 +21,7 @@ function initSprites() {
   app.scene.add( spriteGroup );
 
   spriteGroup.userData.onUpdate = ( delta ) => {
-    spriteGroup.rotation.x += delta;
+    spriteGroup.rotation.x += delta * 1.5;
   }
 
   const loader = new THREE.TextureLoader();
@@ -34,7 +34,7 @@ function initSprites() {
     // sizeAttenuation: false,
    } );
 
-  for( let i = 0; i < 250; i ++ ) {
+  for( let i = 0; i < 500; i ++ ) {
 
     const sprite = new THREE.Sprite( spriteMaterial.clone() );
 
@@ -43,10 +43,6 @@ function initSprites() {
       THREE.Math.randFloatSpread( -15, 15 ),
       THREE.Math.randFloatSpread( -15, 15 )
     );
-
-    sprite.rotation.x += Math.PI / 2
-    sprite.rotation.y += Math.PI / 2
-    sprite.rotation.z += Math.PI / 2
 
     const factor = THREE.Math.randFloat( -5, 5 );
 
