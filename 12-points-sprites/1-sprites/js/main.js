@@ -26,7 +26,7 @@ function initSprites() {
 
   const loader = new THREE.TextureLoader();
 
-  const spriteMap = loader.load( '../textures/leaf_rgba8.png' );
+  const spriteMap = loader.load( '../textures/leaf_rgba8_256.png' );
   spriteMap.encoding = THREE.sRGBEncoding;
 
   const spriteMaterial = new THREE.SpriteMaterial( {
