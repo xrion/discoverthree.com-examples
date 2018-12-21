@@ -1,4 +1,5 @@
 const app = new THREE_APP( '#container' );
+let mesh;
 
 function initLights() {
 
@@ -18,12 +19,15 @@ function initLights() {
 function initMeshes() {
 
   // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
+  const geometry = new THREE.BoxBufferGeometry( 1.3, 1.9, 0.7 );
 
-  const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
-
-
+  const material = new THREE.MeshStandardMaterial( { color: 0x800080, transparent: true, opacity: 0.5 } );
   mesh = new THREE.Mesh( geometry, material );
+
+  mesh.userData.onUpdate = ( delta ) => {
+    mesh.rotation.x += -delta;
+    mesh.rotation.y += -delta;
+  }
 
   app.scene.add( mesh );
 
@@ -43,28 +47,21 @@ function loadModels() {
     if( rotation ) model.rotation.copy( rotation );
     if( scale ) model.scale.copy( scale );
 
-
-    console.log(model);
-
+    let mixer;
     if( gltf.animations[ 0 ] ) {
 
       const animation = gltf.animations[ 0 ];
-      const mixer = new THREE.AnimationMixer( model );
-
-      // we'll check every object in the scene for
-      // this function and call it once per frame
-      model.userData.onUpdate = ( delta ) => {
-
-        mixer.update( delta );
-
-      };
+      mixer = new THREE.AnimationMixer( model );
 
       const action = mixer.clipAction( animation );
       action.play();
 
     }
 
-    app.scene.add( model );
+    mesh.add( model );
+
+    // pick a pose from the animation
+    mixer.update( 2.9 );
 
   };
 
@@ -72,10 +69,10 @@ function loadModels() {
 
   // load the first model. Each model is loaded asynchronously,
   // so don't make any assumption about which one will finish loading first
-  const position = new THREE.Vector3( 0, 2, 0 );
+  const position = new THREE.Vector3( -0.1, -0.9, -0.25 );
   const rotation = new THREE.Euler();
-  const scale = new THREE.Vector3( 0.05, 0.05, 0.05 );
-  app.loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, position, rotation, scale ), null, onError );
+  const scale = new THREE.Vector3( 1, 1, 1 );
+  app.loader.load( 'models/Samba Dancing.glb', gltf => onLoad( gltf, position, rotation, scale ), null, onError );
 
 }
 
@@ -84,9 +81,7 @@ function init() {
   app.init();
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 4, 4, 10 );
-
-  app.controls.target.y = 1;
+  app.camera.position.set( 4, 0, 6 );
 
   initLights();
   initMeshes();
