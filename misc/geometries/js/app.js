@@ -55,7 +55,7 @@ function initLights() {
 
   const pointLight = new THREE.PointLight( 0xffffff, 1.0 );
 
-  // the "light-in-camera" pattern. This works very well with OrbitControls, since it
+  // the "light-in-camera" pattern. This works well with OrbitControls, since it
   // guarantees that a light is always shining on the target we are orbiting around
   camera.add( pointLight );
   scene.add( camera );

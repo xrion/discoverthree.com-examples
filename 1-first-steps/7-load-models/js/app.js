@@ -62,7 +62,7 @@ function loadModels() {
 
   const loader = new THREE.GLTFLoader();
 
-  // A reusable function to setup the models. We're passing in a position parameter
+  // A reusable function to set up the models. We're passing in a position parameter
   // so that they can be individually placed around the scene
   const onLoad = ( gltf, position ) => {
 
