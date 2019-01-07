@@ -20,6 +20,13 @@ a:hover{
   font-size: 1.5rem;
 }
 
+.info {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  bottom: 1rem;
+}
+
 #container {
   position: absolute;
   width: 100%;
