@@ -12,8 +12,6 @@ const onGLTFLoad = ( gltf, position, rotation, scale ) => {
 
   const environments = loadEnvironments();
 
-
-
   console.log(environments);
 
   model.traverse( ( child ) => {
