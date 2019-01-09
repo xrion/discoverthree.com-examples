@@ -1,13 +1,13 @@
 function initMeshes( scene ) {
 
   // create a geometry
-  const geometry = new THREE.BoxBufferGeometry( 64, 100, 64, 4, 4, 4 );
+  const geometry = new THREE.BoxBufferGeometry( 64, 80, 64, 4, 4, 4 );
 
   const material = new THREE.MeshStandardMaterial( { color: 0x800080, side: THREE.DoubleSide });
 
   const mesh = new THREE.Mesh( geometry, material );
 
-  mesh.position.y = 64;
+  mesh.position.y = 50;
 
   scene.add( mesh );
 

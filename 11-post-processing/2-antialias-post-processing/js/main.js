@@ -8,7 +8,7 @@ function init() {
   app.init();
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 60, 150, 300 );
+  app.camera.position.set( 90, 225, 350 );
 
   app.controls.target.y = 50;
 

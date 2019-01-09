@@ -2,7 +2,7 @@ const step = Math.PI / 48;
 
 function addPolarGridHelper( scene ) {
 
-  const radius = 64;
+  const radius = 100;
   const radials = 16;
   const circles = 8;
   const divisions = 64;
@@ -81,7 +81,6 @@ const onGLTFLoad = ( gltf, position, rotation, scale, scene ) => {
 
     };
 
-
     const action = mixer.clipAction( animation );
 
     action.play();
@@ -92,7 +91,25 @@ const onGLTFLoad = ( gltf, position, rotation, scale, scene ) => {
 
   } );
 
-  // scene.add( models[ 0 ] );
+  const bigModel = model.clone();
+  bigModel.scale.set( 1.5, 1.5, 1.5 );
+  bigModel.position.set( 0, 140, 30 );
+
+  scene.add( bigModel );
+
+  const mixer = new THREE.AnimationMixer( bigModel );
+
+    // we'll check every object in the scene for
+    // this function and call it once per frame
+    bigModel.userData.onUpdate = ( delta ) => {
+
+      mixer.update( delta );
+
+    };
+
+    const action = mixer.clipAction( animation );
+
+    action.play();
 
   addPolarGridHelper( scene );
 
