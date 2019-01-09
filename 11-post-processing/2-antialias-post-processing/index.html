@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>Discoverthreejs.com - Ch 11.1  </title>
+
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta charset="UTF-8" />
+
+		<link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
+
+		<link href="styles/main.css" rel="stylesheet" type="text/css">
+
+    <!--
+
+      Include the main three.js script.
+
+      The global variable THREE will be
+      available for use in any scripts
+      loaded after this one.
+
+    -->
+
+    <script src="https://threejs.org/build/three.js"></script>
+
+    <!--
+
+      Include the OrbitControls script.
+
+      This must be included AFTER the three.js script as it
+      needs to use the global THREE variable
+
+    -->
+
+    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+
+		<!--
+
+			Include the GLTFLoader script. This also needs to be loaded after the three.js script
+
+		-->
+
+		<script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
+
+		<!--
+
+			Include post processing base files.
+
+			EffectComposer: used to combine any post processing passes and output
+			the final result onto our screen
+
+			RenderPass: render the initial scene for use by later passes
+
+			ShaderPass: takes in any of the files from the examples/js/shaders
+			directory and turns them in to a post processing pass
+
+		-->
+
+		<script src="https://threejs.org/examples/js/postprocessing/EffectComposer.js"></script>
+
+		<script src="https://threejs.org/examples/js/postprocessing/RenderPass.js"></script>
+		<script src="https://threejs.org/examples/js/postprocessing/SSAARenderPass.js"></script>
+		<script src="https://threejs.org/examples/js/postprocessing/TAARenderPass.js"></script>
+
+		<script src="https://threejs.org/examples/js/postprocessing/ShaderPass.js"></script>
+
+		<script src="https://threejs.org/examples/js/postprocessing/SMAAPass.js"></script>
+
+		<!--
+
+			Include any shader files that we want to use as post processing passes.
+			We could also use the examples/js/shaders/BasicShader.js files as a starting point
+			to write our own
+
+			CopyShader: This one doesn't apply any additional effect, but we'll
+			need to include it if we want to send the results of a RenderPass directly to the screen
+
+			FXAAShader: Applies FXAA shading
+
+		-->
+
+		<script src="https://threejs.org/examples/js/shaders/CopyShader.js"></script>
+		<script src="https://threejs.org/examples/js/shaders/FXAAShader.js"></script>
+
+		<script src="https://threejs.org/examples/js/shaders/SMAAShader.js"></script>
+
+		<!--
+
+			Post processing is heavy! Let's include the stats library to make sure our
+			frame rate doesn't drop too far
+
+		-->
+
+		<script src="https://threejs.org/examples/js/libs/stats.min.js""></script>
+
+		<!--
+
+			Include our App class. In a production environment, we would be setting
+			up a build process and importing this as a module, but for simplicity here
+			we'll include it the old fashioned way.
+
+			See discoverthreejs.com/modules/three-app/ for an example of how to do that.
+
+		-->
+		<script src="js/App.js"></script>
+
+	</head>
+
+	<body>
+
+		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 11.1b Antialiasing </h1>
+
+		<div id="container">
+			<!-- This div will hold our scene-->
+		</div>
+
+		<footer>
+
+      <!--
+        Finally, include the scripts that
+        run your three.js app.
+			-->
+
+			<script src="js/lights.js"></script>
+			<script src="js/meshes.js"></script>
+			<script src="js/onGLTFLoad.js"></script>
+			<script src="js/models.js"></script>
+
+			<script src="js/environment.js"></script>
+			<script src="js/interactivity.js"></script>
+
+			<script src="js/postProcessing.js"></script>
+			<script src="js/renderTarget.js"></script>
+
+			<script src="js/main.js"></script>
+
+		</footer>
+
+	</body>
+
+</html>
