@@ -28,10 +28,13 @@ a:hover{
 
 #controls {
   position: absolute;
-  width: 20rem;
-  height: 100%;
+  width: auto;
+  height: auto;
   top: 5rem;
-  right: 1rem;
+  right: 0rem;
+  padding: 0 1rem;
+  border: 1px solid grey;
+  background-color: rgba( 0, 0, 0, 0.1);
   z-index: 1;
   text-align: right;
 }

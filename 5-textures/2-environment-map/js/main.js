@@ -1,4 +1,5 @@
 const app = new THREE_APP( '#container' );
+let modelRef = null;
 
 function init() {
 
@@ -11,10 +12,11 @@ function init() {
   // is inside the model
   app.controls.minDistance = 2;
 
-  initLights();
-  // initMeshes();
-  loadModels();
+  const lights = initLights();
+  const envMaps = loadEnvironments();
 
+  // initMeshes();
+  loadModels( lights, envMaps );
   app.start();
 
 }
