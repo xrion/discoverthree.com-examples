@@ -13,16 +13,18 @@ function createTextMesh( font ) {
 
   } );
 
+  // We want to center the mesh (horizontall) on the screen.
+  textGeometry.computeBoundingBox();
+  const centerOffset = - 0.5 * ( textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x );
+  textGeometry.translate( centerOffset, 0, 0 );
+
   console.log( 'And here\'s the textGeomtry: ', textGeometry );
 
   const material = new THREE.MeshBasicMaterial();
 
   const mesh = new THREE.Mesh( textGeometry, material );
 
-  // We want to center the mesh (horizontall) on the screen. It's already
-  textGeometry.computeBoundingBox();
-  const centerOffset = - 0.5 * ( textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x );
-  mesh.position.x = centerOffset;
+
 
   return mesh;
 
