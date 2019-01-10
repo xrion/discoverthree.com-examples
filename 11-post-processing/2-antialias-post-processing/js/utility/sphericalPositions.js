@@ -8,7 +8,7 @@ function createSphericalPositions() {
 
   let yPos = initialPos.y;
 
-  for( let i = 0; i < 3000; i++ ) {
+  for( let i = 0; i < 2000; i++ ) {
 
     const theta = THREE.Math.randFloat( step / 2, step * 1.5 );
 
