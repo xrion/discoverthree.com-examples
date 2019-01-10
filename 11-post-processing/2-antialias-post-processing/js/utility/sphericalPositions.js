@@ -8,7 +8,7 @@ function createSphericalPositions() {
 
   let yPos = initialPos.y;
 
-  for( let i = 0; i < 8000; i++ ) {
+  for( let i = 0; i < 3000; i++ ) {
 
     const theta = THREE.Math.randFloat( step / 2, step * 1.5 );
 
@@ -16,7 +16,7 @@ function createSphericalPositions() {
     spherical.radius = THREE.Math.randFloat( 60, 100 );
 
     const position = new THREE.Vector3().setFromSpherical( spherical );
-    yPos += 0.025;
+    yPos += 0.06;
 
     position.y = yPos;
 
