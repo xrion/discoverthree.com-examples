@@ -23,13 +23,11 @@ function init() {
     stencil: app.stencil,
   } );
 
-  rendererAA.setPixelRatio( Math.min( window.devicePixelRatio, app.maxPixelRatio ) );
-  rendererAA.setSize( app.container.clientWidth, app.container.clientHeight );
+  // rendererAA.setPixelRatio( Math.min( window.devicePixelRatio, app.maxPixelRatio ) );
+  // rendererAA.setSize( app.container.clientWidth, app.container.clientHeight );
 
   rendererAA.domElement.style.display = 'none';
   app.container.appendChild( rendererAA.domElement );
-
-
 
   const onResize = () => {
 
@@ -44,16 +42,22 @@ function init() {
 
     renderer.setSize( width, height );
     renderer.setPixelRatio( pixelRatio );
-    rendererA.setSize( width, height );
-    rendererA.setPixelRatio( pixelRatio );
+    rendererAA.setSize( width, height );
+    rendererAA.setPixelRatio( pixelRatio );
 
     const newWidth = Math.floor( width * pixelRatio ) || 1;
     const newHeight = Math.floor( height * pixelRatio ) || 1;
-    composer.setSize( newWidth, newHeight );
+    composers.noAA.setSize( newWidth, newHeight );
+    composers.ssaa.setSize( newWidth, newHeight );
+    composers.taa.setSize( newWidth, newHeight );
+    composers.fxaa.setSize( newWidth, newHeight );
+    composers.smaa.setSize( newWidth, newHeight );
 
   }
 
-  window.addEventListener( 'reset', onResize );
+  onResize();
+
+  window.addEventListener( 'resize', onResize );
 
   initLights( app.scene );
   initMeshes( app.scene );

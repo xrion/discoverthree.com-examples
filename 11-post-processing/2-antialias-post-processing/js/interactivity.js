@@ -137,17 +137,39 @@ function initWireframeToggle( mesh ) {
 
 }
 
-function initDancersSlider( composers ) {
+let prevValue = 0;
 
-  const slider = document.querySelector( '#dancers-slider' );
-  const value = document.querySelector( '#dancers-value' );
+function initModelsAmountSlider( group, models ) {
+
+  const slider = document.querySelector( '#models-slider' );
+  const value = document.querySelector( '#models-value' );
 
   slider.addEventListener( 'input', ( e ) => {
 
     value.textContent = slider.value;
 
-    composers.ssaaRenderPass.sampleLevel = parseInt( slider.value, 10 );
-    composers.taaRenderPass.sampleLevel = parseInt( slider.value, 10 );
+    const newValue = parseInt( slider.value, 10 ) - 1;
+
+    if( newValue > prevValue ) {
+
+      for( let i = prevValue; i <= newValue ; i++ ) {
+
+        group.add( models[ i ] );
+
+      }
+
+
+    } else if( newValue < prevValue ) {
+
+      for( let i = prevValue; i >= newValue ; i-- ) {
+
+        group.remove( models[ i ] );
+
+      }
+
+    }
+
+    prevValue = newValue;
 
     e.preventDefault();
 

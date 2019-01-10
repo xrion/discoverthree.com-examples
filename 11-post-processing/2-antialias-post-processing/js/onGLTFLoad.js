@@ -17,7 +17,7 @@ function addPolarGridHelper( scene ) {
 
 function createSphericalPositions() {
 
-  const initialPos = new THREE.Vector3( -100, -1, 0 );
+  const initialPos = new THREE.Vector3( -60, -1, 0 );
 
   const positions = [];
 
@@ -25,17 +25,22 @@ function createSphericalPositions() {
 
   let yPos = initialPos.y;
 
-  for( let i = 0; i < 6000; i++ ) {
+  for( let i = 0; i < 8000; i++ ) {
 
-    spherical.theta += step;
-    // spherical.radius -= 0.025;
+    const theta = THREE.Math.randFloat( step / 2, step * 1.5 );
+
+    spherical.theta += theta;
+    spherical.radius = THREE.Math.randFloat( 60, 100 );
 
     const position = new THREE.Vector3().setFromSpherical( spherical );
-    yPos += 0.03;
+    yPos += 0.025;
 
     position.y = yPos;
 
-    positions.push( position );
+    positions.push( {
+      vec: position,
+      rot: theta
+    } );
 
   }
 
@@ -61,20 +66,31 @@ const onGLTFLoad = ( gltf, position, rotation, scale, scene ) => {
 
   const models = [];
 
+  const group = new THREE.Group();
+
+  group.userData.onUpdate = ( delta ) => {
+
+    group.rotation.y += delta / 12 ;
+
+  }
+
+  scene.add( group );
+
   let rotationFactor = 0;
   positions.forEach( ( position ) => {
 
     const newModel = model.clone();
 
-    newModel.position.copy( position );
+    // console.log(position);
 
-    rotationFactor += step;
+    newModel.position.copy( position.vec );
+
+    // console.log(position);
+    rotationFactor += position.rot;
     newModel.rotation.y = rotationFactor;
 
     const mixer = new THREE.AnimationMixer( newModel );
 
-    // we'll check every object in the scene for
-    // this function and call it once per frame
     newModel.userData.onUpdate = ( delta ) => {
 
       mixer.update( delta );
@@ -83,13 +99,14 @@ const onGLTFLoad = ( gltf, position, rotation, scale, scene ) => {
 
     const action = mixer.clipAction( animation );
 
-    action.play();
+    // set the birds to start at random times so that they  don't flap in sync
+    action.startAt( THREE.Math.randFloat( 0, 1.2 ) ).play();
 
     models.push( newModel );
 
-    scene.add( newModel );
-
   } );
+
+  initModelsAmountSlider( group, models );
 
   const bigModel = model.clone();
   bigModel.scale.set( 1.5, 1.5, 1.5 );
@@ -99,8 +116,6 @@ const onGLTFLoad = ( gltf, position, rotation, scale, scene ) => {
 
   const mixer = new THREE.AnimationMixer( bigModel );
 
-    // we'll check every object in the scene for
-    // this function and call it once per frame
     bigModel.userData.onUpdate = ( delta ) => {
 
       mixer.update( delta );
