@@ -53,7 +53,6 @@ function init() {
     composers.fxaa.setSize( newWidth, newHeight );
     composers.smaa.setSize( newWidth, newHeight );
 
-    console.log(composers.noAA);
     composers.fxaaShader.uniforms.resolution.value.set( 1 / newWidth, 1 / newHeight );
 
   }
