@@ -12,7 +12,10 @@ function initComposers( renderer, scene, camera  ) {
   composers.taa = taa.composerTAA;
   composers.taaRenderPass = taa.taaRenderPass;
 
-  composers.fxaa = initComposerFXAA( renderer, scene, camera );
+  const fxaa = initComposerFXAA( renderer, scene, camera );
+  composers.fxaa = fxaa.composerFXAA;
+  composers.fxaaShader = fxaa.fxaaShader;
+
   composers.smaa = initComposerSMAA( renderer, scene, camera );
 
   return composers;
@@ -79,10 +82,11 @@ function initComposerFXAA( renderer, scene, camera ) {
   composerFXAA.addPass( renderPass );
 
   var fxaaShader = new THREE.ShaderPass( THREE.FXAAShader );
+
   fxaaShader.renderToScreen = true;
   composerFXAA.addPass( fxaaShader );
 
-  return composerFXAA;
+  return { composerFXAA, fxaaShader };
 
 }
 
@@ -98,6 +102,8 @@ function initComposerSMAA( renderer, scene, camera ) {
   const smaaPass = new THREE.SMAAPass( size.width * pixelRatio, size.height * pixelRatio );
   smaaPass.renderToScreen = true;
   composerSMAA.addPass( smaaPass );
+
+  // console.log(smaaPass);
 
   return composerSMAA;
 

@@ -34,7 +34,7 @@ a:hover{
   right: 0rem;
   padding: 0 1rem;
   border: 1px solid grey;
-  background-color: rgba( 0, 0, 0, 0.1);
+  background-color: rgba( 0, 0, 0, 0.75);
   z-index: 1;
   text-align: right;
 }

@@ -154,6 +154,7 @@ function initModelsAmountSlider( group, models ) {
 
       for( let i = prevValue; i <= newValue ; i++ ) {
 
+        // console.log(models);
         group.add( models[ i ] );
 
       }

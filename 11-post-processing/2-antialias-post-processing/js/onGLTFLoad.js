@@ -1,23 +1,22 @@
 const step = Math.PI / 48;
 
-function addPolarGridHelper( scene ) {
+const models = [];
 
-  const radius = 100;
-  const radials = 16;
-  const circles = 8;
-  const divisions = 64;
+const group = new THREE.Group();
 
-  const polarGridHelper = new THREE.PolarGridHelper( radius, radials, circles, divisions );
+group.userData.onUpdate = ( delta ) => {
 
-  polarGridHelper.position.set( 0, -1, 0 );
-
-  scene.add( polarGridHelper );
+  group.rotation.y += delta / 18 ;
 
 }
 
+initModelsAmountSlider( group, models );
+
+
+
 function createSphericalPositions() {
 
-  const initialPos = new THREE.Vector3( -60, -1, 0 );
+  const initialPos = new THREE.Vector3( -100, -1, 0 );
 
   const positions = [];
 
@@ -51,7 +50,7 @@ function createSphericalPositions() {
 // A reusable function to setup the models
 // We need a reference to the model once it has loaded, s
 // so we'll pass in an empty variable here and assign the model to that
-const onGLTFLoad = ( gltf, position, rotation, scale, scene ) => {
+const onGLTFLoad = ( gltf, position, rotation, scale, scene, offset ) => {
 
   // get the correct model from the loaded object
   const model = gltf.scene.children[ 0 ];
@@ -64,68 +63,61 @@ const onGLTFLoad = ( gltf, position, rotation, scale, scene ) => {
 
   const positions = createSphericalPositions( position );
 
-  const models = [];
-
-  const group = new THREE.Group();
-
-  group.userData.onUpdate = ( delta ) => {
-
-    group.rotation.y += delta / 12 ;
-
-  }
-
-  scene.add( group );
-
   let rotationFactor = 0;
-  positions.forEach( ( position ) => {
+  positions.forEach( ( position, index ) => {
 
-    const newModel = model.clone();
+     // console.log(position);
+     rotationFactor += position.rot;
 
-    // console.log(position);
+    if( index % 2 === offset ) {
 
-    newModel.position.copy( position.vec );
+      const newModel = model.clone();
 
-    // console.log(position);
-    rotationFactor += position.rot;
-    newModel.rotation.y = rotationFactor;
+      newModel.position.copy( position.vec );
 
-    const mixer = new THREE.AnimationMixer( newModel );
 
-    newModel.userData.onUpdate = ( delta ) => {
+      newModel.rotation.y = rotationFactor;
 
-      mixer.update( delta );
+      const mixer = new THREE.AnimationMixer( newModel );
 
-    };
+      newModel.userData.onUpdate = ( delta ) => {
 
-    const action = mixer.clipAction( animation );
+        mixer.update( delta );
 
-    // set the birds to start at random times so that they  don't flap in sync
-    action.startAt( THREE.Math.randFloat( 0, 1.2 ) ).play();
+      };
 
-    models.push( newModel );
+      const action = mixer.clipAction( animation );
+
+      // set the birds to start at random times so that they  don't flap in sync
+      action.startAt( THREE.Math.randFloat( 0, 1.2 ) ).play();
+
+      models[ index ] = newModel;
+
+    }
 
   } );
 
-  initModelsAmountSlider( group, models );
+  if( offset === 0 ) {
 
-  const bigModel = model.clone();
-  bigModel.scale.set( 1.5, 1.5, 1.5 );
-  bigModel.position.set( 0, 140, 30 );
+    scene.add( group );
 
-  scene.add( bigModel );
+    const bigModel = model.clone();
+    bigModel.scale.set( 1.5, 1.5, 1.5 );
+    bigModel.position.set( 0, 140, 30 );
 
-  const mixer = new THREE.AnimationMixer( bigModel );
+    scene.add( bigModel );
 
-    bigModel.userData.onUpdate = ( delta ) => {
+    const mixer = new THREE.AnimationMixer( bigModel );
 
-      mixer.update( delta );
+      bigModel.userData.onUpdate = ( delta ) => {
 
-    };
+        mixer.update( delta );
 
-    const action = mixer.clipAction( animation );
+      };
 
-    action.play();
+      const action = mixer.clipAction( animation );
 
-  addPolarGridHelper( scene );
+      action.play();
+  }
 
 };
