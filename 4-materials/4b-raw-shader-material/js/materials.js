@@ -64,6 +64,7 @@ void main() {
 function createShaderMaterial( camera, model ) {
 
   const material = new THREE.RawShaderMaterial( {
+
     uniforms: {
       modelMatrix: {
         value: model.matrixWorld
@@ -75,11 +76,14 @@ function createShaderMaterial( camera, model ) {
         value: camera.matrixWorldInverse
       },
     },
-    // you might think that you need to add attributes as well
-    // however the attributes match up with the attributes in
+
+    // you might think that you need to pass in attributes as well
+    // as uniforms however the attributes match up with the attributes in
     // the buffergeometry of the model, meaning that
-    // we can always use position, normal and UV
+    // we can always use position, normal and UV, as well as
+    // any custom attributes we have added to the geometry
     // attributes: {},
+
     vertexShader,
     fragmentShader,
   })
