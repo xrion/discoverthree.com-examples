@@ -65,17 +65,12 @@ function createShaderMaterial( camera, model ) {
 
   const material = new THREE.RawShaderMaterial( {
     uniforms: {
-      // = object.matrixWorld
       modelMatrix: {
         value: model.matrixWorld
       },
-
-      // = camera.projectionMatrix
       projectionMatrix: {
         value: camera.projectionMatrix
       },
-
-      // = camera.matrixWorldInverse
       viewMatrix: {
         value: camera.matrixWorldInverse
       },
