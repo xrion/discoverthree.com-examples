@@ -1,9 +1,11 @@
-const textureLoader = new THREE.TextureLoader();
-const cubeTextureLoader = new THREE.CubeTextureLoader();
 
-const environments = {};
 
 function loadEnvironments() {
+
+  const textureLoader = new THREE.TextureLoader();
+  const cubeTextureLoader = new THREE.CubeTextureLoader();
+
+  const environments = {};
 
   const urls = [
     'textures/cubemap/px.jpg', 'textures/cubemap/nx.jpg',
@@ -26,4 +28,5 @@ function loadEnvironments() {
   environments.spherical.encoding = THREE.sRGBEncoding;
 
   return environments;
+
 }

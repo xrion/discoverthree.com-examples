@@ -42,3 +42,7 @@ a:hover{
 select {
   margin-bottom: 1rem;
 }
+
+input[type=range] {
+  width: 100%;
+}
