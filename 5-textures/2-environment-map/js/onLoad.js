@@ -12,11 +12,12 @@ const onLoad = ( gltf, position, rotation, scale, scene ) => {
   if( rotation ) model.rotation.copy( rotation );
   if( scale ) model.scale.copy( scale );
 
-  const environments = loadEnvironments();
-  const materials = initMaterial();
+  const materials = initMaterial( scene );
 
-  model.children[ 0 ].material = materials.silver.standard;
-  model.children[ 1 ].material = materials.brass.standard;
+  model.children[ 0 ].material = materials.silverStandard;
+  model.children[ 1 ].material = materials.brassStandard;
+
+  setupMaterialTypeSelect( model, materials );
 
   scene.add( model );
 

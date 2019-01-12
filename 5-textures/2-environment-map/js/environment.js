@@ -1,6 +1,6 @@
 
 
-function loadEnvironments() {
+function loadEnvMaps() {
 
   const textureLoader = new THREE.TextureLoader();
   const cubeTextureLoader = new THREE.CubeTextureLoader();
