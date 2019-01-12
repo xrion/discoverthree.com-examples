@@ -1,11 +1,15 @@
-function initMeshes() {
+function initMeshes( scene ) {
 
   // create a geometry and material
   const geometry = new THREE.BoxBufferGeometry( 0.5, 0.5, 0.5 );
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
 
-  // create the first mesh, positioned at (0, 0, 0)
+  // create the first mesh, initially positioned at (0, 0, 0)
   meshA = new THREE.Mesh( geometry, material );
+
+  // set the position of the first mesh.
+  // every other mesh will be positioned relative to this
+  meshA.position.x = 0.5;
 
   // create 9 copies for a total of 10 meshes.
   // Each of these is also positioned at (0, 0, 0) to start with
@@ -20,6 +24,8 @@ function initMeshes() {
   meshJ = meshA.clone();
 
   // now add each mesh as a child of the previous mesh
+  // the position, rotation, and scale of each mesh is relative
+  // to it's parent
   meshA.add( meshB );
   meshB.add( meshC );
   meshC.add( meshD );
@@ -54,6 +60,6 @@ function initMeshes() {
 
   } );
 
-  app.scene.add( meshA );
+  scene.add( meshA );
 
 }
