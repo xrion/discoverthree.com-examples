@@ -1,4 +1,4 @@
-function addArrowHelpers() {
+function addArrowHelpers( scene ) {
 
   // all our arrows will start at the origin
   const origin = new THREE.Vector3( 0, 0, 0 );
@@ -14,39 +14,39 @@ function addArrowHelpers() {
   const arrowHelper1 = new THREE.ArrowHelper( dir1, origin, length, 0x407DA3, headLength, headWidth );
   const arrowHelper2 = new THREE.ArrowHelper( dir2, origin, length, 0x407DA3, headLength, headWidth );
 
-  app.scene.add( arrowHelper1, arrowHelper2 );
+  scene.add( arrowHelper1, arrowHelper2 );
 
 }
 
-function addAxesHelper() {
+function addAxesHelper( scene ) {
 
   const size = 5;
 
   const axesHelper = new THREE.AxesHelper( size );
   axesHelper.position.set( 0, -5, 0 );
-  app.scene.add( axesHelper );
+  scene.add( axesHelper );
 
 }
 
-function addBoxHelper( model ) {
+function addBoxHelper( model, scene ) {
 
   const boxHelper = new THREE.BoxHelper( model, 0x800080 );
-  app.scene.add( boxHelper );
+  scene.add( boxHelper );
 
 }
 
-function addBox3Helper() {
+function addBox3Helper( scene ) {
 
   const min = new THREE.Vector3( -5, -5, -5 );
   const max = new THREE.Vector3( 5, 5, 5 );
   const box = new THREE.Box3( min, max );
 
   const box3Helper = new THREE.Box3Helper( box, 0xdddddd );
-  app.scene.add( box3Helper );
+  scene.add( box3Helper );
 
 }
 
-function addGridHelper() {
+function addGridHelper( scene ) {
 
   const size = 10;
   const divisions = 10;
@@ -57,11 +57,11 @@ function addGridHelper() {
   // position as the AxesHelper, which causes flickering
   gridHelper.position.set( 0, -5.05, 0 );
 
-  app.scene.add( gridHelper );
+  scene.add( gridHelper );
 
 }
 
-function addPolarGridHelper() {
+function addPolarGridHelper( scene ) {
 
   const radius = 5;
   const radials = 16;
@@ -72,11 +72,11 @@ function addPolarGridHelper() {
 
   polarGridHelper.position.set( 0, 5, 0 );
 
-  app.scene.add( polarGridHelper );
+  scene.add( polarGridHelper );
 
 }
 
-function addPlaneHelpers() {
+function addPlaneHelpers( scene ) {
 
   const planeNormal = new THREE.Vector3( 1, 0, 0 );
   const planeAConstant = -4;
@@ -88,6 +88,6 @@ function addPlaneHelpers() {
   const helperSize = 4;
   const planeHelperA = new THREE.PlaneHelper( planeA, helperSize, 0xff0000 );
   const planeHelperB = new THREE.PlaneHelper( planeB, helperSize, 0xff0000 );
-  app.scene.add( planeHelperA, planeHelperB );
+  scene.add( planeHelperA, planeHelperB );
 
 }
