@@ -9,11 +9,11 @@ function init() {
 
   // initLights();
 
-  const cube = initMeshes();
+  const plane = initMeshes();
   const rawShaderMaterial = createShaderMaterial();
-  cube.material = rawShaderMaterial;
+  plane.material = rawShaderMaterial;
 
-  cube.userData.onUpdate = ( delta ) => {
+  plane.userData.onUpdate = ( delta ) => {
 
     rawShaderMaterial.uniforms.time.value += delta;
 
