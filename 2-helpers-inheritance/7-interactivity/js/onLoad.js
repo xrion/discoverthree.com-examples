@@ -1,7 +1,7 @@
 // A reusable function to setup the models
 // assumes that the gltf file contains a single model
 // and up to one animation track
-const onGLTFLoad = ( gltf, position, rotation, scale ) => {
+const onLoad = ( gltf, position, rotation, scale, scene ) => {
 
   const model = gltf.scene.children[ 0 ];
 
@@ -30,6 +30,6 @@ const onGLTFLoad = ( gltf, position, rotation, scale ) => {
 
   }
 
-  app.scene.add( model );
+  scene.add( model );
 
 };
