@@ -4,6 +4,11 @@ function init() {
 
   app.init();
 
+  // app.renderer.gammaInput = true;
+  // app.renderer.gammaOutput = true;
+  // app.renderer.toneMapping = THREE.ReinhardToneMapping;
+  // app.renderer.toneMappingExposure = 3;
+
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 2, 1, 2 );
 
