@@ -3,7 +3,7 @@
 
 	<head>
 
-		<title>Discoverthreejs.com - Ch 11.1  </title>
+		<title>Discoverthreejs.com - Ch 11.1b</title>
 
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<meta charset="UTF-8" />
@@ -61,18 +61,24 @@
 		<script src="https://threejs.org/examples/js/postprocessing/RenderPass.js"></script>
 		<script src="https://threejs.org/examples/js/postprocessing/ShaderPass.js"></script>
 
+		<script src="https://threejs.org/examples/js/postprocessing/OutlinePass.js"></script>
+
+
 		<!--
 
 			Include any shader files that we want to use as post processing passes.
 			We could also use the examples/js/shaders/BasicShader.js files as a starting point
 			to write our own
 
-			CopyShader: This one doesn't apply any additional effect, but we'll
-			need to include it if we want to send the results of a RenderPass directly to the screen
+			CopyShader: This one doesn't apply any additional effect, but it's used
+			internall by most other shaders
 
 		-->
 
 		<script src="https://threejs.org/examples/js/shaders/CopyShader.js"></script>
+
+		<script src="https://threejs.org/examples/js/shaders/KaleidoShader.js"></script>
+
 
 		<!--
 
@@ -89,7 +95,7 @@
 
 	<body>
 
-		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 11.1 </h1>
+		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 11.1b</h1>
 
 		<div id="container">
 			<!-- This div will hold our scene-->
@@ -104,14 +110,8 @@
 
 			<script src="js/lights.js"></script>
 			<script src="js/meshes.js"></script>
-			<script src="js/onGLTFLoad.js"></script>
 			<script src="js/models.js"></script>
-
-			<script src="js/environment.js"></script>
-			<script src="js/interactivity.js"></script>
-
 			<script src="js/postProcessing.js"></script>
-			<script src="js/renderTarget.js"></script>
 
 			<script src="js/main.js"></script>
 
