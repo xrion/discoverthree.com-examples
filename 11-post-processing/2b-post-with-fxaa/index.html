@@ -3,7 +3,7 @@
 
 	<head>
 
-		<title>Discoverthreejs.com - Ch 11.2 Antialiasing</title>
+		<title>Discoverthreejs.com - Ch 11.2b</title>
 
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<meta charset="UTF-8" />
@@ -58,14 +58,11 @@
 		-->
 
 		<script src="https://threejs.org/examples/js/postprocessing/EffectComposer.js"></script>
-
 		<script src="https://threejs.org/examples/js/postprocessing/RenderPass.js"></script>
-		<script src="https://threejs.org/examples/js/postprocessing/SSAARenderPass.js"></script>
-		<script src="https://threejs.org/examples/js/postprocessing/TAARenderPass.js"></script>
-
 		<script src="https://threejs.org/examples/js/postprocessing/ShaderPass.js"></script>
 
-		<script src="https://threejs.org/examples/js/postprocessing/SMAAPass.js"></script>
+		<script src="https://threejs.org/examples/js/postprocessing/OutlinePass.js"></script>
+
 
 		<!--
 
@@ -73,26 +70,16 @@
 			We could also use the examples/js/shaders/BasicShader.js files as a starting point
 			to write our own
 
-			CopyShader: This one doesn't apply any additional effect, but we'll
-			need to include it if we want to send the results of a RenderPass directly to the screen
-
-			FXAAShader: Applies FXAA shading
+			CopyShader: This one doesn't apply any additional effect, but it's used
+			internall by most other shaders
 
 		-->
 
 		<script src="https://threejs.org/examples/js/shaders/CopyShader.js"></script>
+
+		<script src="https://threejs.org/examples/js/shaders/KaleidoShader.js"></script>
+
 		<script src="https://threejs.org/examples/js/shaders/FXAAShader.js"></script>
-
-		<script src="https://threejs.org/examples/js/shaders/SMAAShader.js"></script>
-
-		<!--
-
-			Post processing is heavy! Let's include the stats library to make sure our
-			frame rate doesn't drop too far
-
-		-->
-
-		<script src="https://threejs.org/examples/js/libs/stats.min.js""></script>
 
 		<!--
 
@@ -109,44 +96,7 @@
 
 	<body>
 
-		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 11.2 Antialiasing</h1>
-
-		<div id="controls">
-			<span>Antialiasing Technique</span><br>
-			<select id="aa-select">
-				<option value="renderer" selected>None / Renderer</option>
-				<option value="composer">None / Effect Composer</option>
-				<option value="rendererAA">Built-in (probably MSAA)</option>
-				<option value="ssaa">SSAA</option>
-				<option value="taa">TAA</option>
-				<option value="fxaa">FXAA</option>
-				<option value="smaa">SMAA</option>
-			</select>
-			<br>
-			<br>
-			<span>Samples (SMAA and TAA): <span id="samples-value">4</span></span>
-			<br>
-			<span>(Square this number to get actual # samples)</span>
-			<br>
-			<input type="range" id="samples-slider" min="0" max="32" step="2" value="4">
-			<br>
-			<br>
-			<span>SSAA unbiased</span>
-			<input type="checkbox" id="ssaa-biased" checked>
-			<br>
-			<br>
-
-			<span>Wireframe</span>
-			<input type="checkbox" id="wireframe">
-			<br>
-			<br>
-			<span>Number of Models: <span id="models-value">1</span></span>
-			<br>
-			<span>Increase this slowly :)</span>
-			<br>
-			<input type="range" id="models-slider" min="1" max="2000" step="1" value="1">
-
-		</div>
+		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 11.2b</h1>
 
 		<div id="container">
 			<!-- This div will hold our scene-->
@@ -159,23 +109,10 @@
         run your three.js app.
 			-->
 
-			<script src="js/utility/sphericalPositions.js"></script>
-
-			<script src="js/environment.js"></script>
-			<script src="js/interactivity.js"></script>
-			<script src="js/helpers.js"></script>
-
 			<script src="js/lights.js"></script>
 			<script src="js/meshes.js"></script>
-			<script src="js/onGLTFLoad.js"></script>
 			<script src="js/models.js"></script>
-
-
-
 			<script src="js/postProcessing.js"></script>
-			<script src="js/renderTarget.js"></script>
-
-
 
 			<script src="js/main.js"></script>
 
