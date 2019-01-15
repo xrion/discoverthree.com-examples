@@ -35,9 +35,9 @@ function initPostProcessing( renderer, scene, camera, container ) {
   kaleidoPass.uniforms.angle.value = Math.PI / 4;
   kaleidoPass.uniforms.sides.value = 4;
 
-  // Here's how you would asign a texture to a uniform, although it
-  // doesn't seem to have much of an effect in this case
-  kaleidoPass.uniforms.tDiffuse.value = new THREE.TextureLoader().load( 'textures/bamboo-diffuse.jpg' );
+  // the last one is a special uniform that takes the result of the
+  // previous pass in as a texture. You shouldn't modify this
+  // kaleidoPass.uniforms.tDiffuse
 
   kaleidoPass.renderToScreen = true;
 

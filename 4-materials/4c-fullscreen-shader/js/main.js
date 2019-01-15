@@ -7,8 +7,6 @@ function init() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 4, 4, 8 );
 
-  // initLights();
-
   const plane = initMeshes();
   const rawShaderMaterial = createShaderMaterial();
   plane.material = rawShaderMaterial;
@@ -18,8 +16,6 @@ function init() {
     rawShaderMaterial.uniforms.time.value += delta;
 
   }
-
-  // loadModels();
 
   app.start();
 

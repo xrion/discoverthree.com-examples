@@ -21,13 +21,9 @@ function init() {
   // app.controls.autoForward = false;
   // app.controls.dragToLook = false;
 
-
-
-  setupRenderer( app.renderer );
   initLights( app.scene );
   initMeshes( app.scene );
   loadModels( app.scene, app.loader );
-
 
   app.start();
 }

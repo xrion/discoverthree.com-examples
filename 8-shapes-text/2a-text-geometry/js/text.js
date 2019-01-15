@@ -30,7 +30,6 @@ function createTextMesh( font ) {
 
 }
 
-
 function loadFont( scene ) {
 
   const loader = new THREE.FontLoader();

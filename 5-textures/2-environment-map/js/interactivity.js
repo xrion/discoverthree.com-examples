@@ -1,7 +1,6 @@
 let selectedEnvMap = null;
 let sceneBGColor = null;
 
-
 function setupMaterialTypeSelect( model, materials ) {
 
   console.log(model, materials );

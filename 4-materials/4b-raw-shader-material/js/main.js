@@ -7,14 +7,11 @@ function init() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 4, 4, 8 );
 
-  // initLights();
-
 
   const cube = initMeshes();
   const rawShaderMaterial = createShaderMaterial( app.camera, cube );
   cube.material = rawShaderMaterial;
 
-  // loadModels();
 
   app.start();
 

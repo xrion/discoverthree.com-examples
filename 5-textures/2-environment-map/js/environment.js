@@ -1,5 +1,3 @@
-
-
 function loadEnvMaps() {
 
   const textureLoader = new THREE.TextureLoader();

@@ -13,13 +13,9 @@ function init() {
   // allowing us to set up a different controls manually
   app.controls = new THREE.MapControls( app.camera, app.container );
 
-
-
-  setupRenderer( app.renderer );
   initLights( app.scene );
   initMeshes( app.scene );
   loadModels( app.scene, app.loader );
-
 
   app.start();
 }
