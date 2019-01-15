@@ -1,3 +1,6 @@
+// Create a canvas using the 2D canvas API.
+// We'll draw our text onto this one, then use it as the
+// texture for objects in out scene
 function initCanvasTexture() {
 
   const container = document.querySelector( '#canvas-2d-container' );
@@ -5,7 +8,7 @@ function initCanvasTexture() {
   const context = canvas.getContext( '2d' );
   container.appendChild( canvas );
 
-  // set in CSS to be 256x256 pixels
+  // set the 2D canvas to be 256x256 pixels
   canvas.width = canvas.height = 256;
 
   const texture = new THREE.CanvasTexture( canvas );
@@ -31,10 +34,10 @@ function processText( canvas, context, text ) {
   // first split by line break
   const lines = text.split( '\n' );
 
-  // At this point you could also split the line of it's
+  // At this point you could also split the line if it's
   // longer than the canvas width.
-  // This is a bit beyond the scope of this simple example,
-  // but you could try the technique described here
+  // This is a bit beyond the scope of this simple example
+  // so we'll skip that for now
 
   return lines;
 
@@ -45,8 +48,12 @@ function setText( canvas, context, lines ) {
   setBackgroundColor( canvas, context, 'white' );
 
   const fontSize = 20;
+
+  // the vertical height for each line.
+  // You might need to adjust this depending on the font
   const lineHeight = fontSize + 5;
 
+  // left margin
   const margin = 4;
 
   context.fillStyle = 'black';
@@ -56,6 +63,7 @@ function setText( canvas, context, lines ) {
 
   let lineNum = 1;
 
+  // draw each line onto the canvas
   lines.forEach( ( line ) => {
     context.fillText( line, margin, lineNum * lineHeight );
     lineNum ++;

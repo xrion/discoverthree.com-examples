@@ -8,16 +8,11 @@ function init() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 4, 4, 8 );
 
-
-  const lights = initLights( app.scene );
-  // loadModels();
-  // loadFont( app.scene );
+   initLights( app.scene );
 
   const texture = initCanvasTexture();
 
   initMeshes( app.scene, texture );
-
-  textInput();
 
   app.start();
 
