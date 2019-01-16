@@ -1,6 +1,6 @@
 function initLights( scene ) {
 
-  const ambientLight = new THREE.HemisphereLight( 0xffffff, 0x555555, 1 );
+  const ambientLight = new THREE.HemisphereLight( 0xcccccc, 0x555555, 1 );
 
   const mainLight = initShadowLight( scene );
 
@@ -16,19 +16,19 @@ function initShadowLight( scene ) {
   const spotLight = new THREE.SpotLight(
     0xffffff, // color
     1, // intensity,
-    35, //distance
+    35, // distance
     Math.PI / 6,
     0.25, // exponent,
-    1, //decay
-    );
+    1, // decay
+  );
 
   spotLight.position.set( -12, 10, -12 );
 
   spotLight.castShadow = true;
-  spotLight.shadow.mapSize.width = 1024;  // default
+  spotLight.shadow.mapSize.width = 1024; // default
   spotLight.shadow.mapSize.height = 1024; // default
   spotLight.shadow.camera.near = 10;
-  spotLight.shadow.camera.far = 22
+  spotLight.shadow.camera.far = 15;
 
   scene.add( new THREE.SpotLightHelper( spotLight ) );
   scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );

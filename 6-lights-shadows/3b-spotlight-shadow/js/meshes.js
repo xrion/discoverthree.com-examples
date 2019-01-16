@@ -1,17 +1,19 @@
 function initMeshes( scene ) {
 
   initGround( scene );
-  initCube( scene );
-  initKnot( scene );
+  initShapes( scene );
 
 }
 
 function initGround( scene ) {
 
-  const geometry = new THREE.PlaneBufferGeometry( 30, 30 );
+  const geometry = new THREE.BoxBufferGeometry( 30, 30, 1 );
   geometry.rotateX( -Math.PI / 2 );
 
-  const material = new THREE.MeshStandardMaterial();
+  const material = new THREE.MeshStandardMaterial( {
+    metalness: 0.1,
+    roughness: 0.8,
+  } );
 
   const mesh = new THREE.Mesh( geometry, material );
 
@@ -21,46 +23,40 @@ function initGround( scene ) {
 
 }
 
-function initCube( scene ) {
+function initShapes( scene ) {
 
-  const geometry = new THREE.BoxBufferGeometry( 1.5, 1.5, 1.5 );
-  const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
+  const geometry = new THREE.TorusKnotBufferGeometry( 2, 0.25, 128, 64, 1, 1 );
+  const material = new THREE.MeshStandardMaterial( {
+    color: 0x000000,
+  } );
 
-  const mesh = new THREE.Mesh( geometry, material );
-  mesh.position.set( -4, 2, 5 )
+  const loop = new THREE.Mesh( geometry, material );
+  loop.position.set( 0, 4, 0 );
 
-  mesh.userData.onUpdate = ( delta ) => {
+  loop.userData.onUpdate = ( delta ) => {
 
-    mesh.rotation.y += delta / 4;
-    mesh.rotation.z -= delta / 4;
+    loop.rotation.y += delta / 2;
+    loop.rotation.z -= delta / 4;
 
-  }
+  };
 
-  mesh.castShadow = true;
+  loop.castShadow = true;
 
-  scene.add( mesh );
+  scene.add( loop );
 
-}
+  const sphereGeo = new THREE.SphereBufferGeometry( 1.25, 64, 64 );
+  const sphereMat = new THREE.MeshStandardMaterial( {
+    color: 0xffffff,
+    // metalness: 1,
+    // roughness: 0.0
+  } );
 
-function initKnot( scene ) {
+  const sphere = new THREE.Mesh( sphereGeo, sphereMat );
+  sphere.position.set( 0.75, 0, 0 );
 
-  const geometry = new THREE.TorusKnotBufferGeometry( 1, 0.25, 128, 64, 1, 2 );
-  const material = new THREE.MeshStandardMaterial( { color: 0x344565 } );
+  sphere.castShadow = true;
+  sphere.receiveShadow = true;
 
-  const mesh = new THREE.Mesh( geometry, material );
-  mesh.position.set( 4, 3, 0 )
-
-  mesh.userData.onUpdate = ( delta ) => {
-
-    mesh.rotation.x += delta / 2;
-    mesh.rotation.z -= delta / 4;
-
-  }
-
-  mesh.castShadow = true;
-
-  scene.add( mesh );
+  loop.add( sphere );
 
 }
-
-
