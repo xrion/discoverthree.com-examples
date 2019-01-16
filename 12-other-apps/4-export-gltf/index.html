@@ -43,6 +43,15 @@
 
 		<script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
 
+			<!--
+
+			Include the GLTFExporter script. This also needs to be loaded after the three.js script
+
+		-->
+
+		<script src="https://threejs.org/examples/js/exporters/GLTFExporter.js"></script>
+
+
 		<!--
 
 			Include our App class. In a production environment, we would be setting
@@ -60,6 +69,32 @@
 
 		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 12.4 </h1>
 
+		<div id="controls">
+			<br>
+			<button id="export_scene">Export Scene</button>
+			<br>
+			<br>
+			<a href="https://threejs.org/docs/#examples/exporters/GLTFExporter">Documentation</a>
+			<br>
+			<br>
+			<label><input id="option_trs" name="trs" type="checkbox"/>TRS</label>
+			<br>
+			<label><input id="option_visible" name="visible" type="checkbox" checked/>Only Visible</label>
+			<br>
+			<label><input id="option_drawrange" name="visible" type="checkbox" checked/>Truncate drawRange</label>
+			<br>
+			<label><input id="option_binary" name="visible" type="checkbox" checked>Binary (<code>.glb</code>)</label>
+			<br>
+			<label><input id="option_forceindices" name="visible" type="checkbox">Force indices</label>
+			<br>
+
+			<label><input id="option_embedImages" name="visible" type="checkbox" checked>Embed Images</label>
+			<br>
+			<label><input id="option_forcepot" name="visible" type="checkbox">Force POT textures</label>
+			<br>
+			<br>
+		</div>
+
 		<div id="container">
 			<!-- This div will hold our scene-->
 		</div>
@@ -67,9 +102,16 @@
 		<footer>
 
       <!--
-        Finally, include the script that
-        runs your three.js app.
-      -->
+        Finally, include the scripts that
+        run your three.js app.
+			-->
+
+			<script src="js/utility/saveFile.js"></script>
+
+			<script src="js/lights.js"></script>
+			<script src="js/meshes.js"></script>
+
+			<script src="js/export.js"></script>
 
 			<script src="js/main.js"></script>
 
