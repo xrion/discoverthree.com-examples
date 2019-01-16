@@ -63,8 +63,6 @@ const setEnvMap = ( materials, envMap ) => {
     material.envMap = selectedEnvMap;
     material.needsUpdate = true;
 
-    console.log(material);
-
   } );
 }
 
