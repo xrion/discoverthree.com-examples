@@ -2,13 +2,13 @@ function updateLights( matrixWorld, lights, target ) {
 
   target.setFromMatrixPosition( matrixWorld );
 
-  mainLight.target.position.x = target.x;
-  diffuseLight.target.position.x = target.x;
-  topLight.target.position.x = target.x;
+  lights.mainLight.target.position.x = target.x;
+  lights.diffuseLight.target.position.x = target.x;
+  lights.topLight.target.position.x = target.x;
 
-  mainLight.target.position.y = target.y - 0.5;
-  diffuseLight.target.position.y = target.y - 2;
-  topLight.target.position.y = target.y - 2;
+  lights.mainLight.target.position.y = target.y - 0.5;
+  lights.diffuseLight.target.position.y = target.y - 2;
+  lights.topLight.target.position.y = target.y - 2;
 
 }
 
@@ -16,14 +16,14 @@ const onLoad = ( gltf, position, rotation, scale, scene, lights, textures ) => {
 
   const model = gltf.scene.children[ 0 ];
 
-  if( position ) model.position.copy( position );
-  if( rotation ) model.rotation.copy( rotation );
-  if( scale ) model.scale.copy( scale );
+  if ( position ) model.position.copy( position );
+  if ( rotation ) model.rotation.copy( rotation );
+  if ( scale ) model.scale.copy( scale );
 
   const dancerBone = model.getObjectByName( 'mixamorigHeadTop_End' );
   const lightTarget = new THREE.Vector3();
 
-  if( gltf.animations[ 0 ] ) {
+  if ( gltf.animations[ 0 ] ) {
 
     const animation = gltf.animations[ 0 ];
     const mixer = new THREE.AnimationMixer( model );
@@ -34,7 +34,7 @@ const onLoad = ( gltf, position, rotation, scale, scene, lights, textures ) => {
 
       mixer.update( delta );
 
-      updateLights( dancerBone.matrixWorld, lights, lightTarget )
+      updateLights( dancerBone.matrixWorld, lights, lightTarget );
 
     };
 
@@ -43,18 +43,16 @@ const onLoad = ( gltf, position, rotation, scale, scene, lights, textures ) => {
 
   }
 
-  console.log( textures );
-
   model.traverse( ( child ) => {
 
     child.castShadow = true;
     child.receiveShadow = true;
 
-    if( child.material ) {
+    if ( child.material ) {
+
       child.material.envMap = textures.envMap;
       child.material.envMapIntensity = 10;
 
-      console.log(child.material);
     }
 
   } );

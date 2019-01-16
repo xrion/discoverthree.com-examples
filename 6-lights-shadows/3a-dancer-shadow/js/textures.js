@@ -1,36 +1,3 @@
-function initTextures() {
-
-  const textureLoader = new THREE.TextureLoader();
-
-  const textures = {}
-
-  textures.wallColor = textureLoader.load( 'textures/wall.png' );
-  textures.wallColor.anisotropy = 16;
-
-  textures.wallBump = textureLoader.load( 'textures/wall_bump.png' );
-
-  const repeatU = 3;
-  const repeatV = 3;
-
-  textures.floorColor = textureLoader.load( 'textures/floor/mahog/color.png' );
-  textures.floorColor.anisotropy = 16;
-  textures.floorColor.wrapS = textures.floorColor.wrapT = THREE.RepeatWrapping;
-  textures.floorColor.repeat.set( repeatU, repeatV );
-
-  textures.floorNormal = textureLoader.load( 'textures/floor/mahog/normal.png' );
-  textures.floorNormal.wrapS = textures.floorNormal.wrapT = THREE.RepeatWrapping;
-  textures.floorNormal.repeat.set( repeatU, repeatV );
-
-  textures.floorRoughness = textureLoader.load( 'textures/floor/mahog/roughness.png' );
-  textures.floorRoughness.wrapS = textures.floorRoughness.wrapT = THREE.RepeatWrapping;
-  textures.floorRoughness.repeat.set( repeatU, repeatV );
-
-  textures.envMap = loadEnvMap();
-
-  return textures;
-
-}
-
 function loadEnvMap() {
 
   const cubeTextureLoader = new THREE.CubeTextureLoader();
@@ -45,6 +12,43 @@ function loadEnvMap() {
   cubemap.mapping = THREE.CubeReflectionMapping;
   cubemap.encoding = THREE.sRGBEncoding;
 
-  return cubemap
+  return cubemap;
+
+}
+
+
+function initTextures() {
+
+  const textureLoader = new THREE.TextureLoader();
+
+  const textures = {};
+
+  let repeatU = 1;
+  let repeatV = 3;
+
+  textures.wallColor = textureLoader.load( 'textures/wall_color.jpg' );
+  textures.wallColor.wrapT = THREE.RepeatWrapping;
+  textures.wallColor.wrapS = THREE.MirrorRepeatWrapping;
+  textures.wallColor.repeat.set( repeatU, repeatV );
+
+  textures.wallBump = textureLoader.load( 'textures/wall_bump.jpg' );
+  textures.wallBump.wrapT = THREE.MirrorRepeatWrapping;
+  textures.wallBump.wrapS = THREE.RepeatWrapping;
+  textures.wallBump.repeat.set( repeatU, repeatV );
+
+  repeatU = 3;
+  repeatV = 24;
+
+  textures.floorColor = textureLoader.load( 'textures/floor_color.jpg' );
+  textures.floorColor.wrapS = textures.floorColor.wrapT = THREE.RepeatWrapping;
+  textures.floorColor.repeat.set( repeatU, repeatV );
+
+  textures.floorNormal = textureLoader.load( 'textures/floor_normal.jpg' );
+  textures.floorNormal.wrapS = textures.floorNormal.wrapT = THREE.RepeatWrapping;
+  textures.floorNormal.repeat.set( repeatU, repeatV );
+
+  textures.envMap = loadEnvMap();
+
+  return textures;
 
 }
