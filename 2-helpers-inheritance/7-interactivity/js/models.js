@@ -23,12 +23,12 @@ const onLoad = ( gltf, position, rotation, scale, scene ) => {
     model.userData.initialPosition = position;
     model.userData.initialRotation = rotation;
 
-    simpleControls( model );
-
     const action = mixer.clipAction( animation );
     action.play();
 
   }
+
+  simpleControls( model );
 
   scene.add( model );
 
