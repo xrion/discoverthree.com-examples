@@ -95,8 +95,6 @@ function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
 
   let overview = false;
 
-  console.log( cameraHelper );
-
   const button = document.querySelector( '#switch-camera' );
 
   button.addEventListener( 'click', ( e ) => {
@@ -106,10 +104,14 @@ function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
       app.camera = cameraOverview;
       app.scene.add( cameraHelper );
 
+      button.textContent = 'Switch to Main Camera';
+
     } else {
 
       app.camera = cameraMain;
       app.scene.remove( cameraHelper );
+
+      button.textContent = 'Switch to Overview Camera';
 
     }
 

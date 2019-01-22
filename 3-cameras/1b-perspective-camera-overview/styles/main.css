@@ -41,7 +41,8 @@ a:hover{
   text-align: right;
 }
 
-input[type=range] {
+input[type=range],
+button {
   width: 100%;
   margin-bottom: 1rem;
 }

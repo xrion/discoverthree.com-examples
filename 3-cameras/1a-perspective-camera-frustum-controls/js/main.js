@@ -4,7 +4,7 @@ function init() {
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x8FBCD4 );
+  app.scene.background = new THREE.Color( 0x23485c );
 
   app.controls.target.y = 1;
 
