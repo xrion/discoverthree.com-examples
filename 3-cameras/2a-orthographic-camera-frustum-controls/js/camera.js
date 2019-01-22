@@ -33,7 +33,4 @@ function initCamera( app ) {
 
   window.addEventListener( 'resize', onResize );
 
-
-  initCameraControls( app.camera );
-
 }

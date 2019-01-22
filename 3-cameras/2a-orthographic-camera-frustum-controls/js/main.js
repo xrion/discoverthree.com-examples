@@ -7,14 +7,12 @@ function init() {
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x23485c );
+  initCameraControls( app.camera, app.controls );
 
-  // app.controls.target.y = 1;
+  app.scene.background = new THREE.Color( 0x23485c );
 
   initLights( app.scene );
   initMeshes( app.scene );
-
-
 
   app.start();
 

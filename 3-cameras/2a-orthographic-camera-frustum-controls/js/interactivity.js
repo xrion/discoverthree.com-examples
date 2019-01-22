@@ -1,15 +1,32 @@
-function initZoomSlider( camera ) {
+function initZoomSlider( camera, controls ) {
 
   const slider = document.querySelector( '#zoom-slider' );
   const value = document.querySelector( '#zoom-value' );
 
-  slider.addEventListener( 'input', ( e ) => {
+  const update = () => {
 
     value.textContent = slider.value;
     camera.zoom = parseFloat( slider.value );
     camera.updateProjectionMatrix();
 
+  };
+
+  slider.addEventListener( 'input', ( e ) => {
+
+    update();
+
     e.preventDefault();
+
+  } );
+
+  controls.addEventListener( 'change', ( e ) => {
+
+    camera.zoom = camera.zoom.toFixed( 2 );
+
+    slider.value = camera.zoom;
+
+    update();
+
 
   } );
 
@@ -49,9 +66,10 @@ function initFarSlider( camera ) {
 
 }
 
-function initCameraControls( camera ) {
+function initCameraControls( camera, controls ) {
 
-  initZoomSlider( camera );
+  console.log(controls);
+  initZoomSlider( camera, controls );
   initNearSlider( camera );
   initFarSlider( camera );
 

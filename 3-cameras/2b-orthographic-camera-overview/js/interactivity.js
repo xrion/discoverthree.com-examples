@@ -1,23 +1,38 @@
-function initZoomSlider( camera, cameraHelper ) {
+function initZoomSlider( camera, controls ) {
 
   const slider = document.querySelector( '#zoom-slider' );
   const value = document.querySelector( '#zoom-value' );
 
-  slider.addEventListener( 'input', ( e ) => {
+  const update = () => {
 
     value.textContent = slider.value;
     camera.zoom = parseFloat( slider.value );
     camera.updateProjectionMatrix();
 
-    cameraHelper.update();
+  };
+
+  slider.addEventListener( 'input', ( e ) => {
+
+    update();
 
     e.preventDefault();
 
   } );
 
+  controls.addEventListener( 'change', ( e ) => {
+
+    camera.zoom = camera.zoom.toFixed( 2 );
+
+    slider.value = camera.zoom;
+
+    update();
+
+
+  } );
+
 }
 
-function initNearSlider( camera, cameraHelper ) {
+function initNearSlider( camera ) {
 
   const slider = document.querySelector( '#near-slider' );
   const value = document.querySelector( '#near-value' );
@@ -28,15 +43,13 @@ function initNearSlider( camera, cameraHelper ) {
     camera.near = parseFloat( slider.value );
     camera.updateProjectionMatrix();
 
-    cameraHelper.update();
-
     e.preventDefault();
 
   } );
 
 }
 
-function initFarSlider( camera, cameraHelper ) {
+function initFarSlider( camera ) {
 
   const slider = document.querySelector( '#far-slider' );
   const value = document.querySelector( '#far-value' );
@@ -46,8 +59,6 @@ function initFarSlider( camera, cameraHelper ) {
     value.textContent = slider.value;
     camera.far = parseFloat( slider.value );
     camera.updateProjectionMatrix();
-
-    cameraHelper.update();
 
     e.preventDefault();
 
@@ -87,9 +98,9 @@ function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
 
 function initCameraControls( app, cameraMain, cameraOverview, cameraHelper ) {
 
-  initZoomSlider( cameraMain, cameraHelper );
-  initNearSlider( cameraMain, cameraHelper );
-  initFarSlider( cameraMain, cameraHelper );
+  initZoomSlider( cameraMain, app.controls );
+  initNearSlider( cameraMain );
+  initFarSlider( cameraMain );
 
   switchCameraControl( app, cameraMain, cameraOverview, cameraHelper );
 

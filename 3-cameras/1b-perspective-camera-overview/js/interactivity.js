@@ -1,3 +1,17 @@
+function initAspectValue( camera ) {
+
+  const value = document.querySelector( '#aspect-value' );
+
+  value.textContent = camera.aspect.toFixed( 4 );
+
+  window.addEventListener( 'resize', () => {
+
+    value.textContent = camera.aspect.toFixed( 4 );
+
+  } );
+
+}
+
 function updateEffectiveFOV( camera, domeElement ) {
 
   const effectiveFOV = camera.getEffectiveFOV();
@@ -123,6 +137,7 @@ function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
 
 function initCameraControls( app, cameraMain, cameraOverview, cameraHelper ) {
 
+  initAspectValue( cameraMain, cameraHelper );
   initFOVSlider( cameraMain, cameraHelper );
   initZoomSlider( cameraMain, cameraHelper );
   initNearSlider( cameraMain, cameraHelper );

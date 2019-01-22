@@ -17,7 +17,28 @@ function initCamera( app ) {
   cameraOverview.updateProjectionMatrix();
 
   const cameraHelper = new THREE.CameraHelper( cameraMain );
+  cameraHelper.userData.onUpdate = () => {
 
+    cameraHelper.update();
+
+  };
+
+  app.autoResize = false;
+
+  function onResize() {
+
+    cameraMain.aspect = app.container.clientWidth / app.container.clientHeight;
+    cameraMain.updateProjectionMatrix();
+
+    cameraOverview.aspect = app.container.clientWidth / app.container.clientHeight;
+    cameraOverview.updateProjectionMatrix();
+
+    app.renderer.setSize( app.container.clientWidth, app.container.clientHeight );
+    app.renderer.setPixelRatio( Math.min( window.devicePixelRatio, app.maxPixelRatio ) );
+
+  }
+
+  window.addEventListener( 'resize', onResize );
 
   initCameraControls( app, cameraMain, cameraOverview, cameraHelper );
 

@@ -1,3 +1,17 @@
+function initAspectValue( camera ) {
+
+  const value = document.querySelector( '#aspect-value' );
+
+  value.textContent = camera.aspect.toFixed( 4 );
+
+  window.addEventListener( 'resize', () => {
+
+    value.textContent = camera.aspect.toFixed( 4 );
+
+  } );
+
+}
+
 function updateEffectiveFOV( camera, domeElement ) {
 
   const effectiveFOV = camera.getEffectiveFOV();
@@ -5,7 +19,6 @@ function updateEffectiveFOV( camera, domeElement ) {
   domeElement.textContent = effectiveFOV.toFixed( 4 );
 
 }
-
 
 function initFOVSlider( camera ) {
 
@@ -49,6 +62,7 @@ function initZoomSlider( camera ) {
 
 }
 
+
 function initNearSlider( camera ) {
 
   const slider = document.querySelector( '#near-slider' );
@@ -85,6 +99,7 @@ function initFarSlider( camera ) {
 
 function initCameraControls( camera ) {
 
+  initAspectValue( camera );
   initFOVSlider( camera );
   initZoomSlider( camera );
   initNearSlider( camera );

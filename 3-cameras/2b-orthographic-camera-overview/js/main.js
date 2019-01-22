@@ -2,13 +2,13 @@ function init() {
 
   const app = new THREE_APP( '#container' );
 
-  initCamera( app );
+  const cameras = initCameras( app );
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x23485c );
+  initCameraControls( app, cameras.cameraMain, cameras.cameraOverview, cameras.cameraHelper );
 
-  app.controls.target.y = 1;
+  app.scene.background = new THREE.Color( 0x23485c );
 
   initLights( app.scene );
   initMeshes( app.scene );

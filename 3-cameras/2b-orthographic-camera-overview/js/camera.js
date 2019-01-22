@@ -1,4 +1,4 @@
-function initCamera( app ) {
+function initCameras( app ) {
 
   const cameraOverview = new THREE.PerspectiveCamera( 35, app.container.clientWidth / app.container.clientHeight, 1, 1000 );
   cameraOverview.position.set( 2000, 0, 2000 );
@@ -52,6 +52,6 @@ function initCamera( app ) {
 
   };
 
-  initCameraControls( app, cameraMain, cameraOverview, cameraHelper );
+  return { cameraMain, cameraOverview, cameraHelper };
 
 }
