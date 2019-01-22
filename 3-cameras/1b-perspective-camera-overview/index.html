@@ -3,7 +3,7 @@
 
 	<head>
 
-		<title>Discoverthreejs.com - Ch 2.8</title>
+		<title>Discoverthreejs.com - Ch 3.1b The Perspective Camera</title>
 
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<meta charset="UTF-8" />
@@ -58,7 +58,37 @@
 
 	<body>
 
-		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 2.8</h1>
+		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 3.1b The Perspective Camera</h1>
+
+		<div id="controls">
+			<h3>Perspective Camera Controls</h3>
+			<span>Field of View: <span id="fov-value">35</span></span>
+			<br>
+			<input type="range" id="fov-slider" min="1" max="179" step="1" value="35">
+			<br>
+			<span>Zoom: <span id="zoom-value">1</span></span>
+			<br>
+			<input type="range" id="zoom-slider" min="0.01" max="10" step="0.01" value="1">
+			<br>
+			<span>Effective Field of View: <span id="effective-fov-value">35</span></span>
+			<br>
+			<span>(takes zoom into account)</span>
+			<br>
+			<br>
+			<span>Near Clipping Plane: <span id="near-value">10</span></span>
+			<br>
+			<input type="range" id="near-slider" min="0.1" max="20" step="0.1" value="10">
+			<br>
+			<span>Far Clipping Plane: <span id="far-value">50</span></span>
+			<br>
+			<input type="range" id="far-slider" min="1" max="100" step="1" value="50">
+			<br>
+			<br>
+			<button id="switch-camera">Switch to Overview Camera</button>
+			<br>
+			<br>
+			<br>
+		</div>
 
 		<div id="container">
 			<!-- This div will hold our scene-->
@@ -67,9 +97,16 @@
 		<footer>
 
       <!--
-        Finally, include the script that
-        runs your three.js app.
+        Finally, include the scripts that
+        run your three.js app.
       -->
+
+			<script src="js/lights.js"></script>
+			<script src="js/meshes.js"></script>
+
+			<script src="js/interactivity.js"></script>
+
+			<script src="js/camera.js"></script>
 
 			<script src="js/main.js"></script>
 

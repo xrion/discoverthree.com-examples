@@ -23,13 +23,13 @@ function initCanvasTexture() {
 function setBackgroundColor( canvas, context ) {
 
   context.fillStyle = 'white';
-  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.fillRect( 0, 0, canvas.width, canvas.height );
 
 }
 
 // split the text into lines that will fit on the canvas
 // and return an array of lines
-function processText( canvas, context, text ) {
+function processText( text ) {
 
   // first split by line break
   const lines = text.split( '\n' );
@@ -66,8 +66,8 @@ function setText( canvas, context, lines ) {
   // draw each line onto the canvas
   lines.forEach( ( line ) => {
     context.fillText( line, margin, lineNum * lineHeight );
-    lineNum ++;
-  })
+    lineNum++;
+  } );
 
 
 }
@@ -76,7 +76,7 @@ function initTextInput( canvas, context, texture ) {
 
   const textarea = document.querySelector( '#text-input' );
 
-  const lines = processText(  canvas, context, textarea.value );
+  const lines = processText( canvas, context, textarea.value );
 
   setText( canvas, context, lines );
 
