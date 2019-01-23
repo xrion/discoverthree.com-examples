@@ -1,7 +1,7 @@
-function initLights() {
+function initLights( scene ) {
 
   const ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
-  app.scene.add( ambientLight );
+  scene.add( ambientLight );
 
   const frontLight = new THREE.DirectionalLight( 0xffffff, 1 );
   frontLight.position.set( 10, 10, 10 );
@@ -9,6 +9,6 @@ function initLights() {
   const backLight = new THREE.DirectionalLight( 0xffffff, 1 );
   backLight.position.set( -10, 10, -10 );
 
-  app.scene.add( frontLight, backLight );
+  scene.add( frontLight, backLight );
 
 }
