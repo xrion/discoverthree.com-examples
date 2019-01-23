@@ -60,9 +60,10 @@
 
 		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 3.2c</h1>
 
-		<div id="controls">
-			<h3>Active Camera: <span id="active-camera">Orthographic</span></h3>
-			<button id="toggle-camera">Switch Camera</button>
+		<p class="info">Press R to reset, arrow keys to run</p>
+
+		<div id="gui-container">
+			<!-- This div will hold our 2D GUI overlay -->
 		</div>
 
 		<div id="container">
@@ -72,9 +73,16 @@
 		<footer>
 
       <!--
-        Finally, include the script that
-        runs your three.js app.
+        Finally, include the scripts that
+        run your three.js app.
       -->
+
+			<script src="js/lights.js"></script>
+			<script src="js/models.js"></script>
+
+			<script src="js/interactivity.js"></script>
+
+			<script src="js/GUI.js"></script>
 
 			<script src="js/main.js"></script>
 
