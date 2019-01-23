@@ -1,4 +1,0 @@
-function setupControls( controls ) {
-
-
-}

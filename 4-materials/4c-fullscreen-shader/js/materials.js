@@ -14,23 +14,23 @@ const vertexShader = /* glsl */`
 
   uniform float time;
 
-	void main()	{
-		gl_Position = vec4( position, 1.0 );
-	}
+  void main() {
+    gl_Position = vec4( position, 1.0 );
+  }
 
 `;
 
 const fragmentShader = /* glsl */`
   precision highp float;
 
-	uniform float time;
+  uniform float time;
 
-	void main()	{
-		float x = mod( time / 5.0, 1.0 );
-		float y = mod( time / 12.0, 1.0 );
+  void main() {
+    float x = mod( time / 5.0, 1.0 );
+    float y = mod( time / 12.0, 1.0 );
     float z = mod( time / 20.0, 1.0 );
-		gl_FragColor = vec4(vec3(x, y, z), 1.0 );
-	}
+    gl_FragColor = vec4(vec3(x, y, z), 1.0 );
+  }
 
 `;
 
@@ -46,7 +46,7 @@ function createShaderMaterial() {
     vertexShader,
     fragmentShader,
 
-  })
+  } );
 
   return material;
 

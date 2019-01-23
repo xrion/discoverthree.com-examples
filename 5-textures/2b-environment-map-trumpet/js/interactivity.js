@@ -3,7 +3,7 @@ let sceneBGColor = null;
 
 function setupMaterialTypeSelect( model, materials ) {
 
-  console.log(model, materials );
+  console.log( model, materials );
 
   const select = document.querySelector( '#material-select' );
 
@@ -13,7 +13,7 @@ function setupMaterialTypeSelect( model, materials ) {
 
     const type = e.target.value;
 
-    console.log(materials[ `silver${type}` ]);
+    console.log( materials[ `silver${type}` ] );
 
     model.children[ 0 ].material = materials[ `silver${type}` ];
     model.children[ 1 ].material = materials[ `brass${type}` ];
@@ -33,10 +33,10 @@ function setupMaterialControls( materials, envMaps, scene ) {
 
 const setSceneBackGround = ( scene, toggleEnabled ) => {
 
-  if( toggleEnabled && selectedEnvMap !== null ) scene.background = selectedEnvMap;
+  if ( toggleEnabled && selectedEnvMap !== null ) scene.background = selectedEnvMap;
   else scene.background = sceneBGColor;
 
-}
+};
 
 function sceneBackgroundToggle( scene ) {
 
@@ -63,10 +63,10 @@ const setEnvMap = ( materials, envMap ) => {
     material.envMap = selectedEnvMap;
     material.needsUpdate = true;
 
-    console.log(material);
+    console.log( material );
 
   } );
-}
+};
 
 function envMapSelectControl( materials, envMaps, scene ) {
 
@@ -92,7 +92,7 @@ function envMapSelectControl( materials, envMaps, scene ) {
         break;
     }
 
-    setSceneBackGround( scene, bgToggle.checked )
+    setSceneBackGround( scene, bgToggle.checked );
 
   } );
 
@@ -110,7 +110,7 @@ function envMapStrengthControl( materials ) {
 
     Object.values( materials ).forEach( ( material ) => {
 
-      if( material.isMeshStandardMaterial ) material.envMapIntensity = newValue;
+      if ( material.isMeshStandardMaterial ) material.envMapIntensity = newValue;
       else material.reflectivity = newValue;
 
     } );
@@ -133,7 +133,7 @@ function setupMaterialParamControl( materials, param ) {
 
     Object.values( materials ).forEach( ( material ) => {
 
-      if( material[ param ] !== undefined ) material[ param ] = newValue;
+      if ( material[ param ] !== undefined ) material[ param ] = newValue;
 
     } );
 

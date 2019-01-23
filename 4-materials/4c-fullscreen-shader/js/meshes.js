@@ -1,4 +1,4 @@
-function initMeshes() {
+function initMeshes( scene ) {
 
   // create a plane geometry. The vertices of this plane will
   // be at -1 and 1 on the X axis and Y axis, meaning that
@@ -8,9 +8,9 @@ function initMeshes() {
 
   const tempMat = new THREE.MeshBasicMaterial();
 
-  mesh = new THREE.Mesh( geometry, tempMat );
+  const mesh = new THREE.Mesh( geometry, tempMat );
 
-  app.scene.add( mesh );
+  scene.add( mesh );
 
   return mesh;
 

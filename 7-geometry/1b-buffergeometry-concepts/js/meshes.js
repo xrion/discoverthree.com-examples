@@ -7,7 +7,7 @@ function initMeshes( scene ) {
 
   scene.add( mesh );
 
-  console.log( 'Here\s the cube buffer geometry you just created: ', geometry );
+  console.log( 'Here\'s the cube buffer geometry you just created: ', geometry );
 
   return mesh;
 

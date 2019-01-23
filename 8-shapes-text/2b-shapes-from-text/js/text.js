@@ -19,24 +19,24 @@ function createSolidText( shapes ) {
   // as usual, we'll need to translate the text geometry "left" by half it's width
   // to make sure it's centered at the origin
   geometry.computeBoundingBox();
-  const centerOffset = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
+  const centerOffset = -0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
   geometry.translate( centerOffset, 0, 0 );
 
   const material = new THREE.MeshBasicMaterial( {
-    side: THREE.DoubleSide // needed so that the text is visible from behind
+    side: THREE.DoubleSide, // needed so that the text is visible from behind
   } );
 
   return new THREE.Mesh( geometry, material );
 
 }
 
-function createLineText ( shapes ) {
+function createLineText( shapes ) {
 
   const material = new THREE.LineBasicMaterial( {
-    side: THREE.DoubleSide // needed so that the text is visible from behind
+    side: THREE.DoubleSide, // needed so that the text is visible from behind
   } );
 
-  var lineText = new THREE.Group();
+  const lineText = new THREE.Group();
 
   function addShapeMesh( shape ) {
 
@@ -51,7 +51,7 @@ function createLineText ( shapes ) {
 
   }
 
-  for ( let i = 0; i < shapes.length; i ++ ) {
+  for ( let i = 0; i < shapes.length; i++ ) {
 
     // add a mesh for each outer shape.
     // letters such as i or j are made up of multiple shapes
@@ -62,7 +62,7 @@ function createLineText ( shapes ) {
     // add meshes for these too
     if ( shape.holes && shape.holes.length > 0 ) {
 
-      for ( let j = 0; j < shape.holes.length; j ++ ) {
+      for ( let j = 0; j < shape.holes.length; j++ ) {
 
         const hole = shape.holes[ j ];
         addShapeMesh( hole );
@@ -79,12 +79,12 @@ function createLineText ( shapes ) {
   const bb = new THREE.Box3().setFromObject( lineText );
   const size = new THREE.Vector3();
   bb.getSize( size );
-  const centerOffset = - size.x / 2;
+  const centerOffset = -size.x / 2;
 
   // however, we still want to translate the geometries rather than the mesh
   lineText.traverse( ( child ) => {
 
-    if( child.geometry ) child.geometry.translate( centerOffset, 0, 0 );
+    if ( child.geometry ) child.geometry.translate( centerOffset, 0, 0 );
 
   } );
 
@@ -96,7 +96,7 @@ function loadFont( scene ) {
 
   const loader = new THREE.FontLoader();
 
-  loader.load( 'fonts/droid_serif_regular.typeface.json', function ( font ) {
+  loader.load( 'fonts/droid_serif_regular.typeface.json', ( font ) => {
 
     console.log( 'Here\s the font we just loaded: ', font );
 

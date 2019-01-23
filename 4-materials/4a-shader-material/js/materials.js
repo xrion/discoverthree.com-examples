@@ -41,15 +41,15 @@ void main() {
                       0.5,  // Blue
                       1.0); // Alpa, or transpareny
 }
-`
+`;
 
-function createShaderMaterial () {
+function createShaderMaterial() {
 
   const material = new THREE.ShaderMaterial( {
-    //uniforms: {}, // optional object containing uniforms
+    // uniforms: {}, // optional object containing uniforms
     vertexShader,
     fragmentShader,
-  })
+  } );
 
   return material;
 

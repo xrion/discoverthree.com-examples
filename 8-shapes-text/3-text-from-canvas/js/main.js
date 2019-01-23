@@ -1,7 +1,6 @@
-const app = new THREE_APP( '#container' );
-let modelRef = null;
-
 function init() {
+
+  const app = new THREE_APP( '#container' );
 
   app.init();
 

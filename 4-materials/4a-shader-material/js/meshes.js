@@ -1,10 +1,12 @@
-function initMeshes( material ) {
+function initMeshes( scene, material ) {
 
   // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
 
-  mesh = new THREE.Mesh( geometry, material );
+  const mesh = new THREE.Mesh( geometry, material );
 
-  app.scene.add( mesh );
+  scene.add( mesh );
+
+  return mesh;
 
 }

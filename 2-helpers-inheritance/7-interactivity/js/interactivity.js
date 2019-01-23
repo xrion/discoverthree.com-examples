@@ -1,4 +1,4 @@
-// We'l use this flag to make sure that the horse can't move in two directions at one
+// We'll use this flag to make sure that the horse can't move in two directions at one
 let moving = false;
 
 // speed scaling factor
@@ -17,7 +17,7 @@ const right = new THREE.Vector3( 1, 0, 0 );
 function start( model, direction, rotation ) {
 
   // if we're already moving, do nothing
-  if( moving ) return;
+  if ( moving ) return;
 
   // point horsey in the right direction
   model.rotation.y = rotation;
@@ -47,21 +47,11 @@ function stop( model ) {
 
 }
 
-function simpleControls( model ) {
-
-  resetControl( model );
-  forwardsControl( model );
-  backwardControl( model );
-  leftControl( model );
-  rightControl( model );
-
-}
-
 function resetControl( model ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if( e.key === 'r' || e.key === 'R' ) {
+    if ( e.key === 'r' || e.key === 'R' ) {
 
       resetPosition( model );
       resetRotation( model );
@@ -88,13 +78,13 @@ function forwardsControl( model ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if( e.key === 'ArrowUp' ) start( model, forwards, Math.PI );
+    if ( e.key === 'ArrowUp' ) start( model, forwards, Math.PI );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if( e.key === 'ArrowUp' ) stop( model );
+    if ( e.key === 'ArrowUp' ) stop( model );
 
   } );
 
@@ -104,13 +94,13 @@ function backwardControl( model ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if( e.key === 'ArrowDown' ) start( model, backward, 0 );
+    if ( e.key === 'ArrowDown' ) start( model, backward, 0 );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if( e.key === 'ArrowDown' ) stop( model );
+    if ( e.key === 'ArrowDown' ) stop( model );
 
   } );
 
@@ -120,13 +110,13 @@ function leftControl( model ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if( e.key === 'ArrowLeft' ) start( model, left, -Math.PI / 2 );
+    if ( e.key === 'ArrowLeft' ) start( model, left, -Math.PI / 2 );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if( e.key === 'ArrowLeft' ) stop( model );
+    if ( e.key === 'ArrowLeft' ) stop( model );
 
   } );
 
@@ -136,14 +126,24 @@ function rightControl( model ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if( e.key === 'ArrowRight' ) start( model, right, Math.PI / 2 );
+    if ( e.key === 'ArrowRight' ) start( model, right, Math.PI / 2 );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if( e.key === 'ArrowRight' ) stop( model );
+    if ( e.key === 'ArrowRight' ) stop( model );
 
   } );
+
+}
+
+function initControls( model ) {
+
+  resetControl( model );
+  forwardsControl( model );
+  backwardControl( model );
+  leftControl( model );
+  rightControl( model );
 
 }

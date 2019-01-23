@@ -1,38 +1,30 @@
 function initMeshes( scene ) {
 
-  const loopGeometry = new THREE.TorusKnotBufferGeometry( 2, 0.25, 128, 64, 1, 1 );
-  const loopMaterial = new THREE.MeshStandardMaterial( {
+  const torusKnotGeo = new THREE.TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
+  const torusKnotMat = new THREE.MeshStandardMaterial( {
     color: 0x000000,
   } );
 
-  const loop = new THREE.Mesh( loopGeometry, loopMaterial );
+  const torusKnot = new THREE.Mesh( torusKnotGeo, torusKnotMat );
+  torusKnot.position.set( 0, 0, 0 );
 
-  scene.add( loop );
-
-  const sphereGeo = new THREE.SphereBufferGeometry( 1.25, 64, 64 );
-  const sphereMat = new THREE.MeshStandardMaterial( {
-    color: 0xffffff,
-  } );
+  const sphereGeo = new THREE.SphereBufferGeometry( 1.875, 32, 32 );
+  const sphereMat = new THREE.MeshStandardMaterial();
 
   const sphere = new THREE.Mesh( sphereGeo, sphereMat );
-  sphere.position.set( 0.75, 0, 0 );
+  sphere.position.set( 1.125, 0, 0 );
 
-  sphere.castShadow = true;
-  sphere.receiveShadow = true;
+  torusKnot.add( sphere );
 
-  loop.add( sphere );
+  torusKnot.userData.onUpdate = ( delta ) => {
 
-  // we'll set the loop to animating using our usual method,
-  // however there is no way to export this to glTF format,
-  // so we'll need to recreate the animation manually after
-  // loading
-  loop.userData.onUpdate = ( delta ) => {
-
-    loop.rotation.y += delta / 2;
-    loop.rotation.z -= delta / 4;
+    torusKnot.rotation.y += delta / 2;
+    torusKnot.rotation.z -= delta / 4;
 
   };
 
-  return loop;
+  scene.add( torusKnot );
+
+  return torusKnot;
 
 }

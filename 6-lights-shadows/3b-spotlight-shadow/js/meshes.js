@@ -1,10 +1,3 @@
-function initMeshes( scene ) {
-
-  initGround( scene );
-  initShapes( scene );
-
-}
-
 function initGround( scene ) {
 
   const geometry = new THREE.BoxBufferGeometry( 30, 30, 1 );
@@ -58,5 +51,12 @@ function initShapes( scene ) {
   sphere.receiveShadow = true;
 
   loop.add( sphere );
+
+}
+
+function initMeshes( scene ) {
+
+  initGround( scene );
+  initShapes( scene );
 
 }

@@ -45,4 +45,5 @@ function initSprites( scene ) {
     spriteGroup.add( sprite );
 
   }
+
 }

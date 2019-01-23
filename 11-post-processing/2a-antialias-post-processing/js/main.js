@@ -32,7 +32,7 @@ function init() {
   const onResize = () => {
 
     const width = app.container.clientWidth;
-    const height =  app.container.clientHeight;
+    const height = app.container.clientHeight;
 
     const pixelRatio = Math.min( window.devicePixelRatio, app.maxPixelRatio );
 
@@ -55,7 +55,7 @@ function init() {
 
     composers.fxaaShader.uniforms.resolution.value.set( 1 / newWidth, 1 / newHeight );
 
-  }
+  };
 
   onResize();
 

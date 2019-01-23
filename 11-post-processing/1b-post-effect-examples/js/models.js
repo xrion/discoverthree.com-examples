@@ -5,9 +5,9 @@ const onLoad = ( gltf, position, rotation, scale, scene ) => {
 
   const model = gltf.scene.children[ 0 ];
 
-  if( position ) model.position.copy( position );
-  if( rotation ) model.rotation.copy( rotation );
-  if( scale ) model.scale.copy( scale );
+  if ( position ) model.position.copy( position );
+  if ( rotation ) model.rotation.copy( rotation );
+  if ( scale ) model.scale.copy( scale );
 
   // uncomment this code to see a limitation of post processing
   // - the effects are calculated on the CPU, while many things such as

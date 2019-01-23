@@ -11,13 +11,13 @@ function initMaterial( scene ) {
 
     silverLambert: new THREE.MeshLambertMaterial( { color: silverColor } ),
     silverPhong: new THREE.MeshPhongMaterial( { color: silverColor } ),
-    silverStandard: new THREE.MeshStandardMaterial( {  metalness: 0.7, roughness: 0.3, color: silverColor } ),
+    silverStandard: new THREE.MeshStandardMaterial( { metalness: 0.7, roughness: 0.3, color: silverColor } ),
 
   };
 
   const envMaps = loadEnvMaps();
 
-  setupMaterialControls( materials, envMaps, scene  );
+  setupMaterialControls( materials, envMaps, scene );
 
   return materials;
 

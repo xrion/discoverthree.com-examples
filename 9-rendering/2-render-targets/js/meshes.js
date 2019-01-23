@@ -4,7 +4,7 @@ function initMeshes( scene, sceneRT, target ) {
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
 
   const material = new THREE.MeshStandardMaterial( {
-    map: target.texture
+    map: target.texture,
   } );
 
   const mesh = new THREE.Mesh( geometry, material );
@@ -34,6 +34,6 @@ function initMeshes( scene, sceneRT, target ) {
     meshRT.rotation.x -= delta / 2;
     meshRT.rotation.y -= delta / 2;
     meshRT.rotation.z += delta / 2;
-  }
+  };
 
 }

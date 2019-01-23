@@ -35,7 +35,7 @@ function createGeometry() {
 
   geometry.addAttribute( 'uv', new THREE.BufferAttribute( uvs, 2 ) );
 
-  console.log( 'Here\s the geometry you just created: ', geometry );
+  console.log( 'Here\'s the geometry you just created: ', geometry );
 
   return geometry;
 
@@ -85,7 +85,7 @@ function createGeometryIndexed() {
 
   geometry.addAttribute( 'uv', new THREE.BufferAttribute( uvs, 2 ) );
 
-  console.log( '...and here\s the indexed geometry you just created: ', geometry );
+  console.log( '...and here\'s the indexed geometry you just created: ', geometry );
 
   return geometry;
 

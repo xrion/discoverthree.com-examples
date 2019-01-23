@@ -1,4 +1,4 @@
-function initPostProcessing( renderer, scene, camera  ) {
+function initPostProcessing( renderer, scene, camera ) {
 
   const composer = new THREE.EffectComposer( renderer );
 
@@ -13,13 +13,7 @@ function initPostProcessing( renderer, scene, camera  ) {
   // to let the composer know that this is the result we want to see
   copyPass.renderToScreen = true;
 
-
-
   composer.addPass( copyPass );
-
-  // var effect = new THREE.ShaderPass( THREE.DotScreenShader );
-  // effect.uniforms[ 'scale' ].value = 4;
-  // composer.addPass( effect );
 
   return composer;
 

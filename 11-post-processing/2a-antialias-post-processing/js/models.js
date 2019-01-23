@@ -1,5 +1,5 @@
 // average theta step between birds
-const step = Math.PI / 48;
+// const step = Math.PI / 48;
 
 const models = [];
 
@@ -7,9 +7,9 @@ const group = new THREE.Group();
 
 group.userData.onUpdate = ( delta ) => {
 
-  group.rotation.y += delta / 18 ;
+  group.rotation.y += delta / 18;
 
-}
+};
 
 const positions = createSphericalPositions();
 
@@ -34,18 +34,18 @@ const onLoad = ( gltf, position, rotation, scale, scene, offset ) => {
   // get the correct model from the loaded object
   const model = gltf.scene.children[ 0 ];
 
-  if( position ) model.position.copy( position );
-  if( rotation ) model.rotation.copy( rotation );
-  if( scale ) model.scale.copy( scale );
+  if ( position ) model.position.copy( position );
+  if ( rotation ) model.rotation.copy( rotation );
+  if ( scale ) model.scale.copy( scale );
 
   const animation = gltf.animations[ 0 ];
 
   let rotationFactor = 0;
   positions.forEach( ( position, index ) => {
 
-     rotationFactor += position.rot;
+    rotationFactor += position.rot;
 
-    if( index % 2 === offset ) {
+    if ( index % 2 === offset ) {
 
       const newModel = model.clone();
 
@@ -63,7 +63,7 @@ const onLoad = ( gltf, position, rotation, scale, scene, offset ) => {
   } );
 
   // create the big bird model and do some setup
-  if( offset === 0 ) {
+  if ( offset === 0 ) {
 
     scene.add( group );
 
@@ -84,7 +84,7 @@ function loadModels( loader, scene ) {
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  const position = new THREE.Vector3( 0, 0, 0  );
+  const position = new THREE.Vector3( 0, 0, 0 );
   const rotation = new THREE.Euler( 0, 0, 0 );
   const scale = new THREE.Vector3( 0.1, 0.1, 0.1 );
   loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, position, rotation, scale, scene, 0 ), null, onError );

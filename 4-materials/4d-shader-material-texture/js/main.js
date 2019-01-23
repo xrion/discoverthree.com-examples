@@ -8,9 +8,7 @@ function init() {
   app.camera.position.set( 4, 4, 8 );
 
   const shaderMaterial = createShaderMaterial();
-  const cube = initMeshes( shaderMaterial );
-
-  app.scene.add( cube );
+  initMeshes( app.scene, shaderMaterial );
 
   app.start();
 

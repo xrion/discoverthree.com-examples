@@ -28,11 +28,11 @@ function createGeometry() {
   // maximum control over the conversion you can calculate these first
   geometry.computeVertexNormals();
 
-  console.log( 'Here\s the geometry you just created: ', geometry );
+  console.log( 'Here\'s the geometry you just created: ', geometry );
 
   const bufferGeometry = new THREE.BufferGeometry().fromGeometry( geometry );
 
-  console.log( '... and here\s what it looks like after being converted to a BufferGeometry: ', bufferGeometry );
+  console.log( '... and here\'s what it looks like after being converted to a BufferGeometry: ', bufferGeometry );
 
   // never use a Geometry directly, always convert it to a BufferGeometry first
   return bufferGeometry;

@@ -5,9 +5,9 @@ const onLoad = ( gltf, position, rotation, scale, scene ) => {
 
   const model = gltf.scene.children[ 0 ];
 
-  if( position ) model.position.copy( position );
-  if( rotation ) model.rotation.copy( rotation );
-  if( scale ) model.scale.copy( scale );
+  if ( position ) model.position.copy( position );
+  if ( rotation ) model.rotation.copy( rotation );
+  if ( scale ) model.scale.copy( scale );
 
   console.log( 'And here\'s the buffer geometry from the bird model: ', model.geometry );
 

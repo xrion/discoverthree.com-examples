@@ -5,11 +5,11 @@ const onLoad = ( gltf, position, rotation, scale, scene ) => {
 
   const model = gltf.scene.children[ 0 ];
 
-  if( position ) model.position.copy( position );
-  if( rotation ) model.rotation.copy( rotation );
-  if( scale ) model.scale.copy( scale );
+  if ( position ) model.position.copy( position );
+  if ( rotation ) model.rotation.copy( rotation );
+  if ( scale ) model.scale.copy( scale );
 
-  if( gltf.animations[ 0 ] ) {
+  if ( gltf.animations[ 0 ] ) {
 
     const animation = gltf.animations[ 0 ];
     const mixer = new THREE.AnimationMixer( model );
@@ -35,7 +35,7 @@ function loadModels( scene, loader ) {
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  const rotation = new THREE.Euler( 0, 0, 0  );
+  const rotation = new THREE.Euler( 0, 0, 0 );
 
   // scale the birds down to be actual bird sized (roughly)
   const scale = new THREE.Vector3( 0.05, 0.05, 0.05 );

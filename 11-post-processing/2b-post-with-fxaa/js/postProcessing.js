@@ -7,7 +7,7 @@ function initPostProcessing( renderer, scene, camera, container ) {
   const renderPass = new THREE.RenderPass( scene, camera );
   composer.addPass( renderPass );
 
-  outlinePass = new THREE.OutlinePass( new THREE.Vector2( container.clientWidth, container.clientHeight ), scene, camera, scene.children );
+  const outlinePass = new THREE.OutlinePass( new THREE.Vector2( container.clientWidth, container.clientHeight ), scene, camera, scene.children );
   // outlinePass.renderToScreen = true;
   composer.addPass( outlinePass );
 
@@ -24,8 +24,8 @@ function initPostProcessing( renderer, scene, camera, container ) {
     passes: {
       renderPass,
       outlinePass,
-      fxaaPass
-    }
+      fxaaPass,
+    },
   };
 
 }

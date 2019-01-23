@@ -48,23 +48,23 @@ void main() {
   gl_FragColor = texture2D( diffuseMap, vUv );
 
 }
-`
+`;
 
-function createShaderMaterial () {
+function createShaderMaterial() {
 
   const texture = new THREE.TextureLoader().load( 'textures/bamboo-diffuse.jpg' );
 
   const uniforms = {
     diffuseMap: {
-      value: texture
-    }
+      value: texture,
+    },
   };
 
   const material = new THREE.ShaderMaterial( {
     uniforms,
     vertexShader,
     fragmentShader,
-  })
+  } );
 
   return material;
 

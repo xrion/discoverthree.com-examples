@@ -1,4 +1,4 @@
-function initComposers( renderer, scene, camera  ) {
+function initComposers( renderer, scene, camera ) {
 
   const composers = {};
 
@@ -62,7 +62,7 @@ function initComposerTAA( renderer, scene, camera ) {
   const composerTAA = new THREE.EffectComposer( renderer );
 
   const taaRenderPass = new THREE.TAARenderPass( scene, camera );
-	taaRenderPass.sampleLevel = 4; // specified as n, where the number of samples is 2^n, so sampleLevel = 4, is 2^4 samples, 16.
+  taaRenderPass.sampleLevel = 4; // specified as n, where the number of samples is 2^n, so sampleLevel = 4, is 2^4 samples, 16.
   composerTAA.addPass( taaRenderPass );
 
   const copyPass = new THREE.ShaderPass( THREE.CopyShader );
@@ -81,7 +81,7 @@ function initComposerFXAA( renderer, scene, camera ) {
   const renderPass = new THREE.RenderPass( scene, camera );
   composerFXAA.addPass( renderPass );
 
-  var fxaaShader = new THREE.ShaderPass( THREE.FXAAShader );
+  let fxaaShader = new THREE.ShaderPass( THREE.FXAAShader );
 
   fxaaShader.renderToScreen = true;
   composerFXAA.addPass( fxaaShader );

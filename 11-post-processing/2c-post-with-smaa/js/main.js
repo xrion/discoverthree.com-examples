@@ -25,7 +25,7 @@ function init() {
     // will get resized automatically
     effects.composer.setSize( newWidth, newHeight );
 
-  }
+  };
 
   // call onResize once to set up the sizes
   app.onResize();
@@ -41,7 +41,7 @@ function init() {
     // render using the composer instead of the app.renderer
     effects.composer.render();
 
-  }
+  };
 
   app.start();
 

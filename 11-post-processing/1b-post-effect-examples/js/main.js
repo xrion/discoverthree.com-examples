@@ -21,7 +21,7 @@ function init() {
     const newHeight = Math.floor( size.height * pixelRatio ) || 1;
     composer.setSize( newWidth, newHeight );
 
-  }
+  };
 
   initLights( app.scene );
   initMeshes( app.scene );
@@ -34,7 +34,7 @@ function init() {
     // render using the composer instead of the app.renderer
     composer.render();
 
-  }
+  };
 
   app.start();
 

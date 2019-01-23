@@ -17,6 +17,8 @@ function initLights( scene, sceneRT ) {
 
   sceneRT.add( ambientLightRT, frontLightRT, backLightRT );
 
-  return { ambientLight, frontLight, backLight, frontLightRT };
+  return {
+    ambientLight, frontLight, backLight, frontLightRT,
+  };
 
 }

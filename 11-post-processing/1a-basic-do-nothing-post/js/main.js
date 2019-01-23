@@ -21,11 +21,10 @@ function init() {
     const newHeight = Math.floor( size.height * pixelRatio ) || 1;
     composer.setSize( newWidth, newHeight );
 
-  }
+  };
 
   initLights( app.scene );
   initMeshes( app.scene );
-  // loadModels();
 
   // overwrite the app's default render function to use the
   // EffectComposer instead
@@ -34,7 +33,7 @@ function init() {
     // render using the composer instead of the app.renderer
     composer.render();
 
-  }
+  };
 
   app.start();
 

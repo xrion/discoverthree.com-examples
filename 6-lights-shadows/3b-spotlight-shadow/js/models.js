@@ -5,15 +5,15 @@ const onLoad = ( gltf, position, rotation, scale, scene ) => {
 
   const model = gltf.scene.children[ 0 ];
 
-  if( position ) model.position.copy( position );
-  if( rotation ) model.rotation.copy( rotation );
-  if( scale ) model.scale.copy( scale );
-  if( gltf.animations[ 0 ] ) {
+  if ( position ) model.position.copy( position );
+  if ( rotation ) model.rotation.copy( rotation );
+  if ( scale ) model.scale.copy( scale );
+  if ( gltf.animations[ 0 ] ) {
 
     const animation = gltf.animations[ 0 ];
     const mixer = new THREE.AnimationMixer( model );
 
-    const spherical = new THREE.Spherical().setFromVector3( position )
+    const spherical = new THREE.Spherical().setFromVector3( position );
 
     // we'll check every object in the scene for
     // this function and call it once per frame
@@ -51,22 +51,22 @@ function loadModels( scene, loader ) {
 
   const positionB = new THREE.Vector3( 0, 0.5, -8 );
   const scaleB = new THREE.Vector3( 0.015, 0.015, 0.015 );
-  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionB,rotation, scaleB, scene ), null, onError );
+  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionB, rotation, scaleB, scene ), null, onError );
 
   const positionC = new THREE.Vector3( 0, 0.5, -6.25 );
   const scaleC = new THREE.Vector3( 0.0125, 0.0125, 0.0125 );
-  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionC,rotation, scaleC, scene ), null, onError );
+  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionC, rotation, scaleC, scene ), null, onError );
 
   const positionD = new THREE.Vector3( 0, 0.5, -4.75 );
   const scaleD = new THREE.Vector3( 0.0075, 0.0075, 0.0075 );
-  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionD,rotation, scaleD, scene ), null, onError );
+  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionD, rotation, scaleD, scene ), null, onError );
 
   const positionE = new THREE.Vector3( 0, 0.5, -3.5 );
   const scaleE = new THREE.Vector3( 0.005, 0.005, 0.005 );
-  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionE,rotation, scaleE, scene ), null, onError );
+  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionE, rotation, scaleE, scene ), null, onError );
 
   const positionF = new THREE.Vector3( 0, 0.5, -2.5 );
   const scaleF = new THREE.Vector3( 0.0025, 0.0025, 0.0025 );
-  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionF,rotation, scaleF, scene ), null, onError );
+  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionF, rotation, scaleF, scene ), null, onError );
 
 }

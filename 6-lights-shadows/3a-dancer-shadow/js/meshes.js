@@ -1,10 +1,3 @@
-function initMeshes( scene, textures ) {
-
-  initGround( scene, textures );
-  initWall( scene, textures );
-
-}
-
 function initWall( scene, textures ) {
 
   const material = new THREE.MeshStandardMaterial( {
@@ -30,9 +23,9 @@ function initWall( scene, textures ) {
   const geometryB = new THREE.PlaneBufferGeometry( 10, 10 );
   const wallB = new THREE.Mesh( geometryB, material );
   wallB.position.set( 8, 5.05, 0 );
-  wallB.rotation.y -= Math.PI / 2
+  wallB.rotation.y -= Math.PI / 2;
 
-  scene.add( wallB )
+  scene.add( wallB );
 }
 
 function initGround( scene, textures ) {
@@ -52,9 +45,16 @@ function initGround( scene, textures ) {
   geo.rotateZ( Math.PI / 2 );
   const mesh = new THREE.Mesh( geo, mat );
 
-  mesh.rotation.x = - Math.PI / 2;
+  mesh.rotation.x = -Math.PI / 2;
   mesh.position.z += 2;
   mesh.receiveShadow = true;
   scene.add( mesh );
+
+}
+
+function initMeshes( scene, textures ) {
+
+  initGround( scene, textures );
+  initWall( scene, textures );
 
 }

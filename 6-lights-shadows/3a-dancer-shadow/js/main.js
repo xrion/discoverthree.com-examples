@@ -10,7 +10,6 @@ function init() {
   app.controls.target.set( 0, 1.5, 0 );
 
   setupRenderer( app.renderer );
-  setupControls( app.controls );
 
   const lights = initLights( app.scene );
 

@@ -45,7 +45,7 @@ const onLoad = ( gltf, position, rotation, scale, scene, sceneGUI ) => {
   modelGUI.userData.initialPosition = modelGUI.position.clone();
   modelGUI.userData.initialRotation = modelGUI.rotation.clone();
 
-  simpleControls( model, modelGUI );
+  initControls( model, modelGUI );
 
   scene.add( model );
   sceneGUI.add( modelGUI );

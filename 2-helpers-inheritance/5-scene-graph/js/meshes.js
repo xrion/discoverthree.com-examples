@@ -5,7 +5,7 @@ function initMeshes( scene ) {
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
 
   // create the first mesh, initially positioned at (0, 0, 0)
-  meshA = new THREE.Mesh( geometry, material );
+  const meshA = new THREE.Mesh( geometry, material );
 
   // set the position of the first mesh.
   // every other mesh will be positioned relative to this
@@ -13,15 +13,15 @@ function initMeshes( scene ) {
 
   // create 9 copies for a total of 10 meshes.
   // Each of these is also positioned at (0, 0, 0) to start with
-  meshB = meshA.clone();
-  meshC = meshA.clone();
-  meshD = meshA.clone();
-  meshE = meshA.clone();
-  meshF = meshA.clone();
-  meshG = meshA.clone();
-  meshH = meshA.clone();
-  meshI = meshA.clone();
-  meshJ = meshA.clone();
+  const meshB = meshA.clone();
+  const meshC = meshA.clone();
+  const meshD = meshA.clone();
+  const meshE = meshA.clone();
+  const meshF = meshA.clone();
+  const meshG = meshA.clone();
+  const meshH = meshA.clone();
+  const meshI = meshA.clone();
+  const meshJ = meshA.clone();
 
   // now add each mesh as a child of the previous mesh
   // the position, rotation, and scale of each mesh is relative
@@ -56,7 +56,7 @@ function initMeshes( scene ) {
 
       mesh.rotation.z += delta / 2;
 
-    }
+    };
 
   } );
 

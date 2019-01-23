@@ -1,11 +1,3 @@
-function initControls( app, renderer, rendererAA, composers ) {
-
-  initAATechniqueSelect( app, renderer, rendererAA, composers )
-  initSamplesSlider( composers );
-  initBiasedToggle( composers );
-
-}
-
 function initAATechniqueSelect( app, renderer, rendererAA, composers ) {
 
   const showStandardCanvas = () => {
@@ -27,13 +19,13 @@ function initAATechniqueSelect( app, renderer, rendererAA, composers ) {
 
     renderer.render( app.scene, app.camera );
 
-  }
+  };
 
   const renderAA = () => {
 
     rendererAA.render( app.scene, app.camera );
 
-  }
+  };
 
   const renderComposer = ( type ) => {
 
@@ -41,9 +33,9 @@ function initAATechniqueSelect( app, renderer, rendererAA, composers ) {
 
       composers[ type ].render();
 
-    }
+    };
 
-  }
+  };
 
   const select = document.querySelector( '#aa-select' );
 
@@ -115,7 +107,7 @@ function initSamplesSlider( composers ) {
 
 function initBiasedToggle( composers ) {
 
-  const toggle = document.querySelector( '#ssaa-biased')
+  const toggle = document.querySelector( '#ssaa-biased' );
 
   toggle.addEventListener( 'input', ( e ) => {
 
@@ -127,7 +119,7 @@ function initBiasedToggle( composers ) {
 
 function initWireframeToggle( mesh ) {
 
-  const toggle = document.querySelector( '#wireframe')
+  const toggle = document.querySelector( '#wireframe' );
 
   toggle.addEventListener( 'input', ( e ) => {
 
@@ -150,9 +142,9 @@ function initModelsAmountSlider( group, models ) {
 
     const newValue = parseInt( slider.value, 10 ) - 1;
 
-    if( newValue > prevValue ) {
+    if ( newValue > prevValue ) {
 
-      for( let i = prevValue; i <= newValue ; i++ ) {
+      for ( let i = prevValue; i <= newValue; i++ ) {
 
         // console.log(models);
         group.add( models[ i ] );
@@ -160,9 +152,9 @@ function initModelsAmountSlider( group, models ) {
       }
 
 
-    } else if( newValue < prevValue ) {
+    } else if ( newValue < prevValue ) {
 
-      for( let i = prevValue; i >= newValue ; i-- ) {
+      for ( let i = prevValue; i >= newValue; i-- ) {
 
         group.remove( models[ i ] );
 
@@ -175,5 +167,13 @@ function initModelsAmountSlider( group, models ) {
     e.preventDefault();
 
   } );
+
+}
+
+function initControls( app, renderer, rendererAA, composers ) {
+
+  initAATechniqueSelect( app, renderer, rendererAA, composers );
+  initSamplesSlider( composers );
+  initBiasedToggle( composers );
 
 }

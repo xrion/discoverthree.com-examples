@@ -69,7 +69,7 @@ function stop( model ) {
 
 }
 
-function simpleControls( model, modelGUI ) {
+function initControls( model, modelGUI ) {
 
   resetControl( model, modelGUI );
   forwardsControl( model, modelGUI );

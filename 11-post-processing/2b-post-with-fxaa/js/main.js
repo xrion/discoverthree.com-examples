@@ -23,7 +23,7 @@ function init() {
     effects.composer.setSize( newWidth, newHeight );
     effects.passes.fxaaPass.uniforms.resolution.value.set( 1 / newWidth, 1 / newHeight );
 
-  }
+  };
 
   // call onResize once to set up the sizes
   app.onResize();
@@ -39,7 +39,7 @@ function init() {
     // render using the composer instead of the app.renderer
     effects.composer.render();
 
-  }
+  };
 
   app.start();
 

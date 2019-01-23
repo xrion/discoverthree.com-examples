@@ -12,12 +12,6 @@ function init() {
 
   app.start();
 
-  // app.container.addEventListener( 'click', () => {
-
-  //   app.running ? app.stop() : app.start();
-
-  // } );
-
 }
 
 init();

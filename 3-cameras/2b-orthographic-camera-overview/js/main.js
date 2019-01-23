@@ -13,8 +13,6 @@ function init() {
   initLights( app.scene );
   initMeshes( app.scene );
 
-
-
   app.start();
 
 }

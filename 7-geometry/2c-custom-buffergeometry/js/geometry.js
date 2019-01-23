@@ -19,7 +19,7 @@ function createGeometry() {
   // compute the normals automatically
   geometry.computeVertexNormals();
 
-  console.log( 'Here\s the geometry you just created: ', geometry );
+  console.log( 'Here\'s the geometry you just created: ', geometry );
 
   return geometry;
 
@@ -58,9 +58,8 @@ function createGeometryIndexed() {
   geometry.computeVertexNormals();
 
 
-  console.log( '...and here\s the indexed geometry you just created: ', geometry );
+  console.log( '...and here\'s the indexed geometry you just created: ', geometry );
 
   return geometry;
 
 }
-

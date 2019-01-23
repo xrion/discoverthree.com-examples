@@ -38,7 +38,7 @@ function init() {
     // now do the normal render
     app.renderer.render( app.scene, app.camera );
 
-  }
+  };
 
   app.start();
 
