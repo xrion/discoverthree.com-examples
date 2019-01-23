@@ -1,14 +1,16 @@
 function initMeshes( scene ) {
 
   initGround( scene );
-  initKnot( scene );
+  initShapes( scene );
 
 }
 
 function initGround( scene ) {
 
-  const geometry = new THREE.BoxBufferGeometry( 30, 30, 1 );
-  geometry.rotateX( -Math.PI / 2 );
+  const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
+
+
+  // geometry.rotateX( -Math.PI / 2 );
 
   const material = new THREE.MeshStandardMaterial( {
     metalness: 0.1,
@@ -21,50 +23,31 @@ function initGround( scene ) {
 
 }
 
-function initCube( scene ) {
+function initShapes( scene ) {
 
-  const geometry = new THREE.SphereBufferGeometry( 1.25, 64, 64 );
-  const material = new THREE.MeshStandardMaterial( {
-    color: 0xffffff,
-    // metalness: 1,
-    // roughness: 0.0
-  } );
-
-  const mesh = new THREE.Mesh( geometry, material );
-  mesh.position.set( 0.75, 0, 0 )
-
-  // mesh.userData.onUpdate = ( delta ) => {
-
-  //   mesh.rotation.y += delta / 4;
-  //   mesh.rotation.z -= delta / 4;
-
-  // }
-
-  scene.add( mesh );
-
-}
-
-function initKnot( scene ) {
-
-  const geometry = new THREE.TorusKnotBufferGeometry( 2, 0.25, 128, 64, 1, 1 );
-  const material = new THREE.MeshStandardMaterial( {
+  const torusKnotGeo = new THREE.TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
+  const torusKnotMat = new THREE.MeshStandardMaterial( {
     color: 0x000000,
   } );
 
-  const mesh = new THREE.Mesh( geometry, material );
-  mesh.position.set( 0, 4, 0 )
+  const torusKnot = new THREE.Mesh( torusKnotGeo, torusKnotMat );
+  torusKnot.position.set( 0, 6, 0 );
 
-  mesh.userData.onUpdate = ( delta ) => {
+  const sphereGeo = new THREE.SphereBufferGeometry( 1.875, 32, 32 );
+  const sphereMat = new THREE.MeshStandardMaterial();
 
-    mesh.rotation.y += delta / 2;
-    mesh.rotation.z -= delta / 4;
+  const sphere = new THREE.Mesh( sphereGeo, sphereMat );
+  sphere.position.set( 1.125, 0, 0 );
 
-  }
+  torusKnot.add( sphere );
 
-  initCube( mesh );
+  torusKnot.userData.onUpdate = ( delta ) => {
 
-  scene.add( mesh );
+    torusKnot.rotation.y += delta / 2;
+    torusKnot.rotation.z -= delta / 4;
+
+  };
+
+  scene.add( torusKnot );
 
 }
-
-

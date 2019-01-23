@@ -111,7 +111,10 @@ class THREE_APP {
 
     const delta = this.clock.getDelta();
 
-    // if ( this.controls && this.controls.update ) this.controls.update();
+    // we'll pass in delta to the update function since
+    // some control types require this, even though
+    // our default OrbitControl doesn't
+    if ( this.controls && this.controls.update ) this.controls.update( delta );
 
     // step through the scene and call custom onUpdate functions on any object
     // for which we have defined them
