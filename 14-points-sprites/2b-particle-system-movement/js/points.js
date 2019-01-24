@@ -43,8 +43,8 @@ function initPoints( scene ) {
 
     for ( let i = 0; i < positions.length; i += 3 ) {
 
-      positions[ i ] = originalPositions[ i ] + Math.sin( elapsedTime * i / 500 );
-      positions[ i + 2 ] = originalPositions[ i + 2 ] + Math.cos( elapsedTime * i / 500 );
+      positions[ i ] = originalPositions[ i ] + ( Math.sin( ( elapsedTime * i / 100 ) * 0.3 ) * 5 )
+      positions[ i + 2 ] = originalPositions[ i + 2 ]  + ( Math.sin( ( elapsedTime * i / 100 ) * 0.3 ) * 5 )
 
     }
 
