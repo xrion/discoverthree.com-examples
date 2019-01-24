@@ -43,6 +43,7 @@ class THREE_APP {
     this.initControls();
     this.initLoader();
     this.initRenderer();
+    this.initStats();
 
     if ( this.autoResize ) window.addEventListener( 'resize', () => this.onWindowResize() );
 
@@ -101,6 +102,16 @@ class THREE_APP {
 
   }
 
+  initStats() {
+
+    // bail out if the stats script was not loaded
+    if( typeof Stats !== 'function' ) return;
+
+    this.stats = new Stats();
+    this.container.appendChild( this.stats.dom );
+
+  }
+
   render() {
 
     this.renderer.render( this.scene, this.camera );
@@ -133,8 +144,12 @@ class THREE_APP {
 
     this.renderer.setAnimationLoop( () => {
 
+      if ( this.stats ) this.stats.begin();
+
       this.update();
       this.render();
+
+      if ( this.stats ) this.stats.end();
 
     } );
 

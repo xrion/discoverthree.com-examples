@@ -7,15 +7,15 @@ function initSprites( scene ) {
   // then set that to rotating to give a swirling wind effect
   spriteGroup.userData.onUpdate = ( delta ) => {
 
-    spriteGroup.rotation.x += delta / 4;
-    spriteGroup.rotation.y += delta * 1.5;
-    spriteGroup.rotation.z += delta / 4;
+    spriteGroup.rotation.x += delta / 10;
+    spriteGroup.rotation.y += delta;
+    spriteGroup.rotation.z -= delta / 10;
 
   };
 
   const loader = new THREE.TextureLoader();
 
-  const spriteMap = loader.load( '../textures/leaf_rgba8_256.png' );
+  const spriteMap = loader.load( 'textures/leaf.png' );
 
   const spriteMaterial = new THREE.SpriteMaterial( {
     map: spriteMap,
@@ -27,9 +27,9 @@ function initSprites( scene ) {
     const sprite = new THREE.Sprite( spriteMaterial.clone() );
 
     sprite.position.set(
-      THREE.Math.randFloat( -10, 10 ),
-      THREE.Math.randFloat( -10, 10 ),
-      THREE.Math.randFloat( -10, 10 ),
+      THREE.Math.randFloat( -20, 20 ),
+      THREE.Math.randFloat( -20, 20 ),
+      THREE.Math.randFloat( -20, 20 ),
     );
 
     const factor = THREE.Math.randFloat( -5, 5 );

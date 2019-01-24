@@ -18,9 +18,9 @@ function init() {
 
   app.init();
 
-  app.camera.position.set( 15, 1, -5 );
-  app.camera.far = 100;
-  app.camera.updateProjectionMatrix();
+  app.camera.position.set( -20, 0, -20 );
+  // app.camera.far = 100;
+  // app.camera.updateProjectionMatrix();
 
   initLights( app.scene );
 
