@@ -27,6 +27,10 @@ function initMeshes( scene ) {
 
   scene.add( meshA, meshB );
 
+  // add a helper to show normals in the left square.
+  // red lines are normals
+  scene.add( new THREE.VertexNormalsHelper( meshA ) );
+
   return { meshA, meshB };
 
 }

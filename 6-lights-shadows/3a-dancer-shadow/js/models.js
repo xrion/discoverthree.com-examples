@@ -12,13 +12,11 @@ function updateLights( matrixWorld, lights, target ) {
 
 }
 
-const onLoad = ( gltf, position, rotation, scale, scene, lights, textures ) => {
+const onLoad = ( gltf, scene, lights, textures ) => {
 
   const model = gltf.scene.children[ 0 ];
 
-  if ( position ) model.position.copy( position );
-  if ( rotation ) model.rotation.copy( rotation );
-  if ( scale ) model.scale.copy( scale );
+  model.rotation.y = Math.PI / 3;
 
   const dancerBone = model.getObjectByName( 'mixamorigHeadTop_End' );
   const lightTarget = new THREE.Vector3();
@@ -28,8 +26,6 @@ const onLoad = ( gltf, position, rotation, scale, scene, lights, textures ) => {
     const animation = gltf.animations[ 0 ];
     const mixer = new THREE.AnimationMixer( model );
 
-    // we'll check every object in the scene for
-    // this function and call it once per frame
     model.userData.onUpdate = ( delta ) => {
 
       mixer.update( delta );
@@ -67,9 +63,6 @@ function loadModels( scene, loader, lights, textures ) {
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  const position = new THREE.Vector3( 0, 0, 0 );
-  const rotation = new THREE.Euler( 0, Math.PI / 3, 0 );
-  const scale = new THREE.Vector3( 1, 1, 1 );
-  loader.load( 'models/dancer.glb', gltf => onLoad( gltf, position, position, scale, scene, lights, textures ), null, onError );
+  loader.load( 'models/dancer.glb', gltf => onLoad( gltf, scene, lights, textures ), null, onError );
 
 }

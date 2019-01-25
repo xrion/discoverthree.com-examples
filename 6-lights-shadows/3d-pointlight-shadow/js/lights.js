@@ -16,17 +16,17 @@ function initShadowLight( scene ) {
   const pointLight = new THREE.PointLight(
     0xffffff, // color
     1, // intensity
-    30, // distance
-    2 // decay
+    20, // distance
+    1 // decay
   );
 
-  pointLight.position.set( 0, 6.25, 0 );
+  pointLight.position.set( 0, 12, 0 );
 
   pointLight.castShadow = true;
   pointLight.shadow.mapSize.width = 1024;
   pointLight.shadow.mapSize.height = 1024;
   pointLight.shadow.camera.near = 0.1;
-  pointLight.shadow.camera.far = 16;
+  pointLight.shadow.camera.far = 24;
 
   scene.add( new THREE.PointLightHelper( pointLight ) );
   scene.add( new THREE.CameraHelper( pointLight.shadow.camera ) );

@@ -9,9 +9,6 @@ function initGround( scene ) {
 
   const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
 
-
-  // geometry.rotateX( -Math.PI / 2 );
-
   const material = new THREE.MeshStandardMaterial( {
     metalness: 0.1,
     roughness: 0.8,

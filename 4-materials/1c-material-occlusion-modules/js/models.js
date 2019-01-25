@@ -7,9 +7,6 @@ import {
 
 import { GLTFLoader } from './vendor/GLTFLoader.js';
 
-const parrot = import('../models/Parrot.glb')
-
-console.log(parrot);
 function onLoad( gltf, position, rotation, scale, scene ) {
   const model = gltf.scene.children[0];
 
@@ -32,8 +29,6 @@ function onLoad( gltf, position, rotation, scale, scene ) {
     const animation = gltf.animations[0];
     const mixer = new AnimationMixer( model );
 
-    // we'll check every object in the scene for
-    // this function and call it once per frame
     model.userData.onUpdate = ( delta ) => {
       mixer.update( delta );
 

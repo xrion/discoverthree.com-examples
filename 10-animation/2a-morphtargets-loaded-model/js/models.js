@@ -5,13 +5,8 @@ const onLoad = ( gltf, scene ) => {
 
   const model = gltf.scene.children[ 0 ];
 
-  console.log( model.geometry.attributes.position.array  );
-  console.log( model.geometry.morphAttributes.position[ 0 ].array  );
-
-  console.log( model.geometry.morphAttributes.position[ 1 ].array  );
-
   // the model already has a material set up correctly,
-  // but we'll recreate it here
+  // but we'll recreate it here  for demonstration purposes
   model.material = new THREE.MeshPhongMaterial( {
 
     color: 0xff0000,

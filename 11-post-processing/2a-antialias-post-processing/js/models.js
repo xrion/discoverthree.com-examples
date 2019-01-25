@@ -1,6 +1,3 @@
-// average theta step between birds
-// const step = Math.PI / 48;
-
 const models = [];
 
 const group = new THREE.Group();
@@ -29,14 +26,12 @@ function initAnimation( model, animation ) {
 
 }
 
-const onLoad = ( gltf, position, rotation, scale, scene, offset ) => {
+const onLoad = ( gltf, scene, offset ) => {
 
   // get the correct model from the loaded object
   const model = gltf.scene.children[ 0 ];
 
-  if ( position ) model.position.copy( position );
-  if ( rotation ) model.rotation.copy( rotation );
-  if ( scale ) model.scale.copy( scale );
+  model.scale.setScalar( 0.1 );
 
   const animation = gltf.animations[ 0 ];
 
@@ -84,10 +79,7 @@ function loadModels( loader, scene ) {
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  const position = new THREE.Vector3( 0, 0, 0 );
-  const rotation = new THREE.Euler( 0, 0, 0 );
-  const scale = new THREE.Vector3( 0.1, 0.1, 0.1 );
-  loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, position, rotation, scale, scene, 0 ), null, onError );
-  loader.load( 'models/Stork.glb', gltf => onLoad( gltf, position, rotation, scale, scene, 1 ), null, onError );
+  loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, scene, 0 ), null, onError );
+  loader.load( 'models/Stork.glb', gltf => onLoad( gltf, scene, 1 ), null, onError );
 
 }

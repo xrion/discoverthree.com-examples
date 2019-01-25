@@ -8,6 +8,8 @@ function init() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( -20, 30, 30 );
 
+  // app.renderer.physicallyCorrectLights = true;
+
   setupRenderer( app.renderer );
   initLights( app.scene );
   initMeshes( app.scene );

@@ -2,19 +2,28 @@ function createGeometry() {
 
   const geometry = new THREE.BufferGeometry();
 
-  const vertices = new Float32Array( [
-    // lower face
-    -1, 1, 0, // vertex 0
-    -1, -1, 0, // vertex 1
-    1, -1, 0, // vertex 2
+  // first, create a typed Array with number of vertices * 3 length
+  // that is, x + y + z for each vertex. Here, 6 vertices * 3 = 18
+  const positionsArray = new Float32Array( 18 );
 
-    // upper face
-    1, -1, 0, // vertex 3
-    1, 1, 0, // vertex 4
-    -1, 1, 0, // vertex 5
-  ] );
+  // Next, use the array to create a BufferAttribute with an itemsize of 3
+  // The item size tells it that each entry takes up 3 data points in the array
+  const positionBuffer = new THREE.BufferAttribute( positionsArray, 3 );
 
-  geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+  // Next, add the vertices one at a time using the setXYZ method
+  // the first parameter is an offset into the array
+  // the last 3 parameters are the x, y, and z values
+  // lower face
+  positionBuffer.setXYZ( 0, -1, 1, 0 ); // vertex 0
+  positionBuffer.setXYZ( 1, -1, -1, 0 ); // vertex 1
+  positionBuffer.setXYZ( 2, 1, -1, 0 ); // vertex 2
+
+  // upper face
+  positionBuffer.setXYZ( 3, 1, -1, 0 ); // vertex 3
+  positionBuffer.setXYZ( 4, 1, 1, 0 ); // vertex 4
+  positionBuffer.setXYZ( 5, -1, 1, 0 ); // vertex 5
+
+  geometry.addAttribute( 'position', positionBuffer );
 
   // compute the normals automatically
   geometry.computeVertexNormals();
@@ -29,6 +38,9 @@ function createGeometryIndexed() {
 
   const geometry = new THREE.BufferGeometry();
 
+  // Setting up the bufferAttribute this way is identical to the previous function,
+  // but more succinct. This time, we only need 4 vertices
+  // since we are going to reuse them in multiple faces
   const vertices = new Float32Array( [
 
     -1, 1, 0, // vertex 0

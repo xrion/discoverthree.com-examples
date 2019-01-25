@@ -1,20 +1,19 @@
-const onLoad = ( gltf, position, rotation, scale, scene ) => {
+const onLoad = ( gltf, scene ) => {
 
   const protoModel = gltf.scene.children[ 0 ];
 
-  if ( position ) protoModel.position.copy( position );
-  if ( rotation ) protoModel.rotation.copy( rotation );
-  if ( scale ) protoModel.scale.copy( scale );
+  protoModel.position.set( 0, 0.5, -15 );
+  protoModel.rotation.set( 0, Math.PI / 2, 0 );
 
   const animation = gltf.animations[ 0 ];
 
-  for ( let i = 0; i < 6; i++ ) {
+  for ( let i = 0; i < 10; i++ ) {
 
     const model = protoModel.clone();
 
-    // calculated using wolframalpha.com
-    model.position.z = -1 / 8 * ( 98 - 19 * i + i * i );
-    model.scale.setScalar( 0.0025 * ( 8 - i ) );
+    model.position.z += 1.6 * i;
+
+    model.scale.setScalar( 0.02 - 0.002 * i );
 
     const mixer = new THREE.AnimationMixer( model );
 
@@ -37,17 +36,12 @@ const onLoad = ( gltf, position, rotation, scale, scene ) => {
 
   }
 
-
 };
 
 function loadModels( scene, loader ) {
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  const rotation = new THREE.Euler( 0, Math.PI / 2, 0 );
-
-  const positionA = new THREE.Vector3( 0, 0.5, -13 );
-  const scaleA = new THREE.Vector3( 0.0175, 0.0175, 0.0175 );
-  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, positionA, rotation, scaleA, scene ), null, onError );
+  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, scene ), null, onError );
 
 }

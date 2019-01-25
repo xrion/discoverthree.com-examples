@@ -1,7 +1,7 @@
 // A reusable function to setup the models
 // assumes that the gltf file contains a single model
 // and up to one animation track
-const onLoad = ( gltf, position, rotation, scale, scene, sceneGUI ) => {
+const onLoad = ( gltf, scene, sceneGUI ) => {
 
   const model = gltf.scene.children[ 0 ];
   const modelGUI = model.clone();
@@ -13,9 +13,8 @@ const onLoad = ( gltf, position, rotation, scale, scene, sceneGUI ) => {
     morphTargets: true,
   } );
 
-  if ( position ) model.position.copy( position );
-  if ( rotation ) model.rotation.copy( rotation );
-  if ( scale ) model.scale.copy( scale );
+  model.position.y = 2;
+  model.scale.set( 0.025, 0.025, 0.025 );
 
   if ( gltf.animations[ 0 ] ) {
 
@@ -38,8 +37,8 @@ const onLoad = ( gltf, position, rotation, scale, scene, sceneGUI ) => {
   }
 
   // we'll use these to reset the model's position later
-  model.userData.initialPosition = position;
-  model.userData.initialRotation = rotation;
+  model.userData.initialPosition = model.position.clone();
+  model.userData.initialRotation = model.rotation.clone();;
 
   // and we'll do the same for the model's proxy
   modelGUI.userData.initialPosition = modelGUI.position.clone();
@@ -56,11 +55,6 @@ function loadModels( scene, loader, sceneGUI ) {
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  // load the first model. Each model is loaded asynchronously,
-  // so don't make any assumption about which one will finish loading first
-  const position = new THREE.Vector3( 0, 2, 0 );
-  const rotation = new THREE.Euler( 0, 0, 0 );
-  const scale = new THREE.Vector3( 0.025, 0.025, 0.025 );
-  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, position, rotation, scale, scene, sceneGUI ), null, onError );
+  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, scene, sceneGUI ), null, onError );
 
 }
