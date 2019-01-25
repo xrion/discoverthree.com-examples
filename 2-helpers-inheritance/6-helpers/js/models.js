@@ -8,6 +8,7 @@ const onLoad = ( gltf, position, rotation, scale, scene ) => {
   if ( position ) model.position.copy( position );
   if ( rotation ) model.rotation.copy( rotation );
   if ( scale ) model.scale.copy( scale );
+
   if ( gltf.animations[ 0 ] ) {
 
     const animation = gltf.animations[ 0 ];
