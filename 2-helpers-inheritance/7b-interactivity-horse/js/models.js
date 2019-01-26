@@ -5,7 +5,7 @@ const onLoad = ( gltf, scene ) => {
 
   const model = gltf.scene.children[ 0 ];
 
-  model.position.y = 2;
+  // model.position.y = 2;
   model.scale.set( 0.025, 0.025, 0.025 );
 
   if ( gltf.animations[ 0 ] ) {

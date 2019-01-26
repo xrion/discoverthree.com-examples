@@ -4,10 +4,9 @@ function init() {
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x40a22f );
-  app.camera.position.set( 10, 10, 20 );
+  app.scene.background = new THREE.Color( 0x8FBCD4 );
 
-  app.controls.target.y = 5;
+  app.camera.position.set( 5, 5, 20 );
 
   // disable keys in the orbit controls so that we can use
   // them to control our horse
@@ -15,7 +14,12 @@ function init() {
 
   initLights( app.scene );
 
-  loadModels( app.scene, app.loader );
+  const mesh = initMeshes( app.scene );
+  const helper = createArrowHelper();
+
+  mesh.add( helper )
+
+  initControls( mesh );
 
   app.start();
 

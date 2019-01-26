@@ -14,24 +14,24 @@ const left = new THREE.Vector3( -1, 0, 0 );
 const right = new THREE.Vector3( 1, 0, 0 );
 
 // called whenever one of the arrow keys is pressed
-function start( model, direction, rotation ) {
+function start( object, direction, rotation ) {
 
   // if we're already moving, do nothing
   if ( moving ) return;
 
   // point horsey in the right direction
-  model.rotation.y = rotation;
+  object.rotation.y = rotation;
 
   // here the onUpdate function will update the "run" animation,
   // and also move the horse in one of the four directions
-  model.userData.onUpdate = ( delta ) => {
+  object.userData.onUpdate = ( delta ) => {
 
     // reset the direction vector, then multiply it by the time elapsed since
     // the previous frame
     dir.copy( direction ).multiplyScalar( delta * speed );
 
-    model.userData.mixer.update( delta );
-    model.position.add( dir );
+    object.userData.mixer.update( delta );
+    object.position.add( dir );
 
   };
 
@@ -40,21 +40,21 @@ function start( model, direction, rotation ) {
 
 }
 
-function stop( model ) {
+function stop( object ) {
 
-  model.userData.onUpdate = null;
+  object.userData.onUpdate = null;
   moving = false;
 
 }
 
-function resetControl( model ) {
+function resetControl( object ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
     if ( e.key === 'r' || e.key === 'R' ) {
 
-      resetPosition( model );
-      resetRotation( model );
+      resetPosition( object );
+      resetRotation( object );
 
     }
 
@@ -62,88 +62,88 @@ function resetControl( model ) {
 
 }
 
-function resetPosition( model ) {
+function resetPosition( object ) {
 
-  model.position.copy( model.userData.initialPosition );
-
-}
-
-function resetRotation( model ) {
-
-  model.rotation.copy( model.userData.initialRotation );
+  object.position.copy( object.userData.initialPosition );
 
 }
 
-function forwardsControl( model ) {
+function resetRotation( object ) {
+
+  object.rotation.copy( object.userData.initialRotation );
+
+}
+
+function forwardsControl( object ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if ( e.key === 'ArrowUp' ) start( model, forwards, Math.PI );
+    if ( e.key === 'ArrowUp' ) start( object, forwards, Math.PI );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if ( e.key === 'ArrowUp' ) stop( model );
+    if ( e.key === 'ArrowUp' ) stop( object );
 
   } );
 
 }
 
-function backwardControl( model ) {
+function backwardControl( object ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if ( e.key === 'ArrowDown' ) start( model, backward, 0 );
+    if ( e.key === 'ArrowDown' ) start( object, backward, 0 );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if ( e.key === 'ArrowDown' ) stop( model );
+    if ( e.key === 'ArrowDown' ) stop( object );
 
   } );
 
 }
 
-function leftControl( model ) {
+function leftControl( object ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if ( e.key === 'ArrowLeft' ) start( model, left, -Math.PI / 2 );
+    if ( e.key === 'ArrowLeft' ) start( object, left, -Math.PI / 2 );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if ( e.key === 'ArrowLeft' ) stop( model );
+    if ( e.key === 'ArrowLeft' ) stop( object );
 
   } );
 
 }
 
-function rightControl( model ) {
+function rightControl( object ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if ( e.key === 'ArrowRight' ) start( model, right, Math.PI / 2 );
+    if ( e.key === 'ArrowRight' ) start( object, right, Math.PI / 2 );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if ( e.key === 'ArrowRight' ) stop( model );
+    if ( e.key === 'ArrowRight' ) stop( object );
 
   } );
 
 }
 
-function initControls( model ) {
+function initControls( object ) {
 
-  resetControl( model );
-  forwardsControl( model );
-  backwardControl( model );
-  leftControl( model );
-  rightControl( model );
+  resetControl( object );
+  forwardsControl( object );
+  backwardControl( object );
+  leftControl( object );
+  rightControl( object );
 
 }
