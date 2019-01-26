@@ -26,9 +26,10 @@ const onLoad = ( gltf, scene ) => {
 
   } );
 
-  initMorphControls( model );
 
   scene.add( model );
+
+  console.log( 'Here\'s the model we just loaded: ', model );
 
 
 };
