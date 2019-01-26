@@ -14,6 +14,12 @@ function createGeometry() {
   // the first parameter is an offset into the array
   // the last 3 parameters are the x, y, and z values
   // lower face
+
+  // every set of 3 vertices
+  // will be interpreted as a face
+  // the faces are not connected together in any
+  // way and cannot share vertices
+  // this is often called "triangle soup"
   positionBuffer.setXYZ( 0, -1, 1, 0 ); // vertex 0
   positionBuffer.setXYZ( 1, -1, -1, 0 ); // vertex 1
   positionBuffer.setXYZ( 2, 1, -1, 0 ); // vertex 2
