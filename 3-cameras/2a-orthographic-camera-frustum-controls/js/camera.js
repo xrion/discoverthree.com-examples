@@ -3,7 +3,7 @@ function initCamera( app ) {
   const width = app.container.clientWidth;
   const height = app.container.clientHeight;
 
-  app.camera = new THREE.OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 0.1, 1000 );
+  app.camera = new THREE.OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 10, 1000 );
 
   // position the camera
   // remember that it doesn't matter how far away we

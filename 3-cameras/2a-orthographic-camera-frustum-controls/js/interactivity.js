@@ -68,7 +68,6 @@ function initFarSlider( camera ) {
 
 function initCameraControls( camera, controls ) {
 
-  console.log(controls);
   initZoomSlider( camera, controls );
   initNearSlider( camera );
   initFarSlider( camera );
