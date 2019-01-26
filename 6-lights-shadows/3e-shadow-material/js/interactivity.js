@@ -28,3 +28,10 @@ function colorControl( material ) {
   } );
 
 }
+
+function initMaterialControl( material ) {
+
+  opacityControl( material );
+  colorControl( material );
+
+}

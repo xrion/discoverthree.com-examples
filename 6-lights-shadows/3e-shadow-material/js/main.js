@@ -9,8 +9,14 @@ function init() {
   app.camera.position.set( -20, 30, 30 );
 
   setupRenderer( app.renderer );
+
   initLights( app.scene );
   initMeshes( app.scene );
+
+  const groundShadow = initGroundShadow( app.scene );
+
+  initMaterialControl( groundShadow.material )
+
   loadModels( app.scene, app.loader );
 
 

@@ -1,10 +1,3 @@
-function initMeshes( scene ) {
-
-  initGround( scene );
-  initShapes( scene );
-
-}
-
 function initGround( scene ) {
 
   const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
@@ -15,8 +8,6 @@ function initGround( scene ) {
   } );
 
   const mesh = new THREE.Mesh( geometry, material );
-
-  mesh.receiveShadow = true;
 
   scene.add( mesh );
 
@@ -53,5 +44,12 @@ function initShapes( scene ) {
   torusKnot.castShadow = true;
 
   scene.add( torusKnot );
+
+}
+
+function initMeshes( scene ) {
+
+  initGround( scene );
+  initShapes( scene );
 
 }

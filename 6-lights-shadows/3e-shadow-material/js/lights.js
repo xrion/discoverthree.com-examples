@@ -27,9 +27,9 @@ function initShadowLight( scene ) {
   directionalLight.shadow.camera.far = 35;
 
   directionalLight.shadow.camera.top = 10;
-  directionalLight.shadow.camera.right = 12;
-  directionalLight.shadow.camera.bottom = -5;
-  directionalLight.shadow.camera.left = -12;
+  directionalLight.shadow.camera.right = 18;
+  directionalLight.shadow.camera.bottom = -9;
+  directionalLight.shadow.camera.left = -18;
 
   // directionalLight.shadow.radius = 1.5;
 
