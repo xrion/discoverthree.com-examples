@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>Discoverthreejs.com - Ch 10.2b</title>
+
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta charset="UTF-8" />
+
+		<link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
+
+		<link href="styles/main.css" rel="stylesheet" type="text/css">
+
+    <!--
+
+      Include the main three.js script.
+
+      The global variable THREE will be
+      available for use in any scripts
+      loaded after this one.
+
+    -->
+
+    <script src="https://threejs.org/build/three.js"></script>
+
+    <!--
+
+      Include the OrbitControls script.
+
+      This must be included AFTER the three.js script as it
+      needs to use the global THREE variable
+
+    -->
+
+    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
+
+		<!--
+
+			Include the GLTFLoader script. This also needs to be loaded after the three.js script
+
+		-->
+
+		<script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
+
+		<!--
+
+			Include our App class. In a production environment, we would be setting
+			up a build process and importing this as a module, but for simplicity here
+			we'll include it the old fashioned way.
+
+			See discoverthreejs.com/modules/three-app/ for an example of how to do that.
+
+		-->
+		<script src="js/App.js"></script>
+
+	</head>
+
+	<body>
+
+		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 10.2b</h1>
+
+		<div id="controls">
+			<h3>Morph Target Control</h3>
+
+			<span>Left: <span id="left-morph-value">0</span></span>
+			<br>
+			<input type="range" id="left-morph-slider" min="0" max="1" step="0.01" value="0">
+			<br>
+			<span>Right Rotate: <span id="right-rotate-value">0</span></span>
+			<br>
+			<input type="range" id="right-rotate-slider" min="0" max="1" step="0.01" value="0">
+			<br>
+			<span>Right Scale: <span id="right-scale-value">0</span></span>
+			<br>
+			<input type="range" id="right-scale-slider" min="0" max="1" step="0.01" value="0">
+			<br>
+
+			<button id="toggle-wireframe">Toggle Wireframe</button>
+		</div>
+
+		<div id="container">
+			<!-- This div will hold our scene-->
+		</div>
+
+		<footer>
+
+      <!--
+        Finally, include the scripts that
+        run your three.js app.
+			-->
+
+			<script src="js/geometry.js"></script>
+
+			<script src="js/meshes.js"></script>
+
+			<script src="js/interactivity.js"></script>
+
+			<script src="js/main.js"></script>
+
+		</footer>
+
+	</body>
+
+</html>
