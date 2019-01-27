@@ -1,8 +1,14 @@
 function setupControls( app ) {
 
+  // setup the map controls. Our App will have skipped
+  // setting up OrbitControls since we didn't load the script,
+  // allowing us to set up a different controls manually
+  app.controls = new THREE.MapControls( app.camera, app.container );
+
   initOverlay( app.controls );
 
-  // the following are all the settings we can change for OrbitControls.
+  // the following are all the settings we can change for MapControls.
+  // they are identical to the settings from OrbitControls
   // None of them are actually changed here, these are all default values
 
   // "target" sets the location of focus, where the object orbits around
