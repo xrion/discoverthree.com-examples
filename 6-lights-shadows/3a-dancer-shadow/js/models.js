@@ -35,7 +35,7 @@ const onLoad = ( gltf, scene, lights, textures ) => {
     };
 
     const action = mixer.clipAction( animation );
-    action.play();
+    // action.play();
 
   }
 

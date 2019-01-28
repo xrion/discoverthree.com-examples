@@ -1,13 +1,19 @@
 function initLights( scene ) {
 
+  const hemiLight = new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 1 );
+  scene.add( hemiLight );
+
   const mainLight = new THREE.SpotLight(
-    0xcccccc,
-    0.25,
-    50, // distance
+    0xffffff,
+    1, // calculated using light.power below
+    0, // distance
     Math.PI / 8, // angle
     0.5, // penumbra
-    0.5, // decay
+    2, // decay
   );
+
+  mainLight.power = 1700;
+
   mainLight.position.set( 2, 4, 6 );
   mainLight.castShadow = true;
   mainLight.shadow.mapSize.width = 1024;
@@ -19,11 +25,11 @@ function initLights( scene ) {
 
   const diffuseLight = new THREE.SpotLight(
     0x444444,
-    0.2,
+    30,
     30, // distance
     Math.PI / 5, // angle
     0.5, // penumbra
-    1, // decay
+    2, // decay
   );
   diffuseLight.position.set( -3, 1, 4 );
   diffuseLight.castShadow = true;
@@ -36,11 +42,11 @@ function initLights( scene ) {
 
   const topLight = new THREE.SpotLight(
     0xffffff,
-    0.1,
+    25,
     20, // distance
     Math.PI / 6, // angle
     0.5, // penumbra
-    1, // decay
+    2, // decay
   );
   topLight.position.set( 2, 7, -1 );
   topLight.castShadow = true;

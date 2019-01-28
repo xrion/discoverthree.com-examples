@@ -24,6 +24,7 @@ function initWall( scene, textures ) {
   const wallB = new THREE.Mesh( geometryB, material );
   wallB.position.set( 8, 5.05, 0 );
   wallB.rotation.y -= Math.PI / 2;
+  wallB.receiveShadow = true;
 
   scene.add( wallB );
 }

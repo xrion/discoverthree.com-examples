@@ -5,9 +5,12 @@ function init() {
 
   app.init();
 
-  app.camera.position.set( 0, 2.5, 10 );
+  app.camera.position.set( 0, 2.5, 7 );
 
   app.controls.target.set( 0, 1.5, 0 );
+
+  app.controls.minDistance = 5;
+	app.controls.maxDistance = 15;
 
   setupRenderer( app.renderer );
 
