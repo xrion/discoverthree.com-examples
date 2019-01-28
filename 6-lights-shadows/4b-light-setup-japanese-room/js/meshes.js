@@ -1,0 +1,4 @@
+function initMeshes( scene ) {
+
+}
+
