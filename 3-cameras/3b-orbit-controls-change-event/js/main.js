@@ -12,11 +12,16 @@ function init() {
 
   initLights( app.scene );
   initMeshes( app.scene );
-  loadModels( app.scene, app.loader );
 
+  // don't call app.start()
+  // we're not using a render loop here,
+  // instead rendering one frame each time the controls
+  // move the camera
+  // app.start();
 
-  app.start();
-
+  // however, we do want to render one frame
+  // tp prevent showing a black screen at the starts
+  app.render();
 
 }
 

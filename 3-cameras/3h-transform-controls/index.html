@@ -30,7 +30,7 @@
 
     -->
 
-    <script src="https://threejs.org/examples/js/controls/TransformControls.js"></script>
+    <script src="js/vendor/TransformControls.js"></script>
 
 		<script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
 
@@ -59,7 +59,7 @@
 
 		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 3.3g TransformControls</h1>
 
-		<div id="controls">
+		<div id="overlay">
 			<div id="info">
 				<h2>Click to play</h2>
 				<p>
@@ -67,6 +67,19 @@
 					to the mesh that can be moved
 				</p>
 			</div>
+		</div>
+
+		<div id="controls" style="display: none;">
+
+			<h3>Select Control Type</h3>
+
+			<select id="gizmo-select">
+				<option value="translate" selected>Translate</option>
+				<option value="scale">Scale</option>
+				<option value="rotate">Rotate</option>
+			</select>
+			<br>
+
 		</div>
 
 		<div id="container">
@@ -85,6 +98,8 @@
 			<script src="js/models.js"></script>
 
 			<script src="js/controls.js"></script>
+
+			<script src="js/interactivity.js"></script>
 
 			<script src="js/main.js"></script>
 

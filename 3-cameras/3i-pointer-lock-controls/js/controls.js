@@ -30,7 +30,7 @@ function setupControls( app ) {
 
 function initOverlay( controls ) {
 
-  const overlay = document.querySelector( '#controls' );
+  const overlay = document.querySelector( '#overlay' );
 
   overlay.addEventListener( 'click', () => {
 

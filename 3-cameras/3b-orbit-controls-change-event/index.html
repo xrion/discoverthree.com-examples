@@ -3,7 +3,7 @@
 
 	<head>
 
-		<title>Discoverthreejs.com - Ch 3.3a OrbitControls</title>
+		<title>Discoverthreejs.com - Ch 3.3b OrbitControls 'change' event</title>
 
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<meta charset="UTF-8" />
@@ -58,15 +58,15 @@
 
 	<body>
 
-		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 3.3a OrbitControls</h1>
+		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 3.3b OrbitControls 'change' event</h1>
 
-		<div id="controls">
+		<div id="overlay">
 			<div id="info">
 				<h2>Click to play</h2>
 				<p>
-					Orbit - left mouse / touch: one-finger move <br>
-					Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish <br>
-					Pan - right mouse, or left mouse + ctrl/meta/shiftKey, or arrow keys / touch: two-finger move <br>
+					The scene only updates when the controls move.<br>
+					This can hugely decrease the load that your app puts on a device.<br>
+					However, it can only be used when your scene does not have any movement.
 				</p>
 			</div>
 		</div>
@@ -84,7 +84,6 @@
 
 			<script src="js/lights.js"></script>
 			<script src="js/meshes.js"></script>
-			<script src="js/models.js"></script>
 
 			<script src="js/controls.js"></script>
 

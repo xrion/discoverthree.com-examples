@@ -111,7 +111,7 @@ class THREE_APP {
 
     const delta = this.clock.getDelta();
 
-    if ( this.controls && this.controls.update ) this.controls.update();
+    // if ( this.controls && this.controls.update ) this.controls.update();
 
     // step through the scene and call custom onUpdate functions on any object
     // for which we have defined them

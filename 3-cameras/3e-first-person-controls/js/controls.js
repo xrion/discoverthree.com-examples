@@ -15,6 +15,8 @@ function setupControls( app ) {
 
   };
 
+  app.controls.setOrientation( app.camera.quaternion );
+
   app.controls.movementSpeed = 10;
   app.controls.lookSpeed = 0.075;
 
@@ -23,37 +25,37 @@ function setupControls( app ) {
   // The rest of the parameters are included here for reference,
   // but not actually changed
 
-  app.controls.autoForward = false;
+  // app.controls.autoForward = false;
 
-  app.controls.activeLook = true;
+  // app.controls.activeLook = true;
 
-  app.controls.heightSpeed = false;
-  app.controls.heightCoef = 1.0;
-  app.controls.heightMin = 0.0;
-  app.controls.heightMax = 1.0;
+  // app.controls.heightSpeed = false;
+  // app.controls.heightCoef = 1.0;
+  // app.controls.heightMin = 0.0;
+  // app.controls.heightMax = 1.0;
 
-  app.controls.autoSpeedFactor = 0.0;
+  // app.controls.autoSpeedFactor = 0.0;
 
-  app.controls.constrainVertical = false;
-  app.controls.verticalMin = 0;
-  app.controls.verticalMax = Math.PI;
+  // app.controls.constrainVertical = false;
+  // app.controls.verticalMin = 0;
+  // app.controls.verticalMax = Math.PI;
 
-  app.controls.lat = 0;
-  app.controls.lon = 0;
+  // app.controls.lat = 0;
+  // app.controls.lon = 0;
 
   // These are set by the controls automatically, don't change them
 
-  app.controls.mouseX = 0;
-  app.controls.mouseY = 0;
+  // app.controls.mouseX = 0;
+  // app.controls.mouseY = 0;
 
-  app.controls.moveForward = false;
-  app.controls.moveBackward = false;
-  app.controls.moveLeft = false;
-  app.controls.moveRight = false;
-  app.controls.mouseDragOn = false;
+  // app.controls.moveForward = false;
+  // app.controls.moveBackward = false;
+  // app.controls.moveLeft = false;
+  // app.controls.moveRight = false;
+  // app.controls.mouseDragOn = false;
 
-  app.controls.viewHalfX = 0;
-  app.controls.viewHalfY = 0;
+  // app.controls.viewHalfX = 0;
+  // app.controls.viewHalfY = 0;
 
 
   // Fly controls has lots of public methods, however there are only two that
@@ -75,7 +77,7 @@ function initOverlay( controls ) {
 
   controls.enabled = false;
 
-  const overlay = document.querySelector( '#controls' );
+  const overlay = document.querySelector( '#overlay' );
 
   overlay.addEventListener( 'click', () => {
 

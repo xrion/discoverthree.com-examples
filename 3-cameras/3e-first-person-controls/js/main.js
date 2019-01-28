@@ -6,9 +6,9 @@ function init() {
   app.init();
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 0, 2, 40 );
+  app.camera.position.set( 0, 4, 40 );
 
-  // app.camera.lookAt( 0, 0, 0 );
+  app.camera.lookAt( 0, 3, 0 );
 
   setupControls( app );
 

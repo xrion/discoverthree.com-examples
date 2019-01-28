@@ -38,12 +38,15 @@ function initShapes( scene ) {
 
   torusKnot.add( sphere );
 
-  torusKnot.userData.onUpdate = ( delta ) => {
+  // we've removed animation from the objects
+  // in the scene, since this type of render control
+  // is only suitable for static scenes
+  // torusKnot.userData.onUpdate = ( delta ) => {
 
-    torusKnot.rotation.y += delta / 2;
-    torusKnot.rotation.z -= delta / 4;
+  //   torusKnot.rotation.y += delta / 2;
+  //   torusKnot.rotation.z -= delta / 4;
 
-  };
+  // };
 
   scene.add( torusKnot );
 
