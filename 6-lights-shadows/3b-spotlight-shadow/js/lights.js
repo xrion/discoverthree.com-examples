@@ -30,6 +30,8 @@ function initShadowLight( scene ) {
   spotLight.shadow.camera.near = 10;
   spotLight.shadow.camera.far = 15;
 
+  spotLight.shadow.camera.updateProjectionMatrix();
+
   scene.add( new THREE.SpotLightHelper( spotLight ) );
   scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
 
