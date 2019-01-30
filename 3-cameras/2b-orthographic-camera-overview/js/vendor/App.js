@@ -32,6 +32,9 @@ class THREE_APP {
     // set this to a value less than 3 to increase performance on low power mobile devices with high pixel ratio
     this.maxPixelRatio = Infinity;
 
+    // whether or not to call the controls.update function once per frame
+    this.controlsAutoUpdate = true;
+
     this.onUpdate = null;
     this.onResize = null;
 
@@ -111,7 +114,7 @@ class THREE_APP {
 
     const delta = this.clock.getDelta();
 
-    if ( this.controls && this.controls.update ) this.controls.update();
+    if ( this.controlsAutoUpdate && this.controls && this.controls.update ) this.controls.update( delta );
 
     // step through the scene and call custom onUpdate functions on any object
     // for which we have defined them

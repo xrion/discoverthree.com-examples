@@ -59,7 +59,7 @@ void main() {
                       0.5,  // Blue
                       1.0); // Alpa, or transpareny
 }
-`
+`;
 
 function createShaderMaterial( camera, model ) {
 
@@ -67,13 +67,13 @@ function createShaderMaterial( camera, model ) {
 
     uniforms: {
       modelMatrix: {
-        value: model.matrixWorld
+        value: model.matrixWorld,
       },
       projectionMatrix: {
-        value: camera.projectionMatrix
+        value: camera.projectionMatrix,
       },
       viewMatrix: {
-        value: camera.matrixWorldInverse
+        value: camera.matrixWorldInverse,
       },
     },
 
@@ -86,7 +86,10 @@ function createShaderMaterial( camera, model ) {
 
     vertexShader,
     fragmentShader,
-  })
+
+  } );
+
+  console.log( 'Here\'s the RawShaderMaterial you just created: ', material );
 
   return material;
 

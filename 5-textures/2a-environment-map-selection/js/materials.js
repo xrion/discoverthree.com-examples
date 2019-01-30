@@ -7,11 +7,11 @@ function initMaterial( scene ) {
 
     brassLambert: new THREE.MeshLambertMaterial( { color: brassColor } ),
     brassPhong: new THREE.MeshPhongMaterial( { color: brassColor } ),
-    brassStandard: new THREE.MeshStandardMaterial( { metalness: 0.7, roughness: 0.3, color: brassColor } ),
+    brassStandard: new THREE.MeshStandardMaterial( { metalness: 0.9, roughness: 0.2, color: brassColor } ),
 
     silverLambert: new THREE.MeshLambertMaterial( { color: silverColor } ),
     silverPhong: new THREE.MeshPhongMaterial( { color: silverColor } ),
-    silverStandard: new THREE.MeshStandardMaterial( { metalness: 0.7, roughness: 0.3, color: silverColor } ),
+    silverStandard: new THREE.MeshStandardMaterial( { metalness: 0.9, roughness: 0.2, color: silverColor } ),
 
   };
 

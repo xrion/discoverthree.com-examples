@@ -1,13 +1,15 @@
 function setupControls( app ) {
 
+  app.autoUpdateControls = false;
+
   // call control.update()
   // to move the camera into the correct position
   // we could also use camera.lookat( 0, 0, 0 )
   app.controls.update();
 
-  initOverlay( app.controls );
+  initOverlay();
 
-  app.controls.addEventListener( 'change', ( e ) => {
+  app.controls.addEventListener( 'change', () => {
 
     app.update();
     app.render();
@@ -16,16 +18,13 @@ function setupControls( app ) {
 
 }
 
-function initOverlay( controls ) {
-
-  // controls.enabled = false;
+function initOverlay() {
 
   const overlay = document.querySelector( '#overlay' );
 
   overlay.addEventListener( 'click', () => {
 
     overlay.style.display = 'none';
-    // controls.enabled = true;
 
   } );
 

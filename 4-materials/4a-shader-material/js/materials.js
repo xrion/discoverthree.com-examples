@@ -46,10 +46,14 @@ void main() {
 function createShaderMaterial() {
 
   const material = new THREE.ShaderMaterial( {
+
     // uniforms: {}, // optional object containing uniforms
     vertexShader,
     fragmentShader,
+
   } );
+
+  console.log( 'Here\'s the ShaderMaterial you just created: ', material );
 
   return material;
 

@@ -12,36 +12,9 @@
 
 		<link href="styles/main.css" rel="stylesheet" type="text/css">
 
-    <!--
-
-      Include the main three.js script.
-
-      The global variable THREE will be
-      available for use in any scripts
-      loaded after this one.
-
-    -->
-
-    <script src="https://threejs.org/build/three.js"></script>
-
-    <!--
-
-      Include the OrbitControls script.
-
-      This must be included AFTER the three.js script as it
-      needs to use the global THREE variable
-
-    -->
-
-    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
-
-		<!--
-
-			Include the GLTFLoader script. This also needs to be loaded after the three.js script
-
-		-->
-
-		<script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
+		<script src="js/vendor/three/three.js"></script>
+    <script src="js/vendor/three/controls/OrbitControls.js"></script>
+		<script src="js/vendor/three/loaders/GLTFLoader.js"></script>
 
 		<!--
 
@@ -57,13 +30,13 @@
 
 		-->
 
-		<script src="https://threejs.org/examples/js/postprocessing/EffectComposer.js"></script>
-		<script src="https://threejs.org/examples/js/postprocessing/RenderPass.js"></script>
-		<script src="https://threejs.org/examples/js/postprocessing/ShaderPass.js"></script>
+		<script src="js/vendor/three/postprocessing/EffectComposer.js"></script>
+		<script src="js/vendor/three/postprocessing/RenderPass.js"></script>
+		<script src="js/vendor/three/postprocessing/ShaderPass.js"></script>
 
-		<script src="https://threejs.org/examples/js/postprocessing/OutlinePass.js"></script>
+		<script src="js/vendor/three/postprocessing/OutlinePass.js"></script>
 
-		<script src="https://threejs.org/examples/js/postprocessing/SMAAPass.js"></script>
+		<script src="js/vendor/three/postprocessing/SMAAPass.js"></script>
 
 		<!--
 
@@ -76,9 +49,9 @@
 
 		-->
 
-		<script src="https://threejs.org/examples/js/shaders/CopyShader.js"></script>
+		<script src="js/vendor/three/shaders/CopyShader.js"></script>
 
-		<script src="https://threejs.org/examples/js/shaders/SMAAShader.js"></script>
+		<script src="js/vendor/three/shaders/SMAAShader.js"></script>
 
 		<!--
 
@@ -89,7 +62,7 @@
 			See discoverthreejs.com/modules/three-app/ for an example of how to do that.
 
 		-->
-		<script src="js/App.js"></script>
+		<script src="js/vendor/App.js"></script>
 
 	</head>
 

@@ -10,7 +10,7 @@ function init() {
   // app.renderer.toneMappingExposure = 3;
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 2, 1, 2 );
+  app.camera.position.set( 1.2, 1.4, 1 );
 
   // prevent the controls from zooming so far that the camera
   // is inside the model

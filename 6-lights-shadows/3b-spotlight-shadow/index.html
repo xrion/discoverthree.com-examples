@@ -12,47 +12,11 @@
 
 		<link href="styles/main.css" rel="stylesheet" type="text/css">
 
-    <!--
+		<script src="js/vendor/three/three.js"></script>
+    <script src="js/vendor/three/controls/OrbitControls.js"></script>
+		<script src="js/vendor/three/loaders/GLTFLoader.js"></script>
 
-      Include the main three.js script.
-
-      The global variable THREE will be
-      available for use in any scripts
-      loaded after this one.
-
-    -->
-
-    <script src="https://threejs.org/build/three.js"></script>
-
-    <!--
-
-      Include the OrbitControls script.
-
-      This must be included AFTER the three.js script as it
-      needs to use the global THREE variable
-
-    -->
-
-    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
-
-		<!--
-
-			Include the GLTFLoader script. This also needs to be loaded after the three.js script
-
-		-->
-
-		<script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
-
-		<!--
-
-			Include our App class. In a production environment, we would be setting
-			up a build process and importing this as a module, but for simplicity here
-			we'll include it the old fashioned way.
-
-			See discoverthreejs.com/modules/three-app/ for an example of how to do that.
-
-		-->
-		<script src="js/App.js"></script>
+		<script src="js/vendor/App.js"></script>
 
 	</head>
 
@@ -74,6 +38,7 @@
 			<script src="js/lights.js"></script>
 			<script src="js/meshes.js"></script>
 			<script src="js/models.js"></script>
+
 			<script src="js/renderer.js"></script>
 
 			<script src="js/main.js"></script>

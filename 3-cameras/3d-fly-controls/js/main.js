@@ -12,7 +12,7 @@ function init() {
 
   // orbit and map controls do this for us,
   // for fly controls we need to target the camera manually
-  app.camera.lookAt( 0, 0, 0 );
+  // app.camera.lookAt( 0, 0, 0 );
 
   initLights( app.scene );
   initMeshes( app.scene );

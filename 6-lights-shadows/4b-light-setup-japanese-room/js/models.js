@@ -15,7 +15,7 @@ function loadModels( scene ) {
 
   const loader = new THREE.GLTFLoader();
 
-  THREE.DRACOLoader.setDecoderPath( 'js/vendor/draco/' );
+  THREE.DRACOLoader.setDecoderPath( 'js/vendor/three/loaders/draco/' );
 	loader.setDRACOLoader( new THREE.DRACOLoader() );
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };

@@ -48,6 +48,8 @@ function createShaderMaterial() {
 
   } );
 
+  console.log( 'Here\'s the ShaderMaterial you just created: ', material );
+
   return material;
 
 }

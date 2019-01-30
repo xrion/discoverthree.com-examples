@@ -15,8 +15,6 @@ function setupControls( app ) {
 
   };
 
-  app.controls.setOrientation( app.camera.quaternion );
-
   app.controls.movementSpeed = 10;
   app.controls.lookSpeed = 0.075;
 
