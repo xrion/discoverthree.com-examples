@@ -19,7 +19,7 @@ function init() {
   const lights = initLights( app.scene );
   setupLightControls( lights );
 
-  loadModels( app.scene, app.loader );
+  loadModels( app.scene );
 
   app.start();
 

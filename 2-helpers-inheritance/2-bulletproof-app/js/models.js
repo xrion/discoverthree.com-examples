@@ -32,7 +32,9 @@ const onLoad = ( gltf, scene, position ) => {
 
 };
 
-function loadModels( scene, loader ) {
+function loadModels( scene ) {
+
+  const loader = new THREE.GLTFLoader();
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 

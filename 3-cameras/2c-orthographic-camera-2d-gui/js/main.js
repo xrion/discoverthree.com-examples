@@ -25,7 +25,7 @@ function init() {
 
   initGround( app.scene );
 
-  loadModels( app.scene, app.loader, appGUI.scene );
+  loadModels( app.scene, appGUI.scene );
 
   app.start();
 

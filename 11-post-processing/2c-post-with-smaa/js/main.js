@@ -32,7 +32,7 @@ function init() {
 
   initLights( app.scene );
   initMeshes( app.scene );
-  loadModels( app.scene, app.loader );
+  loadModels( app.scene );
 
   // overwrite the app's default render function to use the
   // EffectComposer instead

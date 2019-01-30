@@ -11,7 +11,7 @@ function init() {
   setupRenderer( app.renderer );
   initLights( app.scene );
   initMeshes( app.scene );
-  loadModels( app.scene, app.loader );
+  loadModels( app.scene );
 
 
   app.start();

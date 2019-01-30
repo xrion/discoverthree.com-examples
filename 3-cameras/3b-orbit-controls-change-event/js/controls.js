@@ -1,6 +1,6 @@
 function setupControls( app ) {
 
-  app.autoUpdateControls = false;
+  app.controlsAutoUpdate = false;
 
   // call control.update()
   // to move the camera into the correct position

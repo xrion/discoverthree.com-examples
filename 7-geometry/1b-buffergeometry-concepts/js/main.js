@@ -9,7 +9,7 @@ function init() {
   app.camera.position.set( 10, 5, 15 );
 
   initMeshes( app.scene );
-  loadModels( app.scene, app.loader );
+  loadModels( app.scene );
 
   app.start();
 

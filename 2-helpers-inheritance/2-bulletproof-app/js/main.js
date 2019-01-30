@@ -8,7 +8,7 @@ function init() {
   app.camera.position.set( -2.5, 2.5, 7.5 );
 
   initLights( app.scene );
-  loadModels( app.scene, app.loader );
+  loadModels( app.scene );
 
   app.start();
 

@@ -63,7 +63,7 @@ function init() {
 
   initLights( app.scene );
   initMeshes( app.scene );
-  loadModels( app.loader, app.scene );
+  loadModels( app.scene );
 
   app.start();
 

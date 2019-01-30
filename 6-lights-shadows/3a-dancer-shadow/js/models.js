@@ -57,9 +57,9 @@ const onLoad = ( gltf, scene, lights, textures ) => {
 
 };
 
-function loadModels( scene, loader, lights, textures ) {
+function loadModels( scene, lights, textures ) {
 
-  console.log( textures );
+  const loader = new THREE.GLTFLoader();
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 

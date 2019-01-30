@@ -53,17 +53,14 @@ function onLoad( gltf, position, rotation, scale, scene ) {
 }
 
 export default function loadModels( scene ) {
+
   const loader = new GLTFLoader();
 
   const onError = ( errorMessage ) => {
 
-    console.log(errorMessage);
+    console.log( errorMessage );
 
   };
-
-  parrot.then( ( res ) => {
-    console.log(res);
-  })
 
   // load the first model. Each model is loaded asynchronously,
   // so don't make any assumption about which one will finish loading first

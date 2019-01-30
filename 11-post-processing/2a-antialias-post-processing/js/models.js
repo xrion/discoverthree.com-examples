@@ -75,7 +75,9 @@ const onLoad = ( gltf, scene, offset ) => {
 
 };
 
-function loadModels( loader, scene ) {
+function loadModels( scene ) {
+
+  const loader = new THREE.GLTFLoader();
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 

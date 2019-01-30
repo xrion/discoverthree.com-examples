@@ -44,7 +44,6 @@ class THREE_APP {
 
     this.initCamera();
     this.initControls();
-    this.initLoader();
     this.initRenderer();
 
     if ( this.autoResize ) window.addEventListener( 'resize', () => this.onWindowResize() );
@@ -70,15 +69,6 @@ class THREE_APP {
 
     // gives the controls a feeling of "weight"
     this.controls.enableDamping = true;
-
-  }
-
-  initLoader() {
-
-    // allow custom loader to be set up
-    if ( this.loader ) return;
-
-    if ( typeof THREE.GLTFLoader === 'function' ) this.loader = new THREE.GLTFLoader();
 
   }
 

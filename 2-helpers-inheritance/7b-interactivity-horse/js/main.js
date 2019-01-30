@@ -23,7 +23,7 @@ function init() {
 
   initGround( app.scene );
 
-  loadModels( app.scene, app.loader );
+  loadModels( app.scene );
 
   app.start();
 

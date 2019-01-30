@@ -17,7 +17,7 @@ function init() {
 
   initMaterialControl( groundShadow.material )
 
-  loadModels( app.scene, app.loader );
+  loadModels( app.scene );
 
 
   app.start();

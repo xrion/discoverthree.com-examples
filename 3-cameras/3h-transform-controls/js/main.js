@@ -10,7 +10,7 @@ function init() {
 
   initLights( app.scene );
 
-  loadModels( app.scene, app.loader );
+  loadModels( app.scene );
 
   const meshes = initMeshes( app.scene );
 

@@ -19,7 +19,7 @@ function init() {
   const textures = initTextures();
   initMeshes( app.scene, textures );
 
-  loadModels( app.scene, app.loader, lights, textures );
+  loadModels( app.scene, lights, textures );
 
   app.start();
 }
