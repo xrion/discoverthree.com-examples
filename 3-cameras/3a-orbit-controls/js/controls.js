@@ -44,7 +44,7 @@ function setupControls( app ) {
   app.controls.enablePan = true;
   app.controls.panSpeed = 1.0;
   app.controls.screenSpacePanning = false; // if true, pan in screen-space
-  app.controls.keyPanSpeed = 7.0;	// pixels moved per arrow key push
+  app.controls.keyPanSpeed = 7.0; // pixels moved per arrow key push
 
   // Set to true to automatically rotate around the target
   // If auto-rotate is enabled, you must call controls.update() in your animation loop

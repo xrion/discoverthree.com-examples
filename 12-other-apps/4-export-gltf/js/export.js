@@ -1,4 +1,4 @@
-function exportGLTF( input ) {
+function exportGLTF( input, animations ) {
 
   const gltfExporter = new THREE.GLTFExporter();
 
@@ -10,6 +10,7 @@ function exportGLTF( input ) {
     forceIndices: document.getElementById( 'option_forceindices' ).checked,
     embedImages: document.getElementById( 'option_embedImages' ).checked,
     forcePowerOfTwoTextures: document.getElementById( 'option_forcepot' ).checked,
+    animations,
   };
 
   gltfExporter.parse( input, ( result ) => {
@@ -31,13 +32,13 @@ function exportGLTF( input ) {
 }
 
 
-function setupExportControl( input ) {
+function setupExportControl( input, animations ) {
 
   const button = document.querySelector( '#export_scene' );
 
   button.addEventListener( 'click', ( e ) => {
 
-    exportGLTF( input );
+    exportGLTF( input, animations );
 
     e.preventDefault();
 

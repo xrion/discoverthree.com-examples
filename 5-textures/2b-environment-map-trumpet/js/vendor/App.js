@@ -26,6 +26,12 @@ class THREE_APP {
     this.powerPreference = 'high-performance';
     this.stencil = false;
 
+    // override the three.js default of 2.0
+    this.gammaFactor = 2.2;
+
+    // should nearly always be true, unless using postprocessing
+    this.gammaOutput = true;
+
     // this also needs to be set before calling init()
     this.autoResize = true;
 
@@ -86,6 +92,11 @@ class THREE_APP {
 
     this.renderer.setSize( this.container.clientWidth, this.container.clientHeight );
     this.renderer.setPixelRatio( Math.min( window.devicePixelRatio, this.maxPixelRatio ) );
+
+    this.renderer.gammaFactor = this.gammaFactor;
+
+    // note that changing this after rendering the scene won't work
+    this.renderer.gammaOutput = this.gammaOutput;
 
     // to avoid page pulling
     this.renderer.domElement.addEventListener( 'touchstart', e => e.preventDefault() );
