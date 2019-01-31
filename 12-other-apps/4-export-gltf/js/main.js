@@ -9,11 +9,9 @@ function init() {
 
   initLights( app.scene );
 
-  // const meshes = initMeshes( app.scene );
+  const meshes = initMeshes( app.scene );
 
-  loadModels( app.scene );
-
-  // setupExportControl( meshes );
+  setupExportControl( meshes );
 
   app.start();
 
