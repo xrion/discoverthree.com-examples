@@ -6,7 +6,6 @@ const onLoad = ( gltf, scene ) => {
   const model = gltf.scene.children[ 0 ];
 
   model.position.set( -2, -2, 0 );
-  model.scale.multiplyScalar( 0.025 );
 
   console.log( 'And here\'s the buffer geometry from the bird model: ', model.geometry );
 

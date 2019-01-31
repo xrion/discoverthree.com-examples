@@ -31,7 +31,7 @@ const onLoad = ( gltf, scene, offset ) => {
   // get the correct model from the loaded object
   const model = gltf.scene.children[ 0 ];
 
-  model.scale.setScalar( 0.1 );
+  model.scale.setScalar( 100 );
 
   const animation = gltf.animations[ 0 ];
 

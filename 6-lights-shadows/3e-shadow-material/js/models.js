@@ -3,7 +3,10 @@ const onLoad = ( gltf, scene ) => {
   const protoModel = gltf.scene.children[ 0 ];
 
   protoModel.position.set( 0, 0.5, -15 );
-  protoModel.rotation.set( 0, Math.PI / 2, 0 );
+  protoModel.rotation.set( Math.PI / 2, 0, -Math.PI / 2 );
+
+  protoModel.castShadow = true;
+  protoModel.receiveShadow = true;
 
   const animation = gltf.animations[ 0 ];
 
@@ -11,12 +14,9 @@ const onLoad = ( gltf, scene ) => {
 
     const model = protoModel.clone();
 
-    model.castShadow = true;
-    model.receiveShadow = true;
-
     model.position.z += 1.6 * i;
 
-    model.scale.setScalar( 0.02 - 0.002 * i );
+    model.scale.setScalar( 0.66 - 0.066 * i );
 
     const mixer = new THREE.AnimationMixer( model );
 
@@ -28,7 +28,7 @@ const onLoad = ( gltf, scene ) => {
 
       spherical.theta -= delta / 2;
       model.position.setFromSpherical( spherical );
-      model.rotation.y -= delta / 2;
+      model.rotation.z += delta / 2;
 
     };
 

@@ -3,8 +3,7 @@ function onLoad( gltf, scene ) {
   const model = gltf.scene.children[ 0 ];
 
   model.position.y = 2;
-  model.rotation.y = -Math.PI / 2;
-  model.scale.multiplyScalar( 0.05 );
+  model.rotation.z = Math.PI / 2;
 
   model.renderOrder = 0;
 
