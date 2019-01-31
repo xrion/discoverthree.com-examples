@@ -5,17 +5,11 @@ const onLoad = ( gltf, scene ) => {
 
   const model = gltf.scene.children[ 0 ];
 
-  console.log(gltf);
-
-  // model.position.copy( position );
-
-  // scale the birds down to be actual bird sized (roughly)
-  // model.scale.set( 0.05, 0.05, 0.05 );
+  console.log(gltf.animations[0]);
 
   if ( gltf.animations[ 0 ] ) {
 
     const animation = gltf.animations[ 0 ];
-    // animation.tracks[0].name = '.morphTargetInfluences';
 
     const mixer = new THREE.AnimationMixer( model );
 
@@ -32,11 +26,8 @@ const onLoad = ( gltf, scene ) => {
 
   }
 
-  model.geometry.computeBoundingBox()
+  setupExportControl( model, gltf.animations );
 
-  console.log(model.geometry.boundingBox);
-
-  console.log(model);
   scene.add( model );
 
 };
@@ -50,6 +41,7 @@ function loadModels( scene ) {
 
   // loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, scene ), null, onError );
   // loader.load( 'models/Parrot_u.glb', gltf => onLoad( gltf, scene ), null, onError );
+  loader.load( 'models/Parrot_e.glb', gltf => onLoad( gltf, scene ), null, onError );
 
   // loader.load( 'models/Flamingo.glb', gltf => onLoad( gltf, scene ), null, onError );
   // loader.load( 'models/Flamingo_u.glb', gltf => onLoad( gltf, scene ), null, onError );
@@ -58,6 +50,6 @@ function loadModels( scene ) {
   // loader.load( 'models/Stork_u.glb', gltf => onLoad( gltf, scene ), null, onError );
 
   // loader.load( 'models/Horse.glb', gltf => onLoad( gltf, scene ), null, onError );
-  loader.load( 'models/Horse_u.glb', gltf => onLoad( gltf, scene ), null, onError );
+  // loader.load( 'models/Horse_u.glb', gltf => onLoad( gltf, scene ), null, onError );
 
 }
