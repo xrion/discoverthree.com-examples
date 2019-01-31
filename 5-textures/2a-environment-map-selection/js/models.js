@@ -26,6 +26,6 @@ function loadModels( scene ) {
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  loader.load( 'models/trumpet.glb', gltf => onLoad( gltf, scene ), null, onError );
+  loader.load( 'models/trumpet/trumpet.glb', gltf => onLoad( gltf, scene ), null, onError );
 
 }

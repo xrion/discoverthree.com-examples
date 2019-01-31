@@ -20,6 +20,6 @@ function loadModels( scene ) {
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  loader.load( 'models/warehouse.glb', gltf => onLoad( gltf, scene ), null, onError );
+  loader.load( 'models/lighting/warehouse.glb', gltf => onLoad( gltf, scene ), null, onError );
 
 }
