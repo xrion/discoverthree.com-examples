@@ -13,6 +13,23 @@ const backward = new THREE.Vector3( 0, 0, 1 );
 const left = new THREE.Vector3( -1, 0, 0 );
 const right = new THREE.Vector3( 1, 0, 0 );
 
+// rotate on y-axis
+const rotationAxis = new THREE.Vector3( 0, 1, 0 );
+
+function resetPosition( model, modelGUI ) {
+
+  model.position.copy( model.userData.initialPosition );
+  modelGUI.position.copy( modelGUI.userData.initialPosition );
+
+}
+
+function resetRotation( model, modelGUI ) {
+
+  model.rotation.copy( model.userData.initialRotation );
+  modelGUI.rotation.copy( modelGUI.userData.initialRotation );
+
+}
+
 // called whenever one of the arrow keys is pressed
 function start( model, modelGUI, direction, rotation ) {
 
@@ -20,26 +37,9 @@ function start( model, modelGUI, direction, rotation ) {
   if ( moving ) return;
 
   // point horsey in the right direction
-  model.rotation.y = rotation;
-
-  if ( direction === left ) {
-
-    modelGUI.rotation.set( -Math.PI / 2, -Math.PI / 2, 0 );
-
-  } else if ( direction === right ) {
-
-    modelGUI.rotation.set( -Math.PI / 2, Math.PI / 2, 0 );
-
-  } else if ( direction === forwards ) {
-
-    modelGUI.rotation.set( Math.PI, 0, Math.PI / 2 );
-
-  } else {
-
-    modelGUI.rotation.set( Math.PI, Math.PI, -Math.PI / 2 );
-
-  }
-
+  resetRotation( model, modelGUI );
+  model.rotateOnWorldAxis( rotationAxis, rotation );
+  modelGUI.rotateOnWorldAxis( rotationAxis, -rotation );
 
   // here the onUpdate function will update the "run" animation,
   // and also move the horse in one of the four directions
@@ -91,20 +91,6 @@ function resetControl( model, modelGUI ) {
     }
 
   } );
-
-}
-
-function resetPosition( model, modelGUI ) {
-
-  model.position.copy( model.userData.initialPosition );
-  modelGUI.position.copy( modelGUI.userData.initialPosition );
-
-}
-
-function resetRotation( model, modelGUI ) {
-
-  model.rotation.copy( model.userData.initialRotation );
-  modelGUI.rotation.copy( modelGUI.userData.initialRotation );
 
 }
 

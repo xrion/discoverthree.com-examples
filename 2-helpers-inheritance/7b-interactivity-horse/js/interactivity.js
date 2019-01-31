@@ -13,6 +13,21 @@ const backward = new THREE.Vector3( 0, 0, 1 );
 const left = new THREE.Vector3( -1, 0, 0 );
 const right = new THREE.Vector3( 1, 0, 0 );
 
+// rotate on y-axis
+const rotationAxis = new THREE.Vector3( 0, 1, 0 );
+
+function resetPosition( object ) {
+
+  object.position.copy( object.userData.initialPosition );
+
+}
+
+function resetRotation( object ) {
+
+  object.rotation.copy( object.userData.initialRotation );
+
+}
+
 // called whenever one of the arrow keys is pressed
 function start( object, direction, rotation ) {
 
@@ -20,7 +35,8 @@ function start( object, direction, rotation ) {
   if ( moving ) return;
 
   // point horsey in the right direction
-  object.rotation.y = rotation;
+  resetRotation( object );
+  object.rotateOnWorldAxis( rotationAxis, rotation );
 
   // here the onUpdate function will update the "run" animation,
   // and also move the horse in one of the four directions
@@ -59,18 +75,6 @@ function resetControl( object ) {
     }
 
   } );
-
-}
-
-function resetPosition( object ) {
-
-  object.position.copy( object.userData.initialPosition );
-
-}
-
-function resetRotation( object ) {
-
-  object.rotation.copy( object.userData.initialRotation );
 
 }
 

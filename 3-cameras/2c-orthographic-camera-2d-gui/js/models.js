@@ -6,7 +6,7 @@ const onLoad = ( gltf, scene, sceneGUI ) => {
   const model = gltf.scene.children[ 0 ];
   const modelGUI = model.clone();
 
-  modelGUI.scale.set( 0.1, 0.1, 0.1 );
+  modelGUI.scale.set( 4, 4, 4 );
   modelGUI.rotation.set( -Math.PI / 2, Math.PI / 2, 0 );
   modelGUI.material = new THREE.MeshBasicMaterial( {
     color: 0x00ff00,
@@ -14,7 +14,6 @@ const onLoad = ( gltf, scene, sceneGUI ) => {
   } );
 
   model.position.y = 2;
-  model.scale.set( 0.025, 0.025, 0.025 );
 
   if ( gltf.animations[ 0 ] ) {
 

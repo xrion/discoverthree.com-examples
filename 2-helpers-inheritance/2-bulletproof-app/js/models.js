@@ -7,9 +7,6 @@ const onLoad = ( gltf, scene, position ) => {
 
   model.position.copy( position );
 
-  // scale the birds down to be actual bird sized (roughly)
-  model.scale.set( 0.05, 0.05, 0.05 );
-
   if ( gltf.animations[ 0 ] ) {
 
     const animation = gltf.animations[ 0 ];
