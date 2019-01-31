@@ -26,14 +26,14 @@ class App {
     this.loadModels();
     this.initRenderer();
 
-    window.addEventListener( 'resize', this.onWindowResize );
+    window.addEventListener( 'resize', () => this.onWindowResize() );
 
   }
 
   initCamera() {
 
     this.camera = new THREE.PerspectiveCamera( 35, this.container.clientWidth / this.container.clientHeight, 1, 1000 );
-    this.camera.position.set( -50, 50, 150 );
+    this.camera.position.set( -1.5, 1.5, 4.5 );
 
   }
 
@@ -86,13 +86,13 @@ class App {
 
     // load the first model. Each model is loaded asynchronously,
     // so don't make any assumption about which one will finish loading first
-    const parrotPosition = new THREE.Vector3( 0, 0, 50 );
+    const parrotPosition = new THREE.Vector3( 0, 0, 1.5 );
     loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, parrotPosition ), onProgress, onError );
 
-    const flamingoPosition = new THREE.Vector3( 150, 0, -200 );
+    const flamingoPosition = new THREE.Vector3( 4.5, 0, -6 );
     loader.load( 'models/Flamingo.glb', gltf => onLoad( gltf, flamingoPosition ), onProgress, onError );
 
-    const storkPosition = new THREE.Vector3( 0, -50, -200 );
+    const storkPosition = new THREE.Vector3( 0, -1.5, -6 );
     loader.load( 'models/Stork.glb', gltf => onLoad( gltf, storkPosition ), onProgress, onError );
 
   }
@@ -103,6 +103,9 @@ class App {
     this.renderer.setSize( this.container.clientWidth, this.container.clientHeight );
 
     this.renderer.setPixelRatio( window.devicePixelRatio );
+
+    this.renderer.gammaFactor = 2.2;
+    this.renderer.gammaOutput = true;
 
     this.container.appendChild( this.renderer.domElement );
 
