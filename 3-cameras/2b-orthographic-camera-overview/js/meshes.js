@@ -5,6 +5,10 @@ function initMeshes( scene ) {
     flatShading: true,
   } );
 
+  // remember to convert the color to linear so that it looks correct
+  // by the time it ends up on our screens!
+  material.color.convertSRGBToLinear();
+
   const protoMesh = new THREE.Mesh( geometry, material );
 
   for ( let i = 0; i < 100; i++ ) {

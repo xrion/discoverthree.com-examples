@@ -2,7 +2,6 @@ function initMeshes( scene ) {
 
   const geometry = createGeometry();
 
-
   const material = new THREE.MeshStandardMaterial( {
     wireframe: false,
     morphTargets: true,

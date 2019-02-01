@@ -5,6 +5,7 @@ function initPoints( scene ) {
   const geometry = new THREE.SphereBufferGeometry( 2, 32, 8 );
 
   const map = textureLoader.load( 'textures/leaf.png' );
+  map.encoding = THREE.sRGBEncoding;
 
   const material = new THREE.PointsMaterial( {
     color: 0xffffff,
@@ -26,6 +27,11 @@ function initPoints( scene ) {
     size: 1,
     sizeAttenuation: true,
   } );
+
+
+  // no need to do this for black or white materials,
+  // but let's keep the habit up anyway :)
+  material.color.convertSRGBToLinear();
 
   const points = new THREE.Points( geometry, material );
 

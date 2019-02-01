@@ -11,8 +11,8 @@ function addArrowHelpers( scene ) {
   const dir2 = new THREE.Vector3( -1, 1, -1 ).normalize();
 
   // both arrows will start at the origin
-  const arrowHelper1 = new THREE.ArrowHelper( dir1, origin, length, 0x407DA3, headLength, headWidth );
-  const arrowHelper2 = new THREE.ArrowHelper( dir2, origin, length, 0x407DA3, headLength, headWidth );
+  const arrowHelper1 = new THREE.ArrowHelper( dir1, origin, length, 0x001D53, headLength, headWidth );
+  const arrowHelper2 = new THREE.ArrowHelper( dir2, origin, length, 0x001D53, headLength, headWidth );
 
   scene.add( arrowHelper1, arrowHelper2 );
 

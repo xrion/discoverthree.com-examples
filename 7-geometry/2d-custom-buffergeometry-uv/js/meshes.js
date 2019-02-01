@@ -17,6 +17,7 @@ function initMeshes( scene ) {
   const geometryIndexed = createGeometryIndexed();
 
   const map = new THREE.TextureLoader().load( 'textures/phoenix_park_dublin.jpg' );
+  map.encoding = THREE.sRGBEncoding;
 
   const material = new THREE.MeshBasicMaterial( { map, wireframe: false } );
 

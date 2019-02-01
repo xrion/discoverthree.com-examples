@@ -30,6 +30,9 @@ function init() {
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize( container.clientWidth, container.clientHeight );
 
+  renderer.gammaFactor = 2.2;
+  renderer.gammaOutput = true;
+
   // add the automatically created <canvas> element to the page
   container.appendChild( renderer.domElement );
 
@@ -61,6 +64,11 @@ function initBoxes() {
   // create a box
   const boxGeometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
   const boxMaterial = new THREE.MeshStandardMaterial( { color: 0xffffff } );
+
+  // remember to convert the color to linear so that it looks correct
+  // by the time it ends up on our screens!
+  boxMaterial.color.convertSRGBToLinear();
+
   const box = new THREE.Mesh( boxGeometry, boxMaterial );
   box.position.set( 0, 0, 0 );
 

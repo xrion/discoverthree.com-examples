@@ -14,7 +14,9 @@ const left = new THREE.Vector3( -1, 0, 0 );
 const right = new THREE.Vector3( 1, 0, 0 );
 
 // rotate on y-axis
-const rotationAxis = new THREE.Vector3( 0, 1, 0 );
+const xAxis = new THREE.Vector3( 1, 0, 0 );
+const yAxis = new THREE.Vector3( 0, 1, 0 );
+const zAxis = new THREE.Vector3( 0, 0, 1 );
 
 function resetPosition( model, modelGUI ) {
 
@@ -38,8 +40,22 @@ function start( model, modelGUI, direction, rotation ) {
 
   // point horsey in the right direction
   resetRotation( model, modelGUI );
-  model.rotateOnWorldAxis( rotationAxis, rotation );
-  modelGUI.rotateOnWorldAxis( rotationAxis, -rotation );
+  model.rotateOnWorldAxis( yAxis, rotation );
+
+  if ( direction === left ) {
+
+    modelGUI.rotation.set( Math.PI, -Math.PI, -Math.PI / 2 );
+
+  } else if ( direction === right ) {
+
+    modelGUI.rotation.set( Math.PI, -Math.PI, Math.PI / 2 );
+
+  } else if ( direction === forwards ) {
+
+    modelGUI.rotation.set( -Math.PI / 2, -Math.PI / 2, 0 );
+
+  } // final case 'backward' is original rotation
+
 
   // here the onUpdate function will update the "run" animation,
   // and also move the horse in one of the four directions

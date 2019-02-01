@@ -12,7 +12,7 @@ function init() {
 
   const cubemap = cubeTextureLoader.load( urls );
   cubemap.mapping = THREE.CubeReflectionMapping;
-  // cubemap.encoding = THREE.sRGBEncoding;
+  cubemap.encoding = THREE.sRGBEncoding;
 
   app.scene.background = cubemap;
 

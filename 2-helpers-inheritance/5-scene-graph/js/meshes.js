@@ -4,6 +4,10 @@ function initMeshes( scene ) {
   const geometry = new THREE.BoxBufferGeometry( 0.5, 0.5, 0.5 );
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
 
+  // remember to convert the color to linear so that it looks correct
+  // by the time it ends up on our screens!
+  material.color.convertSRGBToLinear();
+
   // create the first mesh, initially positioned at (0, 0, 0)
   const meshA = new THREE.Mesh( geometry, material );
 

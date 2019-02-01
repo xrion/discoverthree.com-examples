@@ -15,6 +15,14 @@ function initMaterial( scene ) {
 
   };
 
+  // remember to convert the color to linear so that it looks correct
+  // by the time it ends up on our screens!
+  for ( material in materials ) {
+
+    materials[ material ].color.convertSRGBToLinear();
+
+  }
+
   const envMaps = loadEnvMaps();
 
   setupMaterialControls( materials, envMaps, scene );

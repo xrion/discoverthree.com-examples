@@ -7,6 +7,12 @@ function initGroundShadow( scene ) {
     opacity: 0.2,
   } );
 
+  // remember to convert the color to linear so that it looks correct
+  // by the time it ends up on our screens!
+  material.color.convertSRGBToLinear();
+
+  // TODO: change color in the color picker as well
+
   const mesh = new THREE.Mesh( geometry, material );
 
   mesh.rotation.x = - Math.PI / 2; // -90 degrees around x axis

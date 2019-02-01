@@ -14,6 +14,8 @@ function initControls( app ) {
   // allowing us to set up a different controls manually
   app.controls = new THREE.FlyControls( app.camera );
 
+  // app.controls.target.set( 0, 0, 10 );
+
   app.controls.movementSpeed = 10;
 
   // app.controls.domElement = app.container;

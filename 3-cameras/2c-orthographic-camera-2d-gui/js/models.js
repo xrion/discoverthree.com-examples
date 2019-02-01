@@ -4,16 +4,21 @@
 const onLoad = ( gltf, scene, sceneGUI ) => {
 
   const model = gltf.scene.children[ 0 ];
+  // model.geometry.center()
   const modelGUI = model.clone();
 
   modelGUI.scale.set( 4, 4, 4 );
-  modelGUI.rotation.set( -Math.PI / 2, Math.PI / 2, 0 );
+  modelGUI.rotation.set( Math.PI / 2, -Math.PI / 2, 0 );
   modelGUI.material = new THREE.MeshBasicMaterial( {
     color: 0x00ff00,
     morphTargets: true,
   } );
 
-  model.position.y = 2;
+  // remember to convert the color to linear so that it looks correct
+  // by the time it ends up on our screens!
+  modelGUI.material.color.convertSRGBToLinear();
+
+  // model.position.y = 2;
 
   if ( gltf.animations[ 0 ] ) {
 

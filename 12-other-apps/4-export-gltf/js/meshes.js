@@ -5,6 +5,10 @@ function initMeshes( scene ) {
     color: 0x000000,
   } );
 
+  // no need to do this for black or white materials
+  // material.color.convertSRGBToLinear();
+
+
   const torusKnot = new THREE.Mesh( torusKnotGeo, torusKnotMat );
   torusKnot.position.set( 0, 0, 0 );
 

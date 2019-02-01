@@ -1,6 +1,6 @@
 function setupControls( app ) {
 
-  app.controls = new THREE.OrthographicTrackballControls( app.camera, app.container );
+  app.controls = new THREE.OrthographicTrackballControls( app.camera );
 
   initOverlay( app.controls );
 
@@ -24,29 +24,29 @@ function setupControls( app ) {
   // They're included here for reference, but not actually changed
 
   // These are the same as TrackballControls
-  app.controls.screen = {
-    left: 0, top: 0, width: 0, height: 0,
-  };
+  // app.controls.screen = {
+  //   left: 0, top: 0, width: 0, height: 0,
+  // };
 
-  app.controls.rotateSpeed = 1.0;
-  app.controls.zoomSpeed = 1.2;
+  // app.controls.rotateSpeed = 1.0;
+  // app.controls.zoomSpeed = 1.2;
 
-  app.controls.noRotate = false;
-  app.controls.noZoom = false;
-  app.controls.noPan = false;
+  // app.controls.noRotate = false;
+  // app.controls.noZoom = false;
+  // app.controls.noPan = false;
 
-  app.controls.staticMoving = false;
-  app.controls.dynamicDampingFactor = 0.2;
+  // app.controls.staticMoving = false;
+  // app.controls.dynamicDampingFactor = 0.2;
 
-  app.controls.minDistance = 0;
-  app.controls.maxDistance = Infinity;
+  // app.controls.minDistance = 0;
+  // app.controls.maxDistance = Infinity;
 
-  app.controls.keys = [ 65 /* A */, 83 /* S */, 68 /* D */ ];
+  // app.controls.keys = [ 65 /* A */, 83 /* S */, 68 /* D */ ];
 
-  // And these are unique to OrthographicTrackballControls
+  // // And these are unique to OrthographicTrackballControls
 
-  app.controls.radius = 0;
-  app.controls.noRoll = false;
+  // app.controls.radius = 0;
+  // app.controls.noRoll = false;
 
   // we can rest the controls to their original state using
   // unlike OrbitControls, they do not have a corresponding
@@ -69,6 +69,24 @@ function setupControls( app ) {
   // app.controls.zoomCamera();
   // app.controls.panCamera();
   // app.controls.checkDistances();
+
+  app.controls.addEventListener( 'start', () => {
+
+    console.log( 'Start event called.' );
+
+  } );
+
+  app.controls.addEventListener( 'change', () => {
+
+    console.log( 'Change event called.' );
+
+  } );
+
+  app.controls.addEventListener( 'end', () => {
+
+    console.log( 'End event called.' );
+
+  } );
 
 }
 
