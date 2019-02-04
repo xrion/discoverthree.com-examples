@@ -5,7 +5,7 @@ const babel = require( 'rollup-plugin-babel' );
 // the node_modules directory in your app
 // const nodeResolve = require( 'rollup-plugin-node-resolve' );
 
-const inputFile = 'src/main.js';
+const inputFile = 'src/index.js';
 
 const defaultPlugins = [
 
@@ -46,7 +46,7 @@ const inputOptions = {
 };
 
 const outputOptions = {
-  file: 'build/bundle.js',
+  file: 'dist/bundle.js',
   name: 'discover_threejs',
   format: 'iife',
 };

@@ -2,7 +2,7 @@
   "name": "discoverthreejs-com-ch-4-1",
   "version": "1.0.0",
   "description": "Discoverthreejs.com - Ch 4.1  ",
-  "main": "index.html",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/looeee/discoverthree.com-examples.git"
@@ -24,19 +24,20 @@
   },
   "homepage": "https://discoverthreejs.com",
   "scripts": {
-    "build": "node build.js",
+    "build": "webpack",
     "watch": "node watch.js"
   },
   "dependencies": {
+    "three": "^0.101.1",
     "three-app": "^1.0.11"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
-    "parcel-bundler": "^1.6.1",
-    "rollup": "^1.1.2",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^4.0.0"
+    "css-loader": "^2.1.0",
+    "file-loader": "^3.0.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
   }
 }

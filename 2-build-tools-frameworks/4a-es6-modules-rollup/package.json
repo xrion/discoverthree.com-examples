@@ -1,0 +1,39 @@
+{
+  "name": "discoverthreejs-com-ch-4-1",
+  "version": "1.0.0",
+  "description": "Discoverthreejs.com - Ch 4.1  ",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/looeee/discoverthree.com-examples.git"
+  },
+  "keywords": [
+    "three.js",
+    "web",
+    "animation",
+    "javascript",
+    "examples",
+    "tutorials",
+    "blog",
+    "book"
+  ],
+  "author": "Lewy Blue",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/looeee/discoverthree.com-examples/issues"
+  },
+  "homepage": "https://discoverthreejs.com",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node watch.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "rollup": "^1.1.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0"
+  }
+}
