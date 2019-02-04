@@ -24,14 +24,19 @@
   },
   "homepage": "https://discoverthreejs.com",
   "scripts": {
-    "start": "parcel index.html --open",
-    "build": "parcel build index.html"
+    "build": "node build.js",
+    "watch": "node watch.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "three-app": "^1.0.11"
+  },
   "devDependencies": {
-    "parcel-bundler": "^1.6.1"
-  },
-  "staticFiles": {
-    "staticPath": "models"
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "parcel-bundler": "^1.6.1",
+    "rollup": "^1.1.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0"
   }
 }

@@ -1,13 +1,10 @@
 import {
   AnimationMixer,
   Vector3,
-} from './vendor/three.module.js';
+} from './vendor/three/three.module.js';
 
-import { GLTFLoader } from './vendor/GLTFLoader.js';
+import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
-// A reusable function to setup the models
-// assumes that the gltf file contains a single model
-// and up to one animation track
 const onLoad = ( gltf, scene, position ) => {
 
   const model = gltf.scene.children[ 0 ];
@@ -19,8 +16,6 @@ const onLoad = ( gltf, scene, position ) => {
     const animation = gltf.animations[ 0 ];
     const mixer = new AnimationMixer( model );
 
-    // we'll check every object in the scene for
-    // this function and call it once per frame
     model.userData.onUpdate = ( delta ) => {
 
       mixer.update( delta );
@@ -36,7 +31,7 @@ const onLoad = ( gltf, scene, position ) => {
 
 };
 
-function loadModels( scene ) {
+export default function loadModels( scene ) {
 
   const loader = new GLTFLoader();
 
