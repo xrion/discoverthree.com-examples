@@ -59,9 +59,11 @@ watcher.on( 'event', ( event ) => {
     console.log( 'Bundling Started' );
 
   } else if ( event.code === 'BUNDLE_END' ) {
-    console.log(event);
+
     console.log( `Bundling Finished in ${event.duration}ms` );
     console.log( 'Writing File ' + outputOptions.file );
+
+    // if you want, you can access the result using event.result
 
   } else if ( event.code === 'END' ) {
 
@@ -70,11 +72,12 @@ watcher.on( 'event', ( event ) => {
   } else if ( event.code === 'ERROR' ) {
 
     console.log( 'Rollup.watch encountered an error' );
-    console.log( event );
+    console.log( event.error );
 
   } else if ( event.code === 'FATAL' ) {
 
     console.log( 'Rollup.watch encountered a fatal error. Please restart the script' );
+    console.log( event.error );
     watcher.close();
 
   }
