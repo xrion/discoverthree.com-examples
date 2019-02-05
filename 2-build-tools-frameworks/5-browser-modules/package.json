@@ -24,5 +24,7 @@
   },
   "homepage": "https://discoverthreejs.com",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "parcel-bundler": "^1.11.0"
+  }
 }
