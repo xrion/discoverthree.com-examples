@@ -2,7 +2,7 @@ import {
   Clock,
   PerspectiveCamera,
   Scene,
-  WebGLRenderer
+  WebGLRenderer,
 } from './three/three.module.js';
 
 import {
