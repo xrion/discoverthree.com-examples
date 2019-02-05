@@ -1,17 +1,5 @@
-import './style.css';
-import Cows from './cows.jpg';
+import './main.css';
 
-function component() {
-  const element = document.createElement( 'div' );
+import initScene from './js/scene.js';
 
-  element.textContent = 'Hello!';
-  element.classList.add( 'hello' );
-
-  const mooCows = new Image();
-  mooCows.src = Cows;
-  element.appendChild( mooCows );
-
-  return element;
-}
-
-document.body.appendChild( component() );
+initScene();
