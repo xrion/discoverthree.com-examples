@@ -61,6 +61,7 @@ function initAnimation( object ) {
 
   // NumberKeyframeTracks are not supported - this will result in an error
   // and your exported file will have no animations
+
   // const opacityKF = initOpacityKeyframeTrack();
   // const clip = new THREE.AnimationClip( 'Action', -1, [ rotationKF, opacityKF ] );
 
