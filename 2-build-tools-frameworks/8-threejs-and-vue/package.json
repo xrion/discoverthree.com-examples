@@ -19,6 +19,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "three": "^0.101.1",
     "vue": "^2.5.2"
   },
   "devDependencies": {
