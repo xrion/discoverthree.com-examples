@@ -1,6 +1,6 @@
 function createSphericalPositions() {
 
-  const initialPos = new THREE.Vector3( -100, -1, 0 );
+  const initialPos = new THREE.Vector3( -1, -1, 0 );
 
   const positions = [];
 
@@ -12,16 +12,16 @@ function createSphericalPositions() {
 
 
     spherical.theta += Math.random() * Math.PI;
-    spherical.radius = THREE.Math.randFloat( 60, 100 );
+    spherical.radius = THREE.Math.randFloat( 6, 8 );
 
     const position = new THREE.Vector3().setFromSpherical( spherical );
-    yPos += 0.06;
+    yPos += 0.004;
 
     position.y = yPos;
 
     positions.push( {
       vec: position,
-      rot: spherical.theta,
+      rot: Math.PI / 2 + spherical.theta,
     } );
 
   }

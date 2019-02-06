@@ -2,15 +2,17 @@ function init() {
 
   const app = new THREE_APP( '#container' );
 
+  app.showStats = true;
+
   app.antialias = false;
   app.autoresize = false;
 
   app.init();
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 90, 225, 350 );
+  app.camera.position.set( 5, 10, 20 );
 
-  app.controls.target.y = 50;
+  app.controls.target.y = 0.5;
 
   const composers = initComposers( app.renderer, app.scene, app.camera );
 
@@ -22,6 +24,9 @@ function init() {
     antialias: true,
     stencil: app.stencil,
   } );
+
+  rendererAA.gammaFactor = app.gammaFactor;
+  rendererAA.gammaOutput = app.gammaOutput;
 
   // rendererAA.setPixelRatio( Math.min( window.devicePixelRatio, app.maxPixelRatio ) );
   // rendererAA.setSize( app.container.clientWidth, app.container.clientHeight );
@@ -67,7 +72,7 @@ function init() {
 
   app.start();
 
-  initControls( app, renderer, rendererAA, composers );
+  initPostControl( app, renderer, rendererAA, composers );
 
   addPolarGridHelper( app.scene );
 

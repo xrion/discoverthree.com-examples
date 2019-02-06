@@ -117,60 +117,7 @@ function initBiasedToggle( composers ) {
 
 }
 
-function initWireframeToggle( mesh ) {
-
-  const toggle = document.querySelector( '#wireframe' );
-
-  toggle.addEventListener( 'input', ( e ) => {
-
-    mesh.material.wireframe = e.target.checked;
-
-  } );
-
-}
-
-let prevValue = 0;
-
-function initModelsAmountSlider( group, models ) {
-
-  const slider = document.querySelector( '#models-slider' );
-  const value = document.querySelector( '#models-value' );
-
-  slider.addEventListener( 'input', ( e ) => {
-
-    value.textContent = slider.value;
-
-    const newValue = parseInt( slider.value, 10 ) - 1;
-
-    if ( newValue > prevValue ) {
-
-      for ( let i = prevValue; i <= newValue; i++ ) {
-
-        // console.log(models);
-        group.add( models[ i ] );
-
-      }
-
-
-    } else if ( newValue < prevValue ) {
-
-      for ( let i = prevValue; i >= newValue; i-- ) {
-
-        group.remove( models[ i ] );
-
-      }
-
-    }
-
-    prevValue = newValue;
-
-    e.preventDefault();
-
-  } );
-
-}
-
-function initControls( app, renderer, rendererAA, composers ) {
+function initPostControl( app, renderer, rendererAA, composers ) {
 
   initAATechniqueSelect( app, renderer, rendererAA, composers );
   initSamplesSlider( composers );

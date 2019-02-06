@@ -26,23 +26,3 @@ a:hover{
   height: 100%;
 }
 
-#controls {
-  position: absolute;
-  width: auto;
-  height: auto;
-  top: 5rem;
-  right: 0rem;
-  padding: 0 1rem;
-  border: 1px solid grey;
-  background-color: rgba( 0, 0, 0, 0.75);
-  z-index: 1;
-  text-align: right;
-}
-
-select {
-  margin-bottom: 1rem;
-}
-
-input[type="range"] {
-  width: 100%;
-}

@@ -1,15 +1,3 @@
-const models = [];
-
-const group = new THREE.Group();
-
-group.userData.onUpdate = ( delta ) => {
-
-  group.rotation.y += delta / 18;
-
-};
-
-const positions = createSphericalPositions();
-
 function initAnimation( model, animation ) {
 
   const mixer = new THREE.AnimationMixer( model );
@@ -26,28 +14,40 @@ function initAnimation( model, animation ) {
 
 }
 
+const models = [];
+
 const onLoad = ( gltf, scene, offset ) => {
 
-  // get the correct model from the loaded object
   const model = gltf.scene.children[ 0 ];
 
   model.scale.setScalar( 100 );
 
   const animation = gltf.animations[ 0 ];
 
-  let rotationFactor = 0;
-  positions.forEach( ( position, index ) => {
+  const positions = createSphericalPositions();
+  const rotationAxis = new THREE.Vector3( 0, 1, 0 );
 
-    rotationFactor += position.rot;
+  const group = new THREE.Group();
+
+  group.userData.onUpdate = ( delta ) => {
+
+    group.rotation.y += delta / 18;
+
+  };
+
+  positions.forEach( ( position, index ) => {
 
     if ( index % 2 === offset ) {
 
       const newModel = model.clone();
 
+      newModel.scale.setScalar( 0.15 );
+
       newModel.position.copy( position.vec );
-      newModel.rotation.y = rotationFactor;
+      newModel.rotateOnWorldAxis( rotationAxis, position.rot );
 
       const action = initAnimation( newModel, animation );
+
       // set the birds to start at random times so that they  don't flap in sync
       action.startAt( THREE.Math.randFloat( 0, 1.2 ) ).play();
 
@@ -62,14 +62,14 @@ const onLoad = ( gltf, scene, offset ) => {
 
     scene.add( group );
 
-    model.scale.set( 1.5, 1.5, 1.5 );
-    model.position.set( 0, 140, 30 );
+    model.scale.setScalar( 3 );
+    model.position.set( 0, 5, 0 );
     scene.add( model );
 
     const action = initAnimation( model, animation );
     action.play();
 
-    initModelsAmountSlider( group, models );
+    initButtons( models, group );
 
   }
 

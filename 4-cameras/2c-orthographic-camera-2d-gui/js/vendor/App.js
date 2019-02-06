@@ -44,6 +44,8 @@ class THREE_APP {
     this.onUpdate = null;
     this.onResize = null;
 
+    this.showStats = false;
+
   }
 
   init() {
@@ -51,6 +53,8 @@ class THREE_APP {
     this.initCamera();
     this.initControls();
     this.initRenderer();
+
+    this.initStats();
 
     if ( this.autoResize ) window.addEventListener( 'resize', () => this.onWindowResize() );
 
@@ -137,8 +141,12 @@ class THREE_APP {
 
     this.renderer.setAnimationLoop( () => {
 
+      if ( this.stats ) this.stats.begin();
+
       this.update();
       this.render();
+
+      if ( this.stats ) this.stats.end();
 
     } );
 
@@ -156,7 +164,7 @@ class THREE_APP {
 
   onWindowResize() {
 
-    if( !this.autoResize ) return;
+    if ( !this.autoResize ) return;
 
     this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
 
@@ -169,6 +177,17 @@ class THREE_APP {
     this.renderer.render( this.scene, this.camera );
 
     if ( this.onResize ) this.onResize();
+
+  }
+
+  // if stats.js has been loaded, create a stats overlay
+  initStats() {
+
+    if ( !this.showStats || !Stats ) return;
+
+    this.stats = new Stats();
+
+    this.container.appendChild( this.stats.dom );
 
   }
 

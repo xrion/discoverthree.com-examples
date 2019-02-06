@@ -1,6 +1,6 @@
 function addPolarGridHelper( scene ) {
 
-  const radius = 100;
+  const radius = 5;
   const radials = 16;
   const circles = 8;
   const divisions = 64;

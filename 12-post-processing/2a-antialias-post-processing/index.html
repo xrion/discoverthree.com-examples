@@ -11,6 +11,7 @@
 		<link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
 
 		<link href="styles/main.css" rel="stylesheet" type="text/css">
+		<link href="styles/controls.css" rel="stylesheet" type="text/css">
 
 		<script src="js/vendor/three/three.js"></script>
     <script src="js/vendor/three/controls/OrbitControls.js"></script>
@@ -114,11 +115,13 @@
 			<input type="checkbox" id="wireframe">
 			<br>
 			<br>
-			<span>Number of Models: <span id="models-value">1</span></span>
+			<span>Number of Birds: <span id="models-value">1</span></span>
 			<br>
-			<span>Increase this slowly :)</span>
+			<span id="max-models-message" style="display: none;">Max number of models reached!</span>
 			<br>
-			<input type="range" id="models-slider" min="1" max="2000" step="1" value="1">
+			<button id="add-1">Add 1</button>
+			<button id="add-10">Add 10</button>
+			<button id="add-100">Add 100</button>
 
 		</div>
 
@@ -135,14 +138,17 @@
 
 			<script src="js/utility/sphericalPositions.js"></script>
 
-			<script src="js/interactivity.js"></script>
+
 			<script src="js/helpers.js"></script>
 
 			<script src="js/lights.js"></script>
 			<script src="js/meshes.js"></script>
+
 			<script src="js/models.js"></script>
+			<script src="js/modelControl.js"></script>
 
 			<script src="js/postProcessing.js"></script>
+			<script src="js/postControl.js"></script>
 
 			<script src="js/main.js"></script>
 
