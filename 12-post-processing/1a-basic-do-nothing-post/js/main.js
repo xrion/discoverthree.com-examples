@@ -2,6 +2,8 @@ function init() {
 
   const app = new THREE_APP( '#container' );
 
+  // app.gammaOutput = false;
+
   app.init();
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );

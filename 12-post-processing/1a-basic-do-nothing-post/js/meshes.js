@@ -3,7 +3,7 @@ function initMeshes( scene ) {
   // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
 
-  const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
+  const material = new THREE.MeshBasicMaterial( { color: 0x800080 } );
 
   // remember to convert the color to linear so that it looks correct
   // by the time it ends up on our screens!
