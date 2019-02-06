@@ -6,7 +6,6 @@ const onLoad = ( gltf, scene ) => {
   const model = gltf.scene.children[ 0 ];
 
   model.position.y = 2;
-  model.scale.setScalar( 0.025 );
 
   scene.add( model );
 
