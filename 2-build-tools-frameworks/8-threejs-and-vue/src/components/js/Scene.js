@@ -1,4 +1,4 @@
-import { Color } from './vendor/three/three.module.js';
+import { Color } from 'three';
 import ThreeApp from './vendor/App.module.js';
 
 import initLights from './lights.js';

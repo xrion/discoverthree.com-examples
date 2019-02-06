@@ -1,7 +1,7 @@
 import {
   AmbientLight,
   DirectionalLight,
-} from './vendor/three/three.module.js';
+} from 'three';
 
 export default function initLights( scene ) {
 
