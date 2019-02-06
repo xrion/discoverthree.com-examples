@@ -1,7 +1,7 @@
 import {
   AnimationMixer,
   Vector3,
-} from './vendor/three/three.module.js';
+} from 'three';
 
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
