@@ -3,11 +3,8 @@ function initMeshes( scene ) {
   const torusKnotGeo = new THREE.TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
   const torusKnotMat = new THREE.MeshStandardMaterial( {
     color: 0x000000,
+    transparent: true,
   } );
-
-  // no need to do this for black or white materials
-  // material.color.convertSRGBToLinear();
-
 
   const torusKnot = new THREE.Mesh( torusKnotGeo, torusKnotMat );
   torusKnot.position.set( 0, 0, 0 );
@@ -20,14 +17,9 @@ function initMeshes( scene ) {
 
   torusKnot.add( sphere );
 
-  torusKnot.userData.onUpdate = ( delta ) => {
-
-    torusKnot.rotation.y += delta / 2;
-    torusKnot.rotation.z -= delta / 4;
-
-  };
-
   scene.add( torusKnot );
+
+  console.log(torusKnot);
 
   return torusKnot;
 

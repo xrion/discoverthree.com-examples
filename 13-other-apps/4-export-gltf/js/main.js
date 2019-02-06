@@ -9,9 +9,11 @@ function init() {
 
   initLights( app.scene );
 
-  const meshes = initMeshes( app.scene );
+  const mesh = initMeshes( app.scene );
 
-  setupExportControl( meshes );
+  const clips = initAnimation( mesh );
+
+  setupExportControl( mesh, clips );
 
   app.start();
 

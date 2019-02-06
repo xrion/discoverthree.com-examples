@@ -1,5 +1,6 @@
 function exportGLTF( input, animations ) {
 
+  console.log(animations)
   const gltfExporter = new THREE.GLTFExporter();
 
   const options = {
@@ -10,6 +11,8 @@ function exportGLTF( input, animations ) {
     forceIndices: document.getElementById( 'option_forceindices' ).checked,
     embedImages: document.getElementById( 'option_embedImages' ).checked,
     forcePowerOfTwoTextures: document.getElementById( 'option_forcepot' ).checked,
+
+    // an array of animation clips
     animations,
   };
 
