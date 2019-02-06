@@ -3,6 +3,9 @@ function init() {
 
   const app = new THREE_APP( '#container' );
 
+  // remember to setup the camera before calling app.init
+  initCamera( app );
+
   app.init();
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );

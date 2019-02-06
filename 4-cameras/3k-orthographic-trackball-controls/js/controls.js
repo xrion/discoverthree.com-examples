@@ -29,7 +29,7 @@ function setupControls( app ) {
   // };
 
   // app.controls.rotateSpeed = 1.0;
-  // app.controls.zoomSpeed = 1.2;
+  app.controls.zoomSpeed = 0.01;
 
   // app.controls.noRotate = false;
   // app.controls.noZoom = false;
