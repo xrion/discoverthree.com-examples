@@ -1,17 +1,17 @@
 const rollup = require( 'rollup' );
 const babel = require( 'rollup-plugin-babel' );
+const commonjs = require( 'rollup-plugin-commonjs' );
 
 // this is needed if you want to import any files from
 // the node_modules directory in your app
-// const nodeResolve = require( 'rollup-plugin-node-resolve' );
+const nodeResolve = require( 'rollup-plugin-node-resolve' );
 
 const inputFile = 'src/index.js';
 
+
 const defaultPlugins = [
-
-  // see note above
-  // nodeResolve(),
-
+  nodeResolve(),
+  commonjs(),
   babel( {
     compact: false,
     exclude: ['node_modules/**'],
@@ -43,12 +43,15 @@ async function build( inputOptions, outputOptions ) {
 const inputOptions = {
   input: inputFile,
   plugins: defaultPlugins,
+
+  // ideally, we would set treeshaking to true but it seems to cause the build to fail
+  treeshake: false,
 };
 
 const outputOptions = {
   file: 'dist/bundle.js',
   name: 'discover_threejs',
-  format: 'iife',
+  format: 'umd',
 };
 
 build( inputOptions, outputOptions );

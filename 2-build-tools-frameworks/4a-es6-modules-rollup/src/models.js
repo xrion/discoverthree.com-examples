@@ -1,8 +1,9 @@
 import {
   AnimationMixer,
   Vector3,
-} from './vendor/three/three.module.js';
+} from 'three';
 
+// should be possible to use from NPM as of R102
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
 const onLoad = ( gltf, scene, position ) => {
@@ -37,8 +38,6 @@ export default function loadModels( scene ) {
 
   const onError = ( errorMessage ) => { console.log( errorMessage ); };
 
-  // load the first model. Each model is loaded asynchronously,
-  // so don't make any assumption about which one will finish loading first
   const parrotPosition = new Vector3( 0, 0, 2.5 );
   loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, scene, parrotPosition ), null, onError );
 

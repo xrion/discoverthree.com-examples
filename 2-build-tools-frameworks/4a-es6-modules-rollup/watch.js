@@ -3,15 +3,13 @@ const babel = require( 'rollup-plugin-babel' );
 
 // this is needed if you want to import any files from
 // the node_modules directory in your app
-// const nodeResolve = require( 'rollup-plugin-node-resolve' );
+const nodeResolve = require( 'rollup-plugin-node-resolve' );
 
 const inputFile = 'src/index.js';
 
 const defaultPlugins = [
 
-  // see note above
-  // nodeResolve(),
-
+  nodeResolve(),
   babel( {
     compact: false,
     exclude: ['node_modules/**'],
@@ -31,6 +29,9 @@ const defaultPlugins = [
 const inputOptions = {
   input: inputFile,
   plugins: defaultPlugins,
+
+  // ideally, we would set treeshaking to true but it seems to cause the build to fail
+  treeshake: false,
 };
 
 const outputOptions = {
@@ -53,8 +54,7 @@ watcher.on( 'event', ( event ) => {
 
     console.log( 'Rollup.watch (re)started' );
 
-  }
-  else if ( event.code === 'BUNDLE_START' ) {
+  } else if ( event.code === 'BUNDLE_START' ) {
 
     console.log( 'Bundling Started' );
 

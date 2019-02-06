@@ -98,7 +98,7 @@ import {
 	VertexColors,
 	ZeroFactor,
 	sRGBEncoding
-} from "../three.module.js";
+} from 'three';
 
 var GLTFLoader = ( function () {
 
