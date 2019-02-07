@@ -2,7 +2,7 @@ function initLights( scene ) {
 
   const ambientLight = initAmbientLight( scene );
 
-  const mainLight = initPointLight( scene );
+  const mainLight = initDirectionalLight( scene );
 
   scene.add( ambientLight, mainLight );
 
@@ -36,7 +36,7 @@ function initAmbientLight( scene ) {
 
     // intensity( irradiance )
     // here, we'll assume a dim twilight value
-    3
+    0
 
     // increasing this even a little bit - say to around 5
 
@@ -46,35 +46,26 @@ function initAmbientLight( scene ) {
 
 }
 
-function initPointLight( scene ) {
+function initDirectionalLight( scene ) {
 
-  const pointLight = new THREE.PointLight(
+  // AKA "distant light" or "direct light", "point light at infinity"
+  // directional light represents a far away light source like the sun
+  // there is no fallof or decay, since for any "normal"
+  // scale scene - that is, less than 100,000km or so across,
+  // the strength of the light will not change noticeably
+  const directionalLight = new THREE.DirectionalLight(
 
-    // color - you can pick this from a lightbulb color chart
-    // here's we're going for a slight yellow (picked from a light color chart): http://www.westinghouselighting.com/color-temperature.aspx
-    // to emphasize the effect
-    0xFFF093,
+    0xddeeff,
 
-    // intensity - leave it at 1 since we'll overwrite it with light.power below
-    1,
-
-    // distance: always 0 (meaning infinite) for physically correct lights
-    0,
-
-    // decay - how fast the light fades along the beam
-    // always 2 for physically correct lights
-    2,
+    // intensity/ irradiance in lux
+    8,
 
   );
 
-  // power is in lumens - 5000 is roughly a 300w bulb
-  pointLight.power = 5000;
+  directionalLight.position.set( -12, 10, -12 );
 
-  // pointlight is 10 metres above the scene
-  pointLight.position.set( 0, 10, 0 );
+  scene.add( new THREE.DirectionalLightHelper( directionalLight ) );
 
-  scene.add( new THREE.PointLightHelper( pointLight ) );
-
-  return pointLight;
+  return directionalLight;
 
 }
