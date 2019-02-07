@@ -1,5 +1,7 @@
 function setupRenderer( renderer ) {
 
+  renderer.physicallyCorrectLights = true;
+
   renderer.shadowMap.enabled = true;
 
   renderer.shadowMap.type = THREE.PCFShadowMap; // default

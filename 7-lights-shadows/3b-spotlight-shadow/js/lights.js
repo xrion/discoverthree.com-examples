@@ -16,11 +16,13 @@ function initShadowLight( scene ) {
   const spotLight = new THREE.SpotLight(
     0xffffff, // color
     1, // intensity,
-    35, // distance
+    0, // distance: always 0 for physically correct lights
     Math.PI / 6,
     0.25, // exponent,
-    1, // decay
+    2, // decay: always 2 for physically correct lights
   );
+
+  spotLight.power = 1700;
 
   spotLight.position.set( -12, 10, -12 );
 
@@ -28,7 +30,7 @@ function initShadowLight( scene ) {
   spotLight.shadow.mapSize.width = 1024; // default
   spotLight.shadow.mapSize.height = 1024; // default
   spotLight.shadow.camera.near = 10;
-  spotLight.shadow.camera.far = 15;
+  spotLight.shadow.camera.far = 35;
 
   spotLight.shadow.camera.updateProjectionMatrix();
 
