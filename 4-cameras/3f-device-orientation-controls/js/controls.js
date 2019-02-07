@@ -2,10 +2,12 @@ function setupControls( app ) {
 
   app.controls = new THREE.DeviceOrientationControls( app.camera, app.container );
 
-  initOverlay( app.controls );
+  initOverlay( app.controls, app );
+
+  console.log( app.controls );
 
   // how much to offset the rotation
-  app.controls.alphaOffset = 0; // radians
+  // app.controls.alphaOffset = 0; // radians
 
   // set automatically, don't change these
 
@@ -27,7 +29,7 @@ function setupControls( app ) {
 
 }
 
-function initOverlay( controls ) {
+function initOverlay( controls, app ) {
 
   controls.enabled = false;
 
