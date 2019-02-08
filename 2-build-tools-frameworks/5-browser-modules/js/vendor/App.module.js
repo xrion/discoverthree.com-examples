@@ -3,7 +3,7 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from 'three';
+} from './three/three.module.js';
 
 // should be possible to use from NPM as of R102
 import {
