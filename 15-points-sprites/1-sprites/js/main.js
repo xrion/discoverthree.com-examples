@@ -4,10 +4,12 @@ function init() {
 
   const cubeTextureLoader = new THREE.CubeTextureLoader();
 
+  const path = 'textures/environments/cubemap/castle/';
+
   const urls = [
-    'textures/cubemap/px.jpg', 'textures/cubemap/nx.jpg',
-    'textures/cubemap/py.jpg', 'textures/cubemap/ny.jpg',
-    'textures/cubemap/pz.jpg', 'textures/cubemap/nz.jpg'
+    `${path}/px.jpg`, `${path}/nx.jpg`,
+    `${path}/py.jpg`, `${path}/ny.jpg`,
+    `${path}/pz.jpg`, `${path}/nz.jpg`,
   ];
 
   const cubemap = cubeTextureLoader.load( urls );

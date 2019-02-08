@@ -4,7 +4,7 @@ function initPoints( scene ) {
 
   const geometry = new THREE.SphereBufferGeometry( 2, 32, 8 );
 
-  const map = textureLoader.load( 'textures/leaf.png' );
+  const map = textureLoader.load( 'textures/color/leaf/leaf.png' );
   map.encoding = THREE.sRGBEncoding;
 
   const material = new THREE.PointsMaterial( {
