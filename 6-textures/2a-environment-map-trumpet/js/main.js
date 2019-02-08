@@ -4,22 +4,23 @@ function init() {
 
   app.init();
 
-  // app.renderer.gammaInput = true;
-  // app.renderer.gammaOutput = true;
-  // app.renderer.toneMapping = THREE.ReinhardToneMapping;
-  // app.renderer.toneMappingExposure = 3;
-
-  app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 1.2, 1.4, 1 );
+  app.camera.position.set( 2, 1, 1.5 );
 
   // prevent the controls from zooming so far that the camera
   // is inside the model
-  app.controls.minDistance = 2;
+  app.controls.minDistance = 1.75;
 
-  const lights = initLights( app.scene );
-  setupLightControls( lights );
+  initLights( app.scene );
 
-  loadModels( app.scene );
+  const envMap = loadEnvironments();
+  const materials = initMaterials( app.scene, envMap );
+
+  app.scene.background = envMap;
+
+  initMeshes( app.scene, materials );
+  loadModels( app.scene, materials );
+
+  initEnvMapControls( materials, envMap );
 
   app.start();
 

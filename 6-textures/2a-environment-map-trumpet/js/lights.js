@@ -1,15 +1,11 @@
 function initLights( scene ) {
 
-  const ambientLight = new THREE.AmbientLight( 0xffffff, 0.3 );
+  const ambientLight = new THREE.HemisphereLight( 0xAE9A7F, 0x6D6E73, 1 );
 
-  const frontLight = new THREE.DirectionalLight( 0xffffff, 1 );
-  frontLight.position.set( 10, 10, 10 );
+  const frontLight = new THREE.PointLight( 0xFFFFFA, 1 );
 
-  const backLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-  backLight.position.set( -10, 10, -10 );
+  scene.add( ambientLight, frontLight );
 
-  scene.add( ambientLight, frontLight, backLight );
-
-  return { ambientLight, frontLight, backLight };
+  return { ambientLight, frontLight };
 
 }

@@ -1,17 +1,31 @@
-function initMaterial( scene ) {
+function initMaterials( scene, envMap ) {
 
   const brassColor = 0xB5A642;
   const silverColor = 0xC4CACE;
 
   const materials = {
 
-    brassLambert: new THREE.MeshLambertMaterial( { color: brassColor } ),
-    brassPhong: new THREE.MeshPhongMaterial( { color: brassColor } ),
-    brassStandard: new THREE.MeshStandardMaterial( { metalness: 0.9, roughness: 0.2, color: brassColor } ),
+    brass: new THREE.MeshStandardMaterial( {
+      metalness: 0.9,
+      roughness: 0.2,
+      color: brassColor,
+      envMap,
+      envMapIntensity: 1, // default is 1
+    } ),
 
-    silverLambert: new THREE.MeshLambertMaterial( { color: silverColor } ),
-    silverPhong: new THREE.MeshPhongMaterial( { color: silverColor } ),
-    silverStandard: new THREE.MeshStandardMaterial( { metalness: 0.9, roughness: 0.2, color: silverColor } ),
+    silver: new THREE.MeshStandardMaterial( {
+      metalness: 0.9,
+      roughness: 0.2,
+      color: silverColor,
+      envMap,
+      envMapIntensity: 1,
+    } ),
+
+    plinth: new THREE.MeshStandardMaterial( {
+      metalness: 0.25,
+      roughness: 0.25,
+      envMap,
+    } ),
 
   };
 
@@ -22,10 +36,6 @@ function initMaterial( scene ) {
     materials[ material ].color.convertSRGBToLinear();
 
   }
-
-  const envMaps = loadEnvMaps();
-
-  setupMaterialControls( materials, envMaps, scene );
 
   return materials;
 
