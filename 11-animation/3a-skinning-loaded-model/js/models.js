@@ -33,12 +33,14 @@ const onLoad = ( gltf, scene ) => {
 
   };
 
+  console.log( 'Finally, here are the AnimationClips that control the bones', gltf.animations )
+
   // this model has a whole bunch of animation clips
   // when played all together they combine into
   // a funky walk animation
-  gltf.animations.forEach( ( animation ) => {
+  gltf.animations.forEach( ( clip ) => {
 
-    const action = mixer.clipAction( animation );
+    const action = mixer.clipAction( clip );
     action.play();
 
   } );

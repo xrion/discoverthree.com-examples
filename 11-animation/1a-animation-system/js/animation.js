@@ -9,7 +9,17 @@ function initAnimation( object ) {
 
   // Other KeyframeTrack types: BooleanKeyframeTrack, StringKeyframeTrack
 
-  const clip = new THREE.AnimationClip( 'Action', 3, [ positionKF, scaleKF, quaternionKF, colorKF, opacityKF ] );
+  const clip = new THREE.AnimationClip(
+
+    // name the clip anything you like
+    'clipA',
+
+    // set the length, or enter -1 to use the length of the longest keyframe track
+    -1,
+
+    // an array containing any number of keyframe tracks
+    [ positionKF, scaleKF, quaternionKF, colorKF, opacityKF ],
+  );
 
   // setup the AnimationMixer
   const mixer = new THREE.AnimationMixer( object );

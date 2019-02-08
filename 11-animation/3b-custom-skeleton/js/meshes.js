@@ -1,15 +1,21 @@
+function addSkeletonToMesh( mesh ) {
+
+  const skeleton = createSkeleton();
+  const rootBone = skeleton.bones[ 0 ];
+  mesh.add( rootBone );
+
+  mesh.bind( skeleton );
+
+}
+
 function initMeshes( scene ) {
 
-  const geometry = setupGeometry();
+  const geometry = new THREE.CylinderBufferGeometry( 1, 1, 8, 8, 16 );
 
   const material = new THREE.MeshStandardMaterial( {
     color: 0x800080,
     skinning: true,
   } );
-
-  // remember to convert the color to linear so that it looks correct
-  // by the time it ends up on our screens!
-  material.color.convertSRGBToLinear();
 
   wireframeControl( [ material ] );
 
@@ -23,15 +29,5 @@ function initMeshes( scene ) {
   scene.add( helper );
 
   return mesh;
-
-}
-
-function addSkeletonToMesh( mesh ) {
-
-  const skeleton = createSkeleton();
-  const rootBone = skeleton.bones[ 0 ];
-  mesh.add( rootBone );
-
-  mesh.bind( skeleton );
 
 }
