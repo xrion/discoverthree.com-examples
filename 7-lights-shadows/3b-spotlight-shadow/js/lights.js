@@ -27,8 +27,8 @@ function initShadowLight( scene ) {
   spotLight.position.set( -12, 10, -12 );
 
   spotLight.castShadow = true;
-  spotLight.shadow.mapSize.width = 1024; // default
-  spotLight.shadow.mapSize.height = 1024; // default
+  spotLight.shadow.mapSize.width = 1024;
+  spotLight.shadow.mapSize.height = 1024;
   spotLight.shadow.camera.near = 10;
   spotLight.shadow.camera.far = 35;
 
