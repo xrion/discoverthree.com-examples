@@ -1,49 +1,44 @@
-// A reusable function to setup the models
-// assumes that the gltf file contains a single model
-// and up to one animation track
-const onLoad = ( gltf, scene, position ) => {
+function setupModel( gltf, position ) {
 
   const model = gltf.scene.children[ 0 ];
-
   model.position.copy( position );
 
-  if ( gltf.animations[ 0 ] ) {
+  const animation = gltf.animations[ 0 ];
 
-    const animation = gltf.animations[ 0 ];
-    const mixer = new THREE.AnimationMixer( model );
+  const mixer = new THREE.AnimationMixer( model );
 
-    // we'll check every object in the scene for
-    // this function and call it once per frame
-    model.userData.onUpdate = ( delta ) => {
+  model.userData.onUpdate = ( delta ) => {
 
-      mixer.update( delta );
+    mixer.update( delta );
 
-    };
+  };
 
-    const action = mixer.clipAction( animation );
-    action.play();
+  const action = mixer.clipAction( animation );
+  action.play();
 
-  }
+  return model;
 
-  scene.add( model );
+}
 
-};
+async function loadModels() {
 
-function loadModels( scene ) {
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
 
-  const loader = new THREE.GLTFLoader();
+  const parrot = setupModel(
+    await loader.load( 'models/Parrot.glb' ),
+    new THREE.Vector3( 0, 0, 2.5 ),
+  );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const flamingo = setupModel(
+    await loader.load( 'models/Flamingo.glb' ),
+    new THREE.Vector3( 7.5, 0, -10 ),
+  );
 
-  // load the first model. Each model is loaded asynchronously,
-  // so don't make any assumption about which one will finish loading first
-  const parrotPosition = new THREE.Vector3( 0, 0, 2.5 );
-  loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, scene, parrotPosition ), null, onError );
+  const stork = setupModel(
+    await loader.load( 'models/Stork.glb' ),
+    new THREE.Vector3( 0, -2.5, -10 ),
+  );
 
-  const flamingoPosition = new THREE.Vector3( 7.5, 0, -10 );
-  loader.load( 'models/Flamingo.glb', gltf => onLoad( gltf, scene, flamingoPosition ), null, onError );
-
-  const storkPosition = new THREE.Vector3( 0, -2.5, -10 );
-  loader.load( 'models/Stork.glb', gltf => onLoad( gltf, scene, storkPosition ), null, onError );
+  return { parrot, flamingo, stork };
 
 }
