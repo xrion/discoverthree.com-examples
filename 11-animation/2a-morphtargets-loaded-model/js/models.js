@@ -26,11 +26,6 @@ const onLoad = ( gltf, scene ) => {
 
   } );
 
-
-  // remember to convert the color to linear so that it looks correct
-  // by the time it ends up on our screens!
-  model.material.color.convertSRGBToLinear();
-
   initMorphControls( model );
 
   scene.add( model );

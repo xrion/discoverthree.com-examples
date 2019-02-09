@@ -4,7 +4,6 @@ function initMeshes( scene ) {
   const geometry = new THREE.BoxBufferGeometry( 3, 4, 3, 4, 4, 4 );
 
   const material = new THREE.MeshStandardMaterial( { color: 0x800080, side: THREE.DoubleSide } );
-  material.color.convertSRGBToLinear();
 
   const mesh = new THREE.Mesh( geometry, material );
 

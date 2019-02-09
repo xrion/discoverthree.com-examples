@@ -81,10 +81,6 @@ function initSpiral() {
   const geometry = new THREE.SphereBufferGeometry( 0.015, 12, 12 );
   const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
 
-  // remember to convert the color to linear so that it looks correct
-  // by the time it ends up on our screens!
-  material.color.convertSRGBToLinear();
-
   const sphere = new THREE.Mesh( geometry, material );
 
   for ( let i = -500; i < 500; i++ ) {

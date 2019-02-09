@@ -14,12 +14,6 @@ const onLoad = ( gltf, scene, sceneGUI ) => {
     morphTargets: true,
   } );
 
-  // remember to convert the color to linear so that it looks correct
-  // by the time it ends up on our screens!
-  modelGUI.material.color.convertSRGBToLinear();
-
-  // model.position.y = 2;
-
   if ( gltf.animations[ 0 ] ) {
 
     const animation = gltf.animations[ 0 ];

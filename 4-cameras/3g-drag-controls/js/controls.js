@@ -11,10 +11,6 @@ function setupControls( meshes, app ) {
 
   } );
 
-  // remember to convert the color to linear so that it looks correct
-  // by the time it ends up on our screens!
-  highlightMaterial.color.convertSRGBToLinear();
-
   const dragControls = new THREE.DragControls( meshes, app.camera, app.container );
 
   this.enabled = true;

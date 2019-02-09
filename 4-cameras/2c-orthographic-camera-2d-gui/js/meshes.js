@@ -6,10 +6,6 @@ function initGround( scene ) {
   // highlights, so we'll use this to give our ground a matte look
   const material = new THREE.MeshLambertMaterial( { color: 0x2E8B57 } );
 
-  // remember to convert the color to linear so that it looks correct
-  // by the time it ends up on our screens!
-  material.color.convertSRGBToLinear();
-
   const ground = new THREE.Mesh(
     geometry,
     material,

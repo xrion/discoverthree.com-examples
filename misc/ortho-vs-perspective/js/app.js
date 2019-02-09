@@ -65,10 +65,6 @@ function initBoxes() {
   const boxGeometry = new THREE.BoxBufferGeometry( 1, 1, 1 );
   const boxMaterial = new THREE.MeshStandardMaterial( { color: 0xffffff } );
 
-  // remember to convert the color to linear so that it looks correct
-  // by the time it ends up on our screens!
-  boxMaterial.color.convertSRGBToLinear();
-
   const box = new THREE.Mesh( boxGeometry, boxMaterial );
   box.position.set( 0, 0, 0 );
 

@@ -28,11 +28,6 @@ function initPoints( scene ) {
     sizeAttenuation: true,
   } );
 
-
-  // no need to do this for black or white materials,
-  // but let's keep the habit up anyway :)
-  material.color.convertSRGBToLinear();
-
   const points = new THREE.Points( geometry, material );
 
   const positions = points.geometry.attributes.position.array;
