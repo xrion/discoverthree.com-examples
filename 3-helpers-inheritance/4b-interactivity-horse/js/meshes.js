@@ -1,4 +1,4 @@
-function initGround( scene ) {
+function createMeshes() {
 
   const geometry = new THREE.PlaneBufferGeometry( 1000, 1000 );
 
@@ -13,8 +13,6 @@ function initGround( scene ) {
 
   ground.rotation.x = -Math.PI / 2;
 
-  scene.add( ground );
-
-  return ground;
+  return { ground };
 
 }

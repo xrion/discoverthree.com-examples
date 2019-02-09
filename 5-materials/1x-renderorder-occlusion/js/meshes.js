@@ -1,19 +1,14 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
   const geometry = new THREE.CircleBufferGeometry( 8, 128 );
   const material = new THREE.MeshBasicMaterial( { color: 0x800080 } );
 
-  // remember to convert the color to Linear space!
-  material.color.convertGammaToLinear( 2.2 );
+  const moon = new THREE.Mesh( geometry, material );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  moon.position.set( 0, 0, -15 );
 
-  mesh.position.set( 0, 0, -15 );
+  moon.renderOrder = 1;
 
-  mesh.renderOrder = 1;
-
-  scene.add( mesh );
-
-  return mesh;
+  return { moon };
 
 }

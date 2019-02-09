@@ -9,7 +9,8 @@ function initScene() {
 
   app.camera.position.set( 0, 0, 10 );
 
-  initPoints( app.scene );
+  const points = initPoints();
+  app.scene.add( points.sphere );
 
   app.start();
 

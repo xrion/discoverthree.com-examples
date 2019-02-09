@@ -1,4 +1,4 @@
-function initGround( scene ) {
+function createPlinth( scene ) {
 
   const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
 
@@ -7,13 +7,12 @@ function initGround( scene ) {
     roughness: 0.5,
   } );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const ground = new THREE.Mesh( geometry, material );
 
-  scene.add( mesh );
-
+  return ground;
 }
 
-function initBasePlane( scene ) {
+function createGround( scene ) {
 
   const geometry = new THREE.PlaneBufferGeometry( 1000, 1000 );
   geometry.rotateX( -Math.PI / 2 );
@@ -25,13 +24,13 @@ function initBasePlane( scene ) {
     metalness: 0,
   } );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const box = new THREE.Mesh( geometry, material );
 
   scene.add( mesh );
 
 }
 
-function initShapes( scene ) {
+function initShapes() {
 
   const torusKnotGeo = new THREE.TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
   const torusKnotMat = new THREE.MeshStandardMaterial( {
@@ -55,8 +54,6 @@ function initShapes( scene ) {
   const torusKnotRight = torusKnot.clone();
   torusKnotRight.position.set( -15, 6, 10 );
 
-  scene.add( torusKnot, torusKnotLeft, torusKnotRight );
-
   torusKnot.userData.onUpdate = ( delta ) => {
 
     torusKnot.rotation.y += delta / 2;
@@ -74,11 +71,13 @@ function initShapes( scene ) {
 
 }
 
-function createMeshes( scene ) {
+function createMeshes() {
 
-  initGround( scene );
-  initBasePlane( scene );
+  const plinth = createPlinth();
+  const ground = createGround();
 
-  return initShapes( scene );
+  const targets = initShapes();
+
+  return { plinth, ground, targets };
 
 }

@@ -8,7 +8,18 @@ function initScene() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 0, 0, 10 );
 
-  createMeshes( app.scene );
+  const meshes = createMeshes();
+  app.scene.add( meshes.cube, meshes.sphere );
+
+  // yellow lines represent "normals" of each face
+  // that is, the direction that is perpendicular to the face
+  app.scene.add( new THREE.FaceNormalsHelper( meshes.cube ) );
+
+  // Note that, even though the normals are defined per Face,
+  // when it comes to actually renderering the Geometry it gets
+  // converted to a BufferGeometry, and normals are calculated
+  // per Vertex instead
+  app.scene.add( new THREE.FaceNormalsHelper( meshes.sphere ) );
 
   app.start();
 

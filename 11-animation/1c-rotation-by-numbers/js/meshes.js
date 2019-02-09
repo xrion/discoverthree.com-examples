@@ -1,4 +1,4 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
   const torusKnotGeo = new THREE.TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
   const torusKnotMat = new THREE.MeshStandardMaterial( {
@@ -16,8 +16,6 @@ function createMeshes( scene ) {
 
   torusKnot.add( sphere );
 
-  scene.add( torusKnot );
-
-  return torusKnot;
+  return { torusKnot };
 
 }

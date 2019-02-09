@@ -1,4 +1,4 @@
-function initPoints( scene ) {
+function initPoints() {
 
   const textureLoader = new THREE.TextureLoader();
 
@@ -28,16 +28,14 @@ function initPoints( scene ) {
     sizeAttenuation: true,
   } );
 
-  const points = new THREE.Points( geometry, material );
+  const sphere = new THREE.Points( geometry, material );
 
-  points.userData.onUpdate = ( delta ) => {
+  sphere.userData.onUpdate = ( delta ) => {
 
-    points.rotation.y -= delta / 3;
+    sphere.rotation.y -= delta / 3;
 
   };
 
-  scene.add( points );
-
-  return points;
+  return { sphere };
 
 }

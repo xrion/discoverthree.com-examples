@@ -1,22 +1,21 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
-  // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 3, 4, 3, 4, 4, 4 );
 
   const material = new THREE.MeshStandardMaterial( { color: 0x800080, side: THREE.DoubleSide } );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const box = new THREE.Mesh( geometry, material );
 
-  mesh.position.y = 1;
+  box.position.y = 1;
 
-  scene.add( mesh );
+  box.userData.onUpdate = ( delta ) => {
 
-  mesh.userData.onUpdate = ( delta ) => {
-
-    mesh.rotation.y -= delta / 5;
+    box.rotation.y -= delta / 5;
 
   };
 
-  initWireframeToggle( mesh );
+  initWireframeToggle( box );
+
+  return { box };
 
 }

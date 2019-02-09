@@ -1,4 +1,4 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
   const geometry = new THREE.SphereBufferGeometry( 1, 16, 16 );
   const material = new THREE.MeshStandardMaterial( {
@@ -6,6 +6,8 @@ function createMeshes( scene ) {
   } );
 
   const protoMesh = new THREE.Mesh( geometry, material );
+
+  const spheresArray = [];
 
   for ( let i = 0; i < 100; i++ ) {
 
@@ -23,8 +25,10 @@ function createMeshes( scene ) {
 
     };
 
-    scene.add( mesh );
+    spheresArray.push( mesh );
 
   }
+
+  return { spheresArray };
 
 }

@@ -21,9 +21,11 @@ function initScene() {
 
   const appGUI = initGUI();
 
-  createLights( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
-  initGround( app.scene );
+  const meshes = createMeshes();
+  app.scene.add( meshes.ground );
 
   loadModels( app.scene, appGUI.scene );
 

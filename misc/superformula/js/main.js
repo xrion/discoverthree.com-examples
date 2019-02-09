@@ -8,8 +8,11 @@ function initScene() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 0, 0, 10 );
 
-  createLights( app.scene );
-  createMeshes( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
+
+  const meshes = createMeshes();
+  app.scene.add( meshes.super );
 
   app.start();
 

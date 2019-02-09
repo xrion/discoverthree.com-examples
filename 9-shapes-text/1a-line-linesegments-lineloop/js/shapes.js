@@ -1,4 +1,4 @@
-function initShapes( scene ) {
+function initShapes() {
 
   const geometry = new THREE.BufferGeometry();
 
@@ -42,8 +42,6 @@ function initShapes( scene ) {
 
   const lineLoop = new THREE.LineLoop( geometry, new THREE.LineBasicMaterial( { color: 0x000000 } ) );
   lineLoop.position.set( 0, -1.5, 0 );
-
-  scene.add( lineSegments, line, lineLoop );
 
   return { lineSegments, line, lineLoop };
 

@@ -11,7 +11,7 @@ function wireframeControl( material ) {
   } );
 }
 
-function createMeshes( scene ) {
+function createMeshes() {
 
   const geometry = createGeometry();
   const geometryIndexed = createGeometryIndexed();
@@ -19,18 +19,12 @@ function createMeshes( scene ) {
   const material = new THREE.MeshBasicMaterial( { wireframe: true } );
   wireframeControl( material );
 
-  const meshA = new THREE.Mesh( geometry, material );
-  meshA.position.x -= 2;
+  const leftQuad = new THREE.Mesh( geometry, material );
+  leftQuad.position.x -= 2;
 
-  const meshB = new THREE.Mesh( geometryIndexed, material );
-  meshB.position.x += 2;
+  const rightQuad = new THREE.Mesh( geometryIndexed, material );
+  rightQuad.position.x += 2;
 
-  scene.add( meshA, meshB );
-
-  // add a helper to show normals in the left square.
-  // red lines are normals
-  scene.add( new THREE.VertexNormalsHelper( meshA ) );
-
-  return { meshA, meshB };
+  return { leftQuad, rightQuad };
 
 }

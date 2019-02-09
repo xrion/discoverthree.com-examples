@@ -8,8 +8,11 @@ function initScene() {
 
   app.controls.target.y = 1;
 
-  createLights( app.scene );
-  createMeshes( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
+
+  const meshes = createMeshes();
+  app.scene.add( ...meshes.spheresArray );
 
   initCamera( app.camera );
 

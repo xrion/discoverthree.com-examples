@@ -8,7 +8,9 @@ function initScene() {
   app.camera.position.set( 4, 4, 8 );
 
   const shaderMaterial = createShaderMaterial();
-  createMeshes( app.scene, shaderMaterial );
+
+  const meshes = createMeshes( shaderMaterial );
+  app.scene.add( meshes.box );
 
   app.start();
 

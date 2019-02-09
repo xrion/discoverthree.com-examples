@@ -11,7 +11,8 @@ function initScene() {
 
   setupRenderer( app.renderer );
 
-  createMeshes( app.scene );
+    const meshes = createMeshes();
+  app.scene.add( meshes.meshA );
   loadModels( app.scene );
 
 

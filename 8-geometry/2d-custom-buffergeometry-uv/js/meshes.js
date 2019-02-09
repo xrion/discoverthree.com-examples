@@ -11,7 +11,7 @@ function wireframeControl( material ) {
   } );
 }
 
-function createMeshes( scene ) {
+function createMeshes() {
 
   const geometry = createGeometry();
   const geometryIndexed = createGeometryIndexed();
@@ -23,14 +23,12 @@ function createMeshes( scene ) {
 
   wireframeControl( material );
 
-  const meshA = new THREE.Mesh( geometry, material );
-  meshA.position.x -= 2;
+  const leftQuad = new THREE.Mesh( geometry, material );
+  leftQuad.position.x -= 2;
 
-  const meshB = new THREE.Mesh( geometryIndexed, material );
-  meshB.position.x += 2;
+  const rightQuad = new THREE.Mesh( geometryIndexed, material );
+  rightQuad.position.x += 2;
 
-  scene.add( meshA, meshB );
-
-  return { meshA, meshB };
+  return { leftQuad, rightQuad };
 
 }

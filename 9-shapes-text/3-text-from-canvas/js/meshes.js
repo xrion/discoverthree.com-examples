@@ -1,4 +1,4 @@
-function createMeshes( scene, canvasTexture ) {
+function createMeshes( canvasTexture ) {
 
   const material = new THREE.MeshStandardMaterial( {
     map: canvasTexture,
@@ -12,6 +12,6 @@ function createMeshes( scene, canvasTexture ) {
   const sphereMesh = new THREE.Mesh( sphereGeo, material );
   sphereMesh.position.x -= 1.25;
 
-  scene.add( boxMesh, sphereMesh );
+  return { boxMesh, sphereMesh };
 
 }

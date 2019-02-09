@@ -22,9 +22,9 @@ function createTextMesh( font ) {
 
   const material = new THREE.MeshBasicMaterial();
 
-  const mesh = new THREE.Mesh( textGeometry, material );
+  const text = new THREE.Mesh( textGeometry, material );
 
-  return mesh;
+  return { text };
 
 }
 

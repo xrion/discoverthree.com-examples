@@ -11,17 +11,15 @@ function wireframeControl( material ) {
   } );
 }
 
-function createMeshes( scene ) {
+function createMeshes() {
 
   const geometry = createGeometry();
 
   const material = new THREE.MeshBasicMaterial( { wireframe: true } );
   wireframeControl( material );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const box = new THREE.Mesh( geometry, material );
 
-  scene.add( mesh );
-
-  return mesh;
+  return { box };
 
 }

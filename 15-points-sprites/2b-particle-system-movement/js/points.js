@@ -1,4 +1,4 @@
-function initPoints( scene ) {
+function initPoints() {
 
   const textureLoader = new THREE.TextureLoader();
 
@@ -28,19 +28,19 @@ function initPoints( scene ) {
     sizeAttenuation: true,
   } );
 
-  const points = new THREE.Points( geometry, material );
+  const sphere = new THREE.Points( geometry, material );
 
-  const positions = points.geometry.attributes.position.array;
+  const positions = sphere.geometry.attributes.position.array;
 
   const originalPositions = positions.slice();
 
   let elapsedTime = 0;
 
-  points.userData.onUpdate = ( delta ) => {
+  sphere.userData.onUpdate = ( delta ) => {
 
     elapsedTime += delta;
 
-    points.rotation.y -= delta / 3;
+    sphere.rotation.y -= delta / 3;
 
     for ( let i = 0; i < positions.length; i += 3 ) {
 
@@ -49,12 +49,10 @@ function initPoints( scene ) {
 
     }
 
-    points.geometry.attributes.position.needsUpdate = true;
+    sphere.geometry.attributes.position.needsUpdate = true;
 
   };
 
-  scene.add( points );
-
-  return points;
+  return { points };
 
 }

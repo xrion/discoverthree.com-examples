@@ -19,9 +19,11 @@ function initScene() {
   // them to control our horse
   app.controls.enableKeys = false;
 
-  createLights( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
-  initGround( app.scene );
+  const meshes = createMeshes();
+  app.scene.add( meshes.box );
 
   loadModels( app.scene );
 

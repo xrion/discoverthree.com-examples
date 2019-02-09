@@ -10,8 +10,13 @@ function initScene() {
   app.camera.position.set( -20, 10, 30 );
 
   setupRenderer( app.renderer );
-  createLights( app.scene );
-  createMeshes( app.scene );
+
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
+
+  const meshes = createMeshes();
+  app.scene.add( meshes.plinth, meshes.ground );
+
   loadModels( app.scene );
 
 

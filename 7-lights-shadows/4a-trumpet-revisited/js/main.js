@@ -8,14 +8,17 @@ function initScene() {
 
   app.camera.position.set( 2, 1, 1.5 );
 
-  createLights( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
   const envMap = loadEnvironments();
   const materials = initMaterials( app.scene, envMap );
 
   app.scene.background = envMap;
 
-  createMeshes( app.scene, materials );
+  const meshes = createMeshes();
+  app.scene.add( meshes.plinth );
+
   loadModels( app.scene, materials );
 
 

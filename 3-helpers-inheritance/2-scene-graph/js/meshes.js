@@ -1,4 +1,4 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
   // create a geometry and material
   const geometry = new THREE.BoxBufferGeometry( 0.5, 0.5, 0.5 );
@@ -60,6 +60,6 @@ function createMeshes( scene ) {
 
   } );
 
-  scene.add( meshA );
+  return { meshA };
 
 }

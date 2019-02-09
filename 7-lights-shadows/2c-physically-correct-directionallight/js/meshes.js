@@ -1,4 +1,4 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
   initGround( scene );
   initBasePlane( scene );
@@ -15,7 +15,7 @@ function initGround( scene ) {
     roughness: 0.5,
   } );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const box = new THREE.Mesh( geometry, material );
 
   scene.add( mesh );
 
@@ -33,7 +33,7 @@ function initBasePlane( scene ) {
     metalness: 0,
   } );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const box = new THREE.Mesh( geometry, material );
 
   scene.add( mesh );
 

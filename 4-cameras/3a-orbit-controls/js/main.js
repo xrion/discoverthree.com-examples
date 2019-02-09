@@ -10,13 +10,15 @@ function initScene() {
 
   setupControls( app );
 
-  createLights( app.scene );
-  createMeshes( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
+
+  const meshes = createMeshes();
+  app.scene.add( meshes.plinth, meshes.shapes );
+
   loadModels( app.scene );
 
-
   app.start();
-
 
 }
 

@@ -14,8 +14,12 @@ function initScene() {
   // for fly controls we need to target the camera manually
   // app.camera.lookAt( 0, 0, 0 );
 
-  createLights( app.scene );
-  createMeshes( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
+
+  const meshes = createMeshes();
+  app.scene.add( meshes.plinth, meshes.shapes );
+
   loadModels( app.scene );
 
   app.start();

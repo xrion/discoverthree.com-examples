@@ -21,12 +21,12 @@ function initScene() {
   app.init();
 
   app.camera.position.set( -20, 0, -20 );
-  // app.camera.far = 100;
-  // app.camera.updateProjectionMatrix();
 
-  createLights( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
-  initSprites( app.scene );
+  const sprites = initSprites();
+  app.scene.add( sprite.leaves );
 
   app.start();
 

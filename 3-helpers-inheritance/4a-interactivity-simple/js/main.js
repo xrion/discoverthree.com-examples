@@ -12,14 +12,17 @@ function initScene() {
   // them to control our horse
   app.controls.enableKeys = false;
 
-  createLights( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
-  const mesh = createMeshes( app.scene );
+  const meshes = createMeshes();
+  app.scene.add( meshes.box );
+
   const helper = createArrowHelper();
 
-  mesh.add( helper )
+  meshes.box.add( helper )
 
-  initControls( mesh );
+  initControls( meshes.box );
 
   app.start();
 

@@ -1,15 +1,14 @@
-function initSprites( scene ) {
+function initSprites() {
 
-  const spriteGroup = new THREE.Group();
-  scene.add( spriteGroup );
+  const leaves = new THREE.Group();
 
   // we'll create a group to hold all the sprites, and
   // then set that to rotating to give a swirling wind effect
-  spriteGroup.userData.onUpdate = ( delta ) => {
+  leaves.userData.onUpdate = ( delta ) => {
 
-    spriteGroup.rotation.x += delta / 10;
-    spriteGroup.rotation.y += delta;
-    spriteGroup.rotation.z -= delta / 10;
+    leaves.rotation.x += delta / 10;
+    leaves.rotation.y += delta;
+    leaves.rotation.z -= delta / 10;
 
   };
 
@@ -43,8 +42,10 @@ function initSprites( scene ) {
 
     };
 
-    spriteGroup.add( sprite );
+    leaves.add( sprite );
 
   }
+
+  return { leaves };
 
 }

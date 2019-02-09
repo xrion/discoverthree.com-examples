@@ -10,7 +10,8 @@ function initScene() {
 
   app.controls.target.y = 0.75;
 
-  createLights( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
   loadModels( app.scene );
 

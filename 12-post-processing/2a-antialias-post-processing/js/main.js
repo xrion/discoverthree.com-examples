@@ -66,8 +66,12 @@ function initScene() {
 
   window.addEventListener( 'resize', onResize );
 
-  createLights( app.scene );
-  createMeshes( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
+
+  const meshes = createMeshes();
+  app.scene.add( meshes.box );
+
   loadModels( app.scene );
 
   app.start();

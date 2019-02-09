@@ -6,18 +6,17 @@ function initScene() {
 
   app.camera.position.set( 2, 1, 1.5 );
 
-  // prevent the controls from zooming so far that the camera
-  // is inside the model
-  app.controls.minDistance = 1.75;
-
-  createLights( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
   const envMap = loadEnvironments();
   const materials = initMaterials( app.scene, envMap );
 
   app.scene.background = envMap;
 
-  createMeshes( app.scene, materials );
+  const meshes = createMeshes( materials );
+  app.scene.add( meshes.plinth );
+
   loadModels( app.scene, materials );
 
   initEnvMapControls( materials, envMap );

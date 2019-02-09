@@ -28,8 +28,12 @@ function initScene() {
   // call onResize once to set up the sizes
   app.onResize();
 
-  createLights( app.scene );
-  createMeshes( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
+
+  const meshes = createMeshes();
+  app.scene.add( meshes.box );
+
   loadModels( app.scene );
 
   // overwrite the app's default render function to use the

@@ -1,13 +1,13 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
-  const cube = initCube( scene );
-  const sphere = initSphere( scene );
+  const cube = initCube();
+  const sphere = initSphere();
 
   return { cube, sphere };
 
 }
 
-function initCube( scene ) {
+function initCube() {
 
   const geometry = new THREE.BoxGeometry( 2, 2, 2 );
 
@@ -16,11 +16,6 @@ function initCube( scene ) {
   const cube = new THREE.Mesh( geometry, material );
   cube.position.x = -2;
 
-  scene.add( cube );
-
-  // yellow lines represent "normals" of each face
-  // that is, the direction that is perpendicular to the face
-  scene.add( new THREE.FaceNormalsHelper( cube ) );
 
   console.log( 'Here\'s the cube geometry you just created: ', geometry );
 
@@ -28,7 +23,7 @@ function initCube( scene ) {
 
 }
 
-function initSphere( scene ) {
+function initSphere() {
 
   const geometry = new THREE.SphereGeometry( 1, 8, 8 );
 
@@ -41,14 +36,6 @@ function initSphere( scene ) {
   const material = new THREE.MeshBasicMaterial( { color: 0x800080, wireframe: true } );
 
   const sphere = new THREE.Mesh( geometry, material );
-
-  scene.add( sphere );
-
-  // Note that, even though the normals are defined per Face,
-  // when it comes to actually renderering the Geometry it gets
-  // converted to a BufferGeometry, and normals are calculated
-  // per Vertex instead
-  scene.add( new THREE.FaceNormalsHelper( sphere ) );
 
   console.log( '...and here\'s the sphere geometry you just created: ', geometry );
 

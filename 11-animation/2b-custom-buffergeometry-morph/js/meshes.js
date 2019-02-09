@@ -1,4 +1,4 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
   const geometry = createGeometry();
   const geometryIndexed = createGeometryIndexed();
@@ -18,16 +18,12 @@ function createMeshes( scene ) {
 
   wireframeControl( [ materialA, materialB ] );
 
-  const meshA = new THREE.Mesh( geometry, materialA );
-  meshA.position.x -= 2;
+  const leftQuad = new THREE.Mesh( geometry, materialA );
+  leftQuad.position.x -= 2;
 
-  const meshB = new THREE.Mesh( geometryIndexed, materialB );
-  meshB.position.x += 2;
+  const rightQuad = new THREE.Mesh( geometryIndexed, materialB );
+  rightQuad.position.x += 2;
 
-  scene.add( meshA, meshB );
-
-  console.log( meshA, meshB );
-
-  return { meshA, meshB };
+  return { leftQuad, rightQuad };
 
 }

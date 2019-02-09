@@ -25,8 +25,11 @@ function initScene() {
 
   };
 
-  createLights( app.scene );
-  createMeshes( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
+
+  const meshes = createMeshes();
+  app.scene.add( meshes.box );
 
   // overwrite the app's default render function to use the
   // EffectComposer instead

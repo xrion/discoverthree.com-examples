@@ -21,8 +21,14 @@ function initScene() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 3, 5, 6 );
 
-  createLights( app.scene, sceneRT );
-  createMeshes( app.scene, sceneRT, target );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
+
+  sceneRT.add( lights.ambient.clone(), lights.main.clone() );
+
+  const meshes = createMeshes( target.texture );
+  app.scene.add( meshes.box );
+  sceneRT.add( meshes.torusKnot );
 
   function renderToTarget( rt ) {
 
@@ -39,8 +45,6 @@ function initScene() {
     app.renderer.render( app.scene, app.camera );
 
   };
-
-  app.start();
 
 }
 

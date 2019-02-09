@@ -1,11 +1,13 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
-  initGround( scene );
-  initShapes( scene );
+  const plinth = createPlinth();
+  const shapes = createShapes();
+
+  return { plinth, shapes };
 
 }
 
-function initGround( scene ) {
+function createPlinth() {
 
   const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
 
@@ -14,13 +16,13 @@ function initGround( scene ) {
     roughness: 0.8,
   } );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const plinth = new THREE.Mesh( geometry, material );
 
-  scene.add( mesh );
+  return plinth;
 
 }
 
-function initShapes( scene ) {
+function createShapes() {
 
   const torusKnotGeo = new THREE.TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
   const torusKnotMat = new THREE.MeshStandardMaterial( {
@@ -38,16 +40,13 @@ function initShapes( scene ) {
 
   torusKnot.add( sphere );
 
-  // we've removed animation from the objects
-  // in the scene, since this type of render control
-  // is only suitable for static scenes
-  // torusKnot.userData.onUpdate = ( delta ) => {
+  torusKnot.userData.onUpdate = ( delta ) => {
 
-  //   torusKnot.rotation.y += delta / 2;
-  //   torusKnot.rotation.z -= delta / 4;
+    torusKnot.rotation.y += delta / 2;
+    torusKnot.rotation.z -= delta / 4;
 
-  // };
+  };
 
-  scene.add( torusKnot );
+  return torusKnot;
 
 }

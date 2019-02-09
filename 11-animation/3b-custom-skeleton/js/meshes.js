@@ -8,7 +8,7 @@ function addSkeletonToMesh( mesh ) {
 
 }
 
-function createMeshes( scene ) {
+function createMeshes() {
 
   const geometry = new THREE.CylinderBufferGeometry( 1, 1, 8, 8, 16 );
 
@@ -28,6 +28,6 @@ function createMeshes( scene ) {
   const helper = new THREE.SkeletonHelper( mesh );
   scene.add( helper );
 
-  return mesh;
+  return { box };
 
 }

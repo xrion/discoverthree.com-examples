@@ -1,13 +1,11 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
   const geometry = createGeometry( 2, 1 );
   const material = new THREE.MeshStandardMaterial( { color: 0x800080, side: THREE.DoubleSide } );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const super = new THREE.Mesh( geometry, material );
 
-  scene.add( mesh );
-
-  return mesh;
+  return { super };
 
 }
 

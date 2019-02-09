@@ -8,7 +8,7 @@ function initGroundShadow( scene ) {
   } );
 
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const box = new THREE.Mesh( geometry, material );
 
   mesh.rotation.x = - Math.PI / 2; // -90 degrees around x axis
 
@@ -19,6 +19,6 @@ function initGroundShadow( scene ) {
 
   scene.add( mesh );
 
-  return mesh;
+  return { box };
 
 }

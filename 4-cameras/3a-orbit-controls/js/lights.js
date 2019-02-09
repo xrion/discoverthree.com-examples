@@ -1,20 +1,10 @@
-function createLights( scene ) {
+function createLights() {
 
-  const ambientLight = new THREE.HemisphereLight( 0xffffff, 0x555555, 1 );
+  const ambient = new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 5 );
 
-  const mainLight = new THREE.SpotLight(
-    0xffffff, // color
-    1, // intensity,
-    35, // distance
-    Math.PI / 6,
-    0.9, // exponent,
-    0.5, // decay
-  );
+  const main = new THREE.DirectionalLight( 0xfffffc, 15 );
+  main.position.set( 0, 1, -10 );
 
-  mainLight.position.set( -12, 10, -12 );
-
-  scene.add( ambientLight, mainLight );
-
-  return { ambientLight, mainLight };
+  return { ambient, main };
 
 }

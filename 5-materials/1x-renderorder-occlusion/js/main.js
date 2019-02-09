@@ -7,7 +7,9 @@ function initScene() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 0, 0, 20 );
 
-  createMeshes( app.scene );
+  const meshes = createMeshes();
+  app.scene.add( meshes.moon );
+
   loadModels( app.scene );
 
   app.start();

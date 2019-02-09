@@ -7,7 +7,8 @@ function initScene() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( -2.5, 2.5, 6 );
 
-  initShapes( app.scene );
+  const shapes = initShapes();
+  app.scene.add( shapes.square );
 
   app.start();
 

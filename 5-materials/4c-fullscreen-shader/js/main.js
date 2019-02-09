@@ -7,11 +7,13 @@ function initScene() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 4, 4, 8 );
 
-  const plane = createMeshes( app.scene );
-  const rawShaderMaterial = createShaderMaterial();
-  plane.material = rawShaderMaterial;
+  const meshes = createMeshes();
+  app.scene.add( meshes.plane );
 
-  plane.userData.onUpdate = ( delta ) => {
+  const rawShaderMaterial = createShaderMaterial();
+  meshes.plane.material = rawShaderMaterial;
+
+  meshes.plane.userData.onUpdate = ( delta ) => {
 
     rawShaderMaterial.uniforms.time.value += delta;
 

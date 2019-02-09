@@ -9,10 +9,14 @@ function initScene() {
   app.camera.position.set( -20, 30, 30 );
 
   setupRenderer( app.renderer );
-  createLights( app.scene );
-  createMeshes( app.scene );
-  loadModels( app.scene );
 
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
+
+  const meshes = createMeshes();
+  app.scene.add( meshes.plinth, meshes.shapes );
+
+  loadModels( app.scene );
 
   app.start();
 }

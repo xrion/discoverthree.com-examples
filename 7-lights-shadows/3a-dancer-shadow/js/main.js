@@ -14,7 +14,8 @@ function initScene() {
 
   setupRenderer( app.renderer );
 
-  const lights = createLights( app.scene );
+  const lights = const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
   const textures = initTextures();
   createMeshes( app.scene, textures );

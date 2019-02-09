@@ -1,12 +1,10 @@
-function createMeshes( scene ) {
+function createMeshes() {
 
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const box = new THREE.Mesh( geometry, material );
 
-  scene.add( mesh );
-
-  return mesh;
+  return { box };
 
 }

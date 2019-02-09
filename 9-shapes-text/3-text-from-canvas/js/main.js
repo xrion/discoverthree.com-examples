@@ -7,11 +7,13 @@ function initScene() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 4, 4, 8 );
 
-   createLights( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
   const texture = initCanvasTexture();
 
-  createMeshes( app.scene, texture );
+  const meshes = createMeshes( texture );
+  app.scene.add( meshes.box, meshes.sphere );
 
   app.start();
 

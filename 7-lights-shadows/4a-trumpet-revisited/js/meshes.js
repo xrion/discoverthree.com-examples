@@ -1,18 +1,18 @@
-function createMeshes( scene, materials ) {
-
-  initPlinth( scene, materials );
-
-}
-
-function initPlinth( scene, materials ) {
+function createPlinth( materials ) {
 
   const geometry = new THREE.CylinderBufferGeometry( 1, 0.5, 1, 64, 1 );
 
-  const mesh = new THREE.Mesh( geometry, materials.plinth );
-  mesh.position.y = -0.5;
+  const plinth = new THREE.Mesh( geometry, materials.plinth );
+  plinth.position.y = -0.5;
 
-  mesh.receiveShadow = true;
+  return plinth;
 
-  scene.add( mesh );
+}
+
+function createMeshes( materials ) {
+
+  const plinth = createPlinth( materials );
+
+  return { plinth };
 
 }

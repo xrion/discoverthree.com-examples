@@ -12,7 +12,7 @@ function initWall( scene, textures ) {
 
   const geometry = new THREE.PlaneBufferGeometry( 10, 45 );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const box = new THREE.Mesh( geometry, material );
 
   mesh.rotation.z += Math.PI / 2;
 

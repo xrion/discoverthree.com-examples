@@ -7,10 +7,11 @@ function initScene() {
 
   app.camera.position.set( 0, 0, 10 );
 
-  const meshes = createMeshes( app.scene );
+  const meshes = createMeshes();
+  app.scene.add( meshes.leftQuad, meshes.rightQuad );
 
-  leftMorphControl( meshes.meshA );
-  rightMorphControl( meshes.meshB );
+  leftMorphControl( meshes.leftQuad );
+  rightMorphControl( meshes.rightQuad );
 
   app.start();
 

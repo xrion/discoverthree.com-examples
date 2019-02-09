@@ -10,15 +10,18 @@ function initScene() {
 
   setupRenderer( app.renderer );
 
-  createLights( app.scene );
-  createMeshes( app.scene );
 
-  const groundShadow = initGroundShadow( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
-  initMaterialControl( groundShadow.material )
+  const meshes = createMeshes();
+  app.scene.add( meshes.plinth, meshes.shapes );
 
   loadModels( app.scene );
 
+  const groundShadow = initGroundShadow( app.scene );
+
+  initMaterialControl( groundShadow.material );
 
   app.start();
 }

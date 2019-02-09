@@ -1,4 +1,4 @@
-function initShapes( scene ) {
+function initShapes() {
 
   const geometry = new THREE.BufferGeometry();
 
@@ -27,8 +27,6 @@ function initShapes( scene ) {
 
   // this is required for LineDashedMaterial to work
   square.computeLineDistances();
-
-  scene.add( square );
 
   return { square };
 

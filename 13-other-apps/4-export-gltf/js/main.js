@@ -7,13 +7,15 @@ function initScene() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 3, 2, 15 );
 
-  createLights( app.scene );
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
-  const mesh = createMeshes( app.scene );
+  const meshes = createMeshes();
+  app.scene.add( meshes.torusKnot );
 
-  const clips = initAnimation( mesh );
+  const clips = initAnimation( meshes.torusKnot );
 
-  setupExportControl( mesh, clips );
+  setupExportControl( meshes.torusKnot, clips );
 
   app.start();
 

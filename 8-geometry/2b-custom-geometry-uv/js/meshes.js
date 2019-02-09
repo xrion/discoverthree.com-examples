@@ -11,7 +11,7 @@ function wireframeControl( material ) {
   } );
 }
 
-function createMeshes( scene ) {
+function createMeshes() {
 
   const geometry = createGeometry();
 
@@ -21,10 +21,8 @@ function createMeshes( scene ) {
   const material = new THREE.MeshBasicMaterial( { map, wireframe: false } );
   wireframeControl( material );
 
-  const mesh = new THREE.Mesh( geometry, material );
+  const box = new THREE.Mesh( geometry, material );
 
-  scene.add( mesh );
-
-  return mesh;
+  return { box };
 
 }
