@@ -26,7 +26,7 @@ let renderer;
 let spiral;
 
 // The init function will do all of the heavy lifting to create and animate the scene
-function init() {
+function initScene() {
 
   container = document.querySelector( '#container' );
 
@@ -137,4 +137,4 @@ function onWindowResize() {
 // add an event listener to the window which will fire when it changes size
 window.addEventListener( 'resize', onWindowResize );
 
-init();
+initScene();

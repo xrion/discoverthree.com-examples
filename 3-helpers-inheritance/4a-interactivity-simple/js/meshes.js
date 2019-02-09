@@ -1,4 +1,4 @@
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );

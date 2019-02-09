@@ -12,13 +12,16 @@ async function initScene() {
   app.controls.autoRotate = true;
   app.controls.autoRotateSpeed = -0.2;
 
+  // we'll start the app first, then add things to our scene
+  // this means that the blue background will show immediately,
+  // otherwise we will stare at a black screen while things are loading
+  app.start();
+
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
   const models = await loadModels();
   app.scene.add( models.rhino );
-
-  app.start();
 
 }
 

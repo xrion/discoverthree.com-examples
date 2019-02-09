@@ -1,4 +1,4 @@
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   initGround( scene );
   initBasePlane( scene );

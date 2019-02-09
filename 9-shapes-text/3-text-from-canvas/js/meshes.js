@@ -1,4 +1,4 @@
-function initMeshes( scene, canvasTexture ) {
+function createMeshes( scene, canvasTexture ) {
 
   const material = new THREE.MeshStandardMaterial( {
     map: canvasTexture,

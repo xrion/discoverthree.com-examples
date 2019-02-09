@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -30,8 +30,8 @@ function init() {
   // call onResize once to set up the sizes
   app.onResize();
 
-  initLights( app.scene );
-  initMeshes( app.scene );
+  createLights( app.scene );
+  createMeshes( app.scene );
   loadModels( app.scene );
 
   // overwrite the app's default render function to use the
@@ -47,4 +47,4 @@ function init() {
 
 }
 
-init();
+initScene();

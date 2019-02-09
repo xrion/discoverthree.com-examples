@@ -1,4 +1,4 @@
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   const geometry = createGeometry( 2, 1 );
   const material = new THREE.MeshStandardMaterial( { color: 0x800080, side: THREE.DoubleSide } );

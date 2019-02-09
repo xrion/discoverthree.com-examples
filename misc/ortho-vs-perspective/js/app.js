@@ -15,14 +15,14 @@ const button = document.querySelector( '#switch-camera' );
 const container = document.querySelector( '#container' );
 
 // The init function will do all of the heavy lifting to create and animate the scene
-function init() {
+function initScene() {
 
   // Create the Scene
   scene = new THREE.Scene();
 
   initCameras();
 
-  initLights();
+  createLights();
 
   initBoxes();
 
@@ -46,7 +46,7 @@ function init() {
 
 }
 
-function initLights() {
+function createLights() {
 
   // create a global illumination light
   const ambientLight = new THREE.AmbientLight( 0xffffff, 1.0 );
@@ -148,4 +148,4 @@ function switchCamera() {
 
 button.addEventListener( 'click', switchCamera );
 
-init();
+initScene();

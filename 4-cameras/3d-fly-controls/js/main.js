@@ -1,5 +1,5 @@
 
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -14,11 +14,11 @@ function init() {
   // for fly controls we need to target the camera manually
   // app.camera.lookAt( 0, 0, 0 );
 
-  initLights( app.scene );
-  initMeshes( app.scene );
+  createLights( app.scene );
+  createMeshes( app.scene );
   loadModels( app.scene );
 
   app.start();
 }
 
-init();
+initScene();

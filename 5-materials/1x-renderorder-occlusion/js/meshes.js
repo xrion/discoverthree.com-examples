@@ -1,4 +1,4 @@
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   const geometry = new THREE.CircleBufferGeometry( 8, 128 );
   const material = new THREE.MeshBasicMaterial( { color: 0x800080 } );

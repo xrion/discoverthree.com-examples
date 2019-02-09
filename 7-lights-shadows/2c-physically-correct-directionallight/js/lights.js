@@ -1,4 +1,4 @@
-function initLights( scene ) {
+function createLights( scene ) {
 
   const ambientLight = initAmbientLight( scene );
 

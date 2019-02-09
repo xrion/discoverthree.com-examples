@@ -22,7 +22,7 @@ class App {
 
     this.initCamera();
     this.initControls();
-    this.initLights();
+    this.createLights();
     this.loadModels();
     this.initRenderer();
 
@@ -43,7 +43,7 @@ class App {
 
   }
 
-  initLights() {
+  createLights() {
 
     const ambient = new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 2 );
 

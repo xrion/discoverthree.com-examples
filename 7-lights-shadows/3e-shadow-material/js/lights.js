@@ -1,4 +1,4 @@
-function initLights( scene ) {
+function createLights( scene ) {
 
   const ambientLight = new THREE.HemisphereLight( 0xcccccc, 0x555555, 0.75 );
 

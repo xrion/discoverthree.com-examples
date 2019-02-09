@@ -1,4 +1,4 @@
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   const cube = initCube( scene );
   const sphere = initSphere( scene );

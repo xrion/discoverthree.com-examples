@@ -1,6 +1,6 @@
 const app = new THREE_APP( '#container' );
 
-function init() {
+function initScene() {
 
   app.init();
 
@@ -8,10 +8,10 @@ function init() {
   app.camera.position.set( 4, 4, 8 );
 
   const shaderMaterial = createShaderMaterial();
-  initMeshes( app.scene, shaderMaterial );
+  createMeshes( app.scene, shaderMaterial );
 
   app.start();
 
 }
 
-init();
+initScene();

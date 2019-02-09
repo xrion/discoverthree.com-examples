@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -7,9 +7,9 @@ function init() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 3, 2, 15 );
 
-  initLights( app.scene );
+  createLights( app.scene );
 
-  const mesh = initMeshes( app.scene );
+  const mesh = createMeshes( app.scene );
 
   initAnimation( mesh );
 
@@ -17,4 +17,4 @@ function init() {
 
 }
 
-init();
+initScene();

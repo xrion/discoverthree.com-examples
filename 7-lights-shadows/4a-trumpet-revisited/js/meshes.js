@@ -1,4 +1,4 @@
-function initMeshes( scene, materials ) {
+function createMeshes( scene, materials ) {
 
   initPlinth( scene, materials );
 

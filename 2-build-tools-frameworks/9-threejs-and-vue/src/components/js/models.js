@@ -3,47 +3,51 @@ import {
   Vector3,
 } from 'three';
 
+import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
+
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
-const onLoad = (gltf, scene, position) => {
+function setupModel( gltf, position ) {
 
-  const model = gltf.scene.children[0];
+  const model = gltf.scene.children[ 0 ];
+  model.position.copy( position );
 
-  model.position.copy(position);
+  const animation = gltf.animations[ 0 ];
 
-  if (gltf.animations[0]) {
+  const mixer = new AnimationMixer( model );
 
-    const animation = gltf.animations[0];
-    const mixer = new AnimationMixer(model);
+  model.userData.onUpdate = ( delta ) => {
 
-    model.userData.onUpdate = (delta) => {
+    mixer.update( delta );
 
-      mixer.update(delta);
+  };
 
-    };
+  const action = mixer.clipAction( animation );
+  action.play();
 
-    const action = mixer.clipAction(animation);
-    action.play();
+  return model;
 
-  }
+}
 
-  scene.add(model);
+export default async function loadModels() {
 
-};
+  const loader = createAsyncLoader( new GLTFLoader() );
 
-export default function loadModels(scene) {
+  const parrot = setupModel(
+    await loader.load( 'static/models/Parrot.glb' ),
+    new Vector3( 0, 0, 2.5 ),
+  );
 
-  const loader = new GLTFLoader();
+  const flamingo = setupModel(
+    await loader.load( 'static/models/Flamingo.glb' ),
+    new Vector3( 7.5, 0, -10 ),
+  );
 
-  const onError = (errorMessage) => { console.log(errorMessage); };
+  const stork = setupModel(
+    await loader.load( 'static/models/Stork.glb' ),
+    new Vector3( 0, -2.5, -10 ),
+  );
 
-  const parrotPosition = new Vector3(0, 0, 2.5);
-  loader.load('static/models/Parrot.glb', gltf => onLoad(gltf, scene, parrotPosition), null, onError);
-
-  const flamingoPosition = new Vector3(7.5, 0, -10);
-  loader.load('static/models/Flamingo.glb', gltf => onLoad(gltf, scene, flamingoPosition), null, onError);
-
-  const storkPosition = new Vector3(0, -2.5, -10);
-  loader.load('static/models/Stork.glb', gltf => onLoad(gltf, scene, storkPosition), null, onError);
+  return { parrot, flamingo, stork };
 
 }

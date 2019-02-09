@@ -1,4 +1,4 @@
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   const geometry = new THREE.SphereBufferGeometry( 20, 16, 16 );
   const material = new THREE.MeshStandardMaterial( {

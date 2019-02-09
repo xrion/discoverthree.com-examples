@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -21,7 +21,7 @@ function init() {
 
   const appGUI = initGUI();
 
-  initLights( app.scene );
+  createLights( app.scene );
 
   initGround( app.scene );
 
@@ -31,4 +31,4 @@ function init() {
 
 }
 
-init();
+initScene();

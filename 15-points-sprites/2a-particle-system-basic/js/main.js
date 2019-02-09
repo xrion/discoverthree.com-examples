@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -15,4 +15,4 @@ function init() {
 
 }
 
-init();
+initScene();

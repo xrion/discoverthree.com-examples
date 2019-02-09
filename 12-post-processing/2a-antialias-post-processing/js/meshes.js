@@ -1,4 +1,4 @@
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 3, 4, 3, 4, 4, 4 );

@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -8,8 +8,8 @@ function init() {
 
   app.controls.target.y = 1;
 
-  initLights( app.scene );
-  initMeshes( app.scene );
+  createLights( app.scene );
+  createMeshes( app.scene );
 
   initCamera( app );
 
@@ -17,4 +17,4 @@ function init() {
 
 }
 
-init();
+initScene();

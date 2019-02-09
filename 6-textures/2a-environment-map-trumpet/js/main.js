@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -10,14 +10,14 @@ function init() {
   // is inside the model
   app.controls.minDistance = 1.75;
 
-  initLights( app.scene );
+  createLights( app.scene );
 
   const envMap = loadEnvironments();
   const materials = initMaterials( app.scene, envMap );
 
   app.scene.background = envMap;
 
-  initMeshes( app.scene, materials );
+  createMeshes( app.scene, materials );
   loadModels( app.scene, materials );
 
   initEnvMapControls( materials, envMap );
@@ -26,4 +26,4 @@ function init() {
 
 }
 
-init();
+initScene();

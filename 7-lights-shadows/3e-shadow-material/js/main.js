@@ -1,5 +1,5 @@
 
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -10,8 +10,8 @@ function init() {
 
   setupRenderer( app.renderer );
 
-  initLights( app.scene );
-  initMeshes( app.scene );
+  createLights( app.scene );
+  createMeshes( app.scene );
 
   const groundShadow = initGroundShadow( app.scene );
 
@@ -23,4 +23,4 @@ function init() {
   app.start();
 }
 
-init();
+initScene();

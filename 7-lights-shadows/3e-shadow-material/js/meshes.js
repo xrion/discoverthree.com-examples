@@ -47,7 +47,7 @@ function initShapes( scene ) {
 
 }
 
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   initGround( scene );
   initShapes( scene );

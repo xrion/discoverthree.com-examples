@@ -14,7 +14,7 @@ const onLoad = ( gltf, scene ) => {
   // };
 
 
-  initLights( scene );
+  createLights( scene );
 
   scene.add( model );
 

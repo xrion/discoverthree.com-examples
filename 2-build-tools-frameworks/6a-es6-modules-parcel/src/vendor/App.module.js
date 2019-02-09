@@ -27,8 +27,8 @@ export default class THREE_APP {
 
     }
 
-    this.scene = new THREE.Scene();
-    this.clock = new THREE.Clock();
+    this.scene = new Scene();
+    this.clock = new Clock();
 
     this.running = false;
 
@@ -78,7 +78,7 @@ export default class THREE_APP {
 
   initCamera() {
 
-    if ( !this.camera ) this.camera = new THREE.PerspectiveCamera( 35, this.container.clientWidth / this.container.clientHeight, 1, 1000 );
+    if ( !this.camera ) this.camera = new PerspectiveCamera( 35, this.container.clientWidth / this.container.clientHeight, 1, 1000 );
 
   }
 
@@ -88,7 +88,7 @@ export default class THREE_APP {
     if ( this.controls ) return;
 
     // if the controls script was loaded, we'll set them up
-    if ( typeof THREE.OrbitControls === 'function' ) this.controls = new THREE.OrbitControls( this.camera, this.container );
+    if ( typeof OrbitControls === 'function' ) this.controls = new OrbitControls( this.camera, this.container );
 
     // otherwise we'll skip them
     else return;
@@ -103,7 +103,7 @@ export default class THREE_APP {
     // allow custom renderer to be set up
     if ( this.renderer ) return;
 
-    this.renderer = new THREE.WebGLRenderer( {
+    this.renderer = new WebGLRenderer( {
       powerPreference: this.powerPreference,
       alpha: this.alpha,
       antialias: this.antialias,

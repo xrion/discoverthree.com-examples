@@ -3,54 +3,55 @@ import {
   Vector3,
 } from 'three';
 
+import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
+
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
 import Parrot from '../models/Parrot.glb';
-import Stork from '../models/Stork.glb';
 import Flamingo from '../models/Flamingo.glb';
+import Stork from '../models/Stork.glb';
 
-
-const onLoad = ( gltf, scene, position ) => {
+function setupModel( gltf, position ) {
 
   const model = gltf.scene.children[ 0 ];
-
   model.position.copy( position );
 
-  if ( gltf.animations[ 0 ] ) {
+  const animation = gltf.animations[ 0 ];
 
-    const animation = gltf.animations[ 0 ];
-    const mixer = new AnimationMixer( model );
+  const mixer = new AnimationMixer( model );
 
-    model.userData.onUpdate = ( delta ) => {
+  model.userData.onUpdate = ( delta ) => {
 
-      mixer.update( delta );
+    mixer.update( delta );
 
-    };
+  };
 
-    const action = mixer.clipAction( animation );
-    action.play();
+  const action = mixer.clipAction( animation );
+  action.play();
 
-  }
+  return model;
 
-  scene.add( model );
+}
 
-};
+export default async function loadModels() {
 
-export default function loadModels( scene ) {
+  const loader = createAsyncLoader( new GLTFLoader() );
 
-  const loader = new GLTFLoader();
+  const parrot = setupModel(
+    await loader.load( Parrot ),
+    new Vector3( 0, 0, 2.5 ),
+  );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const flamingo = setupModel(
+    await loader.load( Flamingo ),
+    new Vector3( 7.5, 0, -10 ),
+  );
 
-  // load the first model. Each model is loaded asynchronously,
-  // so don't make any assumption about which one will finish loading first
-  const parrotPosition = new Vector3( 0, 0, 2.5 );
-  loader.load( Parrot, gltf => onLoad( gltf, scene, parrotPosition ), null, onError );
+  const stork = setupModel(
+    await loader.load( Stork ),
+    new Vector3( 0, -2.5, -10 ),
+  );
 
-  const flamingoPosition = new Vector3( 7.5, 0, -10 );
-  loader.load( Flamingo, gltf => onLoad( gltf, scene, flamingoPosition ), null, onError );
-
-  const storkPosition = new Vector3( 0, -2.5, -10 );
-  loader.load( Stork, gltf => onLoad( gltf, scene, storkPosition ), null, onError );
+  return { parrot, flamingo, stork };
 
 }

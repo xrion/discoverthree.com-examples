@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -21,8 +21,8 @@ function init() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 3, 5, 6 );
 
-  initLights( app.scene, sceneRT );
-  initMeshes( app.scene, sceneRT, target );
+  createLights( app.scene, sceneRT );
+  createMeshes( app.scene, sceneRT, target );
 
   function renderToTarget( rt ) {
 
@@ -44,4 +44,4 @@ function init() {
 
 }
 
-init();
+initScene();

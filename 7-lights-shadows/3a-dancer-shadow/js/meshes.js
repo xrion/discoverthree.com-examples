@@ -53,7 +53,7 @@ function initGround( scene, textures ) {
 
 }
 
-function initMeshes( scene, textures ) {
+function createMeshes( scene, textures ) {
 
   initGround( scene, textures );
   initWall( scene, textures );

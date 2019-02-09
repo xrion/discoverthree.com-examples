@@ -1,5 +1,5 @@
 
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -9,9 +9,9 @@ function init() {
   app.scene.fog = new THREE.Fog( 0x8FBCD4, 200, 230 );
   app.camera.position.set( -20, 20, 50 );
 
-  const lights = initLights( app.scene );
+  const lights = createLights( app.scene );
 
-  const targets = initMeshes( app.scene );
+  const targets = createMeshes( app.scene );
 
   setupLightTargetControls( lights, targets );
 
@@ -19,4 +19,4 @@ function init() {
   app.start();
 }
 
-init();
+initScene();

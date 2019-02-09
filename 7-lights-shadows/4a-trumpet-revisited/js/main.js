@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -8,14 +8,14 @@ function init() {
 
   app.camera.position.set( 2, 1, 1.5 );
 
-  initLights( app.scene );
+  createLights( app.scene );
 
   const envMap = loadEnvironments();
   const materials = initMaterials( app.scene, envMap );
 
   app.scene.background = envMap;
 
-  initMeshes( app.scene, materials );
+  createMeshes( app.scene, materials );
   loadModels( app.scene, materials );
 
 
@@ -23,4 +23,4 @@ function init() {
 
 }
 
-init();
+initScene();

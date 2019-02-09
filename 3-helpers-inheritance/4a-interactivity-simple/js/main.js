@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -12,9 +12,9 @@ function init() {
   // them to control our horse
   app.controls.enableKeys = false;
 
-  initLights( app.scene );
+  createLights( app.scene );
 
-  const mesh = initMeshes( app.scene );
+  const mesh = createMeshes( app.scene );
   const helper = createArrowHelper();
 
   mesh.add( helper )
@@ -25,4 +25,4 @@ function init() {
 
 }
 
-init();
+initScene();

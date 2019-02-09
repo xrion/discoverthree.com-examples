@@ -5,7 +5,7 @@ const babel = require( 'rollup-plugin-babel' );
 // the node_modules directory in your app
 const nodeResolve = require( 'rollup-plugin-node-resolve' );
 
-const inputFile = 'src/index.js';
+const inputFile = 'src/main.js';
 
 const defaultPlugins = [
 
@@ -13,16 +13,7 @@ const defaultPlugins = [
   babel( {
     compact: false,
     exclude: ['node_modules/**'],
-    babelrc: false,
-    presets: [
-      ['@babel/env',
-        {
-          modules: false,
-          targets: {
-            browsers: [ 'last 2 versions', '> 5%' ],
-          },
-        } ],
-    ],
+    babelrc: true,
   } ),
 ];
 

@@ -5,9 +5,8 @@ import {
   WebGLRenderer,
 } from './three/three.module.js';
 
-// should be possible to use from NPM as of R102
 import {
-  OrbitControls
+  OrbitControls,
 } from './three/controls/OrbitControls.module.js';
 
 
@@ -44,6 +43,9 @@ export default class THREE_APP {
 
     // should nearly always be true, unless using postprocessing
     this.gammaOutput = true;
+
+    // should always be true when using a physically based workflow
+    this.physicallyCorrectLights = true;
 
     // this also needs to be set before calling init()
     this.autoResize = true;
@@ -111,6 +113,8 @@ export default class THREE_APP {
     // note that changing this after rendering the scene won't work
     this.renderer.gammaOutput = this.gammaOutput;
 
+    this.renderer.physicallyCorrectLights = this.physicallyCorrectLights;
+
     // to avoid page pulling
     this.renderer.domElement.addEventListener( 'touchstart', e => e.preventDefault() );
 
@@ -169,7 +173,7 @@ export default class THREE_APP {
 
   onWindowResize() {
 
-    if( !this.autoResize ) return;
+    if ( !this.autoResize ) return;
 
     this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
 

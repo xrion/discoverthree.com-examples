@@ -11,7 +11,7 @@ function wireframeControl( material ) {
   } );
 }
 
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   const geometry = createGeometry();
 

@@ -8,7 +8,7 @@ function addSkeletonToMesh( mesh ) {
 
 }
 
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   const geometry = new THREE.CylinderBufferGeometry( 1, 1, 8, 8, 16 );
 

@@ -1,5 +1,5 @@
 
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -11,11 +11,11 @@ function init() {
 
   setupRenderer( app.renderer );
 
-  initMeshes( app.scene );
+  createMeshes( app.scene );
   loadModels( app.scene );
 
 
   app.start();
 }
 
-init();
+initScene();

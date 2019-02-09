@@ -1,5 +1,5 @@
 
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -9,12 +9,12 @@ function init() {
   app.camera.position.set( -20, 30, 30 );
 
   setupRenderer( app.renderer );
-  initLights( app.scene );
-  initMeshes( app.scene );
+  createLights( app.scene );
+  createMeshes( app.scene );
   loadModels( app.scene );
 
 
   app.start();
 }
 
-init();
+initScene();

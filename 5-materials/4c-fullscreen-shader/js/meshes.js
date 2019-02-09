@@ -1,4 +1,4 @@
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   // create a plane geometry. The vertices of this plane will
   // be at -1 and 1 on the X axis and Y axis, meaning that

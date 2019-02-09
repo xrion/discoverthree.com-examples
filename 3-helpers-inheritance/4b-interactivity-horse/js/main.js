@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -19,7 +19,7 @@ function init() {
   // them to control our horse
   app.controls.enableKeys = false;
 
-  initLights( app.scene );
+  createLights( app.scene );
 
   initGround( app.scene );
 
@@ -29,4 +29,4 @@ function init() {
 
 }
 
-init();
+initScene();

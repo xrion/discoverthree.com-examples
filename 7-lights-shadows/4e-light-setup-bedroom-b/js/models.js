@@ -6,7 +6,7 @@ const onLoad = ( gltf, scene ) => {
 
   console.log( 'model: ', model );
 
-  initLights( scene );
+  createLights( scene );
 
   scene.add( model );
 

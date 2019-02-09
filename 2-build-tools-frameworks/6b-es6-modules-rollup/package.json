@@ -25,7 +25,8 @@
   "homepage": "https://discoverthreejs.com",
   "scripts": {
     "build": "node build.js",
-    "watch": "node watch.js"
+    "watch": "node watch.js",
+    "start": "node watch.js"
   },
   "dependencies": {
     "three": "^0.101.1"

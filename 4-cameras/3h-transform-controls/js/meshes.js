@@ -1,4 +1,4 @@
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   const ground = initGround( scene );
   const shapes = initShapes( scene );

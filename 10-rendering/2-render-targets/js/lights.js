@@ -1,4 +1,4 @@
-function initLights( scene, sceneRT ) {
+function createLights( scene, sceneRT ) {
 
   const ambientLight = new THREE.AmbientLight( 0x333333, 1 );
   scene.add( ambientLight );

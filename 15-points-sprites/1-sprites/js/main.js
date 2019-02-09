@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -24,7 +24,7 @@ function init() {
   // app.camera.far = 100;
   // app.camera.updateProjectionMatrix();
 
-  initLights( app.scene );
+  createLights( app.scene );
 
   initSprites( app.scene );
 
@@ -32,4 +32,4 @@ function init() {
 
 }
 
-init();
+initScene();

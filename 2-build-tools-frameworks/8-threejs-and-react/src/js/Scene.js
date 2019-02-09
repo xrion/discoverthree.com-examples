@@ -1,29 +1,31 @@
 import React from 'react';
 
-import { Color } from './vendor/three/three.module.js';
+import { Color } from 'three';
 import ThreeApp from './vendor/App.module.js';
 
-import initLights from './lights.js';
+import createLights from './lights.js';
 import loadModels from './models.js';
 
 class Scene extends React.Component {
 
   // this function gets called after the <div id="container">
   // has been added by the render() function
-  componentDidMount() {
+  async componentDidMount() {
 
     this.app = new ThreeApp( '#container' );
 
     this.app.init();
 
     this.app.scene.background = new Color( 0x8FBCD4 );
-    this.app.camera.position.set( -2.5, 2.5, 7.5 );
-
-    initLights( this.app.scene );
-
-    loadModels( this.app.scene );
+    this.app.camera.position.set( -2.5, 2.5, 6 );
 
     this.app.start();
+
+    const lights = createLights();
+    this.app.scene.add( lights.ambient, lights.main );
+
+    const models = await loadModels();
+    this.app.scene.add( models.parrot, models.flamingo, models.stork );
 
   }
 

@@ -1,4 +1,4 @@
-function initMeshes( scene ) {
+function createMeshes( scene ) {
 
   // we'll add the meshes to overlapping groups
   // (meshes can be in multiple groups)

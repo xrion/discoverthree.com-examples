@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -8,7 +8,7 @@ function init() {
   app.camera.position.set( 4, 4, 8 );
 
 
-  const cube = initMeshes( app.scene );
+  const cube = createMeshes( app.scene );
   const rawShaderMaterial = createShaderMaterial( app.camera, cube );
   cube.material = rawShaderMaterial;
 
@@ -17,4 +17,4 @@ function init() {
 
 }
 
-init();
+initScene();

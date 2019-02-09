@@ -1,5 +1,5 @@
 
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -7,7 +7,7 @@ function init() {
 
   app.camera.position.set( 0, 0, 10 );
 
-  const meshes = initMeshes( app.scene );
+  const meshes = createMeshes( app.scene );
 
   leftMorphControl( meshes.meshA );
   rightMorphControl( meshes.meshB );
@@ -16,4 +16,4 @@ function init() {
 
 }
 
-init();
+initScene();

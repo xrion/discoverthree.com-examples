@@ -104,7 +104,7 @@ let controls;
 let renderer;
 let material;
 
-function init() {
+function initScene() {
 
   // Get a reference to the container element that will hold our scene
   container = document.querySelector( '#container' );
@@ -114,7 +114,7 @@ function init() {
 
   initCamera();
   initControls();
-  initLights();
+  createLights();
   initMaterials();
   initSpiral();
   initRenderer();
@@ -151,7 +151,7 @@ function initControls() {
 
 }
 
-function initLights() {
+function createLights() {
 
   // no lights needed for this scene
 
@@ -255,6 +255,6 @@ function onWindowResize() {
 window.addEventListener( 'resize', onWindowResize );
 
 // call the init function to set everything up
-init();
+initScene();
 
 

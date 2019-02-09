@@ -1,4 +1,4 @@
-function init() {
+function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -66,8 +66,8 @@ function init() {
 
   window.addEventListener( 'resize', onResize );
 
-  initLights( app.scene );
-  initMeshes( app.scene );
+  createLights( app.scene );
+  createMeshes( app.scene );
   loadModels( app.scene );
 
   app.start();
@@ -78,4 +78,4 @@ function init() {
 
 }
 
-init();
+initScene();
