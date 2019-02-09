@@ -1,23 +1,16 @@
-const onLoad = ( gltf, scene ) => {
+async function loadModels() {
 
-  console.timeEnd( 'Loading time: ' );
-
-  const model = gltf.scene.children[ 0 ];
-
-  scene.add( model );
-
-};
-
-function loadModels( scene ) {
-
-  const loader = new THREE.GLTFLoader();
+  const gltfLoader = new THREE.GLTFLoader();
 
   THREE.DRACOLoader.setDecoderPath( 'js/vendor/three/loaders/draco/' );
-  loader.setDRACOLoader( new THREE.DRACOLoader() );
+  gltfLoader.setDRACOLoader( new THREE.DRACOLoader() );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const asyncLoader = createAsyncLoader( gltfLoader );
 
-  console.time( 'Loading time: ' );
-  loader.load( 'models/statues/rhino/rhino-draco.glb', gltf => onLoad( gltf, scene ), null, onError );
+  const gltf = await asyncLoader.load( 'models/statues/rhino/rhino-draco.glb' );
+
+  const rhino = gltf.scene.children[ 0 ];
+
+  return { rhino };
 
 }

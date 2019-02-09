@@ -33,7 +33,7 @@ class App {
   initCamera() {
 
     this.camera = new THREE.PerspectiveCamera( 35, this.container.clientWidth / this.container.clientHeight, 1, 1000 );
-    this.camera.position.set( -1.5, 1.5, 4.5 );
+    this.camera.position.set( -1.5, 1.5, 6.5 );
 
   }
 
@@ -45,16 +45,12 @@ class App {
 
   initLights() {
 
-    const ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
-    this.scene.add( ambientLight );
+    const ambient = new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 2 );
 
-    const frontLight = new THREE.DirectionalLight( 0xffffff, 1 );
-    frontLight.position.set( 10, 10, 10 );
+    const main = new THREE.DirectionalLight( 0xfffffc, 2 );
+    main.position.set( 0, 1, -10 );
 
-    const backLight = new THREE.DirectionalLight( 0xffffff, 1 );
-    backLight.position.set( -10, 10, -10 );
-
-    this.scene.add( frontLight, backLight );
+    this.scene.add( ambient, main );
 
   }
 
@@ -86,14 +82,14 @@ class App {
 
     // load the first model. Each model is loaded asynchronously,
     // so don't make any assumption about which one will finish loading first
-    const parrotPosition = new THREE.Vector3( 0, 0, 1.5 );
-    loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, parrotPosition ), onProgress, onError );
+    const parrotPosition = new THREE.Vector3( 0, 0, 2.5 );
+    loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, parrotPosition ), null, onError );
 
-    const flamingoPosition = new THREE.Vector3( 4.5, 0, -6 );
-    loader.load( 'models/Flamingo.glb', gltf => onLoad( gltf, flamingoPosition ), onProgress, onError );
+    const flamingoPosition = new THREE.Vector3( 7.5, 0, -10 );
+    loader.load( 'models/Flamingo.glb', gltf => onLoad( gltf, flamingoPosition ), null, onError );
 
-    const storkPosition = new THREE.Vector3( 0, -1.5, -6 );
-    loader.load( 'models/Stork.glb', gltf => onLoad( gltf, storkPosition ), onProgress, onError );
+    const storkPosition = new THREE.Vector3( 0, -2.5, -10 );
+    loader.load( 'models/Stork.glb', gltf => onLoad( gltf, storkPosition ), null, onError );
 
   }
 
@@ -104,7 +100,6 @@ class App {
 
     this.renderer.setPixelRatio( window.devicePixelRatio );
 
-    this.renderer.gammaFactor = 2.2;
     this.renderer.gammaOutput = true;
 
     this.container.appendChild( this.renderer.domElement );

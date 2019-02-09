@@ -14,15 +14,12 @@ const createAsyncLoader = ( loader, onProgress = () => {} ) => {
         // call resolve with the result of the loader (just return the loaded object)
         resolve,
 
-        // call onProgress if defined
+        // onProgress is an empty function by default
         e => onProgress( e ),
 
         // simple onError function
-        () => {
+        e => reject( new Error( e ) ),
 
-          reject( new Error( 'Failed to load file "' + url + '".' ) );
-
-        },
       );
 
     } ),
