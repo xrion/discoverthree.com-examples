@@ -1,41 +1,38 @@
-// A reusable function to setup the models
-// assumes that the gltf file contains a single model
-// and up to one animation track
-const onLoad = ( gltf, scene ) => {
+function setupModel( gltf ) {
 
-  const model = gltf.scene.children[ 0 ];
 
-  if ( gltf.animations[ 0 ] ) {
+  const horse = gltf.scene.children[ 0 ];
 
-    const animation = gltf.animations[ 0 ];
-    const mixer = new THREE.AnimationMixer( model );
+  const animation = gltf.animations[ 0 ];
+  const mixer = new THREE.AnimationMixer( horse );
 
-    // we'll want to make the horse animate while it's moving
-    // we'll need access to the mixer for that, so we'll store
-    // a reference to it in userData
-    model.userData.mixer = mixer;
+  // we'll want to make the horse animate while it's moving
+  // we'll need access to the mixer for that, so we'll store
+  // a reference to it in userData
+  horse.userData.mixer = mixer;
 
-    // we'll use these to reset the model's position later
-    model.userData.initialPosition = model.position.clone();
-    model.userData.initialRotation = model.rotation.clone();
+  // we'll use these to reset the horse's position later
+  horse.userData.initialPosition = horse.position.clone();
+  horse.userData.initialRotation = horse.rotation.clone();
 
-    const action = mixer.clipAction( animation );
-    action.play();
+  const action = mixer.clipAction( animation );
+  action.play();
 
-  }
+  initControls( horse );
 
-  initControls( model );
+  return horse;
 
-  scene.add( model );
+}
 
-};
 
-function loadModels( scene ) {
+async function loadModels() {
 
-  const loader = new THREE.GLTFLoader();
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const horse = setupModel(
+    await loader.load( 'models/Horse.glb' ),
+  );
 
-  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, scene ), null, onError );
+  return { horse };
 
 }

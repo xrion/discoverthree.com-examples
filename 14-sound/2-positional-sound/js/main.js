@@ -15,7 +15,7 @@ function createLights() {
 
 }
 
-function loadModels() {
+async function loadModels() {
 
   // A reusable function to setup the models
   const onLoad = ( gltf, position ) => {

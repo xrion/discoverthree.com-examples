@@ -1,4 +1,4 @@
-function initScene() {
+async function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -23,9 +23,10 @@ function initScene() {
   app.scene.add( lights.ambient, lights.main );
 
   const meshes = createMeshes();
-  app.scene.add( meshes.box );
+  app.scene.add( meshes.ground );
 
-  loadModels( app.scene );
+  const models = await loadModels();
+  app.scene.add( models.horse );
 
   app.start();
 
