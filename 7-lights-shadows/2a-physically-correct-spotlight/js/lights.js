@@ -1,17 +1,40 @@
-function createLights( scene ) {
+function createAmbientLight() {
 
-  const ambientLight = new THREE.HemisphereLight( 0xcccccc, 0x555555, 1 );
+  // we'll measure the ambient light's intensity in Lux, which means
+  // "luminous flux per unit area". Of course, luminous flux is another
+  // unit, and understanding these leads down a long rabbit hole of defintions
+  // which you SHOULD go down at some point.
+  // For now, just think of it as amount of light per unit area
 
-  const mainLight = initSpotLight( scene );
+  // You can use the chart here as a shortcut:
+  // https://en.wikipedia.org/wiki/Lux#Illuminance
 
-  scene.add( ambientLight, mainLight );
+  // There are two kinds of ambient light
+  // const ambientLight = new THREE.AmbientLight(  0x666666,  1  );
 
-  return { ambientLight, mainLight };
+  const ambientLight = new THREE.HemisphereLight(
+
+    // sky color ( dim blue, evening )
+    0xddeeff,
+
+    // ground color ( dim grey)
+    0x0f0e0d,
+
+    //
+
+    // intensity( irradiance )
+    // here, we'll assume a very dim twilight value
+    1
+
+    // increasing this even a little bit - say to around 5
+
+  );
+
+  return ambientLight;
 
 }
 
-
-function initSpotLight( scene ) {
+function createSpotLight() {
 
   const spotLight = new THREE.SpotLight(
     0xffffff, // color
@@ -33,13 +56,21 @@ function initSpotLight( scene ) {
     2,
   );
 
-  // power is in lumens - 1700 is roughly a 100w bulb
-  spotLight.power = 1700;
+  // power is in lumens - 5000 is roughly a 100w bulb
+  spotLight.power = 5000;
 
   spotLight.position.set( -12, 10, -12 );
 
-  scene.add( new THREE.SpotLightHelper( spotLight ) );
-
   return spotLight;
+
+}
+
+function createLights() {
+
+  const ambient = createAmbientLight();
+
+  const main = createSpotLight();
+
+  return { ambient, main };
 
 }

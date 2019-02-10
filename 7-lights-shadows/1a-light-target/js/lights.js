@@ -1,16 +1,13 @@
-function createLights( scene ) {
+function createLights() {
 
-  const ambientLight = new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 0.1 );
+  const ambient = new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 0.5 );
 
-  const mainLight = new THREE.SpotLight( 0xfffffc, 2, 0, Math.PI / 12, 0.5,  1 );
+  const main = new THREE.SpotLight( 0xfffffc, 15, 0, Math.PI / 8, 0.5, 2 );
 
-  mainLight.position.set( -12, 10, -12 );
+  main.power = 5000; // 5000 lumens ~ 300 watt bulb
 
-  const mainLightHelper = new THREE.SpotLightHelper( mainLight );
-  scene.add( mainLightHelper );
+  main.position.set( -12, 10, -12 );
 
-  scene.add( ambientLight, mainLight );
-
-  return { ambientLight, mainLight, mainLightHelper };
+  return { ambient, main };
 
 }

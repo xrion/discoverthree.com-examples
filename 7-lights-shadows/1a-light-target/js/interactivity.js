@@ -1,22 +1,22 @@
-function setupLightTargetControls( lights, targetObjects ) {
+function setupLightTargetControls( lights, lightHelper, targetObjects ) {
 
-  targetObjects.default = lights.mainLight.target;
+  targetObjects.default = lights.main.target;
 
-  initRetargetButton( lights, 'default', targetObjects );
-  initRetargetButton( lights, 'front', targetObjects );
-  initRetargetButton( lights, 'middle', targetObjects );
-  initRetargetButton( lights, 'rear', targetObjects );
+  initRetargetButton( lights, lightHelper, 'default', targetObjects );
+  initRetargetButton( lights, lightHelper, 'front', targetObjects );
+  initRetargetButton( lights, lightHelper, 'middle', targetObjects );
+  initRetargetButton( lights, lightHelper, 'rear', targetObjects );
 
 }
 
-function initRetargetButton( lights, name, targetObjects ) {
+function initRetargetButton( lights, lightHelper, targetName, targetObjects ) {
 
-  const button = document.querySelector( `#target-${name}` );
+  const button = document.querySelector( `#target-${targetName}` );
 
   button.addEventListener( 'click', () => {
 
-    lights.mainLight.target = targetObjects[ name ];
-    lights.mainLightHelper.update();
+    lights.main.target = targetObjects[ targetName ];
+    lightHelper.update();
 
   } );
 }

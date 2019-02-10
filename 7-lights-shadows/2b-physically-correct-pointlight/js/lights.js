@@ -1,16 +1,4 @@
-function createLights( scene ) {
-
-  const ambientLight = initAmbientLight( scene );
-
-  const mainLight = initPointLight( scene );
-
-  scene.add( ambientLight, mainLight );
-
-  return { ambientLight, mainLight };
-
-}
-
-function initAmbientLight( scene ) {
+function createAmbientLight() {
 
   // we'll measure the ambient light's intensity in Lux, which means
   // "luminous flux per unit area". Of course, luminous flux is another
@@ -36,7 +24,7 @@ function initAmbientLight( scene ) {
 
     // intensity( irradiance )
     // here, we'll assume a dim twilight value
-    3
+    1
 
     // increasing this even a little bit - say to around 5
 
@@ -46,7 +34,7 @@ function initAmbientLight( scene ) {
 
 }
 
-function initPointLight( scene ) {
+function createPointLight() {
 
   const pointLight = new THREE.PointLight(
 
@@ -73,8 +61,16 @@ function initPointLight( scene ) {
   // pointlight is 10 metres above the scene
   pointLight.position.set( 0, 10, 0 );
 
-  scene.add( new THREE.PointLightHelper( pointLight ) );
-
   return pointLight;
+
+}
+
+function createLights() {
+
+  const ambient = createAmbientLight();
+
+  const main = createPointLight();
+
+  return { ambient, main };
 
 }

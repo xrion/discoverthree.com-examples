@@ -1,5 +1,3 @@
-
-
 function createPlinth() {
 
   const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
@@ -15,7 +13,7 @@ function createPlinth() {
 
 }
 
-function initShape() {
+function createShapes() {
 
   const torusKnotGeo = new THREE.TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
   const torusKnotMat = new THREE.MeshStandardMaterial( {
@@ -40,8 +38,6 @@ function initShape() {
 
   };
 
-  torusKnot.castShadow = true;
-
   return torusKnot;
 
 }
@@ -49,8 +45,8 @@ function initShape() {
 function createMeshes() {
 
   const plinth = createPlinth();
-  const shape = initShape();
+  const shapes = createShapes();
 
-  return { plinth, shape };
+  return { plinth, shapes };
 
 }

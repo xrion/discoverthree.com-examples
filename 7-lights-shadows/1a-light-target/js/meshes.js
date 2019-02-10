@@ -1,4 +1,4 @@
-function createPlinth( scene ) {
+function createPlinth() {
 
   const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
 
@@ -12,21 +12,19 @@ function createPlinth( scene ) {
   return ground;
 }
 
-function createGround( scene ) {
+function createGround() {
 
   const geometry = new THREE.PlaneBufferGeometry( 1000, 1000 );
   geometry.rotateX( -Math.PI / 2 );
 
-  const material = new THREE.MeshStandardMaterial( {
-    color: 0x0f0e0d,
+  const material = new THREE.MeshBasicMaterial( {
+    color: 0x020202,
     side: THREE.DoubleSide,
-    roughness: 1,
-    metalness: 0,
   } );
 
-  const box = new THREE.Mesh( geometry, material );
+  const ground = new THREE.Mesh( geometry, material );
 
-  scene.add( mesh );
+  return ground;
 
 }
 

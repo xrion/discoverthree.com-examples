@@ -1,45 +1,19 @@
-function createMeshes() {
-
-  initGround( scene );
-  initBasePlane( scene );
-  initShapes( scene );
-
-}
-
-function initGround( scene ) {
+function createPlinth() {
 
   const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
 
   const material = new THREE.MeshStandardMaterial( {
-    metalness: 0.0,
-    roughness: 0.5,
+    metalness: 0.1,
+    roughness: 0.8,
   } );
 
-  const box = new THREE.Mesh( geometry, material );
+  const plinth = new THREE.Mesh( geometry, material );
 
-  scene.add( mesh );
+  return plinth;
 
 }
 
-function initBasePlane( scene ) {
-
-  const geometry = new THREE.PlaneBufferGeometry( 1000, 1000 );
-  geometry.rotateX( -Math.PI / 2 );
-
-  const material = new THREE.MeshStandardMaterial( {
-    color: 0x0f0e0d,
-    side: THREE.DoubleSide,
-    roughness: 1,
-    metalness: 0,
-  } );
-
-  const box = new THREE.Mesh( geometry, material );
-
-  scene.add( mesh );
-
-}
-
-function initShapes( scene ) {
+function createShapes() {
 
   const torusKnotGeo = new THREE.TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
   const torusKnotMat = new THREE.MeshStandardMaterial( {
@@ -64,8 +38,15 @@ function initShapes( scene ) {
 
   };
 
-  torusKnot.castShadow = true;
+  return torusKnot;
 
-  scene.add( torusKnot );
+}
+
+function createMeshes() {
+
+  const plinth = createPlinth();
+  const shapes = createShapes();
+
+  return { plinth, shapes };
 
 }
