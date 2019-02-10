@@ -1,12 +1,3 @@
-function createMeshes() {
-
-  const plinth = createPlinth();
-  const shapes = createShapes();
-
-  return { plinth, shapes };
-
-}
-
 function createPlinth() {
 
   const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
@@ -48,5 +39,14 @@ function createShapes() {
   };
 
   return torusKnot;
+
+}
+
+function createMeshes() {
+
+  const plinth = createPlinth();
+  const shapes = createShapes();
+
+  return { plinth, shapes };
 
 }

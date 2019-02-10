@@ -1,5 +1,4 @@
-
-function initScene() {
+async function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -18,7 +17,7 @@ function initScene() {
   const meshes = createMeshes();
   app.scene.add( meshes.plinth, meshes.shapes );
 
-  loadModels( app.scene );
+  const models = await loadModels();
 
 
   app.start();

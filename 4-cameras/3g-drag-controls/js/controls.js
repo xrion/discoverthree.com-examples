@@ -1,4 +1,4 @@
-function setupControls( meshes, app ) {
+function setupControls( meshesArray, app ) {
 
   const orbitControls = app.controls;
   initOverlay( orbitControls );
@@ -11,7 +11,7 @@ function setupControls( meshes, app ) {
 
   } );
 
-  const dragControls = new THREE.DragControls( meshes, app.camera, app.container );
+  const dragControls = new THREE.DragControls( meshesArray, app.camera, app.container );
 
   this.enabled = true;
 
@@ -19,7 +19,7 @@ function setupControls( meshes, app ) {
 
     selectedMesh.material = highlightMaterial;
 
-    meshes.forEach( ( mesh ) => {
+    meshesArray.forEach( ( mesh ) => {
 
       mesh.userData.animate = false;
 
@@ -38,7 +38,7 @@ function setupControls( meshes, app ) {
 
   const reset = () => {
 
-    meshes.forEach( ( mesh ) => {
+    meshesArray.forEach( ( mesh ) => {
 
       mesh.userData.animate = true;
 

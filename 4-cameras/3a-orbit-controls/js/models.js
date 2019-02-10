@@ -1,50 +1,55 @@
-const onLoad = ( gltf, scene ) => {
+function setupModels( gltf ) {
 
-  const protoModel = gltf.scene.children[ 0 ];
-
-  protoModel.position.set( 0, 0.5, -15 );
-  protoModel.rotation.set( Math.PI / 2, 0, -Math.PI / 2 );
-
+  const protoHorse = gltf.scene.children[ 0 ];
   const animation = gltf.animations[ 0 ];
 
+  protoHorse.position.set( 0, 0.5, -15 );
+  protoHorse.rotation.set( Math.PI / 2, 0, -Math.PI / 2 );
+
+  const horsesArray = [];
+
+  // create ten clones of our protoHorse
   for ( let i = 0; i < 10; i++ ) {
 
-    const model = protoModel.clone();
+    const horse = protoHorse.clone();
 
-    model.position.z += 1.6 * i;
+    horse.position.z += 1.6 * i;
+    horse.scale.setScalar( 0.66 - 0.066 * i );
 
-    model.scale.setScalar( 0.66 - 0.066 * i );
+    const spherical = new THREE.Spherical().setFromVector3( horse.position );
 
-    const mixer = new THREE.AnimationMixer( model );
+    const mixer = new THREE.AnimationMixer( horse );
 
-    const spherical = new THREE.Spherical().setFromVector3( model.position );
-
-    model.userData.onUpdate = ( delta ) => {
+    horse.userData.onUpdate = ( delta ) => {
 
       mixer.update( delta );
 
       spherical.theta -= delta / 2;
-      model.position.setFromSpherical( spherical );
+      horse.position.setFromSpherical( spherical );
 
-      model.rotation.z += delta / 2;
+      horse.rotation.z += delta / 2;
 
     };
 
     const action = mixer.clipAction( animation );
     action.startAt( THREE.Math.randFloat( 0, 0.5 ) ).play();
 
-    scene.add( model );
+    horsesArray.push( horse );
 
   }
 
-};
+  return horsesArray;
 
-function loadModels( scene ) {
+}
 
-  const loader = new THREE.GLTFLoader();
+async function loadModels() {
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
 
-  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, scene ), null, onError );
+  const horsesArray = setupModels(
+    await loader.load( 'models/Horse.glb' ),
+  );
+
+  return { horsesArray };
 
 }

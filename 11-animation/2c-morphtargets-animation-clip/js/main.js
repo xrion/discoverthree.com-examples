@@ -1,5 +1,4 @@
-
-function initScene() {
+async function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -11,7 +10,7 @@ function initScene() {
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
-  loadModels( app.scene );
+  const models = await loadModels();
 
   app.start();
 

@@ -4,8 +4,6 @@ function setupControls( app ) {
 
   initOverlay( app.controls, app );
 
-  console.log( app.controls );
-
   // how much to offset the rotation
   // app.controls.alphaOffset = 0; // radians
 

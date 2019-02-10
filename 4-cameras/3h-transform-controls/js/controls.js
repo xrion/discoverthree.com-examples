@@ -30,6 +30,7 @@ function setupControls( mesh, app ) {
 
       mesh.userData.animate = false;
       console.log( `You highlighted the ${e.value} axis` );
+
     } else {
 
       mesh.userData.animate = true;

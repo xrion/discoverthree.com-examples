@@ -1,4 +1,4 @@
-function initScene() {
+async function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -36,7 +36,7 @@ function initScene() {
   const meshes = createMeshes();
   app.scene.add( meshes.box );
 
-  loadModels( app.scene );
+  const models = await loadModels();
 
   // overwrite the app's default render function to use the
   // EffectComposer instead

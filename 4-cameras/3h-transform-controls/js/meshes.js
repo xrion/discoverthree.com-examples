@@ -1,12 +1,3 @@
-function createMeshes() {
-
-  const plinth = createPlinth();
-  const shapes = createShapes();
-
-  return { plinth, shapes };
-
-}
-
 function createPlinth() {
 
   const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
@@ -40,13 +31,28 @@ function createShapes() {
 
   torusKnot.add( sphere );
 
+  torusKnot.userData.animate = true;
+
   torusKnot.userData.onUpdate = ( delta ) => {
 
-    torusKnot.rotation.y += delta / 2;
-    torusKnot.rotation.z -= delta / 4;
+    if ( torusKnot.userData.animate ) {
+
+      torusKnot.rotation.y += delta / 2;
+      torusKnot.rotation.z -= delta / 4;
+
+    }
 
   };
 
   return torusKnot;
+
+}
+
+function createMeshes() {
+
+  const plinth = createPlinth();
+  const shapes = createShapes();
+
+  return { plinth, shapes };
 
 }

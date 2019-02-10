@@ -1,5 +1,4 @@
-
-function initScene() {
+async function initScene() {
 
   const app = new THREE_APP( '#container' );
 
@@ -15,9 +14,9 @@ function initScene() {
   // instead of a FaceNormalsHelper, since normals are
   // defined per Vertex, rather than per Face
   // The normals are the red lines coming out of the sphere
-  app.scene.add( new THREE.VertexNormalsHelper( meshessphere ) );
+  app.scene.add( new THREE.VertexNormalsHelper( meshes.sphere ) );
 
-  loadModels( app.scene );
+  const models = await loadModels();
 
   app.start();
 

@@ -5,6 +5,8 @@ function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 0.4;
+
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( -20, 30, 30 );
 

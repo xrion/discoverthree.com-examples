@@ -1,9 +1,10 @@
-
-function initScene() {
+async function initScene() {
 
   const app = new THREE_APP( '#container' );
 
   app.init();
+
+  app.renderer.toneMappingExposure = 0.4;
 
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( -20, 30, 30 );
@@ -12,11 +13,12 @@ function initScene() {
   app.scene.add( lights.ambient, lights.main );
 
   const meshes = createMeshes();
-  app.scene.add( meshes.plinth, meshes.shapes );
+  app.scene.add( meshes.plinth, meshes.shape );
 
-  loadModels( app.scene );
+  const models = await loadModels();
+  app.scene.add( ...models.horsesArray );
 
-  setupControls( [meshes.shapes, meshes.shapes.children[ 0 ]], app );
+  setupControls( [ meshes.shape ], app );
 
   app.start();
 
