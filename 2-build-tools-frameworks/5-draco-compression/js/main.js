@@ -4,6 +4,8 @@ async function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 0.5;
+
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( -2.5, 2.5, 6 );
 
