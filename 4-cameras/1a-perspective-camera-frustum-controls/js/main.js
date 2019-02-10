@@ -4,6 +4,8 @@ function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 0.5;
+
   app.scene.background = new THREE.Color( 0x23485c );
 
   app.controls.target.y = 1;

@@ -1,23 +1,27 @@
 function initCameras( app ) {
 
   const cameraOverview = new THREE.PerspectiveCamera( 35, app.container.clientWidth / app.container.clientHeight, 1, 1000 );
-  cameraOverview.position.set( 2000, 0, 2000 );
+  cameraOverview.position.set( 100, 0, 100 );
   cameraOverview.lookAt( 0, 0, 0 );
-  cameraOverview.far = 10000;
+  cameraOverview.far = 1000;
   cameraOverview.updateProjectionMatrix();
 
   // now replace it in the app with a new orthographic camera
   const width = app.container.clientWidth;
   const height = app.container.clientHeight;
 
-  const cameraMain = new THREE.OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 1, 1000 );
+  const cameraMain = new THREE.OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 20, 50 );
   app.camera = cameraMain;
 
   // position the camera
   // remember that it doesn't matter how far away we
   // put the camera, so long as the objects fall inside the
   // frustum they will remain the same size.
-  cameraMain.position.z = 500;
+  cameraMain.position.z = 30;
+
+  // instead, we can use camera.zoom to fine tune our view of the scene
+  cameraMain.zoom = 30;
+  cameraMain.updateProjectionMatrix();
 
   // the app's auto resizing is only set up for PerspectiveCamera
   app.autoResize = false;

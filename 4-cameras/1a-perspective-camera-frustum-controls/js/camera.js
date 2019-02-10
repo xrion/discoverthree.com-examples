@@ -1,6 +1,6 @@
 function initCamera( camera ) {
 
-  camera.position.set( 5, 5, 10 );
+  camera.position.set( 5, 5, 30 );
 
   // reduce the far clipping plane from the default of 100
   // so that we can see its effect more easily

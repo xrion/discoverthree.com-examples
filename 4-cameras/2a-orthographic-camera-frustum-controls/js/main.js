@@ -7,6 +7,8 @@ function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 0.5;
+
   initCameraControls( app.camera, app.controls );
 
   app.scene.background = new THREE.Color( 0x23485c );

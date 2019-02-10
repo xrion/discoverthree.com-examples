@@ -3,7 +3,7 @@ function initCamera( app ) {
   const cameraMain = app.camera;
 
   cameraMain.position.set( 5, 5, 30 );
-  cameraMain.near = 10;
+  cameraMain.near = 0.1;
   cameraMain.far = 50;
   cameraMain.updateProjectionMatrix();
 

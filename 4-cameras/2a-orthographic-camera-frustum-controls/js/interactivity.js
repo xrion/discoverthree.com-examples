@@ -19,7 +19,7 @@ function initZoomSlider( camera, controls ) {
 
   } );
 
-  controls.addEventListener( 'change', ( e ) => {
+  controls.addEventListener( 'change', () => {
 
     camera.zoom = camera.zoom.toFixed( 2 );
 
