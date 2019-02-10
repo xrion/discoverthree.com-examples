@@ -1,41 +1,40 @@
-function createLights( scene ) {
+function createLights() {
 
-  const ambientLight = new THREE.HemisphereLight( 0xcccccc, 0x555555, 1 );
+  const ambient = new THREE.HemisphereLight( 0xcccccc, 0x555555, 0.75 );
 
-  const mainLight = initShadowLight( scene );
+  const main = createMainLight();
 
-  scene.add( ambientLight, mainLight );
-
-  return { ambientLight, mainLight };
+  return { ambient, main };
 
 }
 
-
-function initShadowLight( scene ) {
+function createMainLight() {
 
   const spotLight = new THREE.SpotLight(
     0xffffff, // color
     1, // intensity,
     0, // distance: always 0 for physically correct lights
     Math.PI / 6,
-    0.25, // exponent,
+    0.75, // exponent,
     2, // decay: always 2 for physically correct lights
   );
 
-  spotLight.power = 1700;
+  spotLight.power = 5000;
 
-  spotLight.position.set( -12, 10, -12 );
+  spotLight.position.set( -15, 5, -15 );
 
   spotLight.castShadow = true;
-  spotLight.shadow.mapSize.width = 1024;
-  spotLight.shadow.mapSize.height = 1024;
-  spotLight.shadow.camera.near = 10;
-  spotLight.shadow.camera.far = 35;
+  spotLight.shadow.mapSize.width = 2048;
+  spotLight.shadow.mapSize.height = 2048;
+  spotLight.shadow.camera.near = 8;
+
+  // note that, if you use a light.distance
+  // other than 0, then that is used
+  // instead of .shadow.camera.far and setting
+  // this will have no effect
+  spotLight.shadow.camera.far = 40;
 
   spotLight.shadow.camera.updateProjectionMatrix();
-
-  scene.add( new THREE.SpotLightHelper( spotLight ) );
-  scene.add( new THREE.CameraHelper( spotLight.shadow.camera ) );
 
   return spotLight;
 

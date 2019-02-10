@@ -1,26 +1,25 @@
-function initScene() {
+async function initScene() {
 
   const app = new THREE_APP( '#container' );
 
   app.init();
 
-  setupRenderer( app.renderer );
-
   app.camera.position.set( 2, 1, 1.5 );
+
+  setupRenderer( app.renderer );
 
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
   const envMap = loadEnvironments();
+  app.scene.background = envMap;
   const materials = initMaterials( app.scene, envMap );
 
-  app.scene.background = envMap;
-
-  const meshes = createMeshes();
+  const meshes = createMeshes( materials );
   app.scene.add( meshes.plinth );
 
-  loadModels( app.scene, materials );
-
+  const models = await loadModels( materials );
+  app.scene.add( models.trumpet );
 
   app.start();
 

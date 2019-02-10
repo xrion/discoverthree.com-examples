@@ -1,25 +1,27 @@
-const onLoad = ( gltf, scene ) => {
+function setupModels( gltf ) {
 
+  const warehouse = gltf.scene.children[ 0 ];
 
-  const model = gltf.scene.children[ 0 ];
+  console.log( 'model: ', warehouse );
 
-  console.log( 'model: ', model );
-
-  createLights( scene );
-
-  scene.add( model );
+  return warehouse;
 
 };
 
-function loadModels( scene ) {
 
-  const loader = new THREE.GLTFLoader();
+async function loadModels() {
+
+  const gltfLoader = new THREE.GLTFLoader();
 
   THREE.DRACOLoader.setDecoderPath( 'js/vendor/three/loaders/draco/' );
-	loader.setDRACOLoader( new THREE.DRACOLoader() );
+  gltfLoader.setDRACOLoader( new THREE.DRACOLoader() );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const asyncLoader = createAsyncLoader( gltfLoader );
 
-  loader.load( 'models/lighting/warehouse.glb', gltf => onLoad( gltf, scene ), null, onError );
+  const warehouse = setupModels(
+    await asyncLoader.load( 'models/lighting/warehouse.glb' )
+  );
+
+  return { warehouse };
 
 }

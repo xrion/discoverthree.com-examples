@@ -5,6 +5,8 @@ function createPlinth( materials ) {
   const plinth = new THREE.Mesh( geometry, materials.plinth );
   plinth.position.y = -0.5;
 
+  plinth.receiveShadow = true;
+
   return plinth;
 
 }

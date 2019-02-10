@@ -1,9 +1,6 @@
 function setupRenderer( renderer ) {
 
-  renderer.physicallyCorrectLights = true;
-
   renderer.shadowMap.enabled = true;
-
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
   // renderer.toneMapping;
@@ -12,9 +9,9 @@ function setupRenderer( renderer ) {
   // renderer.toneMapping = THREE.ReinhardToneMapping;
   // renderer.toneMapping = THREE.Uncharted2ToneMapping;
   // renderer.toneMapping = THREE.CineonToneMapping;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  // renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
-  // renderer.toneMappingExposure = 0.5;
+  renderer.toneMappingExposure = 0.75;
 
 
 }

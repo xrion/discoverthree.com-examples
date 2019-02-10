@@ -4,16 +4,16 @@ async function initScene() {
 
   app.init();
 
-
   app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 0, 1, 5 );
+  app.camera.position.set( -10, 10, 10 );
 
   setupRenderer( app.renderer );
 
-    const meshes = createMeshes();
-  app.scene.add( meshes.meshA );
-  const models = await loadModels();
+  const lights = createLights();
+  app.scene.add( lights.ambient, lights.main );
 
+  const models = await loadModels();
+  app.scene.add( models.room );
 
   app.start();
 }

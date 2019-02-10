@@ -1,26 +1,26 @@
-const onLoad = ( gltf, scene ) => {
+function setupModels( gltf ) {
 
-  const model = gltf.scene.children[ 0 ];
+  const room = gltf.scene.children[ 0 ];
 
-  model.rotation.y = Math.PI;
+  console.log( 'model: ', room );
 
-  console.log( 'model: ', model );
-
-  createLights( scene );
-
-  scene.add( model );
+  return room;
 
 };
 
-function loadModels( scene ) {
+async function loadModels() {
 
-  const loader = new THREE.GLTFLoader();
+  const gltfLoader = new THREE.GLTFLoader();
 
   THREE.DRACOLoader.setDecoderPath( 'js/vendor/three/loaders/draco/' );
-	loader.setDRACOLoader( new THREE.DRACOLoader() );
+  gltfLoader.setDRACOLoader( new THREE.DRACOLoader() );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const asyncLoader = createAsyncLoader( gltfLoader );
 
-  loader.load( 'models/lighting/bedroom_bright.glb', gltf => onLoad( gltf, scene ), null, onError );
+  const room = setupModels(
+    await asyncLoader.load( 'models/lighting/bedroom_bright.glb' )
+  );
+
+  return { room };
 
 }

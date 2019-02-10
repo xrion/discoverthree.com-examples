@@ -1,34 +1,27 @@
-const onLoad = ( gltf, scene ) => {
+function setupModels( gltf ) {
 
+  const stage = gltf.scene.children[ 0 ];
 
-  const model = gltf.scene.children[ 0 ];
+  console.log( 'model: ', stage );
 
-  console.log( 'model: ', model );
-
-  // todo: dummy positions not working
-  // const dummies = {
-
-  //   main: model.getObjectByName( 'main_light_dummy' ),
-  //   center: model.getObjectByName( 'stage_floor_center_dummy' ),
-
-  // };
-
-
-  createLights( scene );
-
-  scene.add( model );
+  return stage;
 
 };
 
-function loadModels( scene ) {
 
-  const loader = new THREE.GLTFLoader();
+async function loadModels() {
+
+  const gltfLoader = new THREE.GLTFLoader();
 
   THREE.DRACOLoader.setDecoderPath( 'js/vendor/three/loaders/draco/' );
-	loader.setDRACOLoader( new THREE.DRACOLoader() );
+  gltfLoader.setDRACOLoader( new THREE.DRACOLoader() );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const asyncLoader = createAsyncLoader( gltfLoader );
 
-  loader.load( 'models/lighting/stage.glb', gltf => onLoad( gltf, scene ), null, onError );
+  const stage = setupModels(
+    await asyncLoader.load( 'models/lighting/stage.glb' )
+  );
+
+  return { stage };
 
 }

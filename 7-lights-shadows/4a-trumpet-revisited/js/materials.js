@@ -32,9 +32,10 @@ function initMaterials( scene, envMap ) {
     } ),
 
     plinth: new THREE.MeshStandardMaterial( {
-      metalness: 0.25,
-      roughness: 0.25,
+      metalness: 0.5,
+      roughness: 0.5,
       envMap,
+      envMapIntensity: 0.1,
     } ),
 
   };

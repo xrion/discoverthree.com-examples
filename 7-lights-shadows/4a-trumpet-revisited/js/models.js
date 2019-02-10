@@ -1,35 +1,37 @@
-const onLoad = ( gltf, scene, materials ) => {
+function setupModels( gltf, materials ) {
 
-  // get the correct model from the loaded object
-  const model = gltf.scene.getObjectByName( 'trumpet' );
+  const trumpet = gltf.scene.getObjectByName( 'trumpet' );
 
-  model.rotation.set( 0, 0, 0 );
+  trumpet.rotation.set( 0, 0, 0 );
 
-  model.children[ 0 ].material = materials.silver;
-  model.children[ 1 ].material = materials.brass;
+  trumpet.children[ 0 ].material = materials.silver;
+  trumpet.children[ 1 ].material = materials.brass;
 
-  model.children[ 0 ].castShadow = true;
-  model.children[ 0 ].receiveShadow = true;
+  trumpet.children[ 0 ].castShadow = true;
+  trumpet.children[ 0 ].receiveShadow = true;
 
-  model.children[ 1 ].castShadow = true;
-  model.children[ 1 ].receiveShadow = true;
+  trumpet.children[ 1 ].castShadow = true;
+  trumpet.children[ 1 ].receiveShadow = true;
 
-  model.userData.onUpdate = ( delta ) => {
+  trumpet.userData.onUpdate = ( delta ) => {
 
-    model.rotation.y += 0.1 * delta;
+    trumpet.rotation.y += 0.1 * delta;
 
   };
 
-  scene.add( model );
+  return trumpet;
 
-};
+}
 
-function loadModels( scene, materials ) {
+async function loadModels( materials ) {
 
-  const loader = new THREE.GLTFLoader();
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const trumpet = setupModels(
+    await loader.load( 'models/trumpet/trumpet.glb' ),
+    materials,
+  );
 
-  loader.load( 'models/trumpet/trumpet.glb', gltf => onLoad( gltf, scene, materials ), null, onError );
+  return { trumpet };
 
 }

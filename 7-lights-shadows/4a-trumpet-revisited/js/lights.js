@@ -1,6 +1,6 @@
-function createLights() {
+function createAmbientLight() {
 
-  const ambient = new THREE.HemisphereLight(
+  return new THREE.HemisphereLight(
 
     0xAE9A7F,
     0x6D6E73,
@@ -28,12 +28,14 @@ function createLights() {
 
   );
 
+}
+
+function createMainLight() {
+
   const main = new THREE.DirectionalLight(
     0xFFFFFA,
-    3,
+    15,
   );
-
-  // main.power = 5000;
 
   main.position.set( -4, 3, 4 );
 
@@ -48,7 +50,15 @@ function createLights() {
   main.shadow.camera.bottom = -1;
   main.shadow.camera.left = -1;
 
-  // scene.add( new THREE.CameraHelper( main.shadow.camera ) );
+  return main;
+
+}
+
+function createLights() {
+
+  const ambient = createAmbientLight();
+
+  const main = createMainLight();
 
   return { ambient, main };
 
