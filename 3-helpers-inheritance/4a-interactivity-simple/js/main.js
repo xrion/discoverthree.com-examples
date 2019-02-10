@@ -18,9 +18,9 @@ function initScene() {
   const meshes = createMeshes();
   app.scene.add( meshes.box );
 
-  const helper = createArrowHelper();
+  const helpers = createArrowHelper();
 
-  meshes.box.add( helper )
+  meshes.box.add( helpers.arrowHelper );
 
   initControls( meshes.box );
 

@@ -4,12 +4,13 @@ async function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 0.5;
+
   app.scene.background = new THREE.Color( 0x00BFFF );
 
   // adding fog in the distance, the same color as the sky is
   // a cheap way to blur the boundary between ground and sky
   app.scene.fog = new THREE.Fog( 0x00BFFF, 115, 150 );
-
 
   app.camera.position.set( 10, 10, 20 );
 
@@ -27,6 +28,8 @@ async function initScene() {
 
   const models = await loadModels();
   app.scene.add( models.horse );
+
+  initControls( models.horse );
 
   app.start();
 

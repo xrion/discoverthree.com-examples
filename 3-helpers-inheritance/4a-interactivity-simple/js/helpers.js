@@ -8,6 +8,6 @@ function createArrowHelper() {
 
   const arrowHelper = new THREE.ArrowHelper( direction, origin, length, 0xff0000, headLength, headWidth );
 
-  return arrowHelper;
+  return { arrowHelper };
 
 }

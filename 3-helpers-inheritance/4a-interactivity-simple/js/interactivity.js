@@ -27,7 +27,7 @@ function leftControl( object ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if ( e.key === 'ArrowLeft' ) start( object, left, -Math.PI / 2 );
+    if ( e.key === 'ArrowLeft' ) start( object, left );
 
   } );
 
@@ -43,7 +43,7 @@ function rightControl( object ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if ( e.key === 'ArrowRight' ) start( object, right, Math.PI / 2 );
+    if ( e.key === 'ArrowRight' ) start( object, right );
 
   } );
 

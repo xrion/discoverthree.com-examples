@@ -1,14 +1,13 @@
 function setupModel( gltf ) {
 
-
   const horse = gltf.scene.children[ 0 ];
-
   const animation = gltf.animations[ 0 ];
+
   const mixer = new THREE.AnimationMixer( horse );
 
   // we'll want to make the horse animate while it's moving
   // we'll need access to the mixer for that, so we'll store
-  // a reference to it in userData
+  // a reference to the mixer in userData
   horse.userData.mixer = mixer;
 
   // we'll use these to reset the horse's position later
@@ -17,8 +16,6 @@ function setupModel( gltf ) {
 
   const action = mixer.clipAction( animation );
   action.play();
-
-  initControls( horse );
 
   return horse;
 
