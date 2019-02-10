@@ -7,15 +7,8 @@ function initPostProcessing( renderer, scene, camera, container ) {
   const renderPass = new THREE.RenderPass( scene, camera );
   composer.addPass( renderPass );
 
-  // the outline pass draws an outline around selected objects
-  // we're passing in scene.children as the last argument, so it's
-  // selecting all objects in the scene - even objects that
-  // we add in the future
-  const outlinePass = new THREE.OutlinePass( new THREE.Vector2( container.clientWidth, container.clientHeight ), scene, camera, scene.children );
-  // outlinePass.renderToScreen = true;
-
-  composer.addPass( outlinePass );
-
+  // next we'll add a funky kaleido pass
+  // The effects should be easily apparent!
   const kaleidoPass = new THREE.ShaderPass( THREE.KaleidoShader );
 
   // look inside the KaleidoShader.js file to see that there are three
@@ -32,8 +25,8 @@ function initPostProcessing( renderer, scene, camera, container ) {
 
   // we can access them like this:
 
-  kaleidoPass.uniforms.angle.value = Math.PI / 45;
-  kaleidoPass.uniforms.sides.value = 4;
+  kaleidoPass.uniforms.angle.value = 0;
+  kaleidoPass.uniforms.sides.value = 3;
 
   // the last one is a special uniform that takes the result of the
   // previous pass in as a texture. You shouldn't modify this

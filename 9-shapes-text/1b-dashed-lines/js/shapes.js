@@ -23,11 +23,11 @@ function initShapes() {
     gapSize: 0.5,
   } );
 
-  const square = new THREE.Line( geometry, dashedMaterial );
+  const dashedSquare = new THREE.Line( geometry, dashedMaterial );
 
   // this is required for LineDashedMaterial to work
-  square.computeLineDistances();
+  dashedSquare.computeLineDistances();
 
-  return { square };
+  return { dashedSquare };
 
 }

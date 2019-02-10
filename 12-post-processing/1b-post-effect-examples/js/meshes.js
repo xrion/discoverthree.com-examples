@@ -1,6 +1,5 @@
 function createMeshes() {
 
-  // create a geometry
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
 
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
@@ -12,5 +11,7 @@ function createMeshes() {
     box.rotation.y -= delta / 5;
 
   };
+
+  return { box };
 
 }

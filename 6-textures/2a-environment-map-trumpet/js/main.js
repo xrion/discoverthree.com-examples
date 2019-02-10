@@ -1,25 +1,27 @@
-function initScene() {
+async function initScene() {
 
   const app = new THREE_APP( '#container' );
 
   app.init();
 
+  app.renderer.toneMappingExposure = 0.5;
+
   app.camera.position.set( 2, 1, 1.5 );
+
+  const envMap = loadEnvironments();
+  app.scene.background = envMap;
 
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
-  const envMap = loadEnvironments();
   const materials = initMaterials( app.scene, envMap );
-
-  app.scene.background = envMap;
+  initEnvMapControls( materials, envMap );
 
   const meshes = createMeshes( materials );
   app.scene.add( meshes.plinth );
 
-  loadModels( app.scene, materials );
-
-  initEnvMapControls( materials, envMap );
+  const models = await loadModels( materials );
+  app.scene.add( models.trumpet );
 
   app.start();
 

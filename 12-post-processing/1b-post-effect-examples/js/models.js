@@ -1,41 +1,22 @@
-// A reusable function to setup the models
-// assumes that the gltf file contains a single model
-// and up to one animation track
-const onLoad = ( gltf, scene ) => {
+function setupModels( gltf ) {
 
-  const model = gltf.scene.children[ 0 ];
+  const parrot = gltf.scene.children[ 0 ];
 
-  model.position.y = 2;
-  model.scale.setScalar( 0.025 );
+  parrot.position.y = 1.5;
+  parrot.scale.multiplyScalar( 3 );
 
-  // The model has morph target. The work fine with the Kaleidoscope pass that we used
-  // however, they don't work with every post-processing effect
-  if ( gltf.animations[ 0 ] ) {
+  return parrot;
 
-    const animation = gltf.animations[ 0 ];
-    const mixer = new THREE.AnimationMixer( model );
+}
 
-    model.userData.onUpdate = ( delta ) => {
+async function loadModels() {
 
-      mixer.update( delta );
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
 
-    };
+  const parrot = setupModels(
+    await loader.load( 'models/Parrot.glb' ),
+  );
 
-    const action = mixer.clipAction( animation );
-    action.play();
-
-  }
-
-  scene.add( model );
-
-};
-
-function loadModels( scene ) {
-
-  const loader = new THREE.GLTFLoader();
-
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
-
-  loader.load( 'models/Stork.glb', gltf => onLoad( gltf, scene ), null, onError );
+  return { parrot };
 
 }

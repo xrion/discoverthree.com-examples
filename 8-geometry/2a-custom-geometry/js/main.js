@@ -8,7 +8,7 @@ function initScene() {
   app.camera.position.set( 0, 0, 10 );
 
   const meshes = createMeshes();
-  app.scene.add( meshes.box );
+  app.scene.add( meshes.tri );
 
   app.start();
 

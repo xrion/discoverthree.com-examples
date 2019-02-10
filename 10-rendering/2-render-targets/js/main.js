@@ -30,6 +30,8 @@ function initScene() {
   app.scene.add( meshes.box );
   sceneRT.add( meshes.torusKnot );
 
+  console.log( meshes );
+
   function renderToTarget( rt ) {
 
     app.renderer.render( sceneRT, cameraRT, rt, true );

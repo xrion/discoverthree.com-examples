@@ -75,4 +75,3 @@ function scaleControl( mesh ) {
   } );
 
 }
-

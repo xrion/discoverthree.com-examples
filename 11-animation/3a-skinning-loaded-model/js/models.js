@@ -1,39 +1,18 @@
-// A reusable function to setup the models
-// assumes that the gltf file contains a single model
-// and up to one animation track
-const onLoad = ( gltf, scene ) => {
+function setupModels( gltf ) {
 
-  const model = gltf.scene.children[ 0 ];
+  const cesiumMan = gltf.scene.children[ 0 ];
 
-  console.log( 'Here\'s the model we just loaded: ', model );
+  logInfo( cesiumMan, gltf.animations )
 
-  const cesiumMan = model.getObjectByName( 'Cesium_Man' );
-  console.log( 'The actual animated SkinnedMesh is a child of this model, called "Cesium_Man": ', cesiumMan);
+  console.log( 'Here\'s the model we just loaded: ', cesiumMan );
 
-  console.log( 'The other child is the array of bones that make up the skeleton: ', model.children[ 0 ] );
+  const mixer = new THREE.AnimationMixer( cesiumMan );
 
-  // Cesium man already has a material set up correctly,
-  // but we'll recreate it here for demonstration purposes
-  cesiumMan.material = new THREE.MeshStandardMaterial( {
-
-    // this needs to be set for any mesh that has skeletal
-    // animation. If you leave it out, then skinning
-    // will not work!
-    skinning: true,
-
-  } );
-
-  wireframeControl( [ cesiumMan.material ] );
-
-  const mixer = new THREE.AnimationMixer( model );
-
-  model.userData.onUpdate = ( delta ) => {
+  cesiumMan.userData.onUpdate = ( delta ) => {
 
     mixer.update( delta );
 
   };
-
-  console.log( 'Finally, here are the AnimationClips that control the bones', gltf.animations )
 
   // this model has a whole bunch of animation clips
   // when played all together they combine into
@@ -45,19 +24,46 @@ const onLoad = ( gltf, scene ) => {
 
   } );
 
-  scene.add( model );
 
-  const helper = new THREE.SkeletonHelper( model );
-  scene.add( helper );
+  // Cesium man already has a material set up correctly,
+  // but we'll replace it here with a plane white material so
+  // that we can examine the model more easily
+  cesiumMan.children[ 1 ].material = new THREE.MeshStandardMaterial( {
 
-};
+    // this needs to be set for any mesh that has skeletal
+    // animation. If you leave it out, then skinning
+    // will not work!
+    skinning: true,
 
-function loadModels( scene ) {
+  } );
 
-  const loader = new THREE.GLTFLoader();
+  return cesiumMan;
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+}
 
-  loader.load( 'models/CesiumMan.glb', gltf => onLoad( gltf, scene ), null, onError );
+function logInfo( cesiumMan, animations ) {
+
+  const bones = cesiumMan.children[ 0 ];
+  const skinnedMesh = cesiumMan.children[ 1 ];
+
+  console.log( 'The cesiumMan model that we just loads consists of two parts.' );
+
+  console.log( 'The first is the array of bones that make up the skeleton: ', bones );
+
+  console.log( 'The second part is the skinned mesh, the position of which is controlled by the bones": ', skinnedMesh );
+
+  console.log( 'Finally, here are the AnimationClips that control the bones', animations );
+
+}
+
+async function loadModels() {
+
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
+
+  const cesiumMan = setupModels(
+    await loader.load( 'models/CesiumMan.glb' ),
+  );
+
+  return { cesiumMan };
 
 }

@@ -5,7 +5,6 @@ function initScene() {
 
   app.init();
 
-  // app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 0, 0, 10 );
 
   const meshes = createMeshes();

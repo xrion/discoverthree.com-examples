@@ -1,25 +1,23 @@
-function setupAnimation( object ) {
+function setupAnimation( models ) {
 
-  console.log(object);
 
-  const mixer = new THREE.AnimationMixer( object );
+  const mixer = new THREE.AnimationMixer( models );
 
-  object.userData.onUpdate = ( delta ) => {
+  models.userData.onUpdate = ( delta ) => {
 
     mixer.update( delta );
 
   };
 
-  const twistIndex = object.morphTargetDictionary.twist;
+  const twistIndex = models.morphTargetDictionary.twist;
   const twistMorphTrack = new THREE.NumberKeyframeTrack(
     `.morphTargetInfluences[${twistIndex}]`,
     [ 0, 4, 8 ],
     [ 0, 1, 0 ],
   );
 
-  console.log( 'Here\'s the keyframe track for the twist morph: ', twistMorphTrack );
 
-  const spherifyIndex = object.morphTargetDictionary.spherify;
+  const spherifyIndex = models.morphTargetDictionary.spherify;
   const spherifyMorphTrack = new THREE.NumberKeyframeTrack(
     `.morphTargetInfluences[${spherifyIndex}]`,
     [ 0, 1, 2, 3, 4, 5, 6 ],
@@ -35,10 +33,12 @@ function setupAnimation( object ) {
     ],
   );
 
+  console.log('Here\'s the model we just loaded: ', models );
+  console.log( 'Here\'s the keyframe track for the twist morph: ', twistMorphTrack );
+  console.log( 'Here\'s the keyframe track for the spherify morph: ', spherifyMorphTrack );
   console.log( '... and here\'s the animation clip : ', animationClip );
 
   const action = mixer.clipAction( animationClip );
   action.play();
 
 }
-

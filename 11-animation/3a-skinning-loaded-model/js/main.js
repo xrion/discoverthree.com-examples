@@ -13,6 +13,11 @@ async function initScene() {
   app.scene.add( lights.ambient, lights.main );
 
   const models = await loadModels();
+  app.scene.add( models.cesiumMan );
+
+  app.scene.add( new THREE.SkeletonHelper( models.cesiumMan ) );
+
+  wireframeControl( [ models.cesiumMan.children[ 1 ].material ] );
 
   app.start();
 

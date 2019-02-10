@@ -7,6 +7,8 @@ async function initScene() {
   app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 3, 5, 15 );
 
+  app.controls.autoRotate = true;
+
   const composer = initPostProcessing( app.renderer, app.scene, app.camera, app.container );
 
   // We'll need to add an onResize function.
@@ -30,6 +32,7 @@ async function initScene() {
   app.scene.add( meshes.box );
 
   const models = await loadModels();
+  app.scene.add( models.parrot );
 
   // overwrite the app's default render function to use the
   // EffectComposer instead

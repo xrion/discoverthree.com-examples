@@ -7,6 +7,9 @@ function initRenderTarget() {
   // target.depthBuffer = false;
 
   console.log( 'Here\'s the target you just created: ', target );
+
+  console.log( 'And here\'s the target.texture, which we can treat like any other texture (e.g., assign to it a material.map): ', target.texture );
+
   return target;
 
 }

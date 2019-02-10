@@ -1,13 +1,16 @@
-function initScene() {
+async function initScene() {
 
   const app = new THREE_APP( '#container' );
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x8FBCD4 );
-  app.camera.position.set( 4, 4, 8 );
+  app.scene.background = new THREE.Color( 0x222222 );
+  app.camera.position.set( 7, 3, 7 );
 
-  loadFont( app.scene );
+  app.controls.target.x = 0.5;
+
+  const text = await loadFont();
+  app.scene.add( text.discover );
 
   app.start();
 

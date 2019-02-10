@@ -26,6 +26,7 @@ function initPoints() {
 
     size: 1,
     sizeAttenuation: true,
+
   } );
 
   const sphere = new THREE.Points( geometry, material );
@@ -53,6 +54,6 @@ function initPoints() {
 
   };
 
-  return { points };
+  return { sphere };
 
 }

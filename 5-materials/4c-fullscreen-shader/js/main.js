@@ -8,12 +8,12 @@ function initScene() {
   app.camera.position.set( 4, 4, 8 );
 
   const meshes = createMeshes();
-  app.scene.add( meshes.plane );
+  app.scene.add( meshes.quad );
 
   const rawShaderMaterial = createShaderMaterial();
-  meshes.plane.material = rawShaderMaterial;
+  meshes.quad.material = rawShaderMaterial;
 
-  meshes.plane.userData.onUpdate = ( delta ) => {
+  meshes.quad.userData.onUpdate = ( delta ) => {
 
     rawShaderMaterial.uniforms.time.value += delta;
 

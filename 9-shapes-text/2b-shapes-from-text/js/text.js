@@ -9,31 +9,16 @@ function createShapes( font ) {
 
 }
 
-// Method one: use the shapes to create a ShapeBufferGeometry.
-// This gives similar results to TextBufferGeometry,
-// except that the text doesn't have height or bevelling
-function createSolidText( shapes ) {
+function setupText( font ) {
 
-  const geometry = new THREE.ShapeBufferGeometry( shapes );
+  const shapes = createShapes( font );
 
-  // as usual, we'll need to translate the text geometry "left" by half it's width
-  // to make sure it's centered at the origin
-  geometry.computeBoundingBox();
-  const centerOffset = -0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
-  geometry.translate( centerOffset, 0, 0 );
-
-  const material = new THREE.MeshBasicMaterial( {
-    side: THREE.DoubleSide, // needed so that the text is visible from behind
-  } );
-
-  return new THREE.Mesh( geometry, material );
-
-}
-
-function createLineText( shapes ) {
+  console.log( 'Here\s the font we just loaded: ', font );
+  console.log( 'And here\s the shapes we created from it: ', shapes );
 
   const material = new THREE.LineBasicMaterial( {
-    side: THREE.DoubleSide, // needed so that the text is visible from behind
+    // make the text is visible from behind
+    side: THREE.DoubleSide,
   } );
 
   const lineText = new THREE.Group();
@@ -43,7 +28,11 @@ function createLineText( shapes ) {
     const points = shape.getPoints();
     const geometry = new THREE.BufferGeometry().setFromPoints( points );
 
-    const lineMesh = new THREE.Line( geometry, material );
+    const lineMesh = new THREE.Line( geometry, new THREE.LineBasicMaterial( {
+      // make the text is visible from behind
+      color: new THREE.Color( Math.random() * 0xffffff ),
+      side: THREE.DoubleSide,
+    } ) );
 
     spinAtRandomIntervals( lineMesh, 3000, 15000 );
 
@@ -92,24 +81,15 @@ function createLineText( shapes ) {
 
 }
 
-function loadFont( scene ) {
 
-  const loader = new THREE.FontLoader();
+async function loadFont() {
 
-  loader.load( 'fonts/droid_serif_regular.typeface.json', ( font ) => {
+  const loader = createAsyncLoader( new THREE.FontLoader() );
 
-    console.log( 'Here\s the font we just loaded: ', font );
+  const discover = setupText(
+    await loader.load( 'fonts/droid_serif_regular.typeface.json' ),
+  );
 
-    const shapes = createShapes( font );
-    console.log( 'And here\s the shapes we created from them: ', shapes );
-
-    const shapeMesh = createSolidText( shapes );
-
-    const lineText = createLineText( shapes );
-
-    // scene.add( shapeMesh );
-    scene.add( lineText );
-
-  } );
+  return { discover };
 
 }

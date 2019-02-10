@@ -5,13 +5,13 @@ function createMeshes( canvasTexture ) {
   } );
 
   const boxGeo = new THREE.BoxBufferGeometry( 2, 2, 2 );
-  const boxMesh = new THREE.Mesh( boxGeo, material );
-  boxMesh.position.x += 1.25;
+  const box = new THREE.Mesh( boxGeo, material );
+  box.position.x += 1.5;
 
   const sphereGeo = new THREE.SphereBufferGeometry( 1, 128, 128 );
-  const sphereMesh = new THREE.Mesh( sphereGeo, material );
-  sphereMesh.position.x -= 1.25;
+  const sphere = new THREE.Mesh( sphereGeo, material );
+  sphere.position.x -= 1.5;
 
-  return { boxMesh, sphereMesh };
+  return { box, sphere };
 
 }

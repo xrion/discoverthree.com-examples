@@ -1,13 +1,10 @@
-// A reusable function to setup the models
-// assumes that the gltf file contains a single model
-// and up to one animation track
-const onLoad = ( gltf, scene ) => {
+function setupModel( gltf ) {
 
-  const model = gltf.scene.children[ 0 ];
+  const morphCube = gltf.scene.children[ 0 ];
 
   // the model already has a material set up correctly,
   // but we'll recreate it here  for demonstration purposes
-  model.material = new THREE.MeshStandardMaterial( {
+  morphCube.material = new THREE.MeshStandardMaterial( {
 
     color: 0xff0000,
 
@@ -26,21 +23,20 @@ const onLoad = ( gltf, scene ) => {
 
   } );
 
-  initMorphControls( model );
+  console.log( 'Here\'s the model we just loaded: ', morphCube );
 
-  scene.add( model );
+  return morphCube;
 
-  console.log( 'Here\'s the model we just loaded: ', model );
+}
 
+async function loadModels() {
 
-};
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
 
-function loadModels( scene ) {
+  const morphCube = setupModel(
+    await loader.load( 'models/morphCube.glb' ),
+  );
 
-  const loader = new THREE.GLTFLoader();
-
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
-
-  loader.load( 'models/cube_morph.glb', gltf => onLoad( gltf, scene ), null, onError );
+  return { morphCube };
 
 }

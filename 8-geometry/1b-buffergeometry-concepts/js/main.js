@@ -17,6 +17,13 @@ async function initScene() {
   app.scene.add( new THREE.VertexNormalsHelper( meshes.sphere ) );
 
   const models = await loadModels();
+  app.scene.add( models.horse );
+
+  // the horse geometry doesn't have any normals,
+  // since it uses vertex colors and flat shading,
+  // normals were omitted to reduce model size
+  // trying to add a normals helper will throw an error
+  // app.scene.add( new THREE.VertexNormalsHelper( models.horse ) );
 
   app.start();
 

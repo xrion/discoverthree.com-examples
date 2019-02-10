@@ -11,8 +11,12 @@ function initScene() {
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
-  const mesh =   const meshes = createMeshes();
-  app.scene.add( meshes.meshA );
+  const meshes = createMeshes();
+  app.scene.add( meshes.skinnedMesh );
+
+  app.scene.add( new THREE.SkeletonHelper( meshes.skinnedMesh ) );
+
+  wireframeControl( [ meshes.skinnedMesh.material ] );
 
   app.start();
 

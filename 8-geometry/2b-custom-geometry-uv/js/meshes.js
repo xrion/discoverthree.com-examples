@@ -21,8 +21,8 @@ function createMeshes() {
   const material = new THREE.MeshBasicMaterial( { map, wireframe: false } );
   wireframeControl( material );
 
-  const box = new THREE.Mesh( geometry, material );
+  const quad = new THREE.Mesh( geometry, material );
 
-  return { box };
+  return { quad };
 
 }

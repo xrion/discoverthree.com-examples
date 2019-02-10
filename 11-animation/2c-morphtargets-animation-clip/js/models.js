@@ -1,23 +1,23 @@
 // A reusable function to setup the models
 // assumes that the gltf file contains a single model
 // and up to one animation track
-const onLoad = ( gltf, scene ) => {
+function setupModel( gltf ) {
 
-  const model = gltf.scene.children[ 0 ];
+  const morphCube = gltf.scene.children[ 0 ];
 
-  setupAnimation( model );
-
-  scene.add( model );
+  return morphCube;
 
 
 };
 
-function loadModels( scene ) {
+async function loadModels() {
 
-  const loader = new THREE.GLTFLoader();
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const morphCube = setupModel(
+    await loader.load( 'models/morphCube.glb' ),
+  );
 
-  loader.load( 'models/cube_morph.glb', gltf => onLoad( gltf, scene ), null, onError );
+  return { morphCube };
 
 }

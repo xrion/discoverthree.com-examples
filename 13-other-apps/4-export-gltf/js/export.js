@@ -1,6 +1,5 @@
 function exportGLTF( input, animations ) {
 
-  console.log(animations)
   const gltfExporter = new THREE.GLTFExporter();
 
   const options = {

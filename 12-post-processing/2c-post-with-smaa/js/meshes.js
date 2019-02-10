@@ -6,10 +6,14 @@ function createMeshes() {
 
   const box = new THREE.Mesh( geometry, material );
 
+  box.position.y = -1;
+
   box.userData.onUpdate = ( delta ) => {
 
     box.rotation.y -= delta / 5;
 
   };
+
+  return { box };
 
 }

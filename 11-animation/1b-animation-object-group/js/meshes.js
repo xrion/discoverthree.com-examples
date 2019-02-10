@@ -32,8 +32,6 @@ function createMeshes() {
 
     mesh.position.set( x, y, z );
 
-    scene.add( mesh );
-
     if( i % 2 === 0 ) groupA.push( mesh );
     else groupB.push( mesh );
 

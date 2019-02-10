@@ -14,20 +14,15 @@ function createMeshes() {
 
   const material = new THREE.MeshStandardMaterial( {
     color: 0x800080,
+
+    // if we forget to set this then moving the bones will have no effect!
     skinning: true,
   } );
 
-  wireframeControl( [ material ] );
+  const skinnedMesh = new THREE.SkinnedMesh( geometry, material );
 
-  const mesh = new THREE.SkinnedMesh( geometry, material );
+  addSkeletonToMesh( skinnedMesh );
 
-  addSkeletonToMesh( mesh );
-
-  scene.add( mesh );
-
-  const helper = new THREE.SkeletonHelper( mesh );
-  scene.add( helper );
-
-  return { box };
+  return { skinnedMesh };
 
 }

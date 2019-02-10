@@ -20,10 +20,10 @@ function createMeshes() {
   wireframeControl( material );
 
   const leftQuad = new THREE.Mesh( geometry, material );
-  leftQuad.position.x -= 2;
+  leftQuad.position.x -= 1.5;
 
   const rightQuad = new THREE.Mesh( geometryIndexed, material );
-  rightQuad.position.x += 2;
+  rightQuad.position.x += 1.5;
 
   return { leftQuad, rightQuad };
 

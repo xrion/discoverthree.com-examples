@@ -21,7 +21,6 @@ function setupModel( gltf ) {
 
 }
 
-
 async function loadModels() {
 
   const loader = createAsyncLoader( new THREE.GLTFLoader() );

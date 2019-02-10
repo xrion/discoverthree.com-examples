@@ -8,7 +8,7 @@ function initScene() {
   app.camera.position.set( -2.5, 2.5, 6 );
 
   const shapes = initShapes();
-  app.scene.add( shapes.square );
+  app.scene.add( shapes.dashedSquare );
 
   app.start();
 

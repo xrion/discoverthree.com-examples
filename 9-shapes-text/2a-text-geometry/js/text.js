@@ -1,4 +1,4 @@
-function createTextMesh( font ) {
+function setupText( font ) {
 
   const textGeometry = new THREE.TextBufferGeometry( 'Discover three.js! \n :)', {
 
@@ -14,31 +14,35 @@ function createTextMesh( font ) {
   } );
 
   // We want to center the mesh (horizontall) on the screen.
+  // However, the geometry is created with it's "pivot" or zero point
+  // at the bottom edge of the first letter, so we'll need to translate the geometry
+
+  // To do this, compute the bounding box
   textGeometry.computeBoundingBox();
+
+  // then offset the geometry by half the width of the box
   const centerOffset = -0.5 * ( textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x );
   textGeometry.translate( centerOffset, 0, 0 );
 
+  console.log( 'Here\'s the font you just loaded: ', font );
   console.log( 'And here\'s the textGeomtry: ', textGeometry );
 
   const material = new THREE.MeshBasicMaterial();
 
   const text = new THREE.Mesh( textGeometry, material );
 
-  return { text };
+  return text;
 
 }
 
-function loadFont( scene ) {
+async function loadFont() {
 
-  const loader = new THREE.FontLoader();
+  const loader = createAsyncLoader( new THREE.FontLoader() );
 
-  loader.load( 'fonts/droid_serif_regular.typeface.json', ( font ) => {
+  const discover = setupText(
+    await loader.load( 'fonts/droid_serif_regular.typeface.json' ),
+  );
 
-    console.log( 'Here\'s the font you just loaded: ', font );
-    const mesh = createTextMesh( font );
-
-    scene.add( mesh );
-
-  } );
+  return { discover };
 
 }

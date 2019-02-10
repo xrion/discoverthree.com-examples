@@ -18,8 +18,8 @@ function createMeshes() {
   const material = new THREE.MeshBasicMaterial( { wireframe: true } );
   wireframeControl( material );
 
-  const box = new THREE.Mesh( geometry, material );
+  const tri = new THREE.Mesh( geometry, material );
 
-  return { box };
+  return { tri };
 
 }

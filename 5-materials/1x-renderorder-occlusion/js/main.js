@@ -4,13 +4,15 @@ async function initScene() {
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x8FBCD4 );
   app.camera.position.set( 0, 0, 20 );
+
 
   const meshes = createMeshes();
   app.scene.add( meshes.moon );
+  app.controls.target.copy( meshes.moon.position );
 
   const models = await loadModels();
+  app.scene.add( models.parrot );
 
   app.start();
 

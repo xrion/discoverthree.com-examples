@@ -1,51 +1,43 @@
-// A reusable function to setup the models
-// assumes that the gltf file contains a single model
-// and up to one animation track
-const onLoad = ( gltf, scene ) => {
+function setupModel( gltf ) {
 
-  const model = gltf.scene.children[ 0 ];
+  const horse = gltf.scene.children[ 0 ];
+  const animation = gltf.animations[ 0 ];
 
-  model.position.set( -2, -2, 0 );
+  horse.position.set( -2, -2, 0 );
 
-  console.log( 'And here\'s the buffer geometry from the bird model: ', model.geometry );
+  console.log( 'And here\'s the buffer geometry from the loaded model: ', horse.geometry );
 
-  model.material = new THREE.MeshBasicMaterial( {
+  horse.material = new THREE.MeshBasicMaterial( {
     wireframe: true,
     morphTargets: true,
     vertexColors: THREE.VertexColors,
   } );
 
-  // note that this model doesn't have normals, so attempting
-  // to use this helper will throw an error
 
-  // const helper = new THREE.VertexNormalsHelper( model );
+  const mixer = new THREE.AnimationMixer( horse );
 
-  if ( gltf.animations[ 0 ] ) {
+  horse.userData.onUpdate = ( delta ) => {
 
-    const animation = gltf.animations[ 0 ];
-    const mixer = new THREE.AnimationMixer( model );
+    mixer.update( delta );
 
-    model.userData.onUpdate = ( delta ) => {
+  };
 
-      mixer.update( delta );
+  const action = mixer.clipAction( animation );
+  action.play();
 
-    };
+  return horse;
 
-    const action = mixer.clipAction( animation );
-    action.play();
+}
 
-  }
 
-  scene.add( model );
+async function loadModels() {
 
-};
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
 
-function loadModels( scene ) {
+  const horse = setupModel(
+    await loader.load( 'models/Horse.glb' ),
+  );
 
-  const loader = new THREE.GLTFLoader();
-
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
-
-  loader.load( 'models/Horse.glb', gltf => onLoad( gltf, scene ), null, onError );
+  return { horse };
 
 }

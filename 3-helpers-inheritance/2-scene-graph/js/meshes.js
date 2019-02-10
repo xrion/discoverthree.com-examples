@@ -1,6 +1,5 @@
 function createMeshes() {
 
-  // create a geometry and material
   const geometry = new THREE.BoxBufferGeometry( 0.5, 0.5, 0.5 );
   const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
 

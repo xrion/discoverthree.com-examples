@@ -75,7 +75,6 @@ function createGeometryIndexed() {
   // compute the normals automatically
   geometry.computeVertexNormals();
 
-
   console.log( '...and here\'s the indexed geometry you just created: ', geometry );
 
   return geometry;

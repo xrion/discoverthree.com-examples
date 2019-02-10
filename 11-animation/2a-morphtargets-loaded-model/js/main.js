@@ -12,6 +12,9 @@ async function initScene() {
   app.scene.add( lights.ambient, lights.main );
 
   const models = await loadModels();
+  app.scene.add( models.morphCube );
+
+  initMorphControls( models.morphCube );
 
 }
 

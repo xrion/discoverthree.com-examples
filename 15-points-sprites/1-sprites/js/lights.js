@@ -1,14 +1,10 @@
-function createLights( scene ) {
+function createLights() {
 
-  const ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
-  scene.add( ambientLight );
+  const ambient = new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 5 );
 
-  const frontLight = new THREE.DirectionalLight( 0xffffff, 1 );
-  frontLight.position.set( 10, 10, 10 );
+  const main = new THREE.DirectionalLight( 0xfffffc, 5 );
+  main.position.set( 10, 5, 10 );
 
-  const backLight = new THREE.DirectionalLight( 0xffffff, 1 );
-  backLight.position.set( -10, 10, -10 );
-
-  scene.add( frontLight, backLight );
+  return { ambient, main };
 
 }

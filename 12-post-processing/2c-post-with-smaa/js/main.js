@@ -37,6 +37,7 @@ async function initScene() {
   app.scene.add( meshes.box );
 
   const models = await loadModels();
+  app.scene.add( models.parrot );
 
   // overwrite the app's default render function to use the
   // EffectComposer instead

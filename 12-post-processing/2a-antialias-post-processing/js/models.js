@@ -75,13 +75,18 @@ const onLoad = ( gltf, scene, offset ) => {
 
 };
 
-function loadModels( scene ) {
+async function loadModels() {
 
-  const loader = new THREE.GLTFLoader();
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const parrots = setupModels(
+    await loader.load( 'models/Parrot.glb' ),
+  );
 
-  loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, scene, 0 ), null, onError );
-  loader.load( 'models/Stork.glb', gltf => onLoad( gltf, scene, 1 ), null, onError );
+  const storksArray = setupModels(
+    await loader.load( 'models/Stork.glb' ),
+  );
+
+  return { bigBird: parrots.bigBird, parrotsArray, storksArray };
 
 }

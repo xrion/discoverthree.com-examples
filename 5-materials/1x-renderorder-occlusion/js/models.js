@@ -1,63 +1,62 @@
-function onLoad( gltf, scene ) {
+function setupModel( gltf, position ) {
 
-  const model = gltf.scene.children[ 0 ];
+  const parrot = gltf.scene.children[ 0 ];
+  const animation = gltf.animations[ 0 ];
 
-  model.position.y = 2;
-  model.rotation.z = Math.PI / 2;
+  parrot.position.y = 2;
+  parrot.rotation.z = Math.PI / 2;
 
-  model.renderOrder = 0;
+  parrot.renderOrder = 0;
 
-  model.material.colorWrite = false;
+  parrot.material.colorWrite = false;
 
   const max = new THREE.Vector3( 8, 5, -10 );
   const min = new THREE.Vector3( -8, -5, 4 );
 
   let t = 0;
 
-  model.position.x = max.x;
+  parrot.position.x = max.x;
 
-  if ( gltf.animations[ 0 ] ) {
+  const mixer = new THREE.AnimationMixer( parrot );
 
-    const animation = gltf.animations[ 0 ];
-    const mixer = new THREE.AnimationMixer( model );
+  // we'll check every object in the scene for
+  // this function and call it once per frame
+  parrot.userData.onUpdate = ( delta ) => {
 
-    // we'll check every object in the scene for
-    // this function and call it once per frame
-    model.userData.onUpdate = ( delta ) => {
+    mixer.update( delta );
 
-      mixer.update( delta );
+    // once t reaches 1,
+    // move the bird to a new random position
+    if ( t > 1 ) {
 
-      // once t reaches 1,
-      // move the bird to a new random position
-      if ( t > 1 ) {
+      t = 0;
+      parrot.position.y = THREE.Math.randFloat( min.y, max.y );
+      parrot.position.z = THREE.Math.randFloat( min.z, max.z );
 
-        t = 0;
-        model.position.y = THREE.Math.randFloat( min.y, max.y );
-        model.position.z = THREE.Math.randFloat( min.z, max.z );
+    }
 
-      }
+    t += delta / 3;
 
-      t += delta / 3;
+    parrot.position.x = THREE.Math.lerp( max.x, min.x, t );
 
-      model.position.x = THREE.Math.lerp( max.x, min.x, t );
-
-    };
 
     const action = mixer.clipAction( animation );
     action.play();
 
-  }
+  };
 
-  scene.add( model );
+  return parrot;
 
 }
 
-function loadModels( scene ) {
+async function loadModels() {
 
-  const loader = new THREE.GLTFLoader();
+  const loader = createAsyncLoader( new THREE.GLTFLoader() );
 
-  const onError = ( errorMessage ) => { console.log( errorMessage ); };
+  const parrot = setupModel(
+    await loader.load( 'models/Parrot.glb' ),
+  );
 
-  loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, scene ), null, onError );
+  return { parrot };
 
 }
