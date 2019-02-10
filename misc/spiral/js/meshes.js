@@ -10,7 +10,7 @@ function createSpiral() {
   for ( let i = -500; i < 500; i++ ) {
 
     const nextSphere = sphere.clone();
-    const position = pointOnShericalSpiral( i );
+    const position = pointOnSphericalSpiral( i );
     nextSphere.position.copy( position );
     spiral.add( nextSphere );
 

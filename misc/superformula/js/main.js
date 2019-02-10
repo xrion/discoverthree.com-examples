@@ -12,7 +12,7 @@ function initScene() {
   app.scene.add( lights.ambient, lights.main );
 
   const meshes = createMeshes();
-  app.scene.add( meshes.super );
+  app.scene.add( meshes.superMesh );
 
   app.start();
 
