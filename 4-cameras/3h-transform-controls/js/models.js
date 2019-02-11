@@ -1,6 +1,6 @@
 import {
   AnimationMixer,
-  Math as Mathutils,
+  Math as MathUtils,
   Spherical,
 } from './vendor/three/three.module.js';
 
@@ -8,7 +8,7 @@ import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
 
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
-function setupModel(  gltf ) {
+function setupModel( gltf ) {
 
   const protoHorse = gltf.scene.children[ 0 ];
   const animation = gltf.animations[ 0 ];

@@ -1,3 +1,7 @@
+import {
+  Vector3,
+} from './vendor/three/three.module.js';
+
 // We'll use this flag to make sure that the horse can't move in two directions at one
 let moving = false;
 

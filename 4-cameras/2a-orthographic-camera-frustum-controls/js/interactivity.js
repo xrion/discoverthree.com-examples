@@ -66,7 +66,7 @@ function initFarSlider( camera ) {
 
 }
 
-function initCameraControls( camera, controls ) {
+export default function setupCameraParamControls( camera, controls ) {
 
   initZoomSlider( camera, controls );
   initNearSlider( camera );

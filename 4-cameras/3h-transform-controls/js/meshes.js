@@ -1,3 +1,12 @@
+import {
+  CylinderBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+  SphereBufferGeometry,
+  TorusKnotBufferGeometry,
+} from './vendor/three/three.module.js';
+
+
 function createPlinth() {
 
   const geometry = new CylinderBufferGeometry( 18, 18, 1, 64, 1 );
@@ -31,16 +40,10 @@ function createShapes() {
 
   torusKnot.add( sphere );
 
-  torusKnot.userData.animate = true;
-
   torusKnot.userData.onUpdate = ( delta ) => {
 
-    if ( torusKnot.userData.animate ) {
-
-      torusKnot.rotation.y += delta / 2;
-      torusKnot.rotation.z -= delta / 4;
-
-    }
+    torusKnot.rotation.y += delta / 2;
+    torusKnot.rotation.z -= delta / 4;
 
   };
 
@@ -48,17 +51,13 @@ function createShapes() {
 
 }
 
-import {
-  BoxBufferGeometry,
-  Mesh,
-  MeshStandardMaterial,
-} from './vendor/three/three.module.js';
-
 export default function createMeshes() {
 
-  const plinth = createPlinth();
-  const shapes = createShapes();
+  return {
 
-  return { plinth, shapes };
+    plinth: createPlinth(),
+    shapes: createShapes(),
+
+  };
 
 }

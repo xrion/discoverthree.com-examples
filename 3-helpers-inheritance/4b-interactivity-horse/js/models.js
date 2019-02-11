@@ -1,6 +1,5 @@
 import {
   AnimationMixer,
-  Vector3,
 } from './vendor/three/three.module.js';
 
 import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';

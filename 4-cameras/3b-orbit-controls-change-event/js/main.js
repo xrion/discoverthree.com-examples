@@ -5,6 +5,8 @@ import {
 
 import App from './vendor/App.module.js';
 
+import setupControls from './controls.js';
+
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
 

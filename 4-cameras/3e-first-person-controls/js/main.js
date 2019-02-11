@@ -4,6 +4,8 @@ import {
 
 import App from './vendor/App.module.js';
 
+import setupControls from './controls.js';
+
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
 import loadModels from './models.js';
@@ -16,7 +18,7 @@ async function initScene() {
 
   app.renderer.toneMappingExposure = 0.4;
   app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( 0, 4, 40 );
+  app.camera.position.set( -20, 30, 30 );
 
   app.start();
 

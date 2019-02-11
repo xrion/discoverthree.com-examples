@@ -1,21 +1,17 @@
-import {
-  Vector3,
-  B,
-} from './vendor/three/three.module.js';
+function initOverlay( controls ) {
 
-import {
-  xControls,
-} from './vendor/three/controls/todo.js';
+  controls.enabled = false;
 
-export default import {
-  Vector3,
-  B,
-} from './vendor/three/three.module.js';
+  const overlay = document.querySelector( '#overlay' );
 
-import {
-  xControls,
-} from './vendor/three/controls/todo.js';
+  overlay.addEventListener( 'click', () => {
 
+    overlay.style.display = 'none';
+    controls.enabled = true;
+
+  } );
+
+}
 export default function setupControls( app ) {
 
   initOverlay( app.controls );
@@ -24,7 +20,7 @@ export default function setupControls( app ) {
   // None of them are actually changed here, these are all default values
 
   // "target" sets the location of focus, where the object orbits around
-  app.controls.target = new Vector3();
+  // app.controls.target = new Vector3();
 
   // How far you can dolly in and out ( PerspectiveCamera only )
   app.controls.minDistance = 0;
@@ -103,20 +99,5 @@ export default function setupControls( app ) {
   // .. and the Azimuthal angle is how far towards New York
   // we have rotated
   app.controls.getAzimuthalAngle();
-
-}
-
-function initOverlay( controls ) {
-
-  controls.enabled = false;
-
-  const overlay = document.querySelector( '#overlay' );
-
-  overlay.addEventListener( 'click', () => {
-
-    overlay.style.display = 'none';
-    controls.enabled = true;
-
-  } );
 
 }

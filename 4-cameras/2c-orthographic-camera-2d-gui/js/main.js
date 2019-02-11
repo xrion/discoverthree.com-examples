@@ -1,12 +1,17 @@
 import {
   Color,
+  Fog,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.module.js';
 
+import initGUI from './GUI.js';
+
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
 import loadModels from './models.js';
+
+import setupControls from './interactivity.js';
 
 async function initScene() {
 

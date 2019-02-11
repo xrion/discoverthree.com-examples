@@ -1,4 +1,4 @@
-function setupGizmoTypeSelect( transformControls ) {
+export default function setupGizmoTypeSelect( transformControls ) {
 
   const select = document.querySelector( '#gizmo-select' );
 
@@ -7,8 +7,6 @@ function setupGizmoTypeSelect( transformControls ) {
     e.preventDefault();
 
     transformControls.mode = e.target.value;
-
-    console.log( transformControls );
 
   } );
 

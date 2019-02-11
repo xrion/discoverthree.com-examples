@@ -2,6 +2,21 @@ import {
   DeviceOrientationControls,
 } from './vendor/three/controls/todo.js';
 
+function initOverlay( controls, app ) {
+
+  controls.enabled = false;
+
+  const overlay = document.querySelector( '#overlay' );
+
+  overlay.addEventListener( 'click', () => {
+
+    overlay.style.display = 'none';
+    controls.enabled = true;
+
+  } );
+
+}
+
 export default function setupControls( app ) {
 
   app.controls = new DeviceOrientationControls( app.camera, app.container );
@@ -31,17 +46,3 @@ export default function setupControls( app ) {
 
 }
 
-function initOverlay( controls, app ) {
-
-  controls.enabled = false;
-
-  const overlay = document.querySelector( '#overlay' );
-
-  overlay.addEventListener( 'click', () => {
-
-    overlay.style.display = 'none';
-    controls.enabled = true;
-
-  } );
-
-}

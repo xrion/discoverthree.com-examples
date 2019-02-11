@@ -9,6 +9,8 @@ import createLights from './lights.js';
 import createMeshes from './meshes.js';
 import loadModels from './models.js';
 
+import setupControls from './interactivity.js';
+
 async function initScene() {
 
   const app = new App( '#scene-container' );

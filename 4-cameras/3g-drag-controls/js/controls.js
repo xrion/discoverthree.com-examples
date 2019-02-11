@@ -1,6 +1,25 @@
 import {
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
+
+import {
   DragControls,
 } from './vendor/three/controls/todo.js';
+
+function initOverlay( controls ) {
+
+  controls.enabled = false;
+
+  const overlay = document.querySelector( '#overlay' );
+
+  overlay.addEventListener( 'click', () => {
+
+    overlay.style.display = 'none';
+    controls.enabled = true;
+
+  } );
+
+}
 
 export default function setupControls( app, meshesArray ) {
 
@@ -77,21 +96,6 @@ export default function setupControls( app, meshesArray ) {
   dragControls.addEventListener( 'drag', ( e ) => {
 
     // fires continuously while moving object
-
-  } );
-
-}
-
-function initOverlay( controls ) {
-
-  controls.enabled = false;
-
-  const overlay = document.querySelector( '#overlay' );
-
-  overlay.addEventListener( 'click', () => {
-
-    overlay.style.display = 'none';
-    controls.enabled = true;
 
   } );
 

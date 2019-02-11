@@ -2,6 +2,22 @@ import {
   OrthographicTrackballControls,
 } from './vendor/three/controls/todo.js';
 
+
+function initOverlay( controls ) {
+
+  controls.enabled = false;
+
+  const overlay = document.querySelector( '#overlay' );
+
+  overlay.addEventListener( 'click', () => {
+
+    overlay.style.display = 'none';
+    controls.enabled = true;
+
+  } );
+
+}
+
 export default function setupControls( app ) {
 
   app.controls = new OrthographicTrackballControls( app.camera );
@@ -89,21 +105,6 @@ export default function setupControls( app ) {
   app.controls.addEventListener( 'end', () => {
 
     console.log( 'End event called.' );
-
-  } );
-
-}
-
-function initOverlay( controls ) {
-
-  controls.enabled = false;
-
-  const overlay = document.querySelector( '#overlay' );
-
-  overlay.addEventListener( 'click', () => {
-
-    overlay.style.display = 'none';
-    controls.enabled = true;
 
   } );
 

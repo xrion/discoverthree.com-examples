@@ -19,7 +19,7 @@ function initZoomSlider( camera, controls ) {
 
   } );
 
-  controls.addEventListener( 'change', ( e ) => {
+  controls.addEventListener( 'change', () => {
 
     camera.zoom = camera.zoom.toFixed( 2 );
 
@@ -96,7 +96,7 @@ function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
   } );
 }
 
-function initCameraControls( app, cameraMain, cameraOverview, cameraHelper ) {
+export default function setupCameraControls( app, cameraMain, cameraOverview, cameraHelper ) {
 
   initZoomSlider( cameraMain, app.controls );
   initNearSlider( cameraMain );

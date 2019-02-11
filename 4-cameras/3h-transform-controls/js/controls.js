@@ -2,6 +2,26 @@ import {
   TransformControls,
 } from './vendor/three/controls/todo.js';
 
+import setupGizmoTypeSelect from './interactivity.js';
+
+function initOverlay( orbitControls, transformControls ) {
+
+  orbitControls.enabled = false;
+
+  const overlay = document.querySelector( '#overlay' );
+
+  overlay.addEventListener( 'click', () => {
+
+    overlay.style.display = 'none';
+    document.querySelector( '#controls' ).style.display = 'initial';
+
+    orbitControls.enabled = true;
+    transformControls.visible = true;
+
+  } );
+
+}
+
 export default function setupControls( app, mesh ) {
 
   const orbitControls = app.controls;
@@ -71,23 +91,5 @@ export default function setupControls( app, mesh ) {
   // If we want to stop using controls, we need to call this function.
   // It removes all the eventListeners that that controls set up
   // transformControls.dispose();
-
-}
-
-function initOverlay( orbitControls, transformControls ) {
-
-  orbitControls.enabled = false;
-
-  const overlay = document.querySelector( '#overlay' );
-
-  overlay.addEventListener( 'click', () => {
-
-    overlay.style.display = 'none';
-    document.querySelector( '#controls' ).style.display = 'initial';
-
-    orbitControls.enabled = true;
-    transformControls.visible = true;
-
-  } );
 
 }

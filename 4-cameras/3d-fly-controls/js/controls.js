@@ -9,10 +9,6 @@ export default function setupControls( app ) {
   // controls after the user clicks on the overlay
   initOverlay( app );
 
-}
-
-function setupControls( app ) {
-
   // setup the fly controls. Our App skipped
   // setting up OrbitControls since we didn't load the script,
   // allowing us to set up a different controls manually

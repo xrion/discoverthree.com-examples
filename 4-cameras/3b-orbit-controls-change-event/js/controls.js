@@ -1,11 +1,14 @@
-import {
-  Vector3,
-  B,
-} from './vendor/three/three.module.js';
+function initOverlay() {
 
-import {
-  xControls,
-} from './vendor/three/controls/todo.js';
+  const overlay = document.querySelector( '#overlay' );
+
+  overlay.addEventListener( 'click', () => {
+
+    overlay.style.display = 'none';
+
+  } );
+
+}
 
 export default function setupControls( app ) {
 
@@ -22,18 +25,6 @@ export default function setupControls( app ) {
 
     app.update();
     app.render();
-
-  } );
-
-}
-
-function initOverlay() {
-
-  const overlay = document.querySelector( '#overlay' );
-
-  overlay.addEventListener( 'click', () => {
-
-    overlay.style.display = 'none';
 
   } );
 

@@ -1,9 +1,10 @@
 import {
   CameraHelper,
-  B,
 } from './vendor/three/three.module.js';
 
-export deafult function initCamera( app ) {
+import setupCameraControls from './interactivity.js';
+
+export default function setupCameras( app ) {
 
   const cameraMain = app.camera;
 
@@ -45,6 +46,6 @@ export deafult function initCamera( app ) {
 
   window.addEventListener( 'resize', onResize );
 
-  initCameraControls( app, cameraMain, cameraOverview, cameraHelper );
+  setupCameraControls( app, cameraMain, cameraOverview, cameraHelper );
 
 }

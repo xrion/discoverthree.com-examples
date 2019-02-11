@@ -4,6 +4,8 @@ import {
 
 import App from './vendor/App.module.js';
 
+import setupControls from './controls.js';
+
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
 import loadModels from './models.js';
@@ -26,11 +28,10 @@ async function initScene() {
   const meshes = createMeshes();
   app.scene.add( meshes.plinth, meshes.shapes );
 
-  const models = await loadModels();
-  app.scene.add( ...models.horsesArray );
-
   setupControls( meshes.shapes, app );
 
+  const models = await loadModels();
+  app.scene.add( ...models.horsesArray );
 
 }
 

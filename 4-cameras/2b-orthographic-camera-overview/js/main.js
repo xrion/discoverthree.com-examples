@@ -4,6 +4,9 @@ import {
 
 import App from './vendor/App.module.js';
 
+import setupCameras from './camera.js';
+import setupCameraControls from './interactivity.js';
+
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
 
@@ -11,14 +14,14 @@ function initScene() {
 
   const app = new App( '#scene-container' );
 
-  const cameras = initCameras( app );
+  const cameras = setupCameras( app );
 
   app.init();
 
   app.renderer.toneMappingExposure = 0.5;
   app.scene.background = new Color( 0x23485c );
 
-  initCameraControls( app, cameras.cameraMain, cameras.cameraOverview, cameras.cameraHelper );
+  setupCameraControls( app, cameras.cameraMain, cameras.cameraOverview, cameras.cameraHelper );
 
   app.start();
 

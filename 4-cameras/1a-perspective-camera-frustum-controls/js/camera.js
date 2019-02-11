@@ -1,4 +1,4 @@
-function initCamera( camera ) {
+export default function setupCameras( camera ) {
 
   camera.position.set( 5, 5, 30 );
 
@@ -9,7 +9,5 @@ function initCamera( camera ) {
   // remember that we need to update the camera's frustum after
   // changing the clipping planes
   camera.updateProjectionMatrix();
-
-  initCameraControls( camera );
 
 }

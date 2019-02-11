@@ -1,3 +1,7 @@
+import {
+  ShaderMaterial,
+} from './vendor/three/three.module.js';
+
 // a shader material requires two pieces of GLSL code to work
 // 1. the vertex shader, that calculates the appearance at each vertex
 // 2. the fragment shader, that uses the result of the vertex shader to
@@ -51,5 +55,13 @@ function createShaderMaterial() {
   console.log( 'Here\'s the ShaderMaterial you just created: ', material );
 
   return material;
+
+}
+
+export default function createMaterials() {
+
+  return {
+    shaderMaterial: createShaderMaterial(),
+  };
 
 }

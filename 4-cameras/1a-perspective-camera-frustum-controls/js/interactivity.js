@@ -97,7 +97,7 @@ function initFarSlider( camera ) {
 
 }
 
-function initCameraControls( camera ) {
+export default function setupCameraParamControls( camera ) {
 
   initAspectValue( camera );
   initFOVSlider( camera );

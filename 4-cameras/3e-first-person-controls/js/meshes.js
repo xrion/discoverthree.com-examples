@@ -1,17 +1,11 @@
 import {
-  BoxBufferGeometry,
+  CylinderBufferGeometry,
   Mesh,
   MeshStandardMaterial,
+  SphereBufferGeometry,
+  TorusKnotBufferGeometry,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
-
-  const plinth = createPlinth();
-  const shapes = createShapes();
-
-  return { plinth, shapes };
-
-}
 
 function createPlinth() {
 
@@ -54,5 +48,16 @@ function createShapes() {
   };
 
   return torusKnot;
+
+}
+
+export default function createMeshes() {
+
+  return {
+
+    plinth: createPlinth(),
+    shapes: createShapes(),
+
+  };
 
 }

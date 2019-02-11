@@ -2,6 +2,21 @@ import {
   FirstPersonControls,
 } from './vendor/three/controls/todo.js';
 
+function initOverlay( controls ) {
+
+  controls.enabled = false;
+
+  const overlay = document.querySelector( '#overlay' );
+
+  overlay.addEventListener( 'click', () => {
+
+    overlay.style.display = 'none';
+    controls.enabled = true;
+
+  } );
+
+}
+
 export default function setupControls( app ) {
 
   app.controls = new FirstPersonControls( app.camera, app.container );
@@ -73,19 +88,4 @@ export default function setupControls( app ) {
   // If we want to stop using controls, we need to call this function.
   // It removes all the eventListeners that that controls set up
   // app.controls.dispose();
-}
-
-function initOverlay( controls ) {
-
-  controls.enabled = false;
-
-  const overlay = document.querySelector( '#overlay' );
-
-  overlay.addEventListener( 'click', () => {
-
-    overlay.style.display = 'none';
-    controls.enabled = true;
-
-  } );
-
 }

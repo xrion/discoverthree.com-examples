@@ -4,13 +4,9 @@ import {
   OrthographicCamera,
 } from './vendor/three/three.module.js';
 
-import {
-  App,
-} from './vendor/App.module.js';
+import App from './vendor/App.module.js';
 
-export default function initCamera( app ) {
-
-function initGUI() {
+export default function initGUI() {
 
   const appGUI = new App( '#gui-container' );
 

@@ -1,4 +1,9 @@
-function createMaterials( scene, envMap ) {
+import {
+  Color,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
+
+export default function createMaterials( envMap ) {
 
   // generally throughout these examples, we
   // don't care about color accuracy that much

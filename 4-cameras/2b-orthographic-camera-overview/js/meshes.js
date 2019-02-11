@@ -1,5 +1,6 @@
 import {
-  BoxBufferGeometry,
+  SphereBufferGeometry,
+  Math as MathUtils,
   Mesh,
   MeshStandardMaterial,
 } from './vendor/three/three.module.js';

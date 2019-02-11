@@ -4,7 +4,7 @@ import {
   PerspectiveCamera,
 } from './vendor/three/three.module.js';
 
-export default function initCamera( app ) {
+export default function setupCameras( app ) {
 
   const cameraOverview = new PerspectiveCamera( 35, app.container.clientWidth / app.container.clientHeight, 1, 1000 );
   cameraOverview.position.set( 100, 0, 100 );

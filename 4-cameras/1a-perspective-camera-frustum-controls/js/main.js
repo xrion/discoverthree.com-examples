@@ -4,6 +4,9 @@ import {
 
 import App from './vendor/App.module.js';
 
+import setupCameras from './camera.js';
+import setupCameraParamControls from './interactivity.js';
+
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
 
@@ -17,7 +20,8 @@ function initScene() {
   app.scene.background = new Color( 0x23485c );
   app.controls.target.y = 1;
 
-  initCamera( app.camera );
+  setupCameras( app.camera );
+  setupCameraParamControls( app.camera );
 
   app.start();
 

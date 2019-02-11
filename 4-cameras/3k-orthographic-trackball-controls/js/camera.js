@@ -1,9 +1,9 @@
 import {
-  OrthographicCamera.
+  OrthographicCamera,
 } from './vendor/three/three.module.js';
 
 
-export default function initCamera( app ) {
+export default function createCamera( app ) {
 
   const width = app.container.clientWidth;
   const height = app.container.clientHeight;

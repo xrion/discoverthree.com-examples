@@ -1,7 +1,7 @@
 
 import {
   AnimationMixer,
-  Vector3,
+  MeshBasicMaterial,
 } from './vendor/three/three.module.js';
 
 import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';

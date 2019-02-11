@@ -9,7 +9,7 @@ import createMeshes from './meshes.js';
 
 import createHelpers from './helpers.js';
 
-import setupControls from './interactivity,js';
+import setupControls from './interactivity.js';
 
 function initScene() {
 
@@ -38,8 +38,6 @@ function initScene() {
   meshes.box.add( helpers.arrowHelper );
 
   setupControls( meshes.box );
-
-
 
 }
 

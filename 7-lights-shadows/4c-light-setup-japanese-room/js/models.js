@@ -1,13 +1,10 @@
-import {
-  AnimationMixer,
-  Vector3,
-} from './vendor/three/three.module.js';
-
 import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
+
+import { DRACOLoader } from './vendor/three/loaders/DRACOLoader.module.js';
 
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
-function setupModel(  gltf ) {
+function setupModel( gltf ) {
 
   const room = gltf.scene.children[ 0 ];
 
@@ -15,8 +12,7 @@ function setupModel(  gltf ) {
 
   return room;
 
-};
-
+}
 
 export default async function loadModels() {
 
@@ -28,7 +24,7 @@ export default async function loadModels() {
   const asyncLoader = createAsyncLoader( gltfLoader );
 
   const room = setupModel(
-    await asyncLoader.load( 'models/lighting/japanese_room.glb' )
+    await asyncLoader.load( 'models/lighting/japanese_room.glb' ),
   );
 
   return { room };

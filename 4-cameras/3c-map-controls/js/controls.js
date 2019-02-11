@@ -6,6 +6,21 @@ import {
   MapControls,
 } from './vendor/three/controls/todo.js';
 
+function initOverlay( controls ) {
+
+  controls.enabled = false;
+
+  const overlay = document.querySelector( '#overlay' );
+
+  overlay.addEventListener( 'click', () => {
+
+    overlay.style.display = 'none';
+    controls.enabled = true;
+
+  } );
+
+}
+
 export default function setupControls( app ) {
 
   // setup the map controls. Our App will have skipped
@@ -99,20 +114,5 @@ export default function setupControls( app ) {
   // .. and the Azimuthal angle is how far towards New York
   // we have rotated
   app.controls.getAzimuthalAngle();
-
-}
-
-function initOverlay( controls ) {
-
-  controls.enabled = false;
-
-  const overlay = document.querySelector( '#overlay' );
-
-  overlay.addEventListener( 'click', () => {
-
-    overlay.style.display = 'none';
-    controls.enabled = true;
-
-  } );
 
 }
