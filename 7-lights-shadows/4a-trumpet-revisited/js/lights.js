@@ -1,4 +1,10 @@
-function createAmbientLight() {
+import {
+  HemisphereLight,
+  DirectionalLight,
+} from './vendor/three/three.module.js';
+
+
+function createHemisphereLight() {
 
   return new HemisphereLight(
 
@@ -30,41 +36,35 @@ function createAmbientLight() {
 
 }
 
-function createMainLight() {
+function createDirectionalLight() {
 
-  const main = new DirectionalLight(
+  const direct = new DirectionalLight(
     0xFFFFFA,
     15,
   );
 
-  main.position.set( -4, 3, 4 );
+  direct.position.set( -4, 3, 4 );
 
-  main.castShadow = true;
-  main.shadow.mapSize.width = 1024;
-  main.shadow.mapSize.height = 1024;
-  main.shadow.camera.near = 5.5;
-  main.shadow.camera.far = 7.5;
+  direct.castShadow = true;
+  direct.shadow.mapSize.width = 1024;
+  direct.shadow.mapSize.height = 1024;
+  direct.shadow.camera.near = 5.5;
+  direct.shadow.camera.far = 7.5;
 
-  main.shadow.camera.top = 1;
-  main.shadow.camera.right = 1;
-  main.shadow.camera.bottom = -1;
-  main.shadow.camera.left = -1;
+  direct.shadow.camera.top = 1;
+  direct.shadow.camera.right = 1;
+  direct.shadow.camera.bottom = -1;
+  direct.shadow.camera.left = -1;
 
-  return main;
+  return direct;
 
 }
 
-import {
-  HemisphereLight,
-  DirectionalLight,
-} from './vendor/three/three.module.js';
-
 export default function createLights() {
 
-  const ambient = createAmbientLight();
-
-  const main = createMainLight();
-
-  return { ambient, main };
+  return {
+    ambient: createHemisphereLight(),
+    main: createDirectionalLight(),
+  };
 
 }

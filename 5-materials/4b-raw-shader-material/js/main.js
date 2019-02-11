@@ -4,6 +4,7 @@ import {
 
 import App from './vendor/App.module.js';
 
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
 function initScene() {
@@ -21,8 +22,8 @@ function initScene() {
   const meshes = createMeshes();
   app.scene.add( meshes.box );
 
-  const rawShaderMaterial = createShaderMaterial( app.camera, meshes.box );
-  meshes.box.material = rawShaderMaterial;
+  const materials = createMaterials( app.camera, meshes.box );
+  meshes.box.material = materials.rawShaderMaterial;
 
 }
 

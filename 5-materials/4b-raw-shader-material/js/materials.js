@@ -62,11 +62,11 @@ void main() {
   gl_FragColor = vec4(0.5,  // Red
                       0.0,  // Green
                       0.5,  // Blue
-                      1.0); // Alpa, or transpareny
+                      1.0); // Alpha, or transparency
 }
 `;
 
-function createShaderMaterial( camera, model ) {
+function createRawShaderMaterial( camera, model ) {
 
   const material = new RawShaderMaterial( {
 
@@ -98,4 +98,11 @@ function createShaderMaterial( camera, model ) {
 
   return material;
 
+}
+
+export default function createMaterials( camera, model ) {
+
+  return {
+    rawShaderMaterial: createRawShaderMaterial( camera, model ),
+  };
 }

@@ -29,7 +29,7 @@ function colorControl( material ) {
 
 }
 
-function initMaterialControl( material ) {
+export default function setupMaterialControl( material ) {
 
   opacityControl( material );
   colorControl( material );

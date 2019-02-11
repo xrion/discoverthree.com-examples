@@ -1,13 +1,8 @@
-import {
-  AnimationMixer,
-  Vector3,
-} from './vendor/three/three.module.js';
-
 import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
 
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
-function setupModel(  gltf, materials ) {
+function setupModel( gltf, materials ) {
 
   const trumpet = gltf.scene.getObjectByName( 'trumpet' );
 
@@ -27,12 +22,11 @@ function setupModel(  gltf, materials ) {
     trumpet.rotation.y += 0.1 * delta;
 
   };
-
   return trumpet;
 
 }
 
-async function loadModels( materials ) {
+export default async function loadModels( materials ) {
 
   const loader = createAsyncLoader( new GLTFLoader() );
 
@@ -44,3 +38,4 @@ async function loadModels( materials ) {
   return { trumpet };
 
 }
+

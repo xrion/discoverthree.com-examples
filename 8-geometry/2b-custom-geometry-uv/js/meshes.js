@@ -1,3 +1,10 @@
+import {
+  MeshBasicMaterial,
+  Mesh,
+  sRGBEncoding,
+  TextureLoader,
+} from './vendor/three/three.module.js';
+
 function wireframeControl( material ) {
 
   const button = document.querySelector( '#toggle-wireframe' );
@@ -11,24 +18,19 @@ function wireframeControl( material ) {
   } );
 }
 
-import {
-  BoxBufferGeometry,
-  Mesh,
-  MeshStandardMaterial,
-} from './vendor/three/three.module.js';
+export default function createMeshes( geometry ) {
 
-export default function createMeshes() {
-
-  const geometry = createGeometry();
-
-  const map = new TextureLoader().load( 'textures/color/phoenix_park_dublin.jpg' );
+  const textureLoader = new TextureLoader();
+  const map = textureLoader.load( 'textures/color/phoenix_park_dublin.jpg' );
   map.encoding = sRGBEncoding;
 
-  const material = new MeshBasicMaterial( { map, wireframe: false } );
+  const material = new MeshBasicMaterial( {
+    map,
+  } );
   wireframeControl( material );
 
-  const quad = new Mesh( geometry, material );
+  const tri = new Mesh( geometry, material );
 
-  return { quad };
+  return { tri };
 
 }

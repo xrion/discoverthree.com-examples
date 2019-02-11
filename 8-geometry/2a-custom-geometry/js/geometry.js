@@ -1,10 +1,11 @@
 import {
+  BufferGeometry,
   Face3,
   Geometry,
   Vector3,
 } from './vendor/three/three.module.js';
 
-export default function createGeometry() { {
+export default function createGeometry() {
 
   const geometry = new Geometry();
 
@@ -41,7 +42,8 @@ export default function createGeometry() { {
   console.log( '... and here\'s what it looks like after being converted to a BufferGeometry: ', bufferGeometry );
 
   // never use a Geometry directly, always convert it to a BufferGeometry first
-  return bufferGeometry;
+  return {
+    custom: bufferGeometry,
+  };
 
 }
-

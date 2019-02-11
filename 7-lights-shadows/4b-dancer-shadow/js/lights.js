@@ -1,3 +1,8 @@
+import {
+  HemisphereLight,
+  DirectionalLight,
+} from './vendor/three/three.module.js';
+
 function createDiffuseLight() {
 
   const diffuse = new SpotLight(
@@ -71,10 +76,6 @@ function createMainLight() {
 
 }
 
-import {
-  HemisphereLight,
-  DirectionalLight,
-} from './vendor/three/three.module.js';
 
 export default function createLights() {
 

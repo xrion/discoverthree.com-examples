@@ -1,4 +1,9 @@
-function createAmbientLight() {
+import {
+  HemisphereLight,
+  SpotLight,
+} from './vendor/three/three.module.js';
+
+function createHemisphereLight() {
 
   // we'll measure the ambient light's intensity in Lux, which means
   // "luminous flux per unit area". Of course, luminous flux is another
@@ -65,17 +70,11 @@ function createSpotLight() {
 
 }
 
-import {
-  HemisphereLight,
-  DirectionalLight,
-} from './vendor/three/three.module.js';
-
 export default function createLights() {
 
-  const ambient = createAmbientLight();
-
-  const main = createSpotLight();
-
-  return { ambient, main };
+  return {
+    ambient: createHemisphereLight(),
+    main: createSpotLight(),
+  };
 
 }

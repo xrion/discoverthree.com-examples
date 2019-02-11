@@ -4,7 +4,7 @@ import {
   ShadowMaterial,
 } from './vendor/three/three.module.js';
 
-function initGroundShadow() {
+export default function createGroundShadow() {
 
   const geometry = new CircleBufferGeometry( 18, 64 );
 

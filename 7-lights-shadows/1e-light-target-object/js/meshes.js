@@ -1,3 +1,14 @@
+import {
+  CylinderBufferGeometry,
+  DoubleSide,
+  Mesh,
+  MeshBasicMaterial,
+  MeshStandardMaterial,
+  PlaneBufferGeometry,
+  SphereBufferGeometry,
+  TorusKnotBufferGeometry,
+} from './vendor/three/three.module.js';
+
 function createPlinth() {
 
   const geometry = new CylinderBufferGeometry( 18, 18, 1, 64, 1 );
@@ -28,7 +39,7 @@ function createGround() {
 
 }
 
-function initShapes() {
+function createShapes() {
 
   const torusKnotGeo = new TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
   const torusKnotMat = new MeshStandardMaterial( {
@@ -69,19 +80,12 @@ function initShapes() {
 
 }
 
-import {
-  BoxBufferGeometry,
-  Mesh,
-  MeshStandardMaterial,
-} from './vendor/three/three.module.js';
-
 export default function createMeshes() {
 
-  const plinth = createPlinth();
-  const ground = createGround();
-
-  const targets = initShapes();
-
-  return { plinth, ground, targets };
+  return {
+    plinth: createPlinth(),
+    ground: createGround(),
+    targets: createShapes(),
+  };
 
 }

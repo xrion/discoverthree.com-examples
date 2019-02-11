@@ -3,35 +3,40 @@ import {
   PointLight,
 } from './vendor/three/three.module.js';
 
-function createMainLight() {
+function createHemisphereLight() {
 
-  const pointLight = new PointLight(
+  return new HemisphereLight( 0xddeeff, 0x0f0e0d, 5 );
+
+}
+
+function creatPointLight() {
+
+  const point = new PointLight(
     0xFFF0F3, // color
     1, // intensity ( overwritten by power )
     0, // distance
     2, // decay
   );
 
-  pointLight.power = 5000;
+  point.power = 5000;
 
-  pointLight.position.set( 0, 12, 0 );
+  point.position.set( 0, 12, 0 );
 
-  pointLight.castShadow = true;
-  pointLight.shadow.mapSize.width = 1024;
-  pointLight.shadow.mapSize.height = 1024;
-  pointLight.shadow.camera.near = 0.1;
-  pointLight.shadow.camera.far = 24;
+  point.castShadow = true;
+  point.shadow.mapSize.width = 1024;
+  point.shadow.mapSize.height = 1024;
+  point.shadow.camera.near = 0.1;
+  point.shadow.camera.far = 24;
 
-  return pointLight;
+  return point;
 
 }
 
 export default function createLights() {
 
-  const ambient = new HemisphereLight( 0xcccccc, 0x555555, 0.75 );
-
-  const main = createMainLight();
-
-  return { ambient, main };
+  return {
+    ambient: createHemisphereLight(),
+    main: creatPointLight(),
+  };
 
 }

@@ -1,5 +1,6 @@
 import {
   AnimationMixer,
+  Math as MathUtils,
   Vector3,
 } from './vendor/three/three.module.js';
 
@@ -7,7 +8,7 @@ import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
 
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
-function setupModel( gltf, position ) {
+function setupModel( gltf ) {
 
   const parrot = gltf.scene.children[ 0 ];
   const animation = gltf.animations[ 0 ];

@@ -3,7 +3,7 @@ import {
   DirectionalLight,
 } from './vendor/three/three.module.js';
 
-export default function createLights() {
+
 
   const ambient = new HemisphereLight( 0xddeeff, 0x0f0e0d, 0.5 );
 
@@ -14,5 +14,14 @@ export default function createLights() {
   main.position.set( -12, 10, -12 );
 
   return { ambient, main };
+
+}
+
+export default function createLights() {
+
+  return {
+    ambient: createHemisphereLight(),
+    main: createDirectionalLight(),
+  };
 
 }

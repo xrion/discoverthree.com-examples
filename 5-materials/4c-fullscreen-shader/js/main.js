@@ -4,6 +4,7 @@ import {
 
 import App from './vendor/App.module.js';
 
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
 function initScene() {
@@ -22,11 +23,11 @@ function initScene() {
   app.scene.add( meshes.quad );
 
   const materials = createMaterials();
-  meshes.quad.material = materials.rawShaderMaterial;
+  meshes.quad.material = materials.shaderMaterial;
 
   meshes.quad.userData.onUpdate = ( delta ) => {
 
-    materials.rawShaderMaterial.uniforms.time.value += delta;
+    materials.shaderMaterial.uniforms.time.value += delta;
 
   };
 

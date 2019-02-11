@@ -3,7 +3,7 @@ import {
   PointLight,
 } from './vendor/three/three.module.js';
 
-function createAmbientLight() {
+function createHemisphereLight() {
 
   // we'll measure the ambient light's intensity in Lux, which means
   // "luminous flux per unit area". Of course, luminous flux is another
@@ -29,7 +29,7 @@ function createAmbientLight() {
 
     // intensity( irradiance )
     // here, we'll assume a dim twilight value
-    1
+    1,
 
     // increasing this even a little bit - say to around 5
 
@@ -72,10 +72,9 @@ function createPointLight() {
 
 export default function createLights() {
 
-  const ambient = createAmbientLight();
-
-  const main = createPointLight();
-
-  return { ambient, main };
+  return {
+    ambient: createHemisphereLight(),
+    main: createPointLight(),
+  };
 
 }

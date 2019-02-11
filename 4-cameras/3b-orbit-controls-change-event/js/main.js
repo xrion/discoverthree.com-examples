@@ -27,9 +27,6 @@ function initScene() {
   // move the camera
   // app.start();
 
-  // however, we do want to render one frame
-  // to prevent showing a black screen at the starts
-  app.render();
 
   setupControls( app );
 
@@ -38,6 +35,11 @@ function initScene() {
 
   const meshes = createMeshes();
   app.scene.add( meshes.plinth, meshes.shapes );
+
+  // however, we do want to render one frame,
+  // after adding everything to our scene
+  // to prevent showing a black screen at the starts
+  app.render();
 
 }
 

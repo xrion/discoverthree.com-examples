@@ -1,19 +1,15 @@
 import {
   HemisphereLight,
-  DirectionalLight,
+  SpotLight,
 } from './vendor/three/three.module.js';
 
-export default function createLights() {
+function createHemisphereLight() {
 
-  const ambient = new HemisphereLight( 0xcccccc, 0x555555, 0.75 );
-
-  const main = createMainLight();
-
-  return { ambient, main };
+  return new HemisphereLight( 0xcccccc, 0x555555, 0.75 );
 
 }
 
-function createMainLight() {
+function createSpotLight() {
 
   const spotLight = new SpotLight(
     0xffffff, // color
@@ -42,5 +38,14 @@ function createMainLight() {
   spotLight.shadow.camera.updateProjectionMatrix();
 
   return spotLight;
+
+}
+
+export default function createLights() {
+
+  return {
+    ambient: createHemisphereLight(),
+    main: createSpotLight(),
+  };
 
 }

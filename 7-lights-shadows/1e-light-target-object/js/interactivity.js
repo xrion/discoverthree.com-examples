@@ -1,15 +1,4 @@
-function setupLightTargetControls( lights, lightHelper, targetObjects ) {
-
-  targetObjects.default = lights.main.target;
-
-  initRetargetButton( lights, lightHelper, 'default', targetObjects );
-  initRetargetButton( lights, lightHelper, 'front', targetObjects );
-  initRetargetButton( lights, lightHelper, 'middle', targetObjects );
-  initRetargetButton( lights, lightHelper, 'rear', targetObjects );
-
-}
-
-function initRetargetButton( lights, lightHelper, targetName, targetObjects ) {
+function setupRetargetButton( lights, lightHelper, targetName, targetObjects ) {
 
   const button = document.querySelector( `#target-${targetName}` );
 
@@ -20,3 +9,14 @@ function initRetargetButton( lights, lightHelper, targetName, targetObjects ) {
 
   } );
 }
+export default function setupLightTargetControls( lights, lightHelper, targetObjects ) {
+
+  targetObjects.default = lights.main.target;
+
+  setupRetargetButton( lights, lightHelper, 'default', targetObjects );
+  setupRetargetButton( lights, lightHelper, 'front', targetObjects );
+  setupRetargetButton( lights, lightHelper, 'middle', targetObjects );
+  setupRetargetButton( lights, lightHelper, 'rear', targetObjects );
+
+}
+

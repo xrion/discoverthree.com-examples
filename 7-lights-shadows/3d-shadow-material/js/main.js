@@ -10,7 +10,11 @@ import setupRenderer from './renderer.js';
 
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
+import createGroundShadow from './shadow.js';
+
 import loadModels from './models.js';
+
+import setupMaterialControl from './interactivity.js';
 
 async function initScene() {
 
@@ -37,10 +41,10 @@ async function initScene() {
   const models = await loadModels();
   app.scene.add( ...models.horsesArray );
 
-  const shadowMesh = initGroundShadow();
+  const shadowMesh = createGroundShadow();
   app.scene.add( shadowMesh );
 
-  initMaterialControl( shadowMesh.material );
+  setupMaterialControl( shadowMesh.material );
 
 }
 

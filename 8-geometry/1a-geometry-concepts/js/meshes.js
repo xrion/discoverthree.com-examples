@@ -5,16 +5,7 @@ import {
   SphereGeometry,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
-
-  const cube = initCube();
-  const sphere = initSphere();
-
-  return { cube, sphere };
-
-}
-
-function initCube() {
+function createCube() {
 
   const geometry = new BoxGeometry( 2, 2, 2 );
 
@@ -30,9 +21,9 @@ function initCube() {
 
 }
 
-function initSphere() {
+function createSphere() {
 
-  const geometry = new sSphereGeometry( 1, 8, 8 );
+  const geometry = new SphereGeometry( 1, 8, 8 );
 
   // this time we'll translate the geometry instead of the mesh
   // the visible effect will be the same, but there
@@ -47,5 +38,14 @@ function initSphere() {
   console.log( '...and here\'s the sphere geometry you just created: ', geometry );
 
   return sphere;
+
+}
+
+export default function createMeshes() {
+
+  return {
+    cube: createCube(),
+    sphere: createSphere(),
+  };
 
 }

@@ -4,7 +4,7 @@ import {
   Vector3,
 } from './vendor/three/three.module.js';
 
-function createSphericalPositions() {
+export default function createSphericalPositions() {
 
   const initialPos = new Vector3( -1, -1, 0 );
 

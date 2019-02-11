@@ -1,3 +1,8 @@
+import {
+  CylinderBufferGeometry,
+  Mesh,
+} from './vendor/three/three.module.js';
+
 function createPlinth( materials ) {
 
   const geometry = new CylinderBufferGeometry( 1, 0.5, 1, 64, 1 );
@@ -11,10 +16,10 @@ function createPlinth( materials ) {
 
 }
 
-function createMeshes( materials ) {
+export default function createMeshes( materials ) {
 
-  const plinth = createPlinth( materials );
-
-  return { plinth };
+  return {
+    plinth: createPlinth( materials ),
+  };
 
 }

@@ -1,7 +1,7 @@
 import {
   BoxBufferGeometry,
   Mesh,
-  MeshStandardMaterial,
+  MeshBasicMaterial,
 } from './vendor/three/three.module.js';
 
 export default function createMeshes() {

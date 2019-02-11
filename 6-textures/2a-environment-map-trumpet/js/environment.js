@@ -1,7 +1,7 @@
 import {
   CubeTextureLoader,
   CubeReflectionMapping,
-  sRGBEncoding
+  sRGBEncoding,
 } from './vendor/three/three.module.js';
 
 export default function loadEnvironments() {

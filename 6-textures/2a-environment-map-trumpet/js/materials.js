@@ -1,4 +1,8 @@
-function createMaterials( envMap ) {
+import {
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
+
+export default function createMaterials( envMap ) {
 
   const brassColor = 0xccb47e;
   const silverColor = 0xC5C6C8;

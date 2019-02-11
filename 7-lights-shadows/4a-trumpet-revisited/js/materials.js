@@ -18,7 +18,7 @@ export default function createMaterials( envMap ) {
   const brassColor = new Color( 0xB5A642 ).convertSRGBToLinear();
   const silverColor = new Color( 0xC4CACE ).convertSRGBToLinear();
 
-  const materials = {
+  return {
 
     brass: new MeshStandardMaterial( {
       metalness: 1,
@@ -44,7 +44,5 @@ export default function createMaterials( envMap ) {
     } ),
 
   };
-
-  return materials;
 
 }

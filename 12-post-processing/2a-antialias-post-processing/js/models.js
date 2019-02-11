@@ -5,13 +5,7 @@ import {
   Vector3,
 } from './vendor/three/three.module.js';
 
-
-import {
-  AnimationClip,
-  AnimationMixer,
-} from './vendor/three/three.module.js';
-
-export default function initAnimation( model, animation ) {
+export default function setupModel( model, animation ) {
 
   const mixer = new AnimationMixer( model );
 

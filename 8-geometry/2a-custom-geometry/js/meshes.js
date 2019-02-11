@@ -1,3 +1,8 @@
+import {
+  MeshBasicMaterial,
+  Mesh,
+} from './vendor/three/three.module.js';
+
 function wireframeControl( material ) {
 
   const button = document.querySelector( '#toggle-wireframe' );
@@ -11,15 +16,7 @@ function wireframeControl( material ) {
   } );
 }
 
-import {
-  BoxBufferGeometry,
-  Mesh,
-  MeshStandardMaterial,
-} from './vendor/three/three.module.js';
-
-export default function createMeshes() {
-
-  const geometry = createGeometry();
+export default function createMeshes( geometry ) {
 
   const material = new MeshBasicMaterial( { wireframe: true } );
   wireframeControl( material );

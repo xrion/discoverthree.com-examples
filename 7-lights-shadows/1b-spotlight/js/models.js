@@ -1,5 +1,6 @@
 import {
   AnimationMixer,
+  Math as MathUtils,
   Spherical,
 } from './vendor/three/three.module.js';
 

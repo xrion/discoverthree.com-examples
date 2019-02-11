@@ -1,4 +1,9 @@
-function createMeshes( material ) {
+import {
+  BoxBufferGeometry,
+  Mesh,
+} from './vendor/three/three.module.js';
+
+export default function createMeshes( material ) {
 
   const geometry = new BoxBufferGeometry( 2, 2, 2 );
   const box = new Mesh( geometry, material );

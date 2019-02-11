@@ -1,6 +1,5 @@
 import {
   Color,
-  SpotLightHelper,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.module.js';
@@ -15,16 +14,14 @@ async function initScene() {
 
   app.init();
 
-  app.renderer.toneMappingExposure = 1;
+  app.renderer.toneMappingExposure = 0.4;
   app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( -20, 30, 50 );
+  app.camera.position.set( -20, 30, 30 );
 
   app.start();
 
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
-
-  app.scene.add( new SpotLightHelper( lights.main ) );
 
   const meshes = createMeshes();
   app.scene.add( meshes.plinth, meshes.shapes );

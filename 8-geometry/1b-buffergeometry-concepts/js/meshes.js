@@ -1,18 +1,10 @@
 import {
-  BoxBufferGeometry,
+  SphereBufferGeometry,
   Mesh,
-  MeshStandardMaterial,
+  MeshBasicMaterial,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
-
-  const sphere = initSphere();
-
-  return { sphere };
-
-}
-
-function initSphere() {
+function createSphere() {
 
   const geometry = new SphereBufferGeometry( 1, 8, 8 );
 
@@ -25,5 +17,13 @@ function initSphere() {
   console.log( '...and here\'s the sphere geometry you just created: ', geometry );
 
   return sphere;
+
+}
+
+export default function createMeshes() {
+
+  return {
+    sphere: createSphere(),
+  };
 
 }

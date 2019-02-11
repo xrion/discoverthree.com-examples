@@ -39,14 +39,16 @@ export default function createMeshes() {
 
     mesh.position.set( x, y, z );
 
-    if( i % 2 === 0 ) groupA.push( mesh );
+    if ( i % 2 === 0 ) groupA.push( mesh );
     else groupB.push( mesh );
 
-    if( i % 5 === 0 ) groupC.push( mesh );
+    if ( i % 5 === 0 ) groupC.push( mesh );
     else groupD.push( mesh );
 
   }
 
-  return { groupA, groupB, groupC, groupD };
+  return {
+    groupA, groupB, groupC, groupD,
+  };
 
 }

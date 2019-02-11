@@ -1,12 +1,3 @@
-function initEnvMapControls( materials, envMap ) {
-
-  const materialsArray = Object.values( materials );
-
-  setupEnvMapToggle( materialsArray, envMap );
-  setupEnvMapStrengthSlider( materialsArray );
-
-}
-
 function setupEnvMapToggle( materialsArray, envMap ) {
 
   const toggle = document.querySelector( '#envmap-toggle' );
@@ -53,5 +44,14 @@ function setupEnvMapStrengthSlider( materialsArray ) {
     e.preventDefault();
 
   } );
+
+}
+
+export default function setupEnvMapControl( materials, envMap ) {
+
+  const materialsArray = Object.values( materials );
+
+  setupEnvMapToggle( materialsArray, envMap );
+  setupEnvMapStrengthSlider( materialsArray );
 
 }

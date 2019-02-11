@@ -1,5 +1,9 @@
 import App from './vendor/App.module.js';
 
+import loadEnvironment from './environment.js';
+import setupEnvMapControl from './interactivity.js';
+
+import createMaterials from './materials.js';
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
 import loadModels from './models.js';
@@ -12,7 +16,7 @@ async function initScene() {
 
   app.renderer.toneMappingExposure = 0.6;
 
-  const envMap = loadEnvironments();
+  const envMap = loadEnvironment();
   app.scene.background = envMap;
   app.camera.position.set( 2, 1, 1.5 );
 
@@ -22,7 +26,7 @@ async function initScene() {
   app.scene.add( lights.ambient, lights.main );
 
   const materials = createMaterials( envMap );
-  initEnvMapControls( materials, envMap );
+  setupEnvMapControl( materials, envMap );
 
   const meshes = createMeshes( materials );
   app.scene.add( meshes.plinth );
