@@ -29,8 +29,11 @@ function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 3, 5, 6 );
+
+  app.start();
 
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
@@ -40,8 +43,6 @@ function initScene() {
   const meshes = createMeshes( target.texture );
   app.scene.add( meshes.box );
   sceneRT.add( meshes.torusKnot );
-
-  console.log( meshes );
 
   function renderToTarget( rt ) {
 

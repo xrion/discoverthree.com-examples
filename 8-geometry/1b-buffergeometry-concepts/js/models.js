@@ -1,6 +1,7 @@
 import {
   AnimationMixer,
-  Vector3,
+  MeshBasicMaterial,
+  VertexColors,
 } from './vendor/three/three.module.js';
 
 import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
@@ -19,7 +20,7 @@ function setupModel( gltf ) {
   horse.material = new MeshBasicMaterial( {
     wireframe: true,
     morphTargets: true,
-    vertexColors: THREE.VertexColors,
+    vertexColors: VertexColors,
   } );
 
 

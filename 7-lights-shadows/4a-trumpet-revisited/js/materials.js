@@ -1,4 +1,4 @@
-function initMaterials( scene, envMap ) {
+function createMaterials( scene, envMap ) {
 
   // generally throughout these examples, we
   // don't care about color accuracy that much
@@ -20,7 +20,7 @@ function initMaterials( scene, envMap ) {
       roughness: 0.05,
       color: brassColor,
       envMap,
-      envMapIntensity: 1, // default is 1
+      envMapIntensity: 1,
     } ),
 
     silver: new MeshStandardMaterial( {

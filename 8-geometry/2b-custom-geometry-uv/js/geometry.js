@@ -1,11 +1,13 @@
 import {
-  BufferAttribute,
-  BufferGeometry,
+  Face3,
+  Geometry,
+  Vector2,
+  Vector3,
 } from './vendor/three/three.module.js';
 
 export default function createGeometry() { {
 
-  const geometry = new THREE.Geometry();
+  const geometry = new Geometry();
 
   geometry.vertices.push(
     new Vector3( -1, 1, 0 ), // vertex 0
@@ -17,9 +19,9 @@ export default function createGeometry() { {
   // create a face made up of 3 vertices. Faces are always triangles
   // The face references the vertices by their position in
   // the geometry.vertices array
-  geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
+  geometry.faces.push( new Face3( 0, 1, 2 ) );
 
-  geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
+  geometry.faces.push( new Face3( 2, 3, 0 ) );
 
   // the face's normal is initialzed as (0, 0, 0)
   // either set it manually, or use this function to calculate

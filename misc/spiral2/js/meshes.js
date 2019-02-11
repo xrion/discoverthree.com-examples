@@ -1,10 +1,15 @@
+import {
+  InstancedBufferAttribute,
+  InstancedBufferGeometry,
+  SphereBufferGeometry,
+} from './vendor/three/three.module.js';
 
 function createSpiral( material ) {
 
   const offsets = [];
   const instanceIndex = [];
 
-  const instancedSphericalGeo = new THREE.InstancedBufferGeometry();
+  const instancedSphericalGeo = new InstancedBufferGeometry();
 
   const sphereGeo = new SphereBufferGeometry( 0.015, 16, 16 );
 
@@ -20,10 +25,10 @@ function createSpiral( material ) {
     instanceIndex.push( ( Math.abs( i ) % 10 * 0.1 ) );
   }
 
-  const offsetAttribute = new THREE.InstancedBufferAttribute( new Float32Array( offsets ), 3 );
+  const offsetAttribute = new InstancedBufferAttribute( new Float32Array( offsets ), 3 );
   instancedSphericalGeo.addAttribute( 'offset', offsetAttribute );
 
-  const indexAttribute = new THREE.InstancedBufferAttribute( new Float32Array( instanceIndex ), 1 );
+  const indexAttribute = new InstancedBufferAttribute( new Float32Array( instanceIndex ), 1 );
   instancedSphericalGeo.addAttribute( 'instanceIndex', indexAttribute );
 
   const spiral = new Mesh( instancedSphericalGeo, material );
@@ -33,7 +38,7 @@ function createSpiral( material ) {
 
 }
 
-function createMeshes( material ) {
+export default function createMeshes( material ) {
 
   return { spiral: createSpiral( material ) }
 

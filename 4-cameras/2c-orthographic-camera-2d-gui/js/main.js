@@ -15,7 +15,6 @@ async function initScene() {
   app.init();
 
   app.renderer.toneMappingExposure = 0.5;
-
   app.scene.background = new Color( 0x00BFFF );
 
   // adding fog in the distance, the same color as the sky is
@@ -23,12 +22,13 @@ async function initScene() {
   app.scene.fog = new Fog( 0x00BFFF, 115, 150 );
 
   app.camera.position.set( 10, 10, 20 );
-
   app.controls.target.y = 5;
 
   // disable keys in the orbit controls so that we can use
   // them to control our horse
   app.controls.enableKeys = false;
+
+  app.start();
 
   const appGUI = initGUI();
 
@@ -43,9 +43,7 @@ async function initScene() {
   app.scene.add( models.main );
   appGUI.scene.add( models.gui );
 
-  initControls( models.main, models.gui );
-
-  app.start();
+  setupControls( models.main, models.gui );
 
 }
 

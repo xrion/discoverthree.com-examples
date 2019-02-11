@@ -19,6 +19,16 @@ function initScene() {
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( -20, 30, 30 );
 
+  // ! don't call app.start() !
+  // we're not using a render loop here,
+  // instead rendering one frame each time the controls
+  // move the camera
+  // app.start();
+
+  // however, we do want to render one frame
+  // to prevent showing a black screen at the starts
+  app.render();
+
   setupControls( app );
 
   const lights = createLights();
@@ -26,16 +36,6 @@ function initScene() {
 
   const meshes = createMeshes();
   app.scene.add( meshes.plinth, meshes.shapes );
-
-  // don't call app.start()
-  // we're not using a render loop here,
-  // instead rendering one frame each time the controls
-  // move the camera
-  // app.start();
-
-  // however, we do want to render one frame
-  // tp prevent showing a black screen at the starts
-  app.render();
 
 }
 

@@ -1,15 +1,10 @@
 import {
-  Vector3,
-  B,
-} from './vendor/three/three.module.js';
-
-import {
-  xControls,
+  OrthographicTrackballControls,
 } from './vendor/three/controls/todo.js';
 
 export default function setupControls( app ) {
 
-  app.controls = new THREE.OrthographicTrackballControls( app.camera );
+  app.controls = new OrthographicTrackballControls( app.camera );
 
   initOverlay( app.controls );
 

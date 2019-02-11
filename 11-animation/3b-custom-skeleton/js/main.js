@@ -15,8 +15,11 @@ function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 10, 10, 15 );
+
+  app.start();
 
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
@@ -28,7 +31,7 @@ function initScene() {
 
   wireframeControl( [ meshes.skinnedMesh.material ] );
 
-  app.start();
+
 
 }
 

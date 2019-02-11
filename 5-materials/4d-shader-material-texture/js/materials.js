@@ -61,7 +61,7 @@ function createShaderMaterial() {
     },
   };
 
-  const material = new THREE.ShaderMaterial( {
+  const material = new ShaderMaterial( {
     uniforms,
     vertexShader,
     fragmentShader,

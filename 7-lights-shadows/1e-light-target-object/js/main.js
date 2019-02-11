@@ -15,7 +15,7 @@ function initScene() {
 
   app.init();
 
-  app.renderer.toneMappingExposure = 1; // default is 1
+  app.renderer.toneMappingExposure = 1;
 
   app.scene.background = new Color( 0x8FBCD4 );
   app.scene.fog = new Fog( 0x8FBCD4, 200, 230 );

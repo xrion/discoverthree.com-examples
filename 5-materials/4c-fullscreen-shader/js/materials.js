@@ -40,7 +40,7 @@ function createShaderMaterial() {
     time: { value: 0.0 },
   };
 
-  const material = new THREE.ShaderMaterial( {
+  const material = new ShaderMaterial( {
 
     uniforms,
     vertexShader,

@@ -11,12 +11,16 @@ function initScene() {
 
   const app = new App( '#scene-container' );
 
+  // this should be fault for post processing
   // app.gammaOutput = false;
 
   app.init();
 
+  app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 3, 5, 6 );
+
+  app.start();
 
   const composer = initPostProcessing( app.renderer, app.scene, app.camera );
 
@@ -48,8 +52,6 @@ function initScene() {
     composer.render();
 
   };
-
-  app.start();
 
 }
 

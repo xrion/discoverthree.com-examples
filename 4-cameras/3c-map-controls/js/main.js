@@ -19,6 +19,8 @@ async function initScene() {
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( -20, 30, 30 );
 
+  app.start();
+
   setupControls( app );
 
   const lights = createLights();
@@ -29,8 +31,6 @@ async function initScene() {
 
   const models = await loadModels();
   app.scene.add( ...models.horsesArray );
-
-  app.start();
 
 }
 

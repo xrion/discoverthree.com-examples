@@ -1,15 +1,10 @@
 import {
-  Vector3,
-  B,
-} from './vendor/three/three.module.js';
-
-import {
-  xControls,
+  PointerLockControls,
 } from './vendor/three/controls/todo.js';
 
 export default function setupControls( app ) {
 
-  const controls = new THREE.PointerLockControls( app.camera, app.container );
+  const controls = new PointerLockControls( app.camera, app.container );
 
   // note that these controls don't have an "update" function
   // so we don't need to add them as app.controls

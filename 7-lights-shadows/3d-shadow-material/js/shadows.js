@@ -1,8 +1,14 @@
+import {
+  CircleBufferGeometry,
+  Mesh,
+  ShadowMaterial,
+} from './vendor/three/three.module.js';
+
 function initGroundShadow() {
 
-  const geometry = new THREE.CircleBufferGeometry( 18, 64 );
+  const geometry = new CircleBufferGeometry( 18, 64 );
 
-  const material = new THREE.ShadowMaterial( {
+  const material = new ShadowMaterial( {
     color: 0x000000,
     opacity: 0.2,
   } );

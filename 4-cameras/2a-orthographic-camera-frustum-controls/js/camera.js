@@ -1,6 +1,7 @@
 import {
-  OrthographicCamera,
+  OrthographicCamera.
 } from './vendor/three/three.module.js';
+
 
 export default function initCamera( app ) {
 

@@ -1,3 +1,8 @@
+import {
+  RawShaderMaterial,
+} from './vendor/three/three.module.js';
+
+
 // a shader material requires two pieces of GLSL code to work
 // 1. the vertex shader, that calculates the appearance at each vertex
 // 2. the fragment shader, that uses the result of the vertex shader to
@@ -63,7 +68,7 @@ void main() {
 
 function createShaderMaterial( camera, model ) {
 
-  const material = new THREE.RawShaderMaterial( {
+  const material = new RawShaderMaterial( {
 
     uniforms: {
       modelMatrix: {

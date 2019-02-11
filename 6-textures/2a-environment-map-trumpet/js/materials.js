@@ -1,4 +1,4 @@
-function initMaterials( envMap ) {
+function createMaterials( envMap ) {
 
   const brassColor = 0xccb47e;
   const silverColor = 0xC5C6C8;
@@ -13,7 +13,7 @@ function initMaterials( envMap ) {
       roughness: 0.2,
       color: brassColor,
       envMap,
-      envMapIntensity: 1, // default is 1
+      envMapIntensity: 1,
     } ),
 
     silver: new MeshStandardMaterial( {

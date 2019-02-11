@@ -2,7 +2,7 @@ import {
   ArrowHelper,
   AxesHelper,
   Box3,
-  Box3Helper
+  Box3Helper,
   BoxHelper,
   GridHelper,
   Plane,
@@ -106,7 +106,7 @@ function createPlaneHelpers() {
 
 }
 
-function createHelpers( model ) {
+export default function createHelpers( model ) {
 
   return {
 

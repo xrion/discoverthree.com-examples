@@ -1,6 +1,7 @@
 import {
   AnimationMixer,
-  Vector3,
+  Math as MathUtils,
+  Spherical,
 } from './vendor/three/three.module.js';
 
 import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
@@ -25,7 +26,7 @@ function setupModel(  gltf ) {
     horse.position.z += 1.6 * i;
     horse.scale.setScalar( 0.66 - 0.066 * i );
 
-    const spherical = new THREE.Spherical().setFromVector3( horse.position );
+    const spherical = new Spherical().setFromVector3( horse.position );
 
     const mixer = new AnimationMixer( horse );
 

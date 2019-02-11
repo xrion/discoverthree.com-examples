@@ -4,24 +4,22 @@ import {
 
 import App from './vendor/App.module.js';
 
-import createLights from './lights.js';
-import createMeshes from './meshes.js';
+import createPoints from './points.js';
 
 function initScene() {
 
   const app = new App( '#scene-container' );
 
-
-  app.scene.background = new Color( 0x34456f );
-
   app.init();
 
+  app.renderer.toneMappingExposure = 1;
   app.camera.position.set( 0, 0, 10 );
-
-  const points = initPoints();
-  app.scene.add( points.sphere );
+  app.scene.background = new Color( 0x34456f );
 
   app.start();
+
+  const points = createPoints();
+  app.scene.add( points.sphere );
 
 }
 

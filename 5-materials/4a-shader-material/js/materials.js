@@ -1,3 +1,7 @@
+import {
+  ShaderMaterial,
+} from './vendor/three/three.module.js';
+
 // a shader material requires two pieces of GLSL code to work
 // 1. the vertex shader, that calculates the appearance at each vertex
 // 2. the fragment shader, that uses the result of the vertex shader to
@@ -42,10 +46,9 @@ void main() {
                       1.0); // Alpa, or transpareny
 }
 `;
+export default function createMaterials() {
 
-function createShaderMaterial() {
-
-  const material = new THREE.ShaderMaterial( {
+  const shaderMaterial = new ShaderMaterial( {
 
     // uniforms: {}, // optional object containing uniforms
     vertexShader,
@@ -53,8 +56,8 @@ function createShaderMaterial() {
 
   } );
 
-  console.log( 'Here\'s the ShaderMaterial you just created: ', material );
+  console.log( 'Here\'s the ShaderMaterial you just created: ', shaderMaterial );
 
-  return material;
+  return { shaderMaterial };
 
 }

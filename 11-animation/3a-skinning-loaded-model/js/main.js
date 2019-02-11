@@ -6,7 +6,6 @@ import {
 import App from './vendor/App.module.js';
 
 import createLights from './lights.js';
-import createMeshes from './meshes.js';
 import loadModels from './models.js';
 
 async function initScene() {
@@ -15,10 +14,13 @@ async function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 2, 2, 2 );
 
   app.controls.target.y = 0.75;
+
+  app.start();
 
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
@@ -30,7 +32,7 @@ async function initScene() {
 
   wireframeControl( [ models.cesiumMan.children[ 1 ].material ] );
 
-  app.start();
+
 
 }
 

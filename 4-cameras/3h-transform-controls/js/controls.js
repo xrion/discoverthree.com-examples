@@ -1,8 +1,12 @@
-function setupControls( mesh, app ) {
+import {
+  TransformControls,
+} from './vendor/three/controls/todo.js';
+
+export default function setupControls( app, mesh ) {
 
   const orbitControls = app.controls;
 
-  const transformControls = new THREE.TransformControls( app.camera, app.container );
+  const transformControls = new TransformControls( app.camera, app.container );
 
   setupGizmoTypeSelect( transformControls );
 

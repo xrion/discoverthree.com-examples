@@ -21,8 +21,8 @@ export default async function loadModels() {
 
   const gltfLoader = new GLTFLoader();
 
-  THREE.DRACOLoader.setDecoderPath( 'js/vendor/three/loaders/draco/' );
-  gltfLoader.setDRACOLoader( new THREE.DRACOLoader() );
+  DRACOLoader.setDecoderPath( 'js/vendor/three/loaders/draco/' );
+  gltfLoader.setDRACOLoader( new DRACOLoader() );
 
   const asyncLoader = createAsyncLoader( gltfLoader );
 

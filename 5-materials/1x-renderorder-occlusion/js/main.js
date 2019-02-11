@@ -1,10 +1,5 @@
-import {
-  Color,
-} from './vendor/three/three.module.js';
-
 import App from './vendor/App.module.js';
 
-import createLights from './lights.js';
 import createMeshes from './meshes.js';
 import loadModels from './models.js';
 
@@ -14,8 +9,10 @@ async function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 1;
   app.camera.position.set( 0, 0, 20 );
 
+  app.start();
 
   const meshes = createMeshes();
   app.scene.add( meshes.moon );
@@ -23,8 +20,6 @@ async function initScene() {
 
   const models = await loadModels();
   app.scene.add( models.parrot );
-
-  app.start();
 
 }
 

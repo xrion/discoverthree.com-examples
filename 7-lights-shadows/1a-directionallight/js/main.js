@@ -1,5 +1,6 @@
 import {
   Color,
+  DirectionalLightHelper,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.module.js';
@@ -20,6 +21,8 @@ async function initScene() {
   app.scene.fog = new Fog( 0x8FBCD4, 200, 230 );
   app.camera.position.set( -20, 30, 50 );
 
+  app.start();
+
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
@@ -31,7 +34,6 @@ async function initScene() {
   const models = await loadModels();
   app.scene.add( ...models.horsesArray );
 
-  app.start();
 }
 
 initScene();

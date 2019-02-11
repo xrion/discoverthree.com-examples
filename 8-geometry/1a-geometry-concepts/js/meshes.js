@@ -1,7 +1,8 @@
 import {
-  BoxBufferGeometry,
+  BoxGeometry,
   Mesh,
-  MeshStandardMaterial,
+  MeshBasicMaterial,
+  SphereGeometry,
 } from './vendor/three/three.module.js';
 
 export default function createMeshes() {
@@ -15,7 +16,7 @@ export default function createMeshes() {
 
 function initCube() {
 
-  const geometry = new THREE.BoxGeometry( 2, 2, 2 );
+  const geometry = new BoxGeometry( 2, 2, 2 );
 
   const material = new MeshBasicMaterial( { color: 0x800080, wireframe: true } );
 
@@ -31,7 +32,7 @@ function initCube() {
 
 function initSphere() {
 
-  const geometry = new THREE.SphereGeometry( 1, 8, 8 );
+  const geometry = new sSphereGeometry( 1, 8, 8 );
 
   // this time we'll translate the geometry instead of the mesh
   // the visible effect will be the same, but there

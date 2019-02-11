@@ -4,8 +4,7 @@ import {
 
 import App from './vendor/App.module.js';
 
-import createLights from './lights.js';
-import createMeshes from './meshes.js';
+import createShapes from './shapes.js';
 
 function initScene() {
 
@@ -13,13 +12,14 @@ function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( -2.5, 2.5, 6 );
 
-  const shapes = initShapes();
-  app.scene.add( shapes.dashedSquare );
-
   app.start();
+
+  const shapes = createShapes();
+  app.scene.add( shapes.dashedSquare );
 
 }
 

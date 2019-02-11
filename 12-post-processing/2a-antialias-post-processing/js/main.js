@@ -20,10 +20,13 @@ async function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 5, 10, 20 );
 
   app.controls.target.y = 0.5;
+
+  app.start();
 
   const composers = initComposers( app.renderer, app.scene, app.camera );
 
@@ -84,8 +87,7 @@ async function initScene() {
   app.scene.add( meshes.box );
 
   const models = await loadModels();
-
-  app.start();
+  // app.scene.add( models.parrot );
 
   initPostControl( app, renderer, rendererAA, composers );
 

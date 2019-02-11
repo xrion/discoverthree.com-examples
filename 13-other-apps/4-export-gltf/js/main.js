@@ -14,9 +14,10 @@ function initScene() {
   app.init();
 
   app.renderer.toneMappingExposure = 0.5;
-
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 3, 2, 15 );
+
+  app.start();
 
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
@@ -27,8 +28,6 @@ function initScene() {
   const clips = initAnimation( meshes.torusKnot );
 
   setupExportControl( meshes.torusKnot, clips );
-
-  app.start();
 
 }
 

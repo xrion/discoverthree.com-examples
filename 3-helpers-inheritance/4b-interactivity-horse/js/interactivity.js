@@ -142,7 +142,7 @@ function rightControl( object ) {
 
 }
 
-function initControls( object ) {
+export default function setupControls( object ) {
 
   resetControl( object );
   forwardsControl( object );

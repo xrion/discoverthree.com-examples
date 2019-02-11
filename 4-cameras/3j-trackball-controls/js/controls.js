@@ -1,15 +1,10 @@
 import {
-  Vector3,
-  B,
-} from './vendor/three/three.module.js';
-
-import {
-  xControls,
+  TrackballControls,
 } from './vendor/three/controls/todo.js';
 
 export default function setupControls( app ) {
 
-  app.controls = new THREE.TrackballControls( app.camera );
+  app.controls = new TrackballControls( app.camera );
 
   initOverlay( app.controls );
 

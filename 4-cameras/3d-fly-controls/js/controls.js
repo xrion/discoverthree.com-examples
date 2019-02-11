@@ -11,7 +11,7 @@ export default function setupControls( app ) {
 
 }
 
-function initControls( app ) {
+function setupControls( app ) {
 
   // setup the fly controls. Our App skipped
   // setting up OrbitControls since we didn't load the script,
@@ -58,7 +58,7 @@ function initOverlay( app ) {
 
     overlay.style.display = 'none';
 
-    initControls( app );
+    setupControls( app );
 
   } );
 

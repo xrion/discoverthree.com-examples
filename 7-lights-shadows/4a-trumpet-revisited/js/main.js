@@ -13,7 +13,7 @@ async function initScene() {
   const app = new App( '#scene-container' );
 
   app.init();
-
+  app.renderer.toneMappingExposure = 1;
   app.camera.position.set( 2, 1, 1.5 );
 
   setupRenderer( app.renderer );
@@ -23,7 +23,7 @@ async function initScene() {
 
   const envMap = loadEnvironments();
   app.scene.background = envMap;
-  const materials = initMaterials( app.scene, envMap );
+  const materials = createMaterials( app.scene, envMap );
 
   const meshes = createMeshes( materials );
   app.scene.add( meshes.plinth );

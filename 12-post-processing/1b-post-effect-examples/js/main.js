@@ -14,10 +14,13 @@ async function initScene() {
 
   app.init();
 
+  app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 3, 5, 15 );
 
   app.controls.autoRotate = true;
+
+  app.start();
 
   const composer = initPostProcessing( app.renderer, app.scene, app.camera, app.container );
 
@@ -52,8 +55,6 @@ async function initScene() {
     composer.render();
 
   };
-
-  app.start();
 
 }
 

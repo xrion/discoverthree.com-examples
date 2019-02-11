@@ -14,11 +14,12 @@ function initScene() {
   app.init();
 
   app.renderer.toneMappingExposure = 0.15;
+  app.camera.position.set( -20, 0, -20 );
 
   const environments = loadEnvironments();
   app.scene.background = environments.castle;
 
-  app.camera.position.set( -20, 0, -20 );
+  app.start();
 
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
@@ -26,7 +27,7 @@ function initScene() {
   const sprites = initSprites();
   app.scene.add( sprites.leaves );
 
-  app.start();
+
 
 }
 

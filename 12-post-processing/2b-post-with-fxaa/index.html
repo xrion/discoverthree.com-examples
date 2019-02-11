@@ -10,56 +10,7 @@
 
 		<link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
 
-		<link href="styles/main.css" rel="stylesheet" type="text/css">		<!--
-
-			Include post processing base files.
-
-			EffectComposer: used to combine any post processing passes and output
-			the final result onto our screen
-
-			RenderPass: render the initial scene for use by later passes
-
-			ShaderPass: takes in any of the files from the examples/js/shaders
-			directory and turns them in to a post processing pass
-
-		-->
-
-		<script src="js/vendor/three/postprocessing/EffectComposer.js"></script>
-		<script src="js/vendor/three/postprocessing/RenderPass.js"></script>
-		<script src="js/vendor/three/postprocessing/ShaderPass.js"></script>
-
-		<script src="js/vendor/three/postprocessing/OutlinePass.js"></script>
-
-
-		<!--
-
-			Include any shader files that we want to use as post processing passes.
-			We could also use the examples/js/shaders/BasicShader.js files as a starting point
-			to write our own
-
-			CopyShader: This one doesn't apply any additional effect, but it's used
-			internall by most other shaders
-
-		-->
-
-		<script src="js/vendor/three/shaders/CopyShader.js"></script>
-
-		<script src="js/vendor/three/shaders/KaleidoShader.js"></script>
-
-		<script src="js/vendor/three/shaders/FXAAShader.js"></script>
-
-		<!--
-
-			Include our App class. In a production environment, we would be setting
-			up a build process and importing this as a module, but for simplicity here
-			we'll include it the old fashioned way.
-
-			See discoverthreejs.com/modules/three-app/ for an example of how to do that.
-
-		-->
-
-
-
+		<link href="styles/main.css" rel="stylesheet" type="text/css">
 
 	</head>
 
@@ -67,9 +18,9 @@
 
 		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 11.2b</h1>
 
-<div id="scene-container"></div>
+		<div id="scene-container"></div>
 
-	 	<footer>			<script src="js/postProcessing.js"></script>
+	 	<footer>
 
 			 <script type="module" src="js/main.js"></script>
 

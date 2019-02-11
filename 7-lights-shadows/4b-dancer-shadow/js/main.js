@@ -13,7 +13,7 @@ async function initScene() {
   const app = new App( '#scene-container' );
 
   app.init();
-
+  app.renderer.toneMappingExposure = 1;
   app.camera.position.set( 0, 2.5, 7 );
 
   app.controls.target.set( 0, 1.5, 0 );

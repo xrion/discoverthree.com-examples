@@ -1,3 +1,11 @@
+import {
+  CubeTextureLoader,
+  CubeReflectionMapping,
+  sRGBEncoding,
+  RepeatWrapping,
+  MirrorRepeatWrapping,
+} from './vendor/three/three.module.js';
+
 function loadEnvMap() {
 
   const cubeTextureLoader = new CubeTextureLoader();
@@ -29,26 +37,26 @@ function initTextures() {
   let repeatV = 3;
 
   textures.wallColor = textureLoader.load( 'textures/wall/wall_color.jpg' );
-  textures.wallColor.wrapT = THREE.RepeatWrapping;
-  textures.wallColor.wrapS = THREE.MirrorRepeatWrapping;
+  textures.wallColor.wrapT = RepeatWrapping;
+  textures.wallColor.wrapS = MirrorRepeatWrapping;
   textures.wallColor.repeat.set( repeatU, repeatV );
   textures.wallColor.encoding = sRGBEncoding;
 
   textures.wallBump = textureLoader.load( 'textures/wall/wall_bump.jpg' );
-  textures.wallBump.wrapT = THREE.MirrorRepeatWrapping;
-  textures.wallBump.wrapS = THREE.RepeatWrapping;
+  textures.wallBump.wrapT = MirrorRepeatWrapping;
+  textures.wallBump.wrapS = RepeatWrapping;
   textures.wallBump.repeat.set( repeatU, repeatV );
 
   repeatU = 3;
   repeatV = 24;
 
   textures.floorColor = textureLoader.load( 'textures/floor/floor_color.jpg' );
-  textures.floorColor.wrapS = textures.floorColor.wrapT = THREE.RepeatWrapping;
+  textures.floorColor.wrapS = textures.floorColor.wrapT = RepeatWrapping;
   textures.floorColor.repeat.set( repeatU, repeatV );
   textures.floorColor.encoding = sRGBEncoding;
 
   textures.floorNormal = textureLoader.load( 'textures/floor/floor_normal.jpg' );
-  textures.floorNormal.wrapS = textures.floorNormal.wrapT = THREE.RepeatWrapping;
+  textures.floorNormal.wrapS = textures.floorNormal.wrapT = RepeatWrapping;
   textures.floorNormal.repeat.set( repeatU, repeatV );
 
   textures.envMap = loadEnvMap();

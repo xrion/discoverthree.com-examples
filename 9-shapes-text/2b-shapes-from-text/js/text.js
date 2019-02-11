@@ -1,3 +1,15 @@
+import {
+  Box3,
+  BufferGeometry,
+  Color,
+  DoubleSide,
+  FontLoader,
+  Group,
+  Line,
+  LineBasicMaterial,
+  Vector3,
+} from './vendor/three/three.module.js';
+
 // Create some shapes from the Font we just loaded
 function createShapes( font ) {
 
@@ -13,13 +25,8 @@ function setupText( font ) {
 
   const shapes = createShapes( font );
 
-  console.log( 'Here\s the font we just loaded: ', font );
-  console.log( 'And here\s the shapes we created from it: ', shapes );
-
-  const material = new THREE.LineBasicMaterial( {
-    // make the text is visible from behind
-    side: DoubleSide,
-  } );
+  console.log( 'Here\'s the font we just loaded: ', font );
+  console.log( 'And here\'s the shapes we created from it: ', shapes );
 
   const lineText = new Group();
 
@@ -28,7 +35,7 @@ function setupText( font ) {
     const points = shape.getPoints();
     const geometry = new BufferGeometry().setFromPoints( points );
 
-    const lineMesh = new THREE.Line( geometry, new THREE.LineBasicMaterial( {
+    const lineMesh = new Line( geometry, new LineBasicMaterial( {
       // make the text is visible from behind
       color: new Color( Math.random() * 0xffffff ),
       side: DoubleSide,
@@ -65,7 +72,7 @@ function setupText( font ) {
   // this time we can't there are lots of separate geometries,
   // so we'll have to use the final Group's bounding box to calculate
   // how much to offset to the center the text
-  const bb = new THREE.Box3().setFromObject( lineText );
+  const bb = new Box3().setFromObject( lineText );
   const size = new Vector3();
   bb.getSize( size );
   const centerOffset = -size.x / 2;
@@ -82,9 +89,9 @@ function setupText( font ) {
 }
 
 
-async function loadFont() {
+export default async function loadFont() {
 
-  const loader = createAsyncLoader( new THREE.FontLoader() );
+  const loader = createAsyncLoader( new FontLoader() );
 
   const discover = setupText(
     await loader.load( 'fonts/droid_serif_regular.typeface.json' ),

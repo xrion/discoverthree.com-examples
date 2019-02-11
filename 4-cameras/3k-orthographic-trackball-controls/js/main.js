@@ -12,15 +12,16 @@ async function initScene() {
 
   const app = new App( '#scene-container' );
 
-  // remember to setup the camera before calling app.init
+  // remember to create the custom camera before calling app.init
   initCamera( app );
 
   app.init();
 
   app.renderer.toneMappingExposure = 0.4;
-
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 20, 10, 40 );
+
+  app.start();
 
   setupControls( app );
 
@@ -38,8 +39,6 @@ async function initScene() {
 
   const models = await loadModels();
   app.scene.add( ...models.horsesArray );
-
-  app.start();
 
 }
 

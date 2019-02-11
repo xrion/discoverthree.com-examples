@@ -23,7 +23,7 @@ function stop( object ) {
 
 }
 
-function leftControl( object ) {
+function setupLeftControl( object ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
@@ -39,7 +39,7 @@ function leftControl( object ) {
 
 }
 
-function rightControl( object ) {
+function setupRightControl( object ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
@@ -55,9 +55,9 @@ function rightControl( object ) {
 
 }
 
-function initControls( object ) {
+export default function setupControls( object ) {
 
-  leftControl( object );
-  rightControl( object );
+  setupLeftControl( object );
+  setupRightControl( object );
 
 }

@@ -3,11 +3,16 @@ import {
   Vector3,
 } from './vendor/three/three.module.js';
 
+
 import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
+
+import {
+  DRACOLoader,
+} from './vendor/three/loaders/todo.js';
 
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
-function setupModel(  gltf ) {
+function setupModel( gltf ) {
 
   const stage = gltf.scene.children[ 0 ];
 
@@ -15,20 +20,20 @@ function setupModel(  gltf ) {
 
   return stage;
 
-};
+}
 
 
 export default async function loadModels() {
 
   const gltfLoader = new GLTFLoader();
 
-  THREE.DRACOLoader.setDecoderPath( 'js/vendor/three/loaders/draco/' );
-  gltfLoader.setDRACOLoader( new THREE.DRACOLoader() );
+  DRACOLoader.setDecoderPath( 'js/vendor/three/loaders/draco/' );
+  gltfLoader.setDRACOLoader( new DRACOLoader() );
 
   const asyncLoader = createAsyncLoader( gltfLoader );
 
   const stage = setupModel(
-    await asyncLoader.load( 'models/lighting/stage.glb' )
+    await asyncLoader.load( 'models/lighting/stage.glb' ),
   );
 
   return { stage };

@@ -1,13 +1,19 @@
-function setupRenderer( renderer ) {
+import {
+  BasicShadowMap,
+  PCFShadowMap,
+  PCFSoftShadowMap,
+} from './vendor/three/three.module.js';
 
-  renderer.toneMappingExposure = 0.3;
+export default function setupRenderer( renderer ) {
+
+  renderer.toneMappingExposure = 0.6;
 
   renderer.shadowMap.enabled = true;
 
-  renderer.shadowMap.type = THREE.PCFShadowMap; // default
+  renderer.shadowMap.type = PCFShadowMap; // default
 
-  // renderer.shadowMap.type = THREE.BasicShadowMap; //  low quality, fast
-  // renderer.shadowMap.type = THREE.PCFSoftShadowMap; // higher quality, slower
+  // renderer.shadowMap.type = BasicShadowMap; //  low quality, fast
+  // renderer.shadowMap.type = PCFSoftShadowMap; // higher quality, slower
 
   // renderer.shadowMap.autoUpdate = false;
 

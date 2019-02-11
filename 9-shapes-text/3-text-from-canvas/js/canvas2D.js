@@ -1,3 +1,8 @@
+import {
+  CanvasTexture,
+  sRGBEncoding,
+} from './vendor/three/three.module.js';
+
 function setBackgroundColor( canvas, context ) {
 
   context.fillStyle = 'white';
@@ -65,7 +70,7 @@ function initCanvasTexture() {
   // set the 2D canvas to be 256x256 pixels
   canvas.width = canvas.height = 256;
 
-  const texture = new THREE.CanvasTexture( canvas );
+  const texture = new CanvasTexture( canvas );
   texture.anisotropy = 16;
   texture.encoding = sRGBEncoding;
 

@@ -1,6 +1,13 @@
+import {
+  FontLoader,
+  TextBufferGeometry,
+  Mesh,
+  MeshBasicMaterial,
+} from './vendor/three/three.module.js';
+
 function setupText( font ) {
 
-  const textGeometry = new THREE.TextBufferGeometry( 'Discover three.js! \n :)', {
+  const textGeometry = new TextBufferGeometry( 'Discover three.js! \n :)', {
 
     font,
     size: 1,
@@ -35,9 +42,9 @@ function setupText( font ) {
 
 }
 
-async function loadFont() {
+export default async function loadFont() {
 
-  const loader = createAsyncLoader( new THREE.FontLoader() );
+  const loader = createAsyncLoader( new FontLoader() );
 
   const discover = setupText(
     await loader.load( 'fonts/droid_serif_regular.typeface.json' ),

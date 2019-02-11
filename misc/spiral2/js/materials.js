@@ -1,3 +1,7 @@
+import {
+  RawShaderMaterial,
+} from './vendor/three/three.module.js';
+
 // ////////////////////////////////////////////////////////////////////////
 // /// SHADERS //////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////////////////////
@@ -76,9 +80,9 @@ const fragmentShader = /* glsl */`
   }
 `;
 
-function createMaterials() {
+export default function createMaterials() {
 
-  const spiral = new THREE.RawShaderMaterial( {
+  const spiral = new RawShaderMaterial( {
     uniforms: {
       time: { value: 0.0 },
     },

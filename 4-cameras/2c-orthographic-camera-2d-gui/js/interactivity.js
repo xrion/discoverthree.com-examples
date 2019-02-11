@@ -85,7 +85,7 @@ function stop( model ) {
 
 }
 
-function initControls( model, modelGUI ) {
+export default function setupControls( model, modelGUI ) {
 
   resetControl( model, modelGUI );
   forwardsControl( model, modelGUI );
