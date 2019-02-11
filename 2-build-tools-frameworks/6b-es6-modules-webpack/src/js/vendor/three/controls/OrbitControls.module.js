@@ -20,7 +20,7 @@ import {
 	Spherical,
 	Vector2,
 	Vector3
-} from 'three';
+} from '../three.module.js';
 
 var OrbitControls = function ( object, domElement ) {
 
