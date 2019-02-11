@@ -1,15 +1,22 @@
-function initPostProcessing( renderer, scene, camera, container ) {
+import {
+  EffectComposer,
+  KaleidoShader,
+  RenderPass,
+  ShaderPass,
+} from './vendor/three/todo.js';
 
-  const composer = new THREE.EffectComposer( renderer );
+export default function initPostProcessing( renderer, scene, camera ) {
+
+  const composer = new EffectComposer( renderer );
 
   // first we need a render pass, which renders the actual scene
   // so that later passes can apply effects to it.
-  const renderPass = new THREE.RenderPass( scene, camera );
+  const renderPass = new RenderPass( scene, camera );
   composer.addPass( renderPass );
 
   // next we'll add a funky kaleido pass
   // The effects should be easily apparent!
-  const kaleidoPass = new THREE.ShaderPass( THREE.KaleidoShader );
+  const kaleidoPass = new ShaderPass( KaleidoShader );
 
   // look inside the KaleidoShader.js file to see that there are three
   // "uniforms" defined - these are variables that we can set, either

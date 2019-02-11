@@ -15,9 +15,9 @@ function updateLights( matrixWorld, lights, target ) {
 function setupAnimation( model, lights ) {
 
   const headBone = model.getObjectByName( 'mixamorigHeadTop_End' );
-  const lightTarget = new THREE.Vector3();
+  const lightTarget = new Vector3();
 
-  const mixer = new THREE.AnimationMixer( model );
+  const mixer = new AnimationMixer( model );
 
   model.userData.onUpdate = ( delta ) => {
 

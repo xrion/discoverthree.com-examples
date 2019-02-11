@@ -1,11 +1,16 @@
-function createGeometry() {
+import {
+  BufferAttribute,
+  BufferGeometry,
+} from './vendor/three/three.module.js';
+
+export default function createGeometry() { {
 
   const geometry = new THREE.Geometry();
 
   geometry.vertices.push(
-    new THREE.Vector3( -1, 1, 0 ), // vertex 0
-    new THREE.Vector3( -1, -1, 0 ), // vertex 1
-    new THREE.Vector3( 1, -1, 0 ), // vertex 2
+    new Vector3( -1, 1, 0 ), // vertex 0
+    new Vector3( -1, -1, 0 ), // vertex 1
+    new Vector3( 1, -1, 0 ), // vertex 2
   );
 
   // create a face made up of 3 vertices. Faces are always triangles
@@ -30,7 +35,7 @@ function createGeometry() {
 
   console.log( 'Here\'s the geometry you just created: ', geometry );
 
-  const bufferGeometry = new THREE.BufferGeometry().fromGeometry( geometry );
+  const bufferGeometry = new BufferGeometry().fromGeometry( geometry );
 
   console.log( '... and here\'s what it looks like after being converted to a BufferGeometry: ', bufferGeometry );
 

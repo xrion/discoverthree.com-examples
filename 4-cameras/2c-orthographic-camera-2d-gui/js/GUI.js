@@ -1,3 +1,11 @@
+import {
+  Color,
+  GridHelper,
+  OrthographicCamera,
+} from './vendor/three/three.module.js';
+
+export default function initCamera( app ) {
+
 function initGUI() {
 
   const appGUI = new THREE_APP( '#gui-container' );
@@ -5,7 +13,7 @@ function initGUI() {
   const width = appGUI.container.clientWidth;
   const height = appGUI.container.clientHeight;
 
-  appGUI.camera = new THREE.OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 0.1, 200 );
+  appGUI.camera = new OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 0.1, 200 );
 
   // position the camera above looking down
   // remember that it doesn't matter how far above we
@@ -18,13 +26,13 @@ function initGUI() {
 
   appGUI.init();
 
-  appGUI.scene.background = new THREE.Color( 0x0000ff );
+  appGUI.scene.background = new Color( 0x0000ff );
 
   // add a gridhelper to help visualize the position.
   // In a real app you would probably need to do some calculations
   // to make sure that the size of the grid's squares have meaning
   // here, we've just made it big enough to fill the whole GUI
-  const gridHelper = new THREE.GridHelper( 300, 10, 10 );
+  const gridHelper = new GridHelper( 300, 10, 10 );
   appGUI.scene.add( gridHelper );
 
   // the GUI doesn't need camera controls

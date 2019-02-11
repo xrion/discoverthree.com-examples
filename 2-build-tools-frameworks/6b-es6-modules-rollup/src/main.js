@@ -6,7 +6,7 @@ import loadModels from './models.js';
 
 async function initScene() {
 
-  const app = new App( '#container' );
+  const app = new App( '#scene-container' );
 
   app.init();
 

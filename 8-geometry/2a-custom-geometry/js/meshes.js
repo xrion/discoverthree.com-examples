@@ -11,14 +11,20 @@ function wireframeControl( material ) {
   } );
 }
 
-function createMeshes() {
+import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
+
+export default function createMeshes() {
 
   const geometry = createGeometry();
 
-  const material = new THREE.MeshBasicMaterial( { wireframe: true } );
+  const material = new MeshBasicMaterial( { wireframe: true } );
   wireframeControl( material );
 
-  const tri = new THREE.Mesh( geometry, material );
+  const tri = new Mesh( geometry, material );
 
   return { tri };
 

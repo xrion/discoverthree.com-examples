@@ -1,6 +1,6 @@
 function createDiffuseLight() {
 
-  const diffuse = new THREE.SpotLight(
+  const diffuse = new SpotLight(
     0x444444,
     30,
     0, // distance
@@ -23,7 +23,7 @@ function createDiffuseLight() {
 
 function createTopLight() {
 
-  const top = new THREE.SpotLight(
+  const top = new SpotLight(
     0xffffff,
     25,
     0, // distance
@@ -47,7 +47,7 @@ function createTopLight() {
 
 function createMainLight() {
 
-  const main = new THREE.SpotLight(
+  const main = new SpotLight(
     0xffffff,
     1, // calculated using light.power below
     0, // distance
@@ -71,10 +71,15 @@ function createMainLight() {
 
 }
 
-function createLights() {
+import {
+  HemisphereLight,
+  DirectionalLight,
+} from './vendor/three/three.module.js';
+
+export default function createLights() {
 
   return {
-    ambient: new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 1 ),
+    ambient: new HemisphereLight( 0xddeeff, 0x0f0e0d, 1 ),
     main: createMainLight(),
     diffuse: createDiffuseLight(),
     top: createTopLight(),

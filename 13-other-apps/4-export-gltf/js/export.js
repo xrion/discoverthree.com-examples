@@ -1,6 +1,10 @@
+import {
+  GLTFExporter
+} from './vendor/three/todo.js';
+
 function exportGLTF( input, animations ) {
 
-  const gltfExporter = new THREE.GLTFExporter();
+  const gltfExporter = new GLTFExporter();
 
   const options = {
     trs: document.getElementById( 'option_trs' ).checked,

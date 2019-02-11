@@ -1,6 +1,19 @@
-function initAnimation( model, animation ) {
+import {
+  AnimationMixer,
+  Group,
+  Math as MathUtils,
+  Vector3,
+} from './vendor/three/three.module.js';
 
-  const mixer = new THREE.AnimationMixer( model );
+
+import {
+  AnimationClip,
+  AnimationMixer,
+} from './vendor/three/three.module.js';
+
+export default function initAnimation( model, animation ) {
+
+  const mixer = new AnimationMixer( model );
 
   model.userData.onUpdate = ( delta ) => {
 
@@ -25,9 +38,9 @@ const onLoad = ( gltf, scene, offset ) => {
   const animation = gltf.animations[ 0 ];
 
   const positions = createSphericalPositions();
-  const rotationAxis = new THREE.Vector3( 0, 1, 0 );
+  const rotationAxis = new Vector3( 0, 1, 0 );
 
-  const group = new THREE.Group();
+  const group = new Group();
 
   group.userData.onUpdate = ( delta ) => {
 
@@ -49,7 +62,7 @@ const onLoad = ( gltf, scene, offset ) => {
       const action = initAnimation( newModel, animation );
 
       // set the birds to start at random times so that they  don't flap in sync
-      action.startAt( THREE.Math.randFloat( 0, 1.2 ) ).play();
+      action.startAt( MathUtils.randFloat( 0, 1.2 ) ).play();
 
       models[ index ] = newModel;
 
@@ -75,15 +88,15 @@ const onLoad = ( gltf, scene, offset ) => {
 
 };
 
-async function loadModels() {
+export default async function loadModels() {
 
-  const loader = createAsyncLoader( new THREE.GLTFLoader() );
+  const loader = createAsyncLoader( new GLTFLoader() );
 
-  const parrots = setupModels(
+  const parrots = setupModel(
     await loader.load( 'models/Parrot.glb' ),
   );
 
-  const storksArray = setupModels(
+  const storksArray = setupModel(
     await loader.load( 'models/Stork.glb' ),
   );
 

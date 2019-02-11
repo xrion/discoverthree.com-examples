@@ -8,7 +8,7 @@ function initGroundShadow() {
   } );
 
 
-  const shadowMesh = new THREE.Mesh( geometry, material );
+  const shadowMesh = new Mesh( geometry, material );
 
   shadowMesh.rotation.x = -Math.PI / 2; // -90 degrees around x axis
 

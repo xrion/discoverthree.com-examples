@@ -1,3 +1,9 @@
+import {
+  AnimationClip,
+  AnimationMixer,
+  NumberKeyframeTrack,
+} from './vendor/three/three.module.js';
+
 function initRotationKeyframeTrack( axis ) {
 
   const times = [ 0, 12 ];
@@ -5,21 +11,26 @@ function initRotationKeyframeTrack( axis ) {
   const values = [ 0, 2 * Math.PI ];
 
   axis = axis || 'x';
-  const xRotationKF = new THREE.NumberKeyframeTrack( `.rotation[${axis}]`, times, values, THREE.InterpolateLinear );
+  const xRotationKF = new NumberKeyframeTrack( `.rotation[${axis}]`, times, values  );
 
   return xRotationKF;
 
 }
 
-function initAnimation( object ) {
+import {
+  AnimationClip,
+  AnimationMixer,
+} from './vendor/three/three.module.js';
+
+export default function initAnimation( object ) {
 
   // setup the AnimationMixer
-  const mixer = new THREE.AnimationMixer( object );
+  const mixer = new AnimationMixer( object );
 
   const xRotationKF = initRotationKeyframeTrack( 'x', 5 );
   const yRotationKF = initRotationKeyframeTrack( 'y', 1 );
 
-  const clip = new THREE.AnimationClip( 'Action', -1, [ xRotationKF, yRotationKF ] );
+  const clip = new AnimationClip( 'Action', -1, [ xRotationKF, yRotationKF ] );
 
   const clipAction = mixer.clipAction( clip );
   clipAction.play();

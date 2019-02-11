@@ -67,7 +67,7 @@ function initCanvasTexture() {
 
   const texture = new THREE.CanvasTexture( canvas );
   texture.anisotropy = 16;
-  texture.encoding = THREE.sRGBEncoding;
+  texture.encoding = sRGBEncoding;
 
   initTextInput( canvas, context, texture );
 

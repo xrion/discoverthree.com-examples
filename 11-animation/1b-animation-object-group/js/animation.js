@@ -1,14 +1,27 @@
-function initAnimation( meshes ) {
+import {
+  AnimationClip,
+  AnimationObjectGroup,
+  AnimationMixer,
+  NumberframeTrack,
+  VectorKeyframeTrack,
+} from './vendor/three/three.module.js';
 
-  const objectGroupA = new THREE.AnimationObjectGroup( ...meshes.groupA );
-  const objectGroupB = new THREE.AnimationObjectGroup( ...meshes.groupB );
-  const objectGroupC = new THREE.AnimationObjectGroup( ...meshes.groupC );
-  const objectGroupD = new THREE.AnimationObjectGroup( ...meshes.groupD );
+import {
+  AnimationClip,
+  AnimationMixer,
+} from './vendor/three/three.module.js';
 
-  const mixerA = new THREE.AnimationMixer( objectGroupA );
-  const mixerB = new THREE.AnimationMixer( objectGroupB );
-  const mixerC = new THREE.AnimationMixer( objectGroupC );
-  const mixerD = new THREE.AnimationMixer( objectGroupD );
+export default function initAnimation( meshes ) {
+
+  const objectGroupA = new AnimationObjectGroup( ...meshes.groupA );
+  const objectGroupB = new AnimationObjectGroup( ...meshes.groupB );
+  const objectGroupC = new AnimationObjectGroup( ...meshes.groupC );
+  const objectGroupD = new AnimationObjectGroup( ...meshes.groupD );
+
+  const mixerA = new AnimationMixer( objectGroupA );
+  const mixerB = new AnimationMixer( objectGroupB );
+  const mixerC = new AnimationMixer( objectGroupC );
+  const mixerD = new AnimationMixer( objectGroupD );
 
   // We need to update the mixer by the amount of time
   // that has elapsed since the previous frame
@@ -29,10 +42,10 @@ function initAnimation( meshes ) {
   const scaleKF = initScaleKeyframeTrack(); // a NumberKeyframeTrack
 
   // create some clips - one per objectGroup
-  const clipA = new THREE.AnimationClip( 'clipA', -1, [ opacityKF ] );
-  const clipB = new THREE.AnimationClip( 'clipB', -1, [ colorKF ] );
-  const clipC = new THREE.AnimationClip( 'clipC', -1, [ scaleKF ] );
-  const clipD = new THREE.AnimationClip( 'clipD', -1, [ colorKF_b ] );
+  const clipA = new AnimationClip( 'clipA', -1, [ opacityKF ] );
+  const clipB = new AnimationClip( 'clipB', -1, [ colorKF ] );
+  const clipC = new AnimationClip( 'clipC', -1, [ scaleKF ] );
+  const clipD = new AnimationClip( 'clipD', -1, [ colorKF_b ] );
 
 
   // match each clip to a mixer and set them all to play
@@ -64,7 +77,7 @@ function initColorKeyframeTrack() {
 
   ];
 
-  const colorKF = new THREE.ColorKeyframeTrack( '.material.color', times, values );
+  const colorKF = new ColorKeyframeTrack( '.material.color', times, values );
 
   return colorKF;
 
@@ -83,7 +96,7 @@ function initColorKeyframeTrackB() {
 
   ];
 
-  const colorKF = new THREE.ColorKeyframeTrack( '.material.color', times, values );
+  const colorKF = new ColorKeyframeTrack( '.material.color', times, values );
 
   return colorKF;
 
@@ -101,7 +114,7 @@ function initOpacityKeyframeTrack() {
 
   ];
 
-  const opacityKF = new THREE.NumberKeyframeTrack( '.material.opacity', times, values );
+  const opacityKF = new NumberKeyframeTrack( '.material.opacity', times, values );
 
   console.log( 'Here\'s the KeyframeTrack for opacity: ', opacityKF );
 
@@ -121,7 +134,7 @@ function initScaleKeyframeTrack() {
 
   ];
 
-  const scaleKF = new THREE.VectorKeyframeTrack(
+  const scaleKF = new VectorKeyframeTrack(
     '.scale',
     times,
     values,

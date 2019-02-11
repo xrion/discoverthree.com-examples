@@ -10,9 +10,9 @@ function createAmbientLight() {
   // https://en.wikipedia.org/wiki/Lux#Illuminance
 
   // There are two kinds of ambient light
-  // const ambientLight = new THREE.AmbientLight(  0x666666,  1  );
+  // const ambientLight = new AmbientLight(  0x666666,  1  );
 
-  const ambientLight = new THREE.HemisphereLight(
+  const ambientLight = new HemisphereLight(
 
     // sky color ( dim blue, evening )
     0xddeeff,
@@ -36,7 +36,7 @@ function createAmbientLight() {
 
 function createSpotLight() {
 
-  const spotLight = new THREE.SpotLight(
+  const spotLight = new SpotLight(
     0xffffff, // color
 
     // intensity - leave it at 1 since we'll overwrite it with light.power below
@@ -65,7 +65,12 @@ function createSpotLight() {
 
 }
 
-function createLights() {
+import {
+  HemisphereLight,
+  DirectionalLight,
+} from './vendor/three/three.module.js';
+
+export default function createLights() {
 
   const ambient = createAmbientLight();
 

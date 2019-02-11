@@ -11,22 +11,28 @@ function wireframeControl( material ) {
   } );
 }
 
-function createMeshes() {
+import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
+
+export default function createMeshes() {
 
   const geometry = createGeometry();
   const geometryIndexed = createGeometryIndexed();
 
-  const map = new THREE.TextureLoader().load( 'textures/color/phoenix_park_dublin.jpg' );
-  map.encoding = THREE.sRGBEncoding;
+  const map = new TextureLoader().load( 'textures/color/phoenix_park_dublin.jpg' );
+  map.encoding = sRGBEncoding;
 
-  const material = new THREE.MeshBasicMaterial( { map, wireframe: false } );
+  const material = new MeshBasicMaterial( { map, wireframe: false } );
 
   wireframeControl( material );
 
-  const leftQuad = new THREE.Mesh( geometry, material );
+  const leftQuad = new Mesh( geometry, material );
   leftQuad.position.x -= 1.5;
 
-  const rightQuad = new THREE.Mesh( geometryIndexed, material );
+  const rightQuad = new Mesh( geometryIndexed, material );
   rightQuad.position.x += 1.5;
 
   return { leftQuad, rightQuad };

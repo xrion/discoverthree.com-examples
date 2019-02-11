@@ -1,11 +1,17 @@
-function createMeshes() {
+import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
 
-  const geometry = new THREE.SphereBufferGeometry( 1, 16, 16 );
-  const material = new THREE.MeshStandardMaterial( {
+export default function createMeshes() {
+
+  const geometry = new SphereBufferGeometry( 1, 16, 16 );
+  const material = new MeshStandardMaterial( {
     flatShading: true,
   } );
 
-  const protoMesh = new THREE.Mesh( geometry, material );
+  const protoMesh = new Mesh( geometry, material );
 
   const spheresArray = [];
 
@@ -13,9 +19,9 @@ function createMeshes() {
 
     const mesh = protoMesh.clone();
 
-    const x = THREE.Math.randFloatSpread( -20, 20 );
-    const y = THREE.Math.randFloatSpread( -20, 20 );
-    const z = THREE.Math.randFloatSpread( -20, 20 );
+    const x = MathUtils.randFloatSpread( -20, 20 );
+    const y = MathUtils.randFloatSpread( -20, 20 );
+    const z = MathUtils.randFloatSpread( -20, 20 );
 
     mesh.position.set( x, y, z );
 

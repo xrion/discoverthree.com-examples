@@ -5,11 +5,9 @@ import {
   WebGLRenderer,
 } from './three/three.module.js';
 
-// should be possible to use from NPM as of R102
 import {
   OrbitControls
 } from './three/controls/OrbitControls.module.js';
-
 
 export default class THREE_APP {
 

@@ -1,9 +1,17 @@
-function setupControls( app ) {
+import {
+  Vector3,
+} from './vendor/three/three.module.js';
+
+import {
+  MapControls,
+} from './vendor/three/controls/todo.js';
+
+export default function setupControls( app ) {
 
   // setup the map controls. Our App will have skipped
   // setting up OrbitControls since we didn't load the script,
   // allowing us to set up a different controls manually
-  app.controls = new THREE.MapControls( app.camera, app.container );
+  app.controls = new MapControls( app.camera, app.container );
 
   initOverlay( app.controls );
 
@@ -12,7 +20,7 @@ function setupControls( app ) {
   // None of them are actually changed here, these are all default values
 
   // "target" sets the location of focus, where the object orbits around
-  app.controls.target = new THREE.Vector3();
+  app.controls.target = new Vector3();
 
   // How far you can dolly in and out ( PerspectiveCamera only )
   app.controls.minDistance = 0;
@@ -66,7 +74,7 @@ function setupControls( app ) {
   };
 
   // Mouse buttons
-  app.controls.mouseButtons = { LEFT: THREE.MOUSE.LEFT, MIDDLE: THREE.MOUSE.MIDDLE, RIGHT: THREE.MOUSE.RIGHT };
+  // // // app.controls.mouseButtons = { LEFT: MOUSE.LEFT, MIDDLE: MOUSE.MIDDLE, RIGHT: MOUSE.RIGHT };
 
   // we can save a "state", or current position, of the controls
   app.controls.saveState();

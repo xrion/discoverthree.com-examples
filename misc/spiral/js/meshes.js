@@ -1,11 +1,11 @@
 function createSpiral() {
 
-  const spiral = new THREE.Group();
+  const spiral = new Group();
 
-  const geometry = new THREE.SphereBufferGeometry( 0.015, 12, 12 );
-  const material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+  const geometry = new SphereBufferGeometry( 0.015, 12, 12 );
+  const material = new MeshBasicMaterial( { color: 0xffffff } );
 
-  const sphere = new THREE.Mesh( geometry, material );
+  const sphere = new Mesh( geometry, material );
 
   for ( let i = -500; i < 500; i++ ) {
 
@@ -28,7 +28,13 @@ function createSpiral() {
 
 }
 
-function createMeshes() {
+import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
+
+export default function createMeshes() {
 
   return {
     spiral: createSpiral(),

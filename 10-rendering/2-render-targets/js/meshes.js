@@ -1,12 +1,19 @@
+import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+  TorusKnotBufferGeometry,
+} from './vendor/three/three.module.js';
+
 function createBox( texture ) {
 
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
+  const geometry = new BoxBufferGeometry( 2, 2, 2 );
 
-  const material = new THREE.MeshStandardMaterial( {
+  const material = new MeshStandardMaterial( {
     map: texture,
   } );
 
-  const box = new THREE.Mesh( geometry, material );
+  const box = new Mesh( geometry, material );
 
   return box;
 
@@ -14,15 +21,15 @@ function createBox( texture ) {
 
 function createTorusKnot() {
 
-  const geometry = new THREE.TorusKnotBufferGeometry( 0.75, 0.2, 128, 32 );
-  const material = new THREE.MeshStandardMaterial();
-  const torusKnot = new THREE.Mesh( geometry, material );
+  const geometry = new TorusKnotBufferGeometry( 0.75, 0.2, 128, 32 );
+  const material = new MeshStandardMaterial();
+  const torusKnot = new Mesh( geometry, material );
 
   return torusKnot;
 
 }
 
-function createMeshes( texture ) {
+export default function createMeshes( texture ) {
 
   const box = createBox( texture );
 

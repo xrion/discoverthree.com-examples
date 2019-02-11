@@ -1,9 +1,13 @@
-function initCamera( app ) {
+import {
+  OrthographicCamera,
+} from './vendor/three/three.module.js';
+
+export default function initCamera( app ) {
 
   const width = app.container.clientWidth;
   const height = app.container.clientHeight;
 
-  app.camera = new THREE.OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 20, 50 );
+  app.camera = new OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 20, 50 );
 
   // position the camera
   // remember that it doesn't matter how far away we

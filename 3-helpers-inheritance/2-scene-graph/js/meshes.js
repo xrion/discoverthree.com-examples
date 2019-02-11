@@ -1,10 +1,22 @@
-function createMeshes() {
+import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
 
-  const geometry = new THREE.BoxBufferGeometry( 0.5, 0.5, 0.5 );
-  const material = new THREE.MeshStandardMaterial( { color: 0x800080 } );
+export default import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
+
+export default function createMeshes() {
+
+  const geometry = new BoxBufferGeometry( 0.5, 0.5, 0.5 );
+  const material = new MeshStandardMaterial( { color: 0x800080 } );
 
   // create the first mesh, initially positioned at (0, 0, 0)
-  const meshA = new THREE.Mesh( geometry, material );
+  const meshA = new Mesh( geometry, material );
 
   // set the position of the first mesh.
   // every other mesh will be positioned relative to this

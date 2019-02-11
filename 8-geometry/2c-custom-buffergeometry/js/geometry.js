@@ -1,6 +1,11 @@
-function createGeometry() {
+import {
+  BufferAttribute,
+  BufferGeometry,
+} from './vendor/three/three.module.js';
 
-  const geometry = new THREE.BufferGeometry();
+export default function createGeometry() { {
+
+  const geometry = new BufferGeometry();
 
   // first, create a typed Array with number of vertices * 3 length
   // that is, x + y + z for each vertex. Here, 6 vertices * 3 = 18
@@ -8,7 +13,7 @@ function createGeometry() {
 
   // Next, use the array to create a BufferAttribute with an itemsize of 3
   // The item size tells it that each entry takes up 3 data points in the array
-  const positionBuffer = new THREE.BufferAttribute( positionsArray, 3 );
+  const positionBuffer = new BufferAttribute( positionsArray, 3 );
 
   // Next, add the vertices one at a time using the setXYZ method
   // the first parameter is an offset into the array
@@ -42,7 +47,7 @@ function createGeometry() {
 
 function createGeometryIndexed() {
 
-  const geometry = new THREE.BufferGeometry();
+  const geometry = new BufferGeometry();
 
   // Setting up the bufferAttribute this way is identical to the previous function,
   // but more succinct. This time, we only need 4 vertices
@@ -56,7 +61,7 @@ function createGeometryIndexed() {
 
   ] );
 
-  geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+  geometry.addAttribute( 'position', new BufferAttribute( vertices, 3 ) );
 
   // note that the indices for each face
   // are the same as the Face indices in our Geometry example

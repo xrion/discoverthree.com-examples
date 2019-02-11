@@ -1,6 +1,11 @@
-function createLights() {
+import {
+  HemisphereLight,
+  DirectionalLight,
+} from './vendor/three/three.module.js';
 
-  const ambient = new THREE.HemisphereLight( 0xcccccc, 0x555555, 0.75 );
+export default function createLights() {
+
+  const ambient = new HemisphereLight( 0xcccccc, 0x555555, 0.75 );
 
   const main = createMainLight();
 
@@ -10,7 +15,7 @@ function createLights() {
 
 function createMainLight() {
 
-  const spotLight = new THREE.SpotLight(
+  const spotLight = new SpotLight(
     0xffffff, // color
     1, // intensity,
     0, // distance: always 0 for physically correct lights

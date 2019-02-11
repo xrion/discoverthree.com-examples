@@ -1,13 +1,22 @@
-function initPoints() {
+import {
+  Points,
+  PointsMaterial,
+  SphereBufferGeometry,
+  sRGBEncoding,
+  TextureLoader,
+} from './vendor/three/three.module.js';
 
-  const textureLoader = new THREE.TextureLoader();
+export default function createPoints() {
 
-  const geometry = new THREE.SphereBufferGeometry( 2, 32, 8 );
+  const textureLoader = new TextureLoader();
+
+  const geometry = new SphereBufferGeometry( 2, 32, 8 );
 
   const map = textureLoader.load( 'textures/color/leaf/leaf.png' );
-  map.encoding = THREE.sRGBEncoding;
+  map.encoding = sRGBEncoding;
 
-  const material = new THREE.PointsMaterial( {
+  const material = new PointsMaterial( {
+
     color: 0xffffff,
     map,
 
@@ -26,9 +35,10 @@ function initPoints() {
 
     size: 1,
     sizeAttenuation: true,
+
   } );
 
-  const sphere = new THREE.Points( geometry, material );
+  const sphere = new Points( geometry, material );
 
   sphere.userData.onUpdate = ( delta ) => {
 

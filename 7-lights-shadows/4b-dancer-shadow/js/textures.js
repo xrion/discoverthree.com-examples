@@ -1,6 +1,6 @@
 function loadEnvMap() {
 
-  const cubeTextureLoader = new THREE.CubeTextureLoader();
+  const cubeTextureLoader = new CubeTextureLoader();
 
   const path = 'textures/environments/cubemap/castle/';
 
@@ -11,8 +11,8 @@ function loadEnvMap() {
   ];
 
   const cubemap = cubeTextureLoader.load( urls );
-  cubemap.mapping = THREE.CubeReflectionMapping;
-  cubemap.encoding = THREE.sRGBEncoding;
+  cubemap.mapping = CubeReflectionMapping;
+  cubemap.encoding = sRGBEncoding;
 
   return cubemap;
 
@@ -21,7 +21,7 @@ function loadEnvMap() {
 
 function initTextures() {
 
-  const textureLoader = new THREE.TextureLoader();
+  const textureLoader = new TextureLoader();
 
   const textures = {};
 
@@ -32,7 +32,7 @@ function initTextures() {
   textures.wallColor.wrapT = THREE.RepeatWrapping;
   textures.wallColor.wrapS = THREE.MirrorRepeatWrapping;
   textures.wallColor.repeat.set( repeatU, repeatV );
-  textures.wallColor.encoding = THREE.sRGBEncoding;
+  textures.wallColor.encoding = sRGBEncoding;
 
   textures.wallBump = textureLoader.load( 'textures/wall/wall_bump.jpg' );
   textures.wallBump.wrapT = THREE.MirrorRepeatWrapping;
@@ -45,7 +45,7 @@ function initTextures() {
   textures.floorColor = textureLoader.load( 'textures/floor/floor_color.jpg' );
   textures.floorColor.wrapS = textures.floorColor.wrapT = THREE.RepeatWrapping;
   textures.floorColor.repeat.set( repeatU, repeatV );
-  textures.floorColor.encoding = THREE.sRGBEncoding;
+  textures.floorColor.encoding = sRGBEncoding;
 
   textures.floorNormal = textureLoader.load( 'textures/floor/floor_normal.jpg' );
   textures.floorNormal.wrapS = textures.floorNormal.wrapT = THREE.RepeatWrapping;

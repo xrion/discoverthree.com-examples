@@ -1,8 +1,13 @@
 // the 3D superformula is obtained via the spherical product
 // of two 2D superformulas
-function createGeometry() {
+import {
+  BufferAttribute,
+  BufferGeometry,
+} from './vendor/three/three.module.js';
 
-  const geometry = new THREE.BufferGeometry();
+export default function createGeometry() { {
+
+  const geometry = new BufferGeometry();
   const positions = [];
 
   const step = 0.05;

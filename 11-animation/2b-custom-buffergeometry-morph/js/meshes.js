@@ -1,12 +1,19 @@
-function createMeshes() {
+import {
+  Mesh,
+  MeshBasicMaterial,
+  sRGBEncoding
+  TextureLoader,
+} from './vendor/three/three.module.js';
+
+export default function createMeshes() {
 
   const geometry = createGeometry();
   const geometryIndexed = createGeometryIndexed();
 
-  const map = new THREE.TextureLoader().load( 'textures/phoenix_park_dublin.jpg' );
-  map.encoding = THREE.sRGBEncoding;
+  const map = new TextureLoader().load( 'textures/phoenix_park_dublin.jpg' );
+  map.encoding = sRGBEncoding;
 
-  const materialA = new THREE.MeshBasicMaterial( {
+  const materialA = new MeshBasicMaterial( {
     map,
     wireframe: false,
     morphTargets: true,
@@ -18,10 +25,10 @@ function createMeshes() {
 
   wireframeControl( [ materialA, materialB ] );
 
-  const leftQuad = new THREE.Mesh( geometry, materialA );
+  const leftQuad = new Mesh( geometry, materialA );
   leftQuad.position.x -= 2;
 
-  const rightQuad = new THREE.Mesh( geometryIndexed, materialB );
+  const rightQuad = new Mesh( geometryIndexed, materialB );
   rightQuad.position.x += 2;
 
   return { leftQuad, rightQuad };

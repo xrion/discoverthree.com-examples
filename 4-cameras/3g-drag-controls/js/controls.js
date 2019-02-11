@@ -1,9 +1,13 @@
-function setupControls( meshesArray, app ) {
+import {
+  DragControls,
+} from './vendor/three/controls/todo.js';
+
+export default function setupControls( app, meshesArray ) {
 
   const orbitControls = app.controls;
   initOverlay( orbitControls );
 
-  const highlightMaterial = new THREE.MeshStandardMaterial( {
+  const highlightMaterial = new MeshStandardMaterial( {
 
     color: 0xcc0000,
     transparent: true,
@@ -11,7 +15,7 @@ function setupControls( meshesArray, app ) {
 
   } );
 
-  const dragControls = new THREE.DragControls( meshesArray, app.camera, app.container );
+  const dragControls = new DragControls( meshesArray, app.camera, app.container );
 
   this.enabled = true;
 

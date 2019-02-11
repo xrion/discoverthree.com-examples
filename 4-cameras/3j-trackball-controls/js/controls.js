@@ -1,4 +1,13 @@
-function setupControls( app ) {
+import {
+  Vector3,
+  B,
+} from './vendor/three/three.module.js';
+
+import {
+  xControls,
+} from './vendor/three/controls/todo.js';
+
+export default function setupControls( app ) {
 
   app.controls = new THREE.TrackballControls( app.camera );
 

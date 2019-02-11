@@ -18,20 +18,20 @@ function setupText( font ) {
 
   const material = new THREE.LineBasicMaterial( {
     // make the text is visible from behind
-    side: THREE.DoubleSide,
+    side: DoubleSide,
   } );
 
-  const lineText = new THREE.Group();
+  const lineText = new Group();
 
   function addShapeMesh( shape ) {
 
     const points = shape.getPoints();
-    const geometry = new THREE.BufferGeometry().setFromPoints( points );
+    const geometry = new BufferGeometry().setFromPoints( points );
 
     const lineMesh = new THREE.Line( geometry, new THREE.LineBasicMaterial( {
       // make the text is visible from behind
-      color: new THREE.Color( Math.random() * 0xffffff ),
-      side: THREE.DoubleSide,
+      color: new Color( Math.random() * 0xffffff ),
+      side: DoubleSide,
     } ) );
 
     spinAtRandomIntervals( lineMesh, 3000, 15000 );
@@ -66,7 +66,7 @@ function setupText( font ) {
   // so we'll have to use the final Group's bounding box to calculate
   // how much to offset to the center the text
   const bb = new THREE.Box3().setFromObject( lineText );
-  const size = new THREE.Vector3();
+  const size = new Vector3();
   bb.getSize( size );
   const centerOffset = -size.x / 2;
 

@@ -1,6 +1,12 @@
-function loadEnvironments() {
+import {
+  CubeTextureLoader,
+  CubeReflectionMapping,
+  sRGBEncoding
+} from './vendor/three/three.module.js';
 
-  const cubeTextureLoader = new THREE.CubeTextureLoader();
+export default function loadEnvironments() {
+
+  const cubeTextureLoader = new CubeTextureLoader();
 
   const path = 'textures/environments/cubemap/castle/';
 
@@ -11,8 +17,8 @@ function loadEnvironments() {
   ];
 
   const castle = cubeTextureLoader.load( urls );
-  castle.mapping = THREE.CubeReflectionMapping;
-  castle.encoding = THREE.sRGBEncoding;
+  castle.mapping = CubeReflectionMapping;
+  castle.encoding = sRGBEncoding;
 
   return { castle };
 

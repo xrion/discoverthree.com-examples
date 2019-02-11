@@ -1,13 +1,13 @@
 function initPoints() {
 
-  const textureLoader = new THREE.TextureLoader();
+  const textureLoader = new TextureLoader();
 
-  const geometry = new THREE.SphereBufferGeometry( 2, 32, 8 );
+  const geometry = new SphereBufferGeometry( 2, 32, 8 );
 
   const map = textureLoader.load( 'textures/color/leaf/leaf.png' );
-  map.encoding = THREE.sRGBEncoding;
+  map.encoding = sRGBEncoding;
 
-  const material = new THREE.PointsMaterial( {
+  const material = new PointsMaterial( {
     color: 0xffffff,
     map,
 
@@ -29,7 +29,7 @@ function initPoints() {
 
   } );
 
-  const sphere = new THREE.Points( geometry, material );
+  const sphere = new Points( geometry, material );
 
   const positions = sphere.geometry.attributes.position.array;
 

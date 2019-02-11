@@ -1,16 +1,11 @@
-function createLights() {
-
-  const ambient = new THREE.HemisphereLight( 0xcccccc, 0x555555, 0.75 );
-
-  const main = createMainLight();
-
-  return { ambient, main };
-
-}
+import {
+  HemisphereLight,
+  PointLight,
+} from './vendor/three/three.module.js';
 
 function createMainLight() {
 
-  const pointLight = new THREE.PointLight(
+  const pointLight = new PointLight(
     0xFFF0F3, // color
     1, // intensity ( overwritten by power )
     0, // distance
@@ -28,5 +23,15 @@ function createMainLight() {
   pointLight.shadow.camera.far = 24;
 
   return pointLight;
+
+}
+
+export default function createLights() {
+
+  const ambient = new HemisphereLight( 0xcccccc, 0x555555, 0.75 );
+
+  const main = createMainLight();
+
+  return { ambient, main };
 
 }

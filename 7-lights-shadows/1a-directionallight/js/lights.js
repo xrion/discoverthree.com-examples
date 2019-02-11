@@ -10,9 +10,9 @@ function createAmbientLight() {
   // https://en.wikipedia.org/wiki/Lux#Illuminance
 
   // There are two kinds of ambient light
-  // const ambientLight = new THREE.AmbientLight(  0x666666,  1  );
+  // const ambientLight = new AmbientLight(  0x666666,  1  );
 
-  const ambientLight = new THREE.HemisphereLight(
+  const ambientLight = new HemisphereLight(
 
     // sky color ( dim blue, evening )
     0xddeeff,
@@ -46,9 +46,9 @@ function initAmbientLight() {
   // https://en.wikipedia.org/wiki/Lux#Illuminance
 
   // There are two kinds of ambient light
-  // const ambientLight = new THREE.AmbientLight(  0x666666,  1  );
+  // const ambientLight = new AmbientLight(  0x666666,  1  );
 
-  const ambientLight = new THREE.HemisphereLight(
+  const ambientLight = new HemisphereLight(
 
     // sky color ( dim blue, evening )
     0xddeeff,
@@ -77,7 +77,7 @@ function createDirectionalLight() {
   // there is no fallof or decay, since for any "normal"
   // scale scene - that is, less than 100,000km or so across,
   // the strength of the light will not change noticeably
-  const directionalLight = new THREE.DirectionalLight(
+  const directionalLight = new DirectionalLight(
 
     0xddeeff,
 
@@ -92,7 +92,12 @@ function createDirectionalLight() {
 
 }
 
-function createLights() {
+import {
+  HemisphereLight,
+  DirectionalLight,
+} from './vendor/three/three.module.js';
+
+export default function createLights() {
 
   const ambient = createAmbientLight();
 

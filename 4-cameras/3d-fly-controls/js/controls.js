@@ -1,4 +1,8 @@
-function setupControls( app ) {
+import {
+  FlyControls,
+} from './vendor/three/controls/todo.js';
+
+export default function setupControls( app ) {
 
   // Fly controls don't have an "enabled"
   // flag for some reason, so we'll set up the
@@ -12,7 +16,7 @@ function initControls( app ) {
   // setup the fly controls. Our App skipped
   // setting up OrbitControls since we didn't load the script,
   // allowing us to set up a different controls manually
-  app.controls = new THREE.FlyControls( app.camera );
+  app.controls = new FlyControls( app.camera );
 
   // app.controls.target.set( 0, 0, 10 );
 

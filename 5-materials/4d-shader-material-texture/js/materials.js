@@ -52,8 +52,8 @@ void main() {
 
 function createShaderMaterial() {
 
-  const texture = new THREE.TextureLoader().load( 'textures/bamboo-diffuse.jpg' );
-  texture.encoding = THREE.sRGBEncoding;
+  const texture = new TextureLoader().load( 'textures/bamboo-diffuse.jpg' );
+  texture.encoding = sRGBEncoding;
 
   const uniforms = {
     diffuseMap: {

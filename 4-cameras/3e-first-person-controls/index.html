@@ -10,18 +10,14 @@
 
 		<link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
 
-		<link href="styles/main.css" rel="stylesheet" type="text/css">
-
-		<script src="js/vendor/three/three.js"></script>
-
-		<!-- include the controls script -->
+		<link href="styles/main.css" rel="stylesheet" type="text/css">		<!-- include the controls script -->
     <script src="js/vendor/three/controls/FirstPersonControls.js"></script>
 
-		<script src="js/vendor/three/loaders/GLTFLoader.js"></script>
 
-		<script src="js/vendor/App.js"></script>
 
-		<script src="js/vendor/utility/createAsyncLoader.js"></script>
+
+
+
 
 	</head>
 
@@ -40,24 +36,12 @@
 			</div>
 		</div>
 
-		<div id="container">
-			<!-- This div will hold our scene-->
-		</div>
+<div id="scene-container"></div>
 
-		<footer>
-
-      <!--
-        Finally, include the scripts that
-        run your three.js app.
-			-->
-
-			<script src="js/lights.js"></script>
-			<script src="js/meshes.js"></script>
-			<script src="js/models.js"></script>
-
+	 	<footer>
 			<script src="js/controls.js"></script>
 
-			<script src="js/main.js"></script>
+			 <script type="module" src="js/main.js"></script>
 
 		</footer>
 

@@ -80570,7 +80570,7 @@
 
 	class THREE_APP {
 	  constructor(container) {
-	    container = container || '#container'; // default ID if none provided
+	    container = container || '#scene-container'; // default ID if none provided
 
 	    this.container = document.querySelector(container);
 
@@ -80700,7 +80700,12 @@
 
 	}
 
-	function createLights() {
+	import {
+  HemisphereLight,
+  DirectionalLight,
+} from './vendor/three/three.module.js';
+
+export default function createLights() {
 	  const ambient = new HemisphereLight(0xddeeff, 0x0f0e0d, 5);
 	  const main = new DirectionalLight(0xfffffc, 15);
 	  main.position.set(0, 1, -10);
@@ -83164,7 +83169,7 @@
 	}
 
 	async function initScene() {
-	  const app = new THREE_APP('#container');
+	  const app = new THREE_APP('#scene-container');
 	  app.init();
 	  app.scene.background = new Color(0x8FBCD4);
 	  app.camera.position.set(-2.5, 2.5, 6);

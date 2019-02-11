@@ -1,6 +1,6 @@
 function initScene() {
 
-  const app = new THREE_APP( '#container' );
+  const app = new THREE_APP( '#scene-container' );
 
   app.init();
 

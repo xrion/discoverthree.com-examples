@@ -1,6 +1,12 @@
-function createGeometry() {
+import {
+  BufferAttribute,
+  BufferGeometry,
+  Matrix4,
+} from './vendor/three/three.module.js';
 
-  const geometry = new THREE.BufferGeometry();
+export default function createGeometry() { {
+
+  const geometry = new BufferGeometry();
 
   const vertices = new Float32Array( [
 
@@ -16,7 +22,7 @@ function createGeometry() {
 
   ] );
 
-  geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+  geometry.addAttribute( 'position', new BufferAttribute( vertices, 3 ) );
 
   // compute the normals automatically
   geometry.computeVertexNormals();
@@ -35,7 +41,7 @@ function createGeometry() {
 
   ] );
 
-  geometry.addAttribute( 'uv', new THREE.BufferAttribute( uvs, 2 ) );
+  geometry.addAttribute( 'uv', new BufferAttribute( uvs, 2 ) );
 
   // create an empty array to  hold targets for the attribute we want to morph
   // morphing positions and normals is supported
@@ -59,7 +65,7 @@ function createGeometry() {
   ] );
 
   // add the spherical positions as the first morph target
-  geometry.morphAttributes.position[ 0 ] = new THREE.BufferAttribute( morphPositions, 3 );
+  geometry.morphAttributes.position[ 0 ] = new BufferAttribute( morphPositions, 3 );
 
   return geometry;
 
@@ -67,7 +73,7 @@ function createGeometry() {
 
 function createGeometryIndexed() {
 
-  const geometry = new THREE.BufferGeometry();
+  const geometry = new BufferGeometry();
 
   const vertices = new Float32Array( [
 
@@ -78,7 +84,7 @@ function createGeometryIndexed() {
 
   ] );
 
-  const positionAttribute = new THREE.BufferAttribute( vertices, 3 );
+  const positionAttribute = new BufferAttribute( vertices, 3 );
 
   geometry.addAttribute( 'position', positionAttribute );
 
@@ -109,7 +115,7 @@ function createGeometryIndexed() {
 
   ] );
 
-  geometry.addAttribute( 'uv', new THREE.BufferAttribute( uvs, 2 ) );
+  geometry.addAttribute( 'uv', new BufferAttribute( uvs, 2 ) );
 
   // create an empty array to  hold targets for the attribute we want to morph
   // morphing positions and normals is supported
@@ -119,7 +125,7 @@ function createGeometryIndexed() {
   // We'll set up a rotation matrix then apply it to a copy
   // of the positions attribute
 
-  const rotationMatrix = new THREE.Matrix4().makeRotationZ( Math.PI / 4 );
+  const rotationMatrix = new Matrix4().makeRotationZ( Math.PI / 4 );
 
   const morphRotate = positionAttribute.clone();
 
@@ -143,7 +149,7 @@ function createGeometryIndexed() {
 
   ] );
 
-  const morphScale = new THREE.BufferAttribute( scalePositions, 3 );
+  const morphScale = new BufferAttribute( scalePositions, 3 );
   morphScale.name = 'scale';
 
   // add the spherical positions as the first morph target

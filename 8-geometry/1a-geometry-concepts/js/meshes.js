@@ -1,4 +1,10 @@
-function createMeshes() {
+import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
+
+export default function createMeshes() {
 
   const cube = initCube();
   const sphere = initSphere();
@@ -11,9 +17,9 @@ function initCube() {
 
   const geometry = new THREE.BoxGeometry( 2, 2, 2 );
 
-  const material = new THREE.MeshBasicMaterial( { color: 0x800080, wireframe: true } );
+  const material = new MeshBasicMaterial( { color: 0x800080, wireframe: true } );
 
-  const cube = new THREE.Mesh( geometry, material );
+  const cube = new Mesh( geometry, material );
   cube.position.x = -2;
 
 
@@ -33,9 +39,9 @@ function initSphere() {
   // in particular, it's MUCH less efficient
   geometry.translate( 2, 0, 0 );
 
-  const material = new THREE.MeshBasicMaterial( { color: 0x800080, wireframe: true } );
+  const material = new MeshBasicMaterial( { color: 0x800080, wireframe: true } );
 
-  const sphere = new THREE.Mesh( geometry, material );
+  const sphere = new Mesh( geometry, material );
 
   console.log( '...and here\'s the sphere geometry you just created: ', geometry );
 

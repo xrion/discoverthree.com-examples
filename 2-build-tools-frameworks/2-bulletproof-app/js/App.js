@@ -2,7 +2,7 @@ class THREE_APP {
 
   constructor( container ) {
 
-    container = container || '#container'; // default ID if none provided
+    container = container || '#scene-container'; // default ID if none provided
 
     this.container = document.querySelector( container );
 

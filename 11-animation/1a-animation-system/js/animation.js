@@ -1,4 +1,22 @@
-function initAnimation( object ) {
+import {
+  AnimationClip,
+  AnimationMixer,
+  InterpolateDiscrete,
+  InterpolateLinear,
+  InterpolateSmooth,
+  NumberKeyframeTrack,
+  Quaternion,
+  QuaternionKeyframeTrack,
+  Vector3,
+  VectorKeyframeTrack,
+} from './vendor/three/three.module.js';
+
+import {
+  AnimationClip,
+  AnimationMixer,
+} from './vendor/three/three.module.js';
+
+export default function initAnimation( object ) {
 
   // create some KeyframeTracks
   const positionKF = initPositionKeyframeTrack(); // a VectorKeyframeTrack
@@ -9,7 +27,7 @@ function initAnimation( object ) {
 
   // Other KeyframeTrack types: BooleanKeyframeTrack, StringKeyframeTrack
 
-  const clip = new THREE.AnimationClip(
+  const clip = new AnimationClip(
 
     // name the clip anything you like
     'clipA',
@@ -22,7 +40,7 @@ function initAnimation( object ) {
   );
 
   // setup the AnimationMixer
-  const mixer = new THREE.AnimationMixer( object );
+  const mixer = new AnimationMixer( object );
 
   // create a ClipAction and set it to play
   const clipAction = mixer.clipAction( clip );
@@ -51,7 +69,7 @@ function initPositionKeyframeTrack() {
 
   ];
 
-  const positionKF = new THREE.VectorKeyframeTrack(
+  const positionKF = new VectorKeyframeTrack(
 
     // a string representing the attribute that we want to animate
     // here, object.position
@@ -80,7 +98,7 @@ function initScaleKeyframeTrack() {
 
   ];
 
-  const scaleKF = new THREE.VectorKeyframeTrack(
+  const scaleKF = new VectorKeyframeTrack(
     '.scale',
     times,
     values,
@@ -90,13 +108,13 @@ function initScaleKeyframeTrack() {
 
     // the default most keyframe track types
     // use Linear interpolation
-    // THREE.InterpolateLinear
+    // InterpolateLinear
 
     // Jump directly from one value to the next
-    // THREE.InterpolateDiscrete
+    // InterpolateDiscrete
 
     // use Cubic interpolation
-    // THREE.InterpolateSmooth
+    // InterpolateSmooth
 
   );
 
@@ -113,13 +131,13 @@ function initRotationKeyframeTrack() {
   const times = [ 0, 1, 2 ];
 
   // create a vector representing the axis we want to rotate around
-  const yAxis = new THREE.Vector3( 0, 1, 0 );
+  const yAxis = new Vector3( 0, 1, 0 );
 
   // a quaternion representing 0 rotation around the y axis
-  const qInitial = new THREE.Quaternion().setFromAxisAngle( yAxis, 0 );
+  const qInitial = new Quaternion().setFromAxisAngle( yAxis, 0 );
 
   // a quaternion representing 180 rotation around the y axis
-  const qFinal = new THREE.Quaternion().setFromAxisAngle( yAxis, Math.PI );
+  const qFinal = new Quaternion().setFromAxisAngle( yAxis, Math.PI );
 
   // quaternions have x, y, z and w properties
   const values = [
@@ -135,8 +153,8 @@ function initRotationKeyframeTrack() {
 
   ];
 
-  // QuaternionKeyframeTrack only supports THREE.InterpolateLinear
-  const quaternionKF = new THREE.QuaternionKeyframeTrack( '.quaternion', times, values );
+  // QuaternionKeyframeTrack only supports InterpolateLinear
+  const quaternionKF = new QuaternionKeyframeTrack( '.quaternion', times, values );
 
   console.log( 'Here\'s the QuaternionKeyframeTrack for rotation: ', quaternionKF );
 
@@ -159,7 +177,7 @@ function initColorKeyframeTrack() {
   // note that ColorKeyframeTrack is currently identical to VectorKeyframeTrack,
   // however it may be expanded on in the future to allow for
   // more sophisticated color manipulation
-  const colorKF = new THREE.ColorKeyframeTrack( '.material.color', times, values );
+  const colorKF = new ColorKeyframeTrack( '.material.color', times, values );
 
   console.log( 'Here\'s the ColorKeyframeTrack for color: ', colorKF );
 
@@ -179,7 +197,7 @@ function initOpacityKeyframeTrack() {
 
   ];
 
-  const opacityKF = new THREE.NumberKeyframeTrack( '.material.opacity', times, values );
+  const opacityKF = new NumberKeyframeTrack( '.material.opacity', times, values );
 
   console.log( 'Here\'s the KeyframeTrack for opacity: ', opacityKF );
 

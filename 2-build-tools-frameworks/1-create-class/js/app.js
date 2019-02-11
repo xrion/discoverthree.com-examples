@@ -45,9 +45,9 @@ class App {
 
   createLights() {
 
-    const ambient = new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 2 );
+    const ambient = new HemisphereLight( 0xddeeff, 0x0f0e0d, 2 );
 
-    const main = new THREE.DirectionalLight( 0xfffffc, 2 );
+    const main = new DirectionalLight( 0xfffffc, 2 );
     main.position.set( 0, 1, -10 );
 
     this.scene.add( ambient, main );

@@ -27,9 +27,9 @@ function setupText( font ) {
   console.log( 'Here\'s the font you just loaded: ', font );
   console.log( 'And here\'s the textGeomtry: ', textGeometry );
 
-  const material = new THREE.MeshBasicMaterial();
+  const material = new MeshBasicMaterial();
 
-  const text = new THREE.Mesh( textGeometry, material );
+  const text = new Mesh( textGeometry, material );
 
   return text;
 

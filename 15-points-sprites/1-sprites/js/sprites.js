@@ -1,6 +1,15 @@
-function initSprites() {
+import {
+  Group,
+  Math as MathUtils,
+  Sprite,
+  SpriteMaterial,
+  sRGBEncoding,
+  TextureLoader,
+} from './vendor/three/three.module.js';
 
-  const leaves = new THREE.Group();
+export default function createSprites() {
+
+  const leaves = new Group();
 
   // we'll create a group to hold all the sprites, and
   // then set that to rotating to give a swirling wind effect
@@ -12,27 +21,27 @@ function initSprites() {
 
   };
 
-  const loader = new THREE.TextureLoader();
+  const loader = new TextureLoader();
 
   const spriteMap = loader.load( 'textures/color/leaf/leaf.png' );
-  spriteMap.encoding = THREE.sRGBEncoding;
+  spriteMap.encoding = sRGBEncoding;
 
-  const spriteMaterial = new THREE.SpriteMaterial( {
+  const spriteMaterial = new SpriteMaterial( {
     map: spriteMap,
     sizeAttenuation: true, // default
   } );
 
   for ( let i = 0; i < 100; i++ ) {
 
-    const sprite = new THREE.Sprite( spriteMaterial.clone() );
+    const sprite = new Sprite( spriteMaterial.clone() );
 
     sprite.position.set(
-      THREE.Math.randFloat( -20, 20 ),
-      THREE.Math.randFloat( -20, 20 ),
-      THREE.Math.randFloat( -20, 20 ),
+      MathUtils.randFloat( -20, 20 ),
+      MathUtils.randFloat( -20, 20 ),
+      MathUtils.randFloat( -20, 20 ),
     );
 
-    const factor = THREE.Math.randFloat( -5, 5 );
+    const factor = MathUtils.randFloat( -5, 5 );
 
     sprite.userData.onUpdate = function ( delta ) {
 

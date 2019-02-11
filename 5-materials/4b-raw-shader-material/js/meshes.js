@@ -1,10 +1,16 @@
-function createMeshes() {
+import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
 
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
+export default function createMeshes() {
 
-  const tempMat = new THREE.MeshBasicMaterial();
+  const geometry = new BoxBufferGeometry( 2, 2, 2 );
 
-  const box = new THREE.Mesh( geometry, tempMat );
+  const tempMat = new MeshBasicMaterial();
+
+  const box = new Mesh( geometry, tempMat );
 
   return { box };
 

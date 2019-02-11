@@ -1,10 +1,20 @@
+import {
+  Color,
+} from './vendor/three/three.module.js';
+
+import App from './vendor/App.module.js';
+
+import createLights from './lights.js';
+import createMeshes from './meshes.js';
+import loadModels from './models.js';
+
 async function initScene() {
 
-  const app = new THREE_APP( '#container' );
+  const app = new App( '#scene-container' );
 
   app.init();
 
-  app.renderer.toneMappingExposure = 0.5;
+  app.renderer.toneMappingExposure = 0.6;
 
   app.camera.position.set( 2, 1, 1.5 );
 
@@ -14,7 +24,7 @@ async function initScene() {
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
-  const materials = initMaterials( app.scene, envMap );
+  const materials = initMaterials( envMap );
   initEnvMapControls( materials, envMap );
 
   const meshes = createMeshes( materials );

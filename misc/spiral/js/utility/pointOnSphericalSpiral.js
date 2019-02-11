@@ -1,4 +1,4 @@
-const vec = new THREE.Vector3();
+const vec = new Vector3();
 const a = 0.009; // spiral param
 
 // formula for a spherical spiral here: http://mathworld.wolfram.com/SphericalSpiral.html

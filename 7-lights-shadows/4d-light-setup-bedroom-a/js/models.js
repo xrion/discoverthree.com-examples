@@ -1,4 +1,13 @@
-function setupModels( gltf ) {
+import {
+  AnimationMixer,
+  Vector3,
+} from './vendor/three/three.module.js';
+
+import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
+
+import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
+
+function setupModel(  gltf ) {
 
   const room = gltf.scene.children[ 0 ];
 
@@ -9,16 +18,16 @@ function setupModels( gltf ) {
 };
 
 
-async function loadModels() {
+export default async function loadModels() {
 
-  const gltfLoader = new THREE.GLTFLoader();
+  const gltfLoader = new GLTFLoader();
 
   THREE.DRACOLoader.setDecoderPath( 'js/vendor/three/loaders/draco/' );
   gltfLoader.setDRACOLoader( new THREE.DRACOLoader() );
 
   const asyncLoader = createAsyncLoader( gltfLoader );
 
-  const room = setupModels(
+  const room = setupModel(
     await asyncLoader.load( 'models/lighting/bedroom.glb' )
   );
 

@@ -1,6 +1,11 @@
-function createGeometry() {
+import {
+  BufferAttribute,
+  BufferGeometry,
+} from './vendor/three/three.module.js';
 
-  const geometry = new THREE.BufferGeometry();
+export default function createGeometry() { {
+
+  const geometry = new BufferGeometry();
 
   const vertices = new Float32Array( [
     // lower face
@@ -14,7 +19,7 @@ function createGeometry() {
     -1, 1, 0, // vertex 5
   ] );
 
-  geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+  geometry.addAttribute( 'position', new BufferAttribute( vertices, 3 ) );
 
   // compute the normals automatically
   geometry.computeVertexNormals();
@@ -33,7 +38,7 @@ function createGeometry() {
 
   ] );
 
-  geometry.addAttribute( 'uv', new THREE.BufferAttribute( uvs, 2 ) );
+  geometry.addAttribute( 'uv', new BufferAttribute( uvs, 2 ) );
 
   console.log( 'Here\'s the geometry you just created: ', geometry );
 
@@ -43,7 +48,7 @@ function createGeometry() {
 
 function createGeometryIndexed() {
 
-  const geometry = new THREE.BufferGeometry();
+  const geometry = new BufferGeometry();
 
   const vertices = new Float32Array( [
 
@@ -54,7 +59,7 @@ function createGeometryIndexed() {
 
   ] );
 
-  geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+  geometry.addAttribute( 'position', new BufferAttribute( vertices, 3 ) );
 
   // note that the indices for each face
   // are the same as the Face indices in our Geometry example
@@ -83,7 +88,7 @@ function createGeometryIndexed() {
 
   ] );
 
-  geometry.addAttribute( 'uv', new THREE.BufferAttribute( uvs, 2 ) );
+  geometry.addAttribute( 'uv', new BufferAttribute( uvs, 2 ) );
 
   console.log( '...and here\'s the indexed geometry you just created: ', geometry );
 

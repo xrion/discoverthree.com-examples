@@ -6,17 +6,17 @@ const speed = 10;
 
 // always create all your objects first, never inside a loop
 // since object creation in JS is expensive
-const dir = new THREE.Vector3();
+const dir = new Vector3();
 
-const forwards = new THREE.Vector3( 0, 0, -1 );
-const backward = new THREE.Vector3( 0, 0, 1 );
-const left = new THREE.Vector3( -1, 0, 0 );
-const right = new THREE.Vector3( 1, 0, 0 );
+const forwards = new Vector3( 0, 0, -1 );
+const backward = new Vector3( 0, 0, 1 );
+const left = new Vector3( -1, 0, 0 );
+const right = new Vector3( 1, 0, 0 );
 
 // rotate on y-axis
-const xAxis = new THREE.Vector3( 1, 0, 0 );
-const yAxis = new THREE.Vector3( 0, 1, 0 );
-const zAxis = new THREE.Vector3( 0, 0, 1 );
+const xAxis = new Vector3( 1, 0, 0 );
+const yAxis = new Vector3( 0, 1, 0 );
+const zAxis = new Vector3( 0, 0, 1 );
 
 function resetPosition( model, modelGUI ) {
 

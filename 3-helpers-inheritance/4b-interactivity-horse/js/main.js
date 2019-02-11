@@ -1,16 +1,26 @@
+import {
+  Color,
+} from './vendor/three/three.module.js';
+
+import App from './vendor/App.module.js';
+
+import createLights from './lights.js';
+import createMeshes from './meshes.js';
+import loadModels from './models.js';
+
 async function initScene() {
 
-  const app = new THREE_APP( '#container' );
+  const app = new App( '#scene-container' );
 
   app.init();
 
   app.renderer.toneMappingExposure = 0.5;
 
-  app.scene.background = new THREE.Color( 0x00BFFF );
+  app.scene.background = new Color( 0x00BFFF );
 
   // adding fog in the distance, the same color as the sky is
   // a cheap way to blur the boundary between ground and sky
-  app.scene.fog = new THREE.Fog( 0x00BFFF, 115, 150 );
+  app.scene.fog = new Fog( 0x00BFFF, 115, 150 );
 
   app.camera.position.set( 10, 10, 20 );
 

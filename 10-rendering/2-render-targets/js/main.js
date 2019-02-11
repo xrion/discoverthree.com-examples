@@ -1,24 +1,35 @@
+import {
+  Color,
+  PerspectiveCamera,
+  Scene,
+} from './vendor/three/three.module.js';
+
+import App from './vendor/App.module.js';
+
+import createLights from './lights.js';
+import createMeshes from './meshes.js';
+
 function initScene() {
 
-  const app = new THREE_APP( '#container' );
+  const app = new App( '#scene-container' );
 
   // We need to create a separate scene and camera for the RenderTarget
-  const sceneRT = new THREE.Scene();
-  sceneRT.background = new THREE.Color( 0x800080 );
+  const sceneRT = new Scene();
+  sceneRT.background = new Color( 0x800080 );
 
   // You'll need to set up a separate camera as well.
   // You COULD technically reuse the main camera,
   // but you'll probably run into problems
   // For example, weird things will happen with the zoom if we
   // use orbit controls
-  const cameraRT = new THREE.PerspectiveCamera( 35, 1, 1, 100 );
+  const cameraRT = new PerspectiveCamera( 35, 1, 1, 100 );
   cameraRT.position.z = 5;
 
   const target = initRenderTarget();
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x8FBCD4 );
+  app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 3, 5, 6 );
 
   const lights = createLights();

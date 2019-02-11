@@ -1,6 +1,6 @@
 function selectAxis() {
 
-  const axisNum = THREE.Math.randInt( 0, 2 );
+  const axisNum = MathUtils.randInt( 0, 2 );
   if ( axisNum === 0 ) return 'x';
   if ( axisNum === 1 ) return 'y';
   return 'z';
@@ -14,7 +14,7 @@ function spinAtRandomIntervals( model, intervalMin, intervalMax ) {
 
   setTimeout(
     () => { spinning = true; },
-    THREE.Math.randInt( intervalMin, intervalMax ),
+    MathUtils.randInt( intervalMin, intervalMax ),
   );
 
   model.userData.onUpdate = ( delta ) => {
@@ -31,7 +31,7 @@ function spinAtRandomIntervals( model, intervalMin, intervalMax ) {
 
         setTimeout(
           () => { spinning = true; },
-          THREE.Math.randInt( intervalMin, intervalMax ),
+          MathUtils.randInt( intervalMin, intervalMax ),
         );
 
       }

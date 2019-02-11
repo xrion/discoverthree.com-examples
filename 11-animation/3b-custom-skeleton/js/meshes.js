@@ -1,3 +1,9 @@
+import {
+  CylinderBufferGeometry,
+  MeshStandardMaterial,
+  SkinnedMesh,
+} from './vendor/three/three.module.js';
+
 function addSkeletonToMesh( mesh ) {
 
   const skeleton = createSkeleton();
@@ -8,18 +14,18 @@ function addSkeletonToMesh( mesh ) {
 
 }
 
-function createMeshes() {
+export default function createMeshes() {
 
-  const geometry = new THREE.CylinderBufferGeometry( 1, 1, 8, 8, 16 );
+  const geometry = new CylinderBufferGeometry( 1, 1, 8, 8, 16 );
 
-  const material = new THREE.MeshStandardMaterial( {
+  const material = new MeshStandardMaterial( {
     color: 0x800080,
 
     // if we forget to set this then moving the bones will have no effect!
     skinning: true,
   } );
 
-  const skinnedMesh = new THREE.SkinnedMesh( geometry, material );
+  const skinnedMesh = new SkinnedMesh( geometry, material );
 
   addSkeletonToMesh( skinnedMesh );
 

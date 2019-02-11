@@ -1,4 +1,13 @@
-function setupModels( gltf ) {
+import {
+  AnimationMixer,
+  Vector3,
+} from './vendor/three/three.module.js';
+
+import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
+
+import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
+
+function setupModel(  gltf ) {
 
   const cesiumMan = gltf.scene.children[ 0 ];
 
@@ -6,7 +15,7 @@ function setupModels( gltf ) {
 
   console.log( 'Here\'s the model we just loaded: ', cesiumMan );
 
-  const mixer = new THREE.AnimationMixer( cesiumMan );
+  const mixer = new AnimationMixer( cesiumMan );
 
   cesiumMan.userData.onUpdate = ( delta ) => {
 
@@ -28,7 +37,7 @@ function setupModels( gltf ) {
   // Cesium man already has a material set up correctly,
   // but we'll replace it here with a plane white material so
   // that we can examine the model more easily
-  cesiumMan.children[ 1 ].material = new THREE.MeshStandardMaterial( {
+  cesiumMan.children[ 1 ].material = new MeshStandardMaterial( {
 
     // this needs to be set for any mesh that has skeletal
     // animation. If you leave it out, then skinning
@@ -56,11 +65,11 @@ function logInfo( cesiumMan, animations ) {
 
 }
 
-async function loadModels() {
+export default async function loadModels() {
 
-  const loader = createAsyncLoader( new THREE.GLTFLoader() );
+  const loader = createAsyncLoader( new GLTFLoader() );
 
-  const cesiumMan = setupModels(
+  const cesiumMan = setupModel(
     await loader.load( 'models/CesiumMan.glb' ),
   );
 

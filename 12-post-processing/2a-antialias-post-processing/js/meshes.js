@@ -1,10 +1,17 @@
-function createMeshes() {
+import {
+  BoxBufferGeometry,
+  DoubleSide,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
 
-  const geometry = new THREE.BoxBufferGeometry( 3, 4, 3, 4, 4, 4 );
+export default function createMeshes() {
 
-  const material = new THREE.MeshStandardMaterial( { color: 0x800080, side: THREE.DoubleSide } );
+  const geometry = new BoxBufferGeometry( 3, 4, 3, 4, 4, 4 );
 
-  const box = new THREE.Mesh( geometry, material );
+  const material = new MeshStandardMaterial( { color: 0x800080, side: DoubleSide } );
+
+  const box = new Mesh( geometry, material );
 
   box.position.y = 1;
 

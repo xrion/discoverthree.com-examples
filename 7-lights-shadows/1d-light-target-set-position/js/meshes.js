@@ -1,28 +1,28 @@
 function createPlinth() {
 
-  const geometry = new THREE.CylinderBufferGeometry( 18, 18, 1, 64, 1 );
+  const geometry = new CylinderBufferGeometry( 18, 18, 1, 64, 1 );
 
-  const material = new THREE.MeshStandardMaterial( {
+  const material = new MeshStandardMaterial( {
     metalness: 0.0,
     roughness: 0.5,
   } );
 
-  const ground = new THREE.Mesh( geometry, material );
+  const ground = new Mesh( geometry, material );
 
   return ground;
 }
 
 function createGround() {
 
-  const geometry = new THREE.PlaneBufferGeometry( 1000, 1000 );
+  const geometry = new PlaneBufferGeometry( 1000, 1000 );
   geometry.rotateX( -Math.PI / 2 );
 
-  const material = new THREE.MeshBasicMaterial( {
+  const material = new MeshBasicMaterial( {
     color: 0x020202,
-    side: THREE.DoubleSide,
+    side: DoubleSide,
   } );
 
-  const ground = new THREE.Mesh( geometry, material );
+  const ground = new Mesh( geometry, material );
 
   return ground;
 
@@ -30,18 +30,18 @@ function createGround() {
 
 function initShapes() {
 
-  const torusKnotGeo = new THREE.TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
-  const torusKnotMat = new THREE.MeshStandardMaterial( {
+  const torusKnotGeo = new TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
+  const torusKnotMat = new MeshStandardMaterial( {
     color: 0x000000,
   } );
 
-  const torusKnot = new THREE.Mesh( torusKnotGeo, torusKnotMat );
+  const torusKnot = new Mesh( torusKnotGeo, torusKnotMat );
   torusKnot.position.set( 10, 6, 0 );
 
-  const sphereGeo = new THREE.SphereBufferGeometry( 1.875, 32, 32 );
-  const sphereMat = new THREE.MeshStandardMaterial();
+  const sphereGeo = new SphereBufferGeometry( 1.875, 32, 32 );
+  const sphereMat = new MeshStandardMaterial();
 
-  const sphere = new THREE.Mesh( sphereGeo, sphereMat );
+  const sphere = new Mesh( sphereGeo, sphereMat );
   sphere.position.set( 1.125, 0, 0 );
 
   torusKnot.add( sphere );
@@ -69,7 +69,13 @@ function initShapes() {
 
 }
 
-function createMeshes() {
+import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
+
+export default function createMeshes() {
 
   const plinth = createPlinth();
   const ground = createGround();

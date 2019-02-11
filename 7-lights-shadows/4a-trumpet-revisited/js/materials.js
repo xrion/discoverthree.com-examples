@@ -10,12 +10,12 @@ function initMaterials( scene, envMap ) {
 
   // Hopefully three.js will improve its workflow soon so that this is automatic!
 
-  const brassColor = new THREE.Color( 0xB5A642 ).convertSRGBToLinear();
-  const silverColor = new THREE.Color( 0xC4CACE ).convertSRGBToLinear();
+  const brassColor = new Color( 0xB5A642 ).convertSRGBToLinear();
+  const silverColor = new Color( 0xC4CACE ).convertSRGBToLinear();
 
   const materials = {
 
-    brass: new THREE.MeshStandardMaterial( {
+    brass: new MeshStandardMaterial( {
       metalness: 1,
       roughness: 0.05,
       color: brassColor,
@@ -23,7 +23,7 @@ function initMaterials( scene, envMap ) {
       envMapIntensity: 1, // default is 1
     } ),
 
-    silver: new THREE.MeshStandardMaterial( {
+    silver: new MeshStandardMaterial( {
       metalness: 1,
       roughness: 0.05,
       color: silverColor,
@@ -31,7 +31,7 @@ function initMaterials( scene, envMap ) {
       envMapIntensity: 1,
     } ),
 
-    plinth: new THREE.MeshStandardMaterial( {
+    plinth: new MeshStandardMaterial( {
       metalness: 0.5,
       roughness: 0.5,
       envMap,

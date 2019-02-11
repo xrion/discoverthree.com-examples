@@ -1,4 +1,9 @@
-function initCamera( app ) {
+import {
+  CameraHelper,
+  B,
+} from './vendor/three/three.module.js';
+
+export deafult function initCamera( app ) {
 
   const cameraMain = app.camera;
 
@@ -16,7 +21,7 @@ function initCamera( app ) {
   cameraOverview.far = 1000;
   cameraOverview.updateProjectionMatrix();
 
-  const cameraHelper = new THREE.CameraHelper( cameraMain );
+  const cameraHelper = new CameraHelper( cameraMain );
   cameraHelper.userData.onUpdate = () => {
 
     cameraHelper.update();

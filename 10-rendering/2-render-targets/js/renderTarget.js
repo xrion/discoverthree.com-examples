@@ -1,6 +1,10 @@
+import {
+  WebGLRenderTarget,
+} from './vendor/three/three.module.js';
+
 function initRenderTarget() {
 
-  const target = new THREE.WebGLRenderTarget( 1024, 1024 );
+  const target = new WebGLRenderTarget( 1024, 1024 );
 
   // You could enable this for an addition performance gain
   // but only if your sceneRT doesn't contain any overlapping geometry

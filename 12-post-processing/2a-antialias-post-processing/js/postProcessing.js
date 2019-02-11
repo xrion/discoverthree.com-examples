@@ -1,3 +1,14 @@
+import {
+  EffectComposer,
+  CopyShader,
+  FXAAShader,
+  RenderPass,
+  ShaderPass,
+  SMAAPass,
+  SSAARenderPass,
+  TAARenderPass,
+} from './vendor/three/todo.js';
+
 function initComposers( renderer, scene, camera ) {
 
   const composers = {};
@@ -24,12 +35,12 @@ function initComposers( renderer, scene, camera ) {
 
 function initComposerNoAA( renderer, scene, camera ) {
 
-  const composerNoAA = new THREE.EffectComposer( renderer );
+  const composerNoAA = new EffectComposer( renderer );
 
-  const renderPass = new THREE.RenderPass( scene, camera );
+  const renderPass = new RenderPass( scene, camera );
   composerNoAA.addPass( renderPass );
 
-  const copyPass = new THREE.ShaderPass( THREE.CopyShader );
+  const copyPass = new ShaderPass( CopyShader );
 
   // // the on the final shader pass, set renderToScreen to true,
   // // to let the composer know that this is the result we want to see
@@ -42,13 +53,13 @@ function initComposerNoAA( renderer, scene, camera ) {
 
 function initComposerSSAA( renderer, scene, camera ) {
 
-  const composerSSAA = new THREE.EffectComposer( renderer );
+  const composerSSAA = new EffectComposer( renderer );
 
-  const ssaaRenderPass = new THREE.SSAARenderPass( scene, camera );
+  const ssaaRenderPass = new SSAARenderPass( scene, camera );
   ssaaRenderPass.sampleLevel = 4; // specified as n, where the number of samples is 2^n, so sampleLevel = 4, is 2^4 samples, 16.
   composerSSAA.addPass( ssaaRenderPass );
 
-  const copyPass = new THREE.ShaderPass( THREE.CopyShader );
+  const copyPass = new ShaderPass( CopyShader );
 
   copyPass.renderToScreen = true;
   composerSSAA.addPass( copyPass );
@@ -59,13 +70,13 @@ function initComposerSSAA( renderer, scene, camera ) {
 
 function initComposerTAA( renderer, scene, camera ) {
 
-  const composerTAA = new THREE.EffectComposer( renderer );
+  const composerTAA = new EffectComposer( renderer );
 
-  const taaRenderPass = new THREE.TAARenderPass( scene, camera );
+  const taaRenderPass = new TAARenderPass( scene, camera );
   taaRenderPass.sampleLevel = 4; // specified as n, where the number of samples is 2^n, so sampleLevel = 4, is 2^4 samples, 16.
   composerTAA.addPass( taaRenderPass );
 
-  const copyPass = new THREE.ShaderPass( THREE.CopyShader );
+  const copyPass = new ShaderPass( CopyShader );
 
   copyPass.renderToScreen = true;
   composerTAA.addPass( copyPass );
@@ -76,12 +87,12 @@ function initComposerTAA( renderer, scene, camera ) {
 
 function initComposerFXAA( renderer, scene, camera ) {
 
-  const composerFXAA = new THREE.EffectComposer( renderer );
+  const composerFXAA = new EffectComposer( renderer );
 
-  const renderPass = new THREE.RenderPass( scene, camera );
+  const renderPass = new RenderPass( scene, camera );
   composerFXAA.addPass( renderPass );
 
-  let fxaaShader = new THREE.ShaderPass( THREE.FXAAShader );
+  let fxaaShader = new ShaderPass( FXAAShader );
 
   fxaaShader.renderToScreen = true;
   composerFXAA.addPass( fxaaShader );
@@ -92,14 +103,14 @@ function initComposerFXAA( renderer, scene, camera ) {
 
 function initComposerSMAA( renderer, scene, camera ) {
 
-  const composerSMAA = new THREE.EffectComposer( renderer );
+  const composerSMAA = new EffectComposer( renderer );
 
-  const renderPass = new THREE.RenderPass( scene, camera );
+  const renderPass = new RenderPass( scene, camera );
   composerSMAA.addPass( renderPass );
 
   const size = renderer.getSize();
   const pixelRatio = renderer.getPixelRatio();
-  const smaaPass = new THREE.SMAAPass( size.width * pixelRatio, size.height * pixelRatio );
+  const smaaPass = new SMAAPass( size.width * pixelRatio, size.height * pixelRatio );
   smaaPass.renderToScreen = true;
   composerSMAA.addPass( smaaPass );
 

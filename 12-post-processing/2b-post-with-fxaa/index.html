@@ -10,13 +10,7 @@
 
 		<link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
 
-		<link href="styles/main.css" rel="stylesheet" type="text/css">
-
-		<script src="js/vendor/three/three.js"></script>
-    <script src="js/vendor/three/controls/OrbitControls.js"></script>
-		<script src="js/vendor/three/loaders/GLTFLoader.js"></script>
-
-		<!--
+		<link href="styles/main.css" rel="stylesheet" type="text/css">		<!--
 
 			Include post processing base files.
 
@@ -63,9 +57,9 @@
 			See discoverthreejs.com/modules/three-app/ for an example of how to do that.
 
 		-->
-		<script src="js/vendor/App.js"></script>
 
-		<script src="js/vendor/utility/createAsyncLoader.js"></script>
+
+
 
 	</head>
 
@@ -73,23 +67,11 @@
 
 		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 11.2b</h1>
 
-		<div id="container">
-			<!-- This div will hold our scene-->
-		</div>
+<div id="scene-container"></div>
 
-		<footer>
+	 	<footer>			<script src="js/postProcessing.js"></script>
 
-      <!--
-        Finally, include the scripts that
-        run your three.js app.
-			-->
-
-			<script src="js/lights.js"></script>
-			<script src="js/meshes.js"></script>
-			<script src="js/models.js"></script>
-			<script src="js/postProcessing.js"></script>
-
-			<script src="js/main.js"></script>
+			 <script type="module" src="js/main.js"></script>
 
 		</footer>
 

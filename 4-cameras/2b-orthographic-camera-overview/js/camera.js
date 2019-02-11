@@ -1,6 +1,12 @@
-function initCameras( app ) {
+import {
+  CameraHelper,
+  OrthographicCamera,
+  PerspectiveCamera,
+} from './vendor/three/three.module.js';
 
-  const cameraOverview = new THREE.PerspectiveCamera( 35, app.container.clientWidth / app.container.clientHeight, 1, 1000 );
+export default function initCamera( app ) {
+
+  const cameraOverview = new PerspectiveCamera( 35, app.container.clientWidth / app.container.clientHeight, 1, 1000 );
   cameraOverview.position.set( 100, 0, 100 );
   cameraOverview.lookAt( 0, 0, 0 );
   cameraOverview.far = 1000;
@@ -10,7 +16,7 @@ function initCameras( app ) {
   const width = app.container.clientWidth;
   const height = app.container.clientHeight;
 
-  const cameraMain = new THREE.OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 20, 50 );
+  const cameraMain = new OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 20, 50 );
   app.camera = cameraMain;
 
   // position the camera
@@ -48,7 +54,7 @@ function initCameras( app ) {
 
   window.addEventListener( 'resize', onResize );
 
-  const cameraHelper = new THREE.CameraHelper( cameraMain );
+  const cameraHelper = new CameraHelper( cameraMain );
 
   cameraHelper.userData.onUpdate = () => {
 

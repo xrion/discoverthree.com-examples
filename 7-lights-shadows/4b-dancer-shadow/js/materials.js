@@ -1,9 +1,9 @@
 function createFloorMaterial( textures ) {
 
-  return new THREE.MeshStandardMaterial( {
+  return new MeshStandardMaterial( {
     map: textures.floorColor,
     normalMap: textures.floorNormal,
-    normalScale: new THREE.Vector2( 1, 1 ),
+    normalScale: new Vector2( 1, 1 ),
     metalness: 0.1,
     roughness: 0.4,
     envMap: textures.envMap,
@@ -14,7 +14,7 @@ function createFloorMaterial( textures ) {
 
 function createWallMaterial( textures ) {
 
-  return new THREE.MeshStandardMaterial( {
+  return new MeshStandardMaterial( {
     map: textures.wallColor,
     bumpMap: textures.wallBump,
     bumpScale: 0.05,

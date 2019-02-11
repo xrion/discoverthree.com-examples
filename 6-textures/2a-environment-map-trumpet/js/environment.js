@@ -1,6 +1,12 @@
-function loadEnvironments() {
+import {
+  CubeTextureLoader,
+  CubeReflectionMapping,
+  sRGBEncoding
+} from './vendor/three/three.module.js';
 
-  const cubeTextureLoader = new THREE.CubeTextureLoader();
+export default function loadEnvironments() {
+
+  const cubeTextureLoader = new CubeTextureLoader();
 
   const path = 'textures/environments/cubemap/skybox/';
 
@@ -12,8 +18,8 @@ function loadEnvironments() {
 
 
   const cubemap = cubeTextureLoader.load( urls );
-  cubemap.mapping = THREE.CubeReflectionMapping;
-  cubemap.encoding = THREE.sRGBEncoding;
+  cubemap.mapping = CubeReflectionMapping;
+  cubemap.encoding = sRGBEncoding;
 
   return cubemap;
 

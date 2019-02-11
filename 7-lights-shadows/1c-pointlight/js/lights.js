@@ -1,3 +1,8 @@
+import {
+  HemisphereLight,
+  PointLight,
+} from './vendor/three/three.module.js';
+
 function createAmbientLight() {
 
   // we'll measure the ambient light's intensity in Lux, which means
@@ -10,9 +15,9 @@ function createAmbientLight() {
   // https://en.wikipedia.org/wiki/Lux#Illuminance
 
   // There are two kinds of ambient light
-  // const ambientLight = new THREE.AmbientLight(  0x666666,  1  );
+  // const ambientLight = new AmbientLight(  0x666666,  1  );
 
-  const ambientLight = new THREE.HemisphereLight(
+  const ambientLight = new HemisphereLight(
 
     // sky color ( dim blue, evening )
     0xddeeff,
@@ -36,7 +41,7 @@ function createAmbientLight() {
 
 function createPointLight() {
 
-  const pointLight = new THREE.PointLight(
+  const pointLight = new PointLight(
 
     // color - you can pick this from a lightbulb color chart
     // here's we're going for a slight yellow (picked from a light color chart): http://www.westinghouselighting.com/color-temperature.aspx
@@ -65,7 +70,7 @@ function createPointLight() {
 
 }
 
-function createLights() {
+export default function createLights() {
 
   const ambient = createAmbientLight();
 

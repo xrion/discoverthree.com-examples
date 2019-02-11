@@ -1,11 +1,11 @@
 
 function initScene() {
 
-  const app = new THREE_APP( '#container' );
+  const app = new App( '#scene-container' );
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x8FBCD4 );
+  app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 0, 0, 10 );
 
   const lights = createLights();

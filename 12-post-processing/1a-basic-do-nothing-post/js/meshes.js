@@ -1,10 +1,16 @@
-function createMeshes() {
+import {
+  BoxBufferGeometry,
+  Mesh,
+  MeshStandardMaterial,
+} from './vendor/three/three.module.js';
 
-  const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
+export default function createMeshes() {
 
-  const material = new THREE.MeshBasicMaterial( { color: 0x800080 } );
+  const geometry = new BoxBufferGeometry( 2, 2, 2 );
 
-  const box = new THREE.Mesh( geometry, material );
+  const material = new MeshBasicMaterial( { color: 0x800080 } );
+
+  const box = new Mesh( geometry, material );
 
   box.userData.onUpdate = ( delta ) => {
 

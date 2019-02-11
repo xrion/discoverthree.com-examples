@@ -1,6 +1,10 @@
-function setupControls( app ) {
+import {
+  FirstPersonControls,
+} from './vendor/three/controls/todo.js';
 
-  app.controls = new THREE.FirstPersonControls( app.camera, app.container );
+export default function setupControls( app ) {
+
+  app.controls = new FirstPersonControls( app.camera, app.container );
 
   initOverlay( app.controls );
 

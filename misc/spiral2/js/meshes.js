@@ -6,7 +6,7 @@ function createSpiral( material ) {
 
   const instancedSphericalGeo = new THREE.InstancedBufferGeometry();
 
-  const sphereGeo = new THREE.SphereBufferGeometry( 0.015, 16, 16 );
+  const sphereGeo = new SphereBufferGeometry( 0.015, 16, 16 );
 
   instancedSphericalGeo.index = sphereGeo.index;
   instancedSphericalGeo.attributes.position = sphereGeo.attributes.position;
@@ -26,7 +26,7 @@ function createSpiral( material ) {
   const indexAttribute = new THREE.InstancedBufferAttribute( new Float32Array( instanceIndex ), 1 );
   instancedSphericalGeo.addAttribute( 'instanceIndex', indexAttribute );
 
-  const spiral = new THREE.Mesh( instancedSphericalGeo, material );
+  const spiral = new Mesh( instancedSphericalGeo, material );
   spiral.scale.multiplyScalar( 0.6 );
 
   return spiral;

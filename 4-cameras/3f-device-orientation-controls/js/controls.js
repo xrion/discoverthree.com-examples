@@ -1,6 +1,10 @@
-function setupControls( app ) {
+import {
+  DeviceOrientationControls,
+} from './vendor/three/controls/todo.js';
 
-  app.controls = new THREE.DeviceOrientationControls( app.camera, app.container );
+export default function setupControls( app ) {
+
+  app.controls = new DeviceOrientationControls( app.camera, app.container );
 
   initOverlay( app.controls, app );
 

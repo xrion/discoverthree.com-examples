@@ -1,4 +1,13 @@
 
+import {
+  AnimationMixer,
+  Vector3,
+} from './vendor/three/three.module.js';
+
+import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
+
+import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
+
 function setupModel( gltf ) {
 
   const model = gltf.scene.children[ 0 ];
@@ -6,14 +15,14 @@ function setupModel( gltf ) {
 
   modelGUI.scale.set( 4, 4, 4 );
   modelGUI.rotation.set( Math.PI / 2, -Math.PI / 2, 0 );
-  modelGUI.material = new THREE.MeshBasicMaterial( {
+  modelGUI.material = new MeshBasicMaterial( {
     color: 0x00ff00,
     morphTargets: true,
   } );
 
   const animation = gltf.animations[ 0 ];
-  const mixer = new THREE.AnimationMixer( model );
-  const mixerGUI = new THREE.AnimationMixer( modelGUI );
+  const mixer = new AnimationMixer( model );
+  const mixerGUI = new AnimationMixer( modelGUI );
 
   // we'll want to make the horse animate while it's moving
   // we'll need access to the mixer for that, so we'll store
@@ -39,9 +48,9 @@ function setupModel( gltf ) {
 
 }
 
-async function loadModels() {
+export default async function loadModels() {
 
-  const loader = createAsyncLoader( new THREE.GLTFLoader() );
+  const loader = createAsyncLoader( new GLTFLoader() );
 
   return setupModel(
     await loader.load( 'models/Horse.glb' ),

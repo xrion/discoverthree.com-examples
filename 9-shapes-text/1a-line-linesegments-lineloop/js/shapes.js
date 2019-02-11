@@ -1,6 +1,6 @@
 function initShapes() {
 
-  const geometry = new THREE.BufferGeometry();
+  const geometry = new BufferGeometry();
 
   const vertices = new Float32Array( [
     -1, -1, 0, // vertex A
@@ -10,7 +10,7 @@ function initShapes() {
   ] );
 
   // itemSize = 3 because there are 3 components (x, y, z) per vertex
-  geometry.addAttribute( 'position', new THREE.BufferAttribute( vertices, 3 ) );
+  geometry.addAttribute( 'position', new BufferAttribute( vertices, 3 ) );
 
   // Top Left, RED: THREE.LineSegments (drawn with gl.LINE_STRIP)
   // every pair of vertices is a line.
