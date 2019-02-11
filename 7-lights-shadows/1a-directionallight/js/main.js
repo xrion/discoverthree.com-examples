@@ -1,6 +1,7 @@
 import {
   Color,
   DirectionalLightHelper,
+  Fog,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.module.js';

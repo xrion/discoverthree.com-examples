@@ -13,7 +13,7 @@ async function initScene() {
   const app = new App( '#scene-container' );
 
   // remember to create the custom camera before calling app.init
-  initCamera( app );
+  createCamera( app );
 
   app.init();
 

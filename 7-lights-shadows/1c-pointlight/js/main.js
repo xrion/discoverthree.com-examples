@@ -1,5 +1,6 @@
 import {
   Color,
+  PointLightHelper,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.module.js';
@@ -13,10 +14,13 @@ async function initScene() {
   const app = new App( '#scene-container' );
 
   app.init();
+
   app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
   app.scene.fog = new Fog( 0x8FBCD4, 200, 230 );
   app.camera.position.set( -20, 30, 50 );
+
+  app.start();
 
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
@@ -29,8 +33,6 @@ async function initScene() {
   const models = await loadModels();
   app.scene.add( ...models.horsesArray );
 
-
-  app.start();
 }
 
 initScene();

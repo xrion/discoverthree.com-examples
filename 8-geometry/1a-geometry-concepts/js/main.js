@@ -13,9 +13,12 @@ function initScene() {
   const app = new App( '#scene-container' );
 
   app.init();
+
   app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 0, 0, 10 );
+
+  app.start();
 
   const meshes = createMeshes();
   app.scene.add( meshes.cube, meshes.sphere );
@@ -29,8 +32,6 @@ function initScene() {
   // converted to a BufferGeometry, and normals are calculated
   // per Vertex instead
   app.scene.add( new FaceNormalsHelper( meshes.sphere ) );
-
-  app.start();
 
 }
 

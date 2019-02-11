@@ -13,15 +13,15 @@ async function initScene() {
   const app = new App( '#scene-container' );
 
   app.init();
-  app.renderer.toneMappingExposure = 1;
+
+  setupRenderer( app.renderer );
+
   app.camera.position.set( 0, 2.5, 7 );
-
   app.controls.target.set( 0, 1.5, 0 );
-
   app.controls.minDistance = 5;
   app.controls.maxDistance = 15;
 
-  setupRenderer( app.renderer );
+  app.start();
 
   const lights = createLights();
   app.scene.add(
@@ -44,8 +44,6 @@ async function initScene() {
   app.scene.add( models.dancer );
 
   setupAnimation( models.dancer, lights );
-
-  app.start();
 
 }
 

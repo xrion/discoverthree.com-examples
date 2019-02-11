@@ -16,7 +16,6 @@ function initScene() {
   const meshes = createMeshes();
   app.scene.add( meshes.tri );
 
-
 }
 
 initScene();

@@ -18,9 +18,9 @@ function initScene() {
 
   app.start();
 
-  const shaderMaterial = createShaderMaterial();
+  const materials = createMaterials();
 
-  const meshes = createMeshes( shaderMaterial );
+  const meshes = createMeshes( materials );
   app.scene.add( meshes.box );
 
 }

@@ -21,12 +21,12 @@ function initScene() {
   const meshes = createMeshes();
   app.scene.add( meshes.quad );
 
-  const rawShaderMaterial = createShaderMaterial();
-  meshes.quad.material = rawShaderMaterial;
+  const materials = createMaterials();
+  meshes.quad.material = materials.rawShaderMaterial;
 
   meshes.quad.userData.onUpdate = ( delta ) => {
 
-    rawShaderMaterial.uniforms.time.value += delta;
+    materials.rawShaderMaterial.uniforms.time.value += delta;
 
   };
 

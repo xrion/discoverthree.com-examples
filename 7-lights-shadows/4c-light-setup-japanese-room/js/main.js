@@ -4,6 +4,8 @@ import {
 
 import App from './vendor/App.module.js';
 
+import setupRenderer from './renderer.js';
+
 import createLights from './lights.js';
 import loadModels from './models.js';
 
@@ -12,11 +14,13 @@ async function initScene() {
   const app = new App( '#scene-container' );
 
   app.init();
-  app.renderer.toneMappingExposure = 1;
+
+  setupRenderer( app.renderer );
+
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( -10, 10, 10 );
 
-  setupRenderer( app.renderer );
+  app.start();
 
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
@@ -24,7 +28,6 @@ async function initScene() {
   const models = await loadModels();
   app.scene.add( models.room );
 
-  app.start();
 }
 
 initScene();

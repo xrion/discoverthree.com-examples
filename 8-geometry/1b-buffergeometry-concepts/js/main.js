@@ -13,9 +13,12 @@ async function initScene() {
   const app = new App( '#scene-container' );
 
   app.init();
+
   app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 10, 5, 15 );
+
+  app.start();
 
   const meshes = createMeshes();
   app.scene.add( meshes.sphere );
@@ -34,8 +37,6 @@ async function initScene() {
   // normals were omitted to reduce model size
   // trying to add a normals helper will throw an error
   // app.scene.add( new VertexNormalsHelper( models.horse ) );
-
-  app.start();
 
 }
 

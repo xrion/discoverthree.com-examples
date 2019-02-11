@@ -11,10 +11,10 @@ async function initScene() {
   app.init();
 
   app.renderer.toneMappingExposure = 0.6;
-  app.camera.position.set( 2, 1, 1.5 );
 
   const envMap = loadEnvironments();
   app.scene.background = envMap;
+  app.camera.position.set( 2, 1, 1.5 );
 
   app.start();
 
