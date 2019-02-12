@@ -6,7 +6,7 @@
 
 <script>
 
-import initScene from './js/Scene.js'
+import initScene from './js/scene.js'
 
 
 export default {

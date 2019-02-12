@@ -1,31 +1,18 @@
-import {
-  AnimationMixer,
-  Vector3,
-} from './vendor/three/three.module.js';
-
 import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
 
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
-function setupModel( gltf, position ) {
+function setupModel( gltf ) {
 
-  const model = gltf.scene.children[ 0 ];
-  model.position.copy( position );
+  const parrot = gltf.scene.children[ 0 ];
+  const parrotAnimation = gltf.animations[ 0 ];
 
-  const animation = gltf.animations[ 0 ];
+  parrot.position.set( 0, 2, 0 );
 
-  const mixer = new AnimationMixer( model );
-
-  model.userData.onUpdate = ( delta ) => {
-
-    mixer.update( delta );
-
+  return {
+    parrot,
+    parrotAnimation,
   };
-
-  const action = mixer.clipAction( animation );
-  action.play();
-
-  return model;
 
 }
 
@@ -33,21 +20,17 @@ export default async function loadModels() {
 
   const loader = createAsyncLoader( new GLTFLoader() );
 
-  const parrot = setupModel(
+  const { parrot, parrotAnimation } = setupModel(
     await loader.load( 'models/Parrot.glb' ),
-    new Vector3( 0, 0, 2.5 ),
   );
 
-  const flamingo = setupModel(
-    await loader.load(  'models/Flamingo.glb' ),
-    new Vector3( 7.5, 0, -10 ),
-  );
-
-  const stork = setupModel(
-    await loader.load(  'models/Stork.glb' ),
-    new Vector3( 0, -2.5, -10 ),
-  );
-
-  return { parrot, flamingo, stork };
+  return {
+    models: {
+      parrot,
+    },
+    animations: {
+      parrotAnimation,
+    },
+  };
 
 }

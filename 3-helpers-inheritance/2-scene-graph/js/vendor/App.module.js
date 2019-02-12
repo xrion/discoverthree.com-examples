@@ -58,6 +58,7 @@ export default class THREE_APP {
     this.onUpdate = null;
     this.onResize = null;
 
+    // also requires stats.js to be loaded
     this.showStats = false;
 
   }

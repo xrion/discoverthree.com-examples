@@ -20,8 +20,10 @@ import {
 export default function createLights() {
 
   return {
+
     ambient: createHemisphereLight(),
     main: createDirectionalLight(),
+
   };
 
 }

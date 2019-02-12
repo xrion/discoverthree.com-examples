@@ -16,6 +16,7 @@ class Scene extends React.Component {
 
     this.app.init();
 
+    app.renderer.toneMappingExposure = 1;
     this.app.scene.background = new Color( 0x8FBCD4 );
     this.app.camera.position.set( -2.5, 2.5, 6 );
 

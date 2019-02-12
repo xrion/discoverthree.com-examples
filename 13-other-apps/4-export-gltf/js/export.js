@@ -2,6 +2,7 @@ import {
   GLTFExporter
 } from './vendor/three/todo.js';
 
+
 function exportGLTF( input, animations ) {
 
   const gltfExporter = new GLTFExporter();

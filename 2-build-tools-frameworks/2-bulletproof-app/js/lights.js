@@ -1,10 +1,30 @@
-function createLights() {
+import {
+  HemisphereLight,
+  DirectionalLight,
+} from './vendor/three/three.module.js';
 
-  const ambient = new THREE.HemisphereLight( 0xddeeff, 0x0f0e0d, 2 );
+function createHemisphereLight() {
 
-  const main = new THREE.DirectionalLight( 0xfffffc, 2 );
-  main.position.set( 0, 1, -10 );
+  return new HemisphereLight( 0xddeeff, 0x0f0e0d, 2 );
 
-  return { ambient, main };
+}
+
+function createDirectionalLight() {
+
+  const direct = new DirectionalLight( 0xfffffc, 2 );
+  direct.position.set( 0, 1, -10 );
+
+  return direct;
+
+}
+
+export default function createLights() {
+
+  return {
+
+    ambient: createHemisphereLight(),
+    main: createDirectionalLight(),
+
+  };
 
 }
