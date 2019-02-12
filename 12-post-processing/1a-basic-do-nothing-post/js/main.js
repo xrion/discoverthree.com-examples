@@ -7,6 +7,8 @@ import App from './vendor/App.module.js';
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
 
+import setupPostProcessing from './postProcessing.js';
+
 function initScene() {
 
   const app = new App( '#scene-container' );
@@ -22,7 +24,7 @@ function initScene() {
 
   app.start();
 
-  const composer = initPostProcessing( app.renderer, app.scene, app.camera );
+  const composer = setupPostProcessing( app.renderer, app.scene, app.camera );
 
   // We'll need to add an onResize function.
   // The app will take of updating the renderer's size and pizel ratio for us,

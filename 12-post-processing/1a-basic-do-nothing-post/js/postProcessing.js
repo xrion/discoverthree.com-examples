@@ -5,7 +5,7 @@ import {
   ShaderPass,
 } from './vendor/three/todo.js';
 
-export default function initPostProcessing( renderer, scene, camera ) {
+export default function setupPostProcessing( renderer, scene, camera ) {
 
   const composer = new EffectComposer( renderer );
 

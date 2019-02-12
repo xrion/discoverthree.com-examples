@@ -2,12 +2,9 @@ import {
   Group,
   Math as MathUtils,
   Sprite,
-  SpriteMaterial,
-  sRGBEncoding,
-  TextureLoader,
 } from './vendor/three/three.module.js';
 
-export default function createSprites() {
+export default function createSprites( materials ) {
 
   const leaves = new Group();
 
@@ -21,19 +18,10 @@ export default function createSprites() {
 
   };
 
-  const loader = new TextureLoader();
-
-  const spriteMap = loader.load( 'textures/color/leaf/leaf.png' );
-  spriteMap.encoding = sRGBEncoding;
-
-  const spriteMaterial = new SpriteMaterial( {
-    map: spriteMap,
-    sizeAttenuation: true, // default
-  } );
 
   for ( let i = 0; i < 100; i++ ) {
 
-    const sprite = new Sprite( spriteMaterial.clone() );
+    const sprite = new Sprite( materials.leaf.clone() );
 
     sprite.position.set(
       MathUtils.randFloat( -20, 20 ),

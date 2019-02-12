@@ -18,3 +18,12 @@ function createDirectionalLight() {
   return direct;
 
 }
+
+export default function createLights() {
+
+  return {
+    ambient: createHemisphereLight(),
+    main: createDirectionalLight(),
+  };
+
+}

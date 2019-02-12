@@ -4,7 +4,14 @@ import {
 
 import App from './vendor/App.module.js';
 
+import createGeometries from './geometries.js';
+
+import loadTextures from './textures.js';
+import createMaterials from './materials.js';
+
 import createPoints from './points.js';
+
+import setupAnimation from './animation.js';
 
 function initScene() {
 
@@ -13,13 +20,23 @@ function initScene() {
   app.init();
 
   app.renderer.toneMappingExposure = 1;
-  app.camera.position.set( 0, 0, 10 );
   app.scene.background = new Color( 0x34456f );
+  app.camera.position.set( 0, 0, 10 );
 
   app.start();
 
-  const points = createPoints();
+  const geometries = createGeometries();
+
+  const textures = loadTextures();
+  const materials = createMaterials( textures );
+
+  const points = createPoints( geometries, materials );
+
+  setupAnimation( points )
+
   app.scene.add( points.sphere );
+
+
 
 }
 

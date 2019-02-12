@@ -22,3 +22,8 @@ function saveArrayBuffer( buffer, filename ) {
   save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
 
 }
+
+module.exports = {
+  saveString,
+  saveArrayBuffer,
+};

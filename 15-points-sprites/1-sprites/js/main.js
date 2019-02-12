@@ -1,11 +1,12 @@
-import {
-  Color,
-} from './vendor/three/three.module.js';
-
 import App from './vendor/App.module.js';
 
 import createLights from './lights.js';
-import createMeshes from './meshes.js';
+
+import loadEnvironments from './environment.js';
+import loadTextures from './textures.js';
+import createMaterials from './materials.js';
+
+import createSprites from './sprites.js';
 
 function initScene() {
 
@@ -13,7 +14,7 @@ function initScene() {
 
   app.init();
 
-  app.renderer.toneMappingExposure = 0.15;
+  app.renderer.toneMappingExposure = 0.25;
   app.camera.position.set( -20, 0, -20 );
 
   const environments = loadEnvironments();
@@ -24,10 +25,11 @@ function initScene() {
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
-  const sprites = initSprites();
+  const textures = loadTextures();
+  const materials = createMaterials( textures );
+
+  const sprites = createSprites( materials );
   app.scene.add( sprites.leaves );
-
-
 
 }
 
