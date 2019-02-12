@@ -1,6 +1,7 @@
 import {
   AnimationClip,
   AnimationMixer,
+  ColorKeyframeTrack,
   InterpolateDiscrete,
   InterpolateLinear,
   InterpolateSmooth,
@@ -11,12 +12,7 @@ import {
   VectorKeyframeTrack,
 } from './vendor/three/three.module.js';
 
-import {
-  AnimationClip,
-  AnimationMixer,
-} from './vendor/three/three.module.js';
-
-export default function initAnimation( object ) {
+export default function setupAnimation( object ) {
 
   // create some KeyframeTracks
   const positionKF = initPositionKeyframeTrack(); // a VectorKeyframeTrack

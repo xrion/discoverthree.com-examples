@@ -5,9 +5,12 @@ import {
 import App from './vendor/App.module.js';
 
 import createLights from './lights.js';
-import createMeshes from './meshes.js';
 
-import initCanvasTexture from './canvas2D.js';
+import setupTextures from './textures.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
+import createMeshes from './meshes.js';
 
 function initScene() {
 
@@ -24,10 +27,17 @@ function initScene() {
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
-  const texture = initCanvasTexture();
+  const geometries = createGeometries();
 
-  const meshes = createMeshes( texture );
-  app.scene.add( meshes.box, meshes.sphere );
+  const textures = setupTextures();
+  const materials = createMaterials( textures );
+
+  const meshes = createMeshes( geometries, materials );
+
+  app.scene.add(
+    meshes.box,
+    meshes.sphere,
+  );
 
 
 }

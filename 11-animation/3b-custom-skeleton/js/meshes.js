@@ -4,17 +4,7 @@ import {
   SkinnedMesh,
 } from './vendor/three/three.module.js';
 
-function addSkeletonToMesh( mesh ) {
-
-  const skeleton = createSkeleton();
-  const rootBone = skeleton.bones[ 0 ];
-  mesh.add( rootBone );
-
-  mesh.bind( skeleton );
-
-}
-
-export default function createMeshes() {
+export default function createMeshes( skeleton ) {
 
   const geometry = new CylinderBufferGeometry( 1, 1, 8, 8, 16 );
 
@@ -27,7 +17,9 @@ export default function createMeshes() {
 
   const skinnedMesh = new SkinnedMesh( geometry, material );
 
-  addSkeletonToMesh( skinnedMesh );
+  const rootBone = skeleton.bones[ 0 ];
+  skinnedMesh.add( rootBone );
+  skinnedMesh.bind( skeleton );
 
   return { skinnedMesh };
 

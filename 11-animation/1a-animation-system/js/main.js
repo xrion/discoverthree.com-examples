@@ -5,7 +5,12 @@ import {
 import App from './vendor/App.module.js';
 
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+
+import setupAnimation from './animation.js';
 
 function initScene() {
 
@@ -22,11 +27,13 @@ function initScene() {
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
-  const meshes = createMeshes();
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
+
+  setupAnimation( meshes.box );
+
   app.scene.add( meshes.box );
-
-  initAnimation( meshes.box );
-
 }
 
 initScene();

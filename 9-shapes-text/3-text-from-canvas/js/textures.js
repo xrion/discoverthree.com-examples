@@ -60,7 +60,7 @@ function initTextInput( canvas, context, texture ) {
 // Create a canvas using the 2D canvas API.
 // We'll draw our text onto this one, then use it as the
 // texture for objects in out scene
-function initCanvasTexture() {
+export default function setupTextures() {
 
   const container = document.querySelector( '#canvas-2d-container' );
   const canvas = document.createElement( 'canvas' );
@@ -70,13 +70,12 @@ function initCanvasTexture() {
   // set the 2D canvas to be 256x256 pixels
   canvas.width = canvas.height = 256;
 
-  const texture = new CanvasTexture( canvas );
-  texture.anisotropy = 16;
-  texture.encoding = sRGBEncoding;
+  const canvasTexture = new CanvasTexture( canvas );
+  canvasTexture.anisotropy = 16;
+  canvasTexture.encoding = sRGBEncoding;
 
-  initTextInput( canvas, context, texture );
+  initTextInput( canvas, context, canvasTexture );
 
-  return texture;
+  return { canvasTexture };
 
 }
-

@@ -5,8 +5,10 @@ import {
 import App from './vendor/App.module.js';
 
 import createLights from './lights.js';
-import createMeshes from './meshes.js';
+
 import loadModels from './models.js';
+
+import setupMorphControls from './interactivity.js';
 
 async function initScene() {
 
@@ -26,7 +28,7 @@ async function initScene() {
   const models = await loadModels();
   app.scene.add( models.morphCube );
 
-  initMorphControls( models.morphCube );
+  setupMorphControls( models.morphCube );
 
 }
 

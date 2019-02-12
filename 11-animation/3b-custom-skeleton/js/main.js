@@ -9,6 +9,9 @@ import App from './vendor/App.module.js';
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
 
+import createSkeleton from './skeleton.js';
+import wireframeControl from './interactivity.js';
+
 function initScene() {
 
   const app = new App( '#scene-container' );
@@ -24,14 +27,14 @@ function initScene() {
   const lights = createLights();
   app.scene.add( lights.ambient, lights.main );
 
-  const meshes = createMeshes();
+  const skeleton = createSkeleton();
+
+  const meshes = createMeshes( skeleton );
   app.scene.add( meshes.skinnedMesh );
 
   app.scene.add( new SkeletonHelper( meshes.skinnedMesh ) );
 
   wireframeControl( [ meshes.skinnedMesh.material ] );
-
-
 
 }
 

@@ -1,64 +1,60 @@
 import {
   Color,
-  PerspectiveCamera,
-  Scene,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.module.js';
 
+import setupRenderTarget from './renderTarget.js';
+
 import createLights from './lights.js';
+import createMaterials from './materials.js';
+import createGeometries from './geometries.js';
 import createMeshes from './meshes.js';
+
+import setupAnimation from './animation.js';
 
 function initScene() {
 
   const app = new App( '#scene-container' );
 
-  // We need to create a separate scene and camera for the RenderTarget
-  const sceneRT = new Scene();
-  sceneRT.background = new Color( 0x800080 );
-
-  // You'll need to set up a separate camera as well.
-  // You COULD technically reuse the main camera,
-  // but you'll probably run into problems
-  // For example, weird things will happen with the zoom if we
-  // use orbit controls
-  const cameraRT = new PerspectiveCamera( 35, 1, 1, 100 );
-  cameraRT.position.z = 5;
-
-  const target = initRenderTarget();
-
   app.init();
 
-  app.renderer.toneMappingExposure = 1;
+  app.renderer.toneMappingExposure = 0.4;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 3, 5, 6 );
+
+  const RT = setupRenderTarget( app );
 
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
-  sceneRT.add( lights.ambient.clone(), lights.main.clone() );
+  const materials = createMaterials( RT.target.texture );
+  const geometries = createGeometries();
 
-  const meshes = createMeshes( target.texture );
-  app.scene.add( meshes.box );
-  sceneRT.add( meshes.torusKnot );
+  const meshes = createMeshes( geometries, materials );
 
-  function renderToTarget( rt ) {
+  setupAnimation( meshes );
 
-    app.renderer.render( sceneRT, cameraRT, rt, true );
+  app.scene.add(
+    lights.ambient,
+    lights.main,
 
-  }
+    meshes.box,
+  );
 
-  // overwrite the app's default render function
-  app.render = () => {
+  RT.scene.add(
 
-    renderToTarget( target );
+    // remember that due to the way the Scene Graph
+    // works, adding things to a second scene will remove them
+    // from the first. So we need to clone the lights to have
+    // them in bth scenes
+    lights.ambient.clone(),
+    lights.main.clone(),
 
-    // now do the normal render
-    app.renderer.render( app.scene, app.camera );
+    meshes.torusKnot,
 
-  };
+  );
 
 }
 

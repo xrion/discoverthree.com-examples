@@ -7,6 +7,8 @@ import App from './vendor/App.module.js';
 import createLights from './lights.js';
 import loadModels from './models.js';
 
+import setupAnimation from './animation.js';
+
 async function initScene() {
 
   const app = new App( '#scene-container' );
@@ -26,8 +28,6 @@ async function initScene() {
   app.scene.add( models.morphCube );
 
   setupAnimation( models.morphCube );
-
-
 
 }
 

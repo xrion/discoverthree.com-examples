@@ -22,13 +22,6 @@ function createShapes() {
 
   torusKnot.add( sphere );
 
-  torusKnot.userData.onUpdate = ( delta ) => {
-
-    torusKnot.rotation.y += delta / 2;
-    torusKnot.rotation.z -= delta / 4;
-
-  };
-
   return torusKnot;
 
 }

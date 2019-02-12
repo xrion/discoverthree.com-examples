@@ -1,6 +1,11 @@
 import App from './vendor/App.module.js';
 
+import createGeometries from './geometries.js';
+import loadTextures from './textures.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+
+import setupControls from './interactivity.js';
 
 function initScene() {
 
@@ -13,12 +18,22 @@ function initScene() {
 
   app.start();
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.leftQuad, meshes.rightQuad );
+  const geometries = createGeometries();
 
-  leftMorphControl( meshes.leftQuad );
-  rightMorphControl( meshes.rightQuad );
+  const textures = loadTextures();
+  const materials = createMaterials( textures );
 
+  const meshes = createMeshes( geometries, materials );
+
+  setupControls( meshes );
+
+  app.scene.add(
+    meshes.leftQuad,
+    meshes.rightQuad,
+  );
+
+  console.log( 'Here\'s the non-ndexed BufferGeometry you just created: ', geometries.nonIndexed );
+  console.log( '...and here\'s the indexed BufferGeometry you just created: ', geometries.indexed );
 
 
 }

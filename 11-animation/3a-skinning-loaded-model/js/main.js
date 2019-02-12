@@ -8,6 +8,8 @@ import App from './vendor/App.module.js';
 import createLights from './lights.js';
 import loadModels from './models.js';
 
+import wireframeControl from './interactivity.js';
+
 async function initScene() {
 
   const app = new App( '#scene-container' );
@@ -31,8 +33,6 @@ async function initScene() {
   app.scene.add( new SkeletonHelper( models.cesiumMan ) );
 
   wireframeControl( [ models.cesiumMan.children[ 1 ].material ] );
-
-
 
 }
 

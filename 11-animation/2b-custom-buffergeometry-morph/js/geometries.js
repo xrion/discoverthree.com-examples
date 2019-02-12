@@ -4,7 +4,7 @@ import {
   Matrix4,
 } from './vendor/three/three.module.js';
 
-export default function createGeometry() { {
+function createNonIndexedGeometry() {
 
   const geometry = new BufferGeometry();
 
@@ -71,7 +71,7 @@ export default function createGeometry() { {
 
 }
 
-function createGeometryIndexed() {
+function createIndexedGeometry() {
 
   const geometry = new BufferGeometry();
 
@@ -156,5 +156,14 @@ function createGeometryIndexed() {
   geometry.morphAttributes.position[ 1 ] = morphScale;
 
   return geometry;
+
+}
+
+export default function createGeometries() {
+
+  return {
+    indexed: createIndexedGeometry(),
+    nonIndexed: createNonIndexedGeometry(),
+  };
 
 }

@@ -7,6 +7,8 @@ import App from './vendor/App.module.js';
 import createLights from './lights.js';
 import createMeshes from './meshes.js';
 
+import setupAnimation from './animation.js';
+
 function initScene() {
 
   const app = new App( '#scene-container' );
@@ -25,7 +27,7 @@ function initScene() {
   const meshes = createMeshes();
   app.scene.add( meshes.shapes );
 
-  initAnimation( meshes.shapes );
+  setupAnimation( meshes );
 
 
 }

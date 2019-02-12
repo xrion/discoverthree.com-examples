@@ -3,7 +3,7 @@ import {
   Skeleton,
 } from './vendor/three/three.module.js';
 
-export default function createSkeleton( object ) {
+export default function createSkeleton() {
 
   // Create a simple "arm"
 

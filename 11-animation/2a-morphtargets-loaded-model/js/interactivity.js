@@ -35,7 +35,7 @@ function twistControl( mesh ) {
 
 }
 
-function initMorphControls( mesh ) {
+export default function setupMorphControls( mesh ) {
 
   spherifyControl( mesh );
   twistControl( mesh );

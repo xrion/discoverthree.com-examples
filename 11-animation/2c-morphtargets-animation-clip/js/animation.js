@@ -1,5 +1,10 @@
-function setupAnimation( models ) {
+import {
+  AnimationClip,
+  AnimationMixer,
+  NumberKeyframeTrack,
+} from './vendor/three/three.module.js';
 
+export default function setupAnimation( models ) {
 
   const mixer = new AnimationMixer( models );
 

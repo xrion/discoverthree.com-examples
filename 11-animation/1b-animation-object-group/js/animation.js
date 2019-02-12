@@ -6,12 +6,7 @@ import {
   VectorKeyframeTrack,
 } from './vendor/three/three.module.js';
 
-import {
-  AnimationClip,
-  AnimationMixer,
-} from './vendor/three/three.module.js';
-
-export default function initAnimation( meshes ) {
+export default function setuptAnimation( meshes ) {
 
   const objectGroupA = new AnimationObjectGroup( ...meshes.groupA );
   const objectGroupB = new AnimationObjectGroup( ...meshes.groupB );

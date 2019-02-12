@@ -1,15 +1,14 @@
-function createMeshes( canvasTexture ) {
+import {
+  Mesh,
+} from './vendor/three/three.module.js';
 
-  const material = new MeshStandardMaterial( {
-    map: canvasTexture,
-  } );
 
-  const boxGeo = new BoxBufferGeometry( 2, 2, 2 );
-  const box = new Mesh( boxGeo, material );
+export default function createMeshes( geomtries, materials ) {
+
+  const box = new Mesh( geomtries.box, materials.standard );
   box.position.x += 1.5;
 
-  const sphereGeo = new SphereBufferGeometry( 1, 128, 128 );
-  const sphere = new Mesh( sphereGeo, material );
+  const sphere = new Mesh( geomtries.sphere, materials.standard );
   sphere.position.x -= 1.5;
 
   return { box, sphere };

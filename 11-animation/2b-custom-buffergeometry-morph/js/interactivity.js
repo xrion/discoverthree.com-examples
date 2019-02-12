@@ -1,4 +1,4 @@
-function wireframeControl( materials ) {
+function setupWireframeControl( materials ) {
 
   const button = document.querySelector( '#toggle-wireframe' );
 
@@ -15,7 +15,7 @@ function wireframeControl( materials ) {
   } );
 }
 
-function leftMorphControl( mesh ) {
+function setupLeftMorphControl( mesh ) {
 
   const slider = document.querySelector( '#left-morph-slider' );
   const value = document.querySelector( '#left-morph-value' );
@@ -31,14 +31,6 @@ function leftMorphControl( mesh ) {
 
 }
 
-
-function rightMorphControl( mesh ) {
-
-  rotateControl( mesh );
-  scaleControl( mesh );
-
-}
-
 function rotateControl( mesh ) {
 
   const slider = document.querySelector( '#right-rotate-slider' );
@@ -46,6 +38,7 @@ function rotateControl( mesh ) {
 
   const targetIndex = mesh.morphTargetDictionary.rotate;
 
+  console.log( mesh);
   slider.addEventListener( 'input', ( e ) => {
 
     value.textContent = slider.value;
@@ -73,5 +66,20 @@ function scaleControl( mesh ) {
     e.preventDefault();
 
   } );
+
+}
+
+function setupRightMorphControl( mesh ) {
+
+  rotateControl( mesh );
+  scaleControl( mesh );
+
+}
+
+export default function setupControls( meshes ) {
+
+  setupLeftMorphControl( meshes.leftQuad );
+  setupRightMorphControl( meshes.rightQuad );
+  setupWireframeControl( [ meshes.leftQuad.material, meshes.rightQuad.material ] );
 
 }
