@@ -17,7 +17,7 @@ function createTextGeometry( fonts ) {
 
   } );
 
-  // We want to center the mesh (horizontall) on the screen.
+  // We want to center the mesh (horizontally) on the screen.
   // However, the geometry is created with it's "pivot" or zero point
   // at the bottom edge of the first letter, so we'll need to translate the geometry
 
