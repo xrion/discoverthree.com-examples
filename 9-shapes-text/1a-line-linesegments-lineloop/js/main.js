@@ -4,6 +4,8 @@ import {
 
 import App from './vendor/App.module.js';
 
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createShapes from './shapes.js';
 
 function initScene() {
@@ -18,8 +20,15 @@ function initScene() {
 
   app.start();
 
-  const shapes = createShapes();
-  app.scene.add( shapes.lineSegments, shapes.line, shapes.lineLoop );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const shapes = createShapes( geometries, materials );
+
+  app.scene.add(
+    shapes.lineSegments,
+    shapes.line,
+    shapes.lineLoop,
+  );
 
 }
 

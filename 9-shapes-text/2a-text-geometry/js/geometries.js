@@ -1,15 +1,12 @@
 import {
-  FontLoader,
   TextBufferGeometry,
-  Mesh,
-  MeshBasicMaterial,
 } from './vendor/three/three.module.js';
 
-function setupText( font ) {
+function createTextGeometry( fonts ) {
 
   const textGeometry = new TextBufferGeometry( 'Discover three.js! \n :)', {
 
-    font,
+    font: fonts.droidSerifRegular,
     size: 1,
     height: 0.1,
     curveSegments: 12,
@@ -31,25 +28,14 @@ function setupText( font ) {
   const centerOffset = -0.5 * ( textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x );
   textGeometry.translate( centerOffset, 0, 0 );
 
-  console.log( 'Here\'s the font you just loaded: ', font );
-  console.log( 'And here\'s the textGeomtry: ', textGeometry );
-
-  const material = new MeshBasicMaterial();
-
-  const text = new Mesh( textGeometry, material );
-
-  return text;
+  return textGeometry;
 
 }
 
-export default async function loadFont() {
+export default function createGeometries( fonts ) {
 
-  const loader = createAsyncLoader( new FontLoader() );
-
-  const discover = setupText(
-    await loader.load( 'fonts/droid_serif_regular.typeface.json' ),
-  );
-
-  return { discover };
+  return {
+    text: createTextGeometry( fonts ),
+  };
 
 }
