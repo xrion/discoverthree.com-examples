@@ -1,34 +1,13 @@
-function wireframeControl( material ) {
-
-  const button = document.querySelector( '#toggle-wireframe' );
-
-  button.addEventListener( 'click', ( e ) => {
-
-    material.wireframe = !material.wireframe;
-
-    e.preventDefault();
-
-  } );
-}
-
 import {
-  BoxBufferGeometry,
   Mesh,
-  MeshStandardMaterial,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
+export default function createMeshes( geometries, materials ) {
 
-  const geometry = createGeometry();
-  const geometryIndexed = createGeometryIndexed();
-
-  const material = new MeshBasicMaterial( { wireframe: true } );
-  wireframeControl( material );
-
-  const leftQuad = new Mesh( geometry, material );
+  const leftQuad = new Mesh( geometries.indexed, materials.basic );
   leftQuad.position.x -= 1.5;
 
-  const rightQuad = new Mesh( geometryIndexed, material );
+  const rightQuad = new Mesh( geometries.nonIndexed, materials.basic );
   rightQuad.position.x += 1.5;
 
   return { leftQuad, rightQuad };

@@ -3,7 +3,7 @@ import {
   BufferGeometry,
 } from './vendor/three/three.module.js';
 
-export default function createGeometry() { {
+function createNonIndexedGeometry() {
 
   const geometry = new BufferGeometry();
 
@@ -40,13 +40,11 @@ export default function createGeometry() { {
 
   geometry.addAttribute( 'uv', new BufferAttribute( uvs, 2 ) );
 
-  console.log( 'Here\'s the geometry you just created: ', geometry );
-
   return geometry;
 
 }
 
-function createGeometryIndexed() {
+function createIndexedGeometry() {
 
   const geometry = new BufferGeometry();
 
@@ -93,5 +91,14 @@ function createGeometryIndexed() {
   console.log( '...and here\'s the indexed geometry you just created: ', geometry );
 
   return geometry;
+
+}
+
+export default function createGeometries() {
+
+  return {
+    indexed: createIndexedGeometry(),
+    nonIndexed: createNonIndexedGeometry(),
+  };
 
 }

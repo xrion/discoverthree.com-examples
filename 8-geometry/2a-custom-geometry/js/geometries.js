@@ -5,7 +5,7 @@ import {
   Vector3,
 } from './vendor/three/three.module.js';
 
-export default function createGeometry() {
+function createCustomGeometry() {
 
   const geometry = new Geometry();
 
@@ -28,22 +28,34 @@ export default function createGeometry() {
   // the face's normal is initialzed as (0, 0, 0)
   // either set it manually, or use this function to calculate
   // smooth normals automatically
-  geometry.computeFaceNormals();
+  // geometry.computeFaceNormals();
 
   // we can also compute one normal per vertex instead of per face
-  // this is the style used by BufferGeometry, so if you need
-  // maximum control over the conversion you can calculate these first
+  // this is the style used by BufferGeometry, and we are going to
+  // convert our Geometry to a BufferGeomtry before we render it so
+  // so it makes more sense to calculate these
   geometry.computeVertexNormals();
 
-  console.log( 'Here\'s the geometry you just created: ', geometry );
+  return geometry;
 
-  const bufferGeometry = new BufferGeometry().fromGeometry( geometry );
+}
 
-  console.log( '... and here\'s what it looks like after being converted to a BufferGeometry: ', bufferGeometry );
+// never use a Geometry directly, always convert it to a BufferGeometry first
+function convertGeometryToBufferGeometry( geometry ) {
 
-  // never use a Geometry directly, always convert it to a BufferGeometry first
+  return new BufferGeometry().fromGeometry( geometry );
+
+
+}
+
+export default function createGeometries() {
+
+  const geometry = createCustomGeometry();
+  const bufferGeometry = convertGeometryToBufferGeometry( geometry );
+
   return {
-    custom: bufferGeometry,
+    geometry,
+    bufferGeometry,
   };
 
 }

@@ -1,11 +1,11 @@
-
-import {
-  VertexNormalsHelper,
-} from './vendor/three/three.module.js';
-
 import App from './vendor/App.module.js';
 
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+import createHelpers from './helpers.js';
+
+import setupMaterialControl from './interactivity.js';
 
 function initScene() {
 
@@ -18,12 +18,23 @@ function initScene() {
 
   app.start();
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.leftQuad, meshes.rightQuad );
+  const geometries = createGeometries();
 
-  // add a helper to show normals in the left square.
-  // red lines are normals
-  app.scene.add( new VertexNormalsHelper( meshes.leftQuad ) );
+  const materials = createMaterials();
+  setupMaterialControl( materials );
+
+  const meshes = createMeshes( geometries, materials );
+
+  const helpers = createHelpers( meshes );
+
+  console.log( 'Here\'s the non-ndexed BufferGeometry you just created: ', geometries.nonIndexed );
+  console.log( '...and here\'s the indexed BufferGeometry you just created: ', geometries.indexed );
+
+  app.scene.add(
+    meshes.leftQuad,
+    meshes.rightQuad,
+    helpers.vertexNormalsHelper,
+  );
 
 }
 

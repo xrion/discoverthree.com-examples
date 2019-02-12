@@ -1,7 +1,11 @@
 import App from './vendor/App.module.js';
 
-import createGeometry from './geometry.js';
+import createGeometries from './geometries.js';
+import loadTextures from './textures.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+
+import setupMaterialControl from './interactivity.js';
 
 function initScene() {
 
@@ -14,8 +18,17 @@ function initScene() {
 
   app.start();
 
-  const geometry = createGeometry();
-  const meshes = createMeshes( geometry.custom );
+  const geometries = createGeometries();
+  const textures = loadTextures();
+
+  const materials = createMaterials( textures );
+  setupMaterialControl( materials );
+
+  const meshes = createMeshes( geometries, materials );
+
+  console.log( 'Here\'s the geometry you just created: ', geometries.geometry );
+  console.log( '... and here\'s what it looks like after being converted to a BufferGeometry: ', geometries.bufferGeometry );
+
   app.scene.add( meshes.tri );
 
 }
