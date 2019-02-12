@@ -11,31 +11,31 @@ function selectAxis() {
 
 }
 
-export default function spinAtRandomIntervals( model, intervalMin, intervalMax ) {
+function spinAtRandomIntervals( object ) {
 
   let spinning = false;
   let axis = selectAxis();
 
   setTimeout(
     () => { spinning = true; },
-    MathUtils.randInt( intervalMin, intervalMax ),
+    MathUtils.randInt( 0, 5000 ),
   );
 
-  model.userData.onUpdate = ( delta ) => {
+  object.userData.onUpdate = ( delta ) => {
 
     if ( spinning ) {
 
-      model.rotation[ axis ] += delta * 4;
+      object.rotation[ axis ] += delta * 4;
 
-      if ( model.rotation[ axis ] >= 2 * Math.PI ) {
+      if ( object.rotation[ axis ] >= 2 * Math.PI ) {
 
-        model.rotation[ axis ] = 0;
+        object.rotation[ axis ] = 0;
         spinning = false;
         axis = selectAxis();
 
         setTimeout(
           () => { spinning = true; },
-          MathUtils.randInt( intervalMin, intervalMax ),
+          MathUtils.randInt( 3000, 5000 ),
         );
 
       }
@@ -43,5 +43,19 @@ export default function spinAtRandomIntervals( model, intervalMin, intervalMax )
     }
 
   };
+
+}
+
+export default function setupAnimation( lines ) {
+
+  lines.text.traverse( ( child ) => {
+
+    if ( child.isLine ) {
+
+      spinAtRandomIntervals( child );
+
+    }
+
+  } );
 
 }

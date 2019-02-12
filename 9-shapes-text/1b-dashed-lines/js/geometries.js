@@ -24,6 +24,7 @@ function createSquareGeometry() {
   return geometry;
 
 }
+
 export default function createGeometries() {
 
   return {
