@@ -12,37 +12,6 @@
 
 		<link href="styles/main.css" rel="stylesheet" type="text/css">
 
-    <!--
-
-      Include the main three.js script.
-
-      The global variable THREE will be
-      available for use in any scripts
-      loaded after this one.
-
-    -->
-
-    <script src="https://threejs.org/build/three.js"></script>
-
-    <!--
-
-      Include the OrbitControls script.
-
-      This must be included AFTER the three.js script as it
-      needs to use the global THREE variable
-
-    -->
-
-    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
-
-		<!--
-
-			Include the GLTFLoader script. This also needs to be loaded after the three.js script
-
-		-->
-
-		<script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
-
 	</head>
 
 	<body>
@@ -53,12 +22,19 @@
 
 		<footer>
 
-      <!--
-        Finally, include the script that
-        runs your three.js app.
-      -->
+ 			<!--
+				IMPORTANT NOTE:
 
-			<script src="js/app.js"></script>
+					We're using type="module" here as a quick hack
+					to make this example work out of the box
+					on Codesandbox and when run locally on most browsers
+
+					Browser modules are not production ready as of 2019
+					so if you're using this code to create a producion app
+					you should remove type="module" and bundle your code
+					with something like Webpack, Parcel.js or Rollup.js
+			-->
+			<script type="module" src="js/main.js"></script>
 
 		</footer>
 

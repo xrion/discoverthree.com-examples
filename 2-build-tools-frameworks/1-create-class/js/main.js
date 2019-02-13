@@ -1,23 +1,34 @@
+import {
+  AnimationMixer,
+  Clock,
+  Color,
+  DirectionalLight,
+  HemisphereLight,
+  PerspectiveCamera,
+  Scene,
+  Vector3,
+  WebGLRenderer,
+} from './vendor/three/three.module.js';
+
+import {
+  OrbitControls,
+} from './vendor/three/controls/OrbitControls.module.js';
+
+
+import {
+  GLTFLoader,
+} from './vendor/three/loaders/GLTFLoader.module.js';
+
 class App {
 
-  constructor( containerID ) {
+  constructor() {
 
-    containerID = containerID || 'container'; // default ID if none provided
+    this.container = document.getElementById( 'scene-container' );
 
-    this.container = document.getElementById( containerID );
+    this.scene = new Scene();
+    this.scene.background = new Color( 0x8FBCD4 );
 
-    if ( !this.container ) {
-
-      console.error( `Couldn't find the container element with ID #${containerID}!` );
-
-      return;
-
-    }
-
-    this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color( 0x8FBCD4 );
-
-    this.clock = new THREE.Clock();
+    this.clock = new Clock();
     this.mixers = [];
 
     this.initCamera();
@@ -32,14 +43,14 @@ class App {
 
   initCamera() {
 
-    this.camera = new THREE.PerspectiveCamera( 35, this.container.clientWidth / this.container.clientHeight, 1, 1000 );
+    this.camera = new PerspectiveCamera( 35, this.container.clientWidth / this.container.clientHeight, 1, 1000 );
     this.camera.position.set( -1.5, 1.5, 6.5 );
 
   }
 
   initControls() {
 
-    this.controls = new THREE.OrbitControls( this.camera, this.container );
+    this.controls = new OrbitControls( this.camera, this.container );
 
   }
 
@@ -56,7 +67,7 @@ class App {
 
   loadModels() {
 
-    const loader = new THREE.GLTFLoader();
+    const loader = new GLTFLoader();
 
     // A reusable function to setup the models
     const onLoad = ( gltf, position ) => {
@@ -66,7 +77,7 @@ class App {
 
       const animation = gltf.animations[ 0 ];
 
-      const mixer = new THREE.AnimationMixer( model );
+      const mixer = new AnimationMixer( model );
       this.mixers.push( mixer );
 
       const action = mixer.clipAction( animation );
@@ -82,20 +93,20 @@ class App {
 
     // load the first model. Each model is loaded asynchronously,
     // so don't make any assumption about which one will finish loading first
-    const parrotPosition = new THREE.Vector3( 0, 0, 2.5 );
-    loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, parrotPosition ), null, onError );
+    const parrotPosition = new Vector3( 0, 0, 2.5 );
+    loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, parrotPosition ), onProgress, onError );
 
-    const flamingoPosition = new THREE.Vector3( 7.5, 0, -10 );
-    loader.load( 'models/Flamingo.glb', gltf => onLoad( gltf, flamingoPosition ), null, onError );
+    const flamingoPosition = new Vector3( 7.5, 0, -10 );
+    loader.load( 'models/Flamingo.glb', gltf => onLoad( gltf, flamingoPosition ), onProgress, onError );
 
-    const storkPosition = new THREE.Vector3( 0, -2.5, -10 );
-    loader.load( 'models/Stork.glb', gltf => onLoad( gltf, storkPosition ), null, onError );
+    const storkPosition = new Vector3( 0, -2.5, -10 );
+    loader.load( 'models/Stork.glb', gltf => onLoad( gltf, storkPosition ), onProgress, onError );
 
   }
 
   initRenderer() {
 
-    this.renderer = new THREE.WebGLRenderer( { antialias: true } );
+    this.renderer = new WebGLRenderer( { antialias: true } );
     this.renderer.setSize( this.container.clientWidth, this.container.clientHeight );
 
     this.renderer.setPixelRatio( window.devicePixelRatio );
