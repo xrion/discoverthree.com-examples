@@ -1,47 +1,83 @@
-class THREE_APP {
+import {
+  Clock,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+} from './vendor/three/three.module.js';
 
-  constructor( container ) {
+import {
+  OrbitControls,
+} from './vendor/three/controls/OrbitControls.module.js';
 
-    container = container || '#scene-container'; // default ID if none provided
+// private variable that user can access via app.isRunning
+let _isRunning = false;
 
-    this.container = document.querySelector( container );
+/* spec object, all arguments are optional
+const spec = {
 
-    if ( !this.container ) {
+  container: '#container', // ID or class string, or DOM element
+  autoResize: true,
+  showStats: false, // also requires Stats.js to be loaded
 
-      console.error( `Couldn't find the container element: ${container}` );
-
-      return;
-
-    }
-
-    this.scene = new THREE.Scene();
-    this.clock = new THREE.Clock();
-
-    this.running = false;
-
-    // make sure to set these to the values you want before calling init
-    // since they can't be changed without creating a new WebGLRenderer
-    this.alpha = false;
-    this.antialias = true;
-    this.powerPreference = 'high-performance';
-    this.stencil = false;
-
-    // should nearly always be true, unless using postprocessing
-    this.gammaOutput = true;
-
-    // this also needs to be set before calling init()
-    this.autoResize = true;
+  renderer: {
+    alpha: false,
+    antialias: true,
+    powerPreference: 'high-performance',
+    stencil: false,
 
     // set this to a value less than 3 to increase performance on low power mobile devices with high pixel ratio
-    this.maxPixelRatio = Infinity;
+    maxPixelRatio: Infinity,
 
+  },
+
+  camera: {
+    fov: 35,
+    near: 1,
+    far: 1000,
+  },
+
+  controls: {
     // whether or not to call the controls.update function once per frame
-    this.controlsAutoUpdate = true;
+    setup: true,
+    autoUpdate: true,
+  },
 
+};
+*/
+
+export default class App {
+
+  constructor( spec ) {
+
+    this.spec = spec || {};
+
+    this.initContainer( spec.container || '#scene-container' ); // default ID if none provided
+
+    this.scene = new Scene();
+    this.clock = new Clock();
+
+    // optional function evaluated once per frame
     this.onUpdate = null;
+
+    // optional functional evaluated on window resize event
+    // if autoResize is enabled
     this.onResize = null;
 
-    this.showStats = false;
+  }
+
+  get isRunning() {
+
+    return _isRunning;
+
+  }
+
+  // container can either be a string or DOM element
+  initContainer( container ) {
+
+    if ( typeof container === 'string' ) this.container = document.querySelector( container );
+    else this.container = container;
+
+    if ( !this.container ) console.error( `Couldn't find the container element: ${container}` );
 
   }
 
@@ -53,13 +89,31 @@ class THREE_APP {
 
     this.initStats();
 
-    if ( this.autoResize ) window.addEventListener( 'resize', () => this.onWindowResize() );
+    window.addEventListener( 'resize', () => this.onWindowResize() );
 
   }
 
   initCamera() {
 
-    if ( !this.camera ) this.camera = new THREE.PerspectiveCamera( 35, this.container.clientWidth / this.container.clientHeight, 1, 1000 );
+    // allow custom controls to be set up
+    if ( this.camera ) return;
+
+    // setup camera spec, overwriting with user defined values if provided
+    this.spec.camera = {
+      ...{
+        fov: 35,
+        near: 1,
+        far: 1000,
+      },
+      ...this.spec.camera,
+    };
+
+    this.camera = new PerspectiveCamera(
+      this.spec.camera.fov,
+      this.container.clientWidth / this.container.clientHeight,
+      this.spec.camera.near,
+      this.spec.camera.far,
+    );
 
   }
 
@@ -68,8 +122,17 @@ class THREE_APP {
     // allow custom controls to be set up
     if ( this.controls ) return;
 
+    // setup controls spec, overwriting with user defined values if provided
+    this.spec.controls = {
+      ...{
+        setup: true,
+        autoUpdate: true,
+      },
+      ...this.spec.controls,
+    };
+
     // if the controls script was loaded, we'll set them up
-    if ( typeof THREE.OrbitControls === 'function' ) this.controls = new THREE.OrbitControls( this.camera, this.container );
+    if ( typeof OrbitControls === 'function' && this.spec.controls.setup ) this.controls = new OrbitControls( this.camera, this.container );
 
     // otherwise we'll skip them
     else return;
@@ -84,17 +147,29 @@ class THREE_APP {
     // allow custom renderer to be set up
     if ( this.renderer ) return;
 
-    this.renderer = new THREE.WebGLRenderer( {
-      powerPreference: this.powerPreference,
-      alpha: this.alpha,
-      antialias: this.antialias,
-      stencil: this.stencil,
+    // overwrite default spec with any user provided values
+    this.spec.renderer = {
+      ...{
+        alpha: false,
+        antialias: true,
+        powerPreference: 'high-performance',
+        stencil: false,
+        maxPixelRatio: Infinity,
+      },
+      ...this.spec.renderer,
+    };
+
+    this.renderer = new WebGLRenderer( {
+      powerPreference: this.spec.renderer.powerPreference,
+      alpha: this.spec.renderer.alpha,
+      antialias: this.spec.renderer.antialias,
+      stencil: this.spec.renderer.stencil,
     } );
 
     this.renderer.setSize( this.container.clientWidth, this.container.clientHeight );
-    this.renderer.setPixelRatio( Math.min( window.devicePixelRatio, this.maxPixelRatio ) );
+    this.renderer.setPixelRatio( Math.min( window.devicePixelRatio, this.spec.renderer.maxPixelRatio ) );
 
-    this.renderer.gammaOutput = this.gammaOutput;
+    this.renderer.gammaOutput = true;
 
     // to avoid page pulling
     this.renderer.domElement.addEventListener( 'touchstart', e => e.preventDefault() );
@@ -113,7 +188,7 @@ class THREE_APP {
 
     const delta = this.clock.getDelta();
 
-    if ( this.controlsAutoUpdate && this.controls && this.controls.update ) this.controls.update( delta );
+    if ( this.spec.controls.autoUpdate && this.controls && this.controls.update ) this.controls.update( delta );
 
     // step through the scene and call custom onUpdate functions on any object
     // for which we have defined them
@@ -135,16 +210,16 @@ class THREE_APP {
 
     this.renderer.setAnimationLoop( () => {
 
-      if ( this.stats ) this.stats.begin();
+      if ( this.stats && this.spec.showStats ) this.stats.begin();
 
       this.update();
       this.render();
 
-      if ( this.stats ) this.stats.end();
+      if ( this.stats && this.spec.showStats ) this.stats.end();
 
     } );
 
-    this.running = true;
+    _isRunning = true;
 
   }
 
@@ -152,20 +227,20 @@ class THREE_APP {
 
     this.renderer.setAnimationLoop( null );
 
-    this.running = false;
+    _isRunning = false;
 
   }
 
   onWindowResize() {
 
-    if ( !this.autoResize ) return;
+    if ( !this.spec.autoResize ) return;
 
     this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
 
     this.camera.updateProjectionMatrix();
 
     this.renderer.setSize( this.container.clientWidth, this.container.clientHeight );
-    this.renderer.setPixelRatio( Math.min( window.devicePixelRatio, this.maxPixelRatio ) );
+    this.renderer.setPixelRatio( Math.min( window.devicePixelRatio, this.spec.renderer.maxPixelRatio ) );
 
     // render an extra frame to prevent jank
     this.renderer.render( this.scene, this.camera );
@@ -174,10 +249,15 @@ class THREE_APP {
 
   }
 
-  // if stats.js has been loaded, create a stats overlay
   initStats() {
 
-    if ( !this.showStats || !Stats ) return;
+    if ( !this.spec.showStats ) return;
+
+    if ( !Stats ) {
+
+      console.warn( 'The stats.js script is required to show that stats overlay.' );
+
+    }
 
     this.stats = new Stats();
 

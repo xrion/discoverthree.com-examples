@@ -11,7 +11,7 @@ import setupPostProcessing from './postProcessing.js';
 
 function initScene() {
 
-  const app = new App( '#scene-container' );
+  const app = new App( { container: '#scene-container' } );
 
   // this should be fault for post processing
   // app.gammaOutput = false;

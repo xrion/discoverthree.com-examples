@@ -3,7 +3,7 @@
 
 	<head>
 
-		<title>Discoverthreejs.com - Ch 2.x</title>
+		<title>Discoverthreejs.com - Ch 2.4</title>
 
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<meta charset="UTF-8" />
@@ -12,37 +12,39 @@
 
 		<link href="styles/main.css" rel="stylesheet" type="text/css">
 
-    <script src="js/vendor/three/three.js"></script>
-
-    <script src="js/vendor/three/controls/OrbitControls.js"></script>
-
-		<script src="js/vendor/three/loaders/GLTFLoader.js"></script>
-
-		<script src="js/vendor/App.js"></script>
-
 	</head>
 
 	<body>
 
-		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 2.x  </h1>
+		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 2.4</h1>
 
-<div id="scene-container"></div>
+		<div id="scene-container"></div>
 
 		<footer>
 
-      <!--
-        Finally, include the scripts that
-        run your three.js app.
-			-->
+				<!--
+					stats.js is not available as a module, so we'll need to
+					load it the old fashion way
+				-->
 
-			<script src="js/utility/createAsyncLoader.js"></script>
+				<script defer src="js/vendor/stats.min.js"></script>
 
-			<script src="js/lights.js"></script>
-			<script src="js/models.js"></script>
+				<!--
+					IMPORTANT NOTE:
 
-			<script src="js/main.js"></script>
+						We're using type="module" here as a quick hack
+						to make this example work out of the box
+						on Codesandbox and when run locally on most browsers
 
-		</footer>
+						Browser modules are not production ready as of 2019
+						so if you're using this code to create a producion app
+						you should remove type="module" and bundle your code
+						with something like Webpack, Parcel.js or Rollup.js
+				-->
+
+				<script type="module" src="js/main.js"></script>
+
+			</footer>
 
 	</body>
 

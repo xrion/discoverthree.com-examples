@@ -1,18 +1,40 @@
+import {
+  Color,
+} from './vendor/three/three.module.js';
+
+import App from './App.js';
+
+import createLights from './lights.js';
+
+import loadModels from './models.js';
+
 function initScene() {
 
-  const app = new THREE_APP( '#scene-container' );
+  const spec = {
+
+    container: '#scene-container',
+
+  };
+
+  const app = new App( spec );
 
   app.init();
 
-  app.scene.background = new THREE.Color( 0x8FBCD4 );
+  app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( -1.5, 1.5, 6.5 );
 
+  app.start();
+
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
   loadModels( app.scene );
 
-  app.start();
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+  );
 
 }
 

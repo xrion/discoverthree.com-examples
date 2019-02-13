@@ -23,7 +23,7 @@ class App {
 
   constructor() {
 
-    this.container = document.getElementById( 'scene-container' );
+    this.container = document.querySelector( '#scene-container' );
 
     this.scene = new Scene();
     this.scene.background = new Color( 0x8FBCD4 );

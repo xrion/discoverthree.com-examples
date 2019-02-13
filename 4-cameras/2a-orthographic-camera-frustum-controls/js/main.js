@@ -12,7 +12,7 @@ import createMeshes from './meshes.js';
 
 function initScene() {
 
-  const app = new App( '#scene-container' );
+  const app = new App( { container: '#scene-container' } );
 
   // remember to create the camera before calling app.init
   setupCameras( app );

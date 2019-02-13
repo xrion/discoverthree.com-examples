@@ -14,7 +14,7 @@ import loadModels from './models.js';
 
 async function initScene() {
 
-  const app = new App( '#scene-container' );
+  const app = new App( { container: '#scene-container' } );
 
   // remember to create the custom camera before calling app.init
   createCamera( app );

@@ -10,7 +10,7 @@ import createSprites from './sprites.js';
 
 function initScene() {
 
-  const app = new App( '#scene-container' );
+  const app = new App( { container: '#scene-container' } );
 
   app.init();
 

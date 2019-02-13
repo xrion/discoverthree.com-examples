@@ -5,13 +5,13 @@ import {
 
 function createHemisphereLight() {
 
-  return new HemisphereLight( 0xddeeff, 0x0f0e0d, 2 );
+  return new HemisphereLight( 0xddeeff, 0x0f0e0d, 3 );
 
 }
 
 function createDirectionalLight() {
 
-  const direct = new DirectionalLight( 0xfffffc, 2 );
+  const direct = new DirectionalLight( 0xfffffc, 6 );
   direct.position.set( 0, 1, -10 );
 
   return direct;

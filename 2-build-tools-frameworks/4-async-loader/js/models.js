@@ -1,44 +1,35 @@
-function setupModel( gltf, position ) {
+import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
 
-  const model = gltf.scene.children[ 0 ];
-  model.position.copy( position );
+import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
-  const animation = gltf.animations[ 0 ];
+export default async function loadGLTFModels() {
 
-  const mixer = new THREE.AnimationMixer( model );
+  const loader = createAsyncLoader( new GLTFLoader() );
 
-  model.userData.onUpdate = ( delta ) => {
+  let gltf = await loader.load( 'models/Parrot.glb' );
 
-    mixer.update( delta );
+  const parrot = gltf.scene.children[ 0 ];
+  parrot.animations = gltf.animations;
+  parrot.position.set( 0, 0, 2.5 );
+
+  gltf = await loader.load( 'models/Flamingo.glb' );
+
+  const flamingo = gltf.scene.children[ 0 ];
+  flamingo.animations = gltf.animations;
+  flamingo.position.set( 7.5, 0, -10 );
+
+  gltf = await loader.load( 'models/Stork.glb' );
+
+  const stork = gltf.scene.children[ 0 ];
+  stork.animations = gltf.animations;
+  stork.position.set( 0, -2.5, -10 );
+
+  return {
+
+    parrot,
+    flamingo,
+    stork,
 
   };
-
-  const action = mixer.clipAction( animation );
-  action.play();
-
-  return model;
-
-}
-
-async function loadModels() {
-
-  const loader = createAsyncLoader( new THREE.GLTFLoader() );
-
-  const parrot = setupModel(
-    await loader.load( 'models/Parrot.glb' ),
-    new THREE.Vector3( 0, 0, 2.5 ),
-  );
-
-  const flamingo = setupModel(
-    await loader.load( 'models/Flamingo.glb' ),
-    new THREE.Vector3( 7.5, 0, -10 ),
-  );
-
-  const stork = setupModel(
-    await loader.load( 'models/Stork.glb' ),
-    new THREE.Vector3( 0, -2.5, -10 ),
-  );
-
-  return { parrot, flamingo, stork };
 
 }
