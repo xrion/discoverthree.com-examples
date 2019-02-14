@@ -29,9 +29,9 @@ function colorControl( material ) {
 
 }
 
-export default function setupMaterialControl( material ) {
+export default function setupControls( materials ) {
 
-  opacityControl( material );
-  colorControl( material );
+  opacityControl( materials.shadow );
+  colorControl( materials.shadow );
 
 }

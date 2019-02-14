@@ -1,70 +1,43 @@
 import {
-  CylinderBufferGeometry,
   Mesh,
-  MeshStandardMaterial,
-  SphereBufferGeometry,
-  TorusKnotBufferGeometry,
 } from './vendor/three/three.module.js';
 
 
-function createPlinth() {
+function createPlinth( geometries, materials ) {
 
-  const geometry = new CylinderBufferGeometry( 18, 18, 1, 64, 1 );
+  const plinth = new Mesh( geometries.truncatedCone, materials.standardWhiteRough );
 
-  const material = new MeshStandardMaterial( {
-    metalness: 0.1,
-    roughness: 0.8,
-  } );
-
-  const plinth = new Mesh( geometry, material );
-
-  plinth.receiveShadow = true;
+  plinth.receiveshadow = true;
 
   return plinth;
 
 }
 
-function createShapes() {
+function createShapes( geometries, materials ) {
 
-  const torusKnotGeo = new TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
-  const torusKnotMat = new MeshStandardMaterial( {
-    color: 0x000000,
-  } );
-
-  const torusKnot = new Mesh( torusKnotGeo, torusKnotMat );
+  const torusKnot = new Mesh( geometries.torusKnot, materials.standardBlack );
   torusKnot.position.set( 0, 6, 0 );
 
-  const sphereGeo = new SphereBufferGeometry( 1.875, 32, 32 );
-  const sphereMat = new MeshStandardMaterial();
+  torusKnot.receiveshadow = true;
 
-  const sphere = new Mesh( sphereGeo, sphereMat );
+  const sphere = new Mesh( geometries.sphere, materials.standardWhite );
   sphere.position.set( 1.125, 0, 0 );
 
+  sphere.castshadow = true;
+  sphere.receiveshadow = true;
+
   torusKnot.add( sphere );
-
-  torusKnot.userData.onUpdate = ( delta ) => {
-
-    torusKnot.rotation.y += delta / 2;
-    torusKnot.rotation.z -= delta / 4;
-
-  };
-
-  sphere.castShadow = true;
-  sphere.receiveShadow = true;
-
-  torusKnot.castShadow = true;
-  torusKnot.receiveShadow = true;
 
   return torusKnot;
 
 }
 
-export default function createMeshes() {
+export default function createMeshes( geometries, materials ) {
 
   return {
 
-    plinth: createPlinth(),
-    shapes: createShapes(),
+    plinth: createPlinth( geometries, materials ),
+    shapes: createShapes( geometries, materials ),
 
   };
 

@@ -16,7 +16,6 @@ export default async function loadGLTFModels() {
   horse.userData.initialPosition = horse.position.clone();
   horse.userData.initialRotation = horse.rotation.clone();
 
-  console.log(horse);
   return {
 
     horse,

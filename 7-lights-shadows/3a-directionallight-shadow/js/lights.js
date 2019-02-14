@@ -5,16 +5,13 @@ import {
 
 function createHemisphereLight() {
 
-  return new HemisphereLight( 0xcccccc, 0x555555, 0.75 );
+  return new HemisphereLight( 0xcccccc, 0x555555, 3 );
 
 }
 
 function createDirectionalLight() {
 
-  const direct = new DirectionalLight(
-    0xffffff, // color
-    15, // intensity,
-  );
+  const direct = new DirectionalLight( 0xffffff, 15 );
 
   direct.position.set( -12, 10, 12 );
 
@@ -29,6 +26,7 @@ function createDirectionalLight() {
   direct.shadow.camera.bottom = -8;
   direct.shadow.camera.left = -18;
 
+  // direct.shadow.bias = 0.0001;
   // direct.shadow.radius = 1.5;
 
   return direct;

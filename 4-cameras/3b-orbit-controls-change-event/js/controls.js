@@ -10,9 +10,7 @@ function initOverlay() {
 
 }
 
-export default function setupControls( app ) {
-
-  app.controlsAutoUpdate = false;
+export default function setupCameraControls( app ) {
 
   // call control.update()
   // to move the camera into the correct position

@@ -5,7 +5,7 @@ import {
 
 function createHemisphereLight() {
 
-  return new HemisphereLight( 0xcccccc, 0x555555, 0.75 );
+  return new HemisphereLight( 0xcccccc, 0x555555, 1 );
 
 }
 

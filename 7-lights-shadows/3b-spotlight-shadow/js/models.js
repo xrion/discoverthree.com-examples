@@ -1,17 +1,8 @@
-import {
-  AnimationMixer,
-  Math as MathUtils,
-  Spherical,
-} from './vendor/three/three.module.js';
-
 import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
 
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
 
-function setupModel( gltf ) {
-
-  const protoHorse = gltf.scene.children[ 0 ];
-  const animation = gltf.animations[ 0 ];
+function createHorsesArray( protoHorse ) {
 
   protoHorse.position.set( 0, 0.5, -15 );
   protoHorse.rotation.set( Math.PI / 2, 0, -Math.PI / 2 );
@@ -22,30 +13,13 @@ function setupModel( gltf ) {
   for ( let i = 0; i < 10; i++ ) {
 
     const horse = protoHorse.clone();
+    horse.animations = protoHorse.animations;
 
     horse.position.z += 1.6 * i;
     horse.scale.setScalar( 0.66 - 0.066 * i );
 
-    const spherical = new Spherical().setFromVector3( horse.position );
-
-    const mixer = new AnimationMixer( horse );
-
-    horse.userData.onUpdate = ( delta ) => {
-
-      mixer.update( delta );
-
-      spherical.theta -= delta / 2;
-      horse.position.setFromSpherical( spherical );
-
-      horse.rotation.z += delta / 2;
-
-    };
-
-    const action = mixer.clipAction( animation );
-    action.startAt( MathUtils.randFloat( 0, 0.5 ) ).play();
-
-    horse.castShadow = true;
-    horse.receiveShadow = true;
+    horse.castshadow = true;
+    horse.receiveshadow = true;
 
     horsesArray.push( horse );
 
@@ -55,14 +29,20 @@ function setupModel( gltf ) {
 
 }
 
-export default async function loadModels() {
+
+export default async function loadGLTFModels() {
 
   const loader = createAsyncLoader( new GLTFLoader() );
 
-  const horsesArray = setupModel(
-    await loader.load( 'models/Horse.glb' ),
-  );
+  const gltf = await loader.load( 'models/Horse.glb' );
 
-  return { horsesArray };
+  const horse = gltf.scene.children[ 0 ];
+  horse.animations = gltf.animations;
+
+  return {
+
+    horsesArray: createHorsesArray( horse ),
+
+  };
 
 }

@@ -1,20 +1,23 @@
 import {
-  CameraHelper,
   Color,
-  DirectionalLightHelper,
+  PCFSoftShadowMap,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.module.js';
 
-import setupRenderer from './renderer.js';
-
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
-import createGroundShadow from './shadow.js';
+
+import createHelpers from './helpers.js';
 
 import loadModels from './models.js';
 
-import setupMaterialControl from './interactivity.js';
+import setupControls from './interactivity.js';
+
+import setupAnimation from './animation.js';
 
 async function initScene() {
 
@@ -22,29 +25,43 @@ async function initScene() {
 
   app.init();
 
-  setupRenderer( app.renderer );
+  app.renderer.toneMappingExposure = 0.3;
+  app.renderer.shadowMap.enabled = true;
+  app.renderer.shadowMap.type = PCFSoftShadowMap;
 
   app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( -20, 30, 50 );
+  app.camera.position.set( -20, 30, 30 );
 
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
-  app.scene.add( new DirectionalLightHelper( lights.main ) );
-  app.scene.add( new CameraHelper( lights.main.shadow.camera ) );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.plinth, meshes.shapes );
+  const helpers = createHelpers( lights );
 
   const models = await loadModels();
-  app.scene.add( ...models.horsesArray );
 
-  const shadowMesh = createGroundShadow();
-  app.scene.add( shadowMesh );
+  setupAnimation( meshes, models );
 
-  setupMaterialControl( shadowMesh.material );
+  setupControls( materials );
+
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    meshes.plinth,
+    meshes.shadow,
+    meshes.shapes,
+
+    ...models.horsesArray,
+
+    helpers.shadowCameraHelper,
+
+  );
 
 }
 

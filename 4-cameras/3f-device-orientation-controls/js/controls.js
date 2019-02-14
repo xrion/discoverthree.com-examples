@@ -17,7 +17,7 @@ function initOverlay( controls, app ) {
 
 }
 
-export default function setupControls( app ) {
+export default function setupCameraControls( app ) {
 
   app.controls = new DeviceOrientationControls( app.camera, app.container );
 

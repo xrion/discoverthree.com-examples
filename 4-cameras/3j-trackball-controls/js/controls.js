@@ -17,7 +17,7 @@ function initOverlay( controls ) {
 
 }
 
-export default function setupControls( app ) {
+export default function setupCameraControls( app ) {
 
   app.controls = new TrackballControls( app.camera );
 

@@ -1,16 +1,21 @@
 import {
-  CameraHelper,
   Color,
-  PointLightHelper,
+  PCFSoftShadowMap,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.module.js';
 
-import setupRenderer from './renderer.js';
-
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+
+import createHelpers from './helpers.js';
+
 import loadModels from './models.js';
+
+import setupAnimation from './animation.js';
 
 async function initScene() {
 
@@ -18,23 +23,40 @@ async function initScene() {
 
   app.init();
 
-  setupRenderer( app.renderer );
+  app.renderer.toneMappingExposure = 0.3;
+  app.renderer.shadowMap.enabled = true;
+  app.renderer.shadowMap.type = PCFSoftShadowMap;
+
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( -20, 30, 30 );
 
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
-  app.scene.add( new PointLightHelper( lights.main ) );
-  app.scene.add( new CameraHelper( lights.main.shadow.camera ) );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.plinth, meshes.shapes );
+  const helpers = createHelpers( lights );
 
   const models = await loadModels();
-  app.scene.add( ...models.horsesArray );
+
+  setupAnimation( meshes, models );
+
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    meshes.plinth,
+    meshes.shapes,
+
+    ...models.horsesArray,
+
+    helpers.shadowCameraHelper,
+
+  );
 
 }
 

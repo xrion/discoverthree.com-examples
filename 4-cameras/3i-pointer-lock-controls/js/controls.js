@@ -15,7 +15,7 @@ function initOverlay( controls ) {
 
 }
 
-export default function setupControls( app ) {
+export default function setupCameraControls( app ) {
 
   const controls = new PointerLockControls( app.camera, app.container );
 

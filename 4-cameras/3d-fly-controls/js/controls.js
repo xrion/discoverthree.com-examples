@@ -2,12 +2,7 @@ import {
   FlyControls,
 } from './vendor/three/controls/todo.js';
 
-export default function setupControls( app ) {
-
-  // Fly controls don't have an "enabled"
-  // flag for some reason, so we'll set up the
-  // controls after the user clicks on the overlay
-  initOverlay( app );
+function setupFlyControls( app ) {
 
   // setup the fly controls. Our App skipped
   // setting up OrbitControls since we didn't load the script,
@@ -43,7 +38,6 @@ export default function setupControls( app ) {
   // It removes all the eventListeners that that controls set up
   // app.controls.dispose();
 
-
 }
 
 function initOverlay( app ) {
@@ -54,8 +48,18 @@ function initOverlay( app ) {
 
     overlay.style.display = 'none';
 
-    setupControls( app );
+    setupFlyControls( app );
 
   } );
+
+}
+
+
+export default function setupCameraControls( app ) {
+
+  // Fly controls don't have an "enabled"
+  // flag for some reason, so we'll set up the
+  // controls after the user clicks on the overlay
+  initOverlay( app );
 
 }

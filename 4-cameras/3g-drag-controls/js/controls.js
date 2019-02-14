@@ -21,7 +21,7 @@ function initOverlay( controls ) {
 
 }
 
-export default function setupControls( app, meshesArray ) {
+export default function setupDragControls( app, meshesArray ) {
 
   const orbitControls = app.controls;
   initOverlay( orbitControls );

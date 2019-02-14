@@ -21,7 +21,7 @@ function initOverlay( controls ) {
 
 }
 
-export default function setupControls( app ) {
+export default function setupCameraControls( app ) {
 
   // setup the map controls. Our App will have skipped
   // setting up OrbitControls since we didn't load the script,
