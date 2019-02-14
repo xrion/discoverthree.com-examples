@@ -1,4 +1,4 @@
-function initZoomSlider( camera, controls ) {
+function setupZoomSlider( camera, controls ) {
 
   const slider = document.querySelector( '#zoom-slider' );
   const value = document.querySelector( '#zoom-value' );
@@ -32,7 +32,7 @@ function initZoomSlider( camera, controls ) {
 
 }
 
-function initNearSlider( camera ) {
+function setupNearSlider( camera ) {
 
   const slider = document.querySelector( '#near-slider' );
   const value = document.querySelector( '#near-value' );
@@ -49,7 +49,7 @@ function initNearSlider( camera ) {
 
 }
 
-function initFarSlider( camera ) {
+function setupFarSlider( camera ) {
 
   const slider = document.querySelector( '#far-slider' );
   const value = document.querySelector( '#far-value' );
@@ -66,10 +66,10 @@ function initFarSlider( camera ) {
 
 }
 
-export default function setupCameraParamControls( camera, controls ) {
+export default function setupControls( app ) {
 
-  initZoomSlider( camera, controls );
-  initNearSlider( camera );
-  initFarSlider( camera );
+  setupZoomSlider( app.camera, app.controls );
+  setupNearSlider( app.camera );
+  setupFarSlider( app.camera );
 
 }

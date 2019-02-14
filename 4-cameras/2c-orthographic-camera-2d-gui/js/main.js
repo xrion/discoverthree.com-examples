@@ -1,54 +1,55 @@
-import {
-  Color,
-  Fog,
-} from './vendor/three/three.module.js';
-
-import App from './vendor/App.module.js';
-
-import initGUI from './GUI.js';
+import createApps from './apps.js';
 
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+
+import createHelpers from './helpers.js';
+
 import loadModels from './models.js';
 
+import setupAnimation from './animation.js';
 import setupControls from './interactivity.js';
+
 
 async function initScene() {
 
-  const app = new App( { container: '#scene-container' } );
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 0.5;
-  app.scene.background = new Color( 0x00BFFF );
-
-  // adding fog in the distance, the same color as the sky is
-  // a cheap way to blur the boundary between ground and sky
-  app.scene.fog = new Fog( 0x00BFFF, 115, 150 );
-
-  app.camera.position.set( 10, 10, 20 );
-  app.controls.target.y = 5;
-
-  // disable keys in the orbit controls so that we can use
-  // them to control our horse
-  app.controls.enableKeys = false;
-
-  app.start();
-
-  const appGUI = initGUI();
+  const apps = createApps();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.ground );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
 
-  const models = await loadModels();
+  const models = await loadModels( materials );
 
-  app.scene.add( models.main );
-  appGUI.scene.add( models.gui );
+  const helpers = createHelpers();
 
-  setupControls( models.main, models.gui );
+  setupAnimation( models );
+  setupControls( models );
+
+  apps.main.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    meshes.ground,
+
+    models.horse.main,
+
+  );
+
+  apps.gui.scene.add(
+
+    models.horse.gui,
+
+    helpers.grid,
+
+  );
+
 
 }
 

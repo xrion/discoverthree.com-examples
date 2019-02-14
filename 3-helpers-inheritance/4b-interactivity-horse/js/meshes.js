@@ -1,22 +1,13 @@
 import {
   Mesh,
-  MeshStandardMaterial,
-  PlaneBufferGeometry,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
+export default function createMeshes( geometries, materials ) {
 
-  const geometry = new PlaneBufferGeometry( 1000, 1000 );
-  geometry.rotateX( -Math.PI / 2 );
+  return {
 
-  const material = new MeshStandardMaterial( {
-    color: 0x001100,
-    metalness: 0,
-    roughness: 1,
-  } );
+    ground: new Mesh( geometries.plane, materials.ground ),
 
-  const ground = new Mesh( geometry, material );
-
-  return { ground };
+  };
 
 }

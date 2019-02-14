@@ -2,7 +2,7 @@ import {
   Vector3,
 } from './vendor/three/three.module.js';
 
-// We'l use this flag to make sure that the horse can't move in two directions at one
+// We'll use this flag to make sure that the horse can't move in two directions at one
 let moving = false;
 
 // speed scaling factor
@@ -18,62 +18,60 @@ const left = new Vector3( -1, 0, 0 );
 const right = new Vector3( 1, 0, 0 );
 
 // rotate on y-axis
-const xAxis = new Vector3( 1, 0, 0 );
 const yAxis = new Vector3( 0, 1, 0 );
-const zAxis = new Vector3( 0, 0, 1 );
 
-function resetPosition( model, modelGUI ) {
+function resetPosition( horse ) {
 
-  model.position.copy( model.userData.initialPosition );
-  modelGUI.position.copy( modelGUI.userData.initialPosition );
+  horse.main.position.copy( horse.main.userData.initialPosition );
+  horse.gui.position.copy( horse.gui.userData.initialPosition );
 
 }
 
-function resetRotation( model, modelGUI ) {
+function resetRotation( horse ) {
 
-  model.rotation.copy( model.userData.initialRotation );
-  modelGUI.rotation.copy( modelGUI.userData.initialRotation );
+  horse.main.rotation.copy( horse.main.userData.initialRotation );
+  horse.gui.rotation.copy( horse.gui.userData.initialRotation );
 
 }
 
 // called whenever one of the arrow keys is pressed
-function start( model, modelGUI, direction, rotation ) {
+function start( horse, direction, rotation ) {
 
   // if we're already moving, do nothing
   if ( moving ) return;
 
   // point horsey in the right direction
-  resetRotation( model, modelGUI );
-  model.rotateOnWorldAxis( yAxis, rotation );
+  resetRotation( horse );
+  horse.main.rotateOnWorldAxis( yAxis, rotation );
 
   if ( direction === left ) {
 
-    modelGUI.rotation.set( Math.PI, -Math.PI, -Math.PI / 2 );
+    horse.gui.rotation.set( Math.PI, -Math.PI, -Math.PI / 2 );
 
   } else if ( direction === right ) {
 
-    modelGUI.rotation.set( Math.PI, -Math.PI, Math.PI / 2 );
+    horse.gui.rotation.set( Math.PI, -Math.PI, Math.PI / 2 );
 
   } else if ( direction === forwards ) {
 
-    modelGUI.rotation.set( -Math.PI / 2, -Math.PI / 2, 0 );
+    horse.gui.rotation.set( -Math.PI / 2, -Math.PI / 2, 0 );
 
   } // final case 'backward' is original rotation
 
 
   // here the onUpdate function will update the "run" animation,
   // and also move the horse in one of the four directions
-  model.userData.onUpdate = ( delta ) => {
+  horse.main.userData.onUpdate = ( delta ) => {
 
     // reset the direction vector, then multiply it by the time elapsed since
     // the previous frame
     dir.copy( direction ).multiplyScalar( delta * speed );
 
-    model.userData.mixer.update( delta );
-    modelGUI.userData.mixer.update( delta );
+    horse.main.userData.mixer.update( delta );
+    horse.gui.userData.mixer.update( delta );
 
-    model.position.add( dir );
-    modelGUI.position.add( dir.multiplyScalar( 5 ) );
+    horse.main.position.add( dir );
+    horse.gui.position.add( dir.multiplyScalar( 5 ) );
 
   };
 
@@ -82,31 +80,21 @@ function start( model, modelGUI, direction, rotation ) {
 
 }
 
-function stop( model ) {
+function stop( horse ) {
 
-  model.userData.onUpdate = null;
+  horse.main.userData.onUpdate = null;
   moving = false;
 
 }
 
-export default function setupControls( model, modelGUI ) {
-
-  resetControl( model, modelGUI );
-  forwardsControl( model, modelGUI );
-  backwardControl( model, modelGUI );
-  leftControl( model, modelGUI );
-  rightControl( model, modelGUI );
-
-}
-
-function resetControl( model, modelGUI ) {
+function resetControl( horse ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
     if ( e.key === 'r' || e.key === 'R' ) {
 
-      resetPosition( model, modelGUI );
-      resetRotation( model, modelGUI );
+      resetPosition( horse );
+      resetRotation( horse );
 
     }
 
@@ -114,66 +102,76 @@ function resetControl( model, modelGUI ) {
 
 }
 
-function forwardsControl( model, modelGUI ) {
+function forwardsControl( horse ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if ( e.key === 'ArrowUp' ) start( model, modelGUI, forwards, Math.PI );
+    if ( e.key === 'ArrowUp' ) start( horse, forwards, Math.PI );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if ( e.key === 'ArrowUp' ) stop( model );
+    if ( e.key === 'ArrowUp' ) stop( horse );
 
   } );
 
 }
 
-function backwardControl( model, modelGUI ) {
+function backwardControl( horse ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if ( e.key === 'ArrowDown' ) start( model, modelGUI, backward, 0 );
+    if ( e.key === 'ArrowDown' ) start( horse, backward, 0 );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if ( e.key === 'ArrowDown' ) stop( model );
+    if ( e.key === 'ArrowDown' ) stop( horse );
 
   } );
 
 }
 
-function leftControl( model, modelGUI ) {
+function leftControl( horse ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if ( e.key === 'ArrowLeft' ) start( model, modelGUI, left, -Math.PI / 2 );
+    if ( e.key === 'ArrowLeft' ) start( horse, left, -Math.PI / 2 );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if ( e.key === 'ArrowLeft' ) stop( model );
+    if ( e.key === 'ArrowLeft' ) stop( horse );
 
   } );
 
 }
 
-function rightControl( model, modelGUI ) {
+function rightControl( horse ) {
 
   window.addEventListener( 'keydown', ( e ) => {
 
-    if ( e.key === 'ArrowRight' ) start( model, modelGUI, right, Math.PI / 2 );
+    if ( e.key === 'ArrowRight' ) start( horse, right, Math.PI / 2 );
 
   } );
 
   window.addEventListener( 'keyup', ( e ) => {
 
-    if ( e.key === 'ArrowRight' ) stop( model );
+    if ( e.key === 'ArrowRight' ) stop( horse );
 
   } );
+
+}
+
+export default function setupControls( models ) {
+
+  resetControl( models.horse );
+  forwardsControl( models.horse );
+  backwardControl( models.horse );
+  leftControl( models.horse );
+  rightControl( models.horse );
 
 }

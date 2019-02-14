@@ -1,4 +1,4 @@
-function initZoomSlider( camera, controls ) {
+function initZoomSlider( camera, controls, cameraHelper ) {
 
   const slider = document.querySelector( '#zoom-slider' );
   const value = document.querySelector( '#zoom-value' );
@@ -8,6 +8,8 @@ function initZoomSlider( camera, controls ) {
     value.textContent = slider.value;
     camera.zoom = parseFloat( slider.value );
     camera.updateProjectionMatrix();
+
+    cameraHelper.update();
 
   };
 
@@ -32,7 +34,7 @@ function initZoomSlider( camera, controls ) {
 
 }
 
-function initNearSlider( camera ) {
+function initNearSlider( camera, cameraHelper ) {
 
   const slider = document.querySelector( '#near-slider' );
   const value = document.querySelector( '#near-value' );
@@ -43,13 +45,15 @@ function initNearSlider( camera ) {
     camera.near = parseFloat( slider.value );
     camera.updateProjectionMatrix();
 
+    cameraHelper.update();
+
     e.preventDefault();
 
   } );
 
 }
 
-function initFarSlider( camera ) {
+function initFarSlider( camera, cameraHelper ) {
 
   const slider = document.querySelector( '#far-slider' );
   const value = document.querySelector( '#far-value' );
@@ -60,13 +64,15 @@ function initFarSlider( camera ) {
     camera.far = parseFloat( slider.value );
     camera.updateProjectionMatrix();
 
+    cameraHelper.update();
+
     e.preventDefault();
 
   } );
 
 }
 
-function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
+function switchCameraControl( app, cameras, cameraHelper ) {
 
   let overview = false;
 
@@ -76,15 +82,15 @@ function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
 
     if ( !overview ) {
 
-      app.camera = cameraOverview;
-      app.scene.add( cameraHelper );
+      app.camera = cameras.overview;
+      cameraHelper.visible = true;
 
       button.textContent = 'Switch to Main Camera';
 
     } else {
 
-      app.camera = cameraMain;
-      app.scene.remove( cameraHelper );
+      app.camera = cameras.main;
+      cameraHelper.visible = false;
 
       button.textContent = 'Switch to Overview Camera';
 
@@ -93,15 +99,16 @@ function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
     overview = !overview;
 
     e.preventDefault();
+
   } );
 }
 
-export default function setupCameraControls( app, cameraMain, cameraOverview, cameraHelper ) {
+export default function setupCameraControls( app, cameras, helpers ) {
 
-  initZoomSlider( cameraMain, app.controls );
-  initNearSlider( cameraMain );
-  initFarSlider( cameraMain );
+  initZoomSlider( cameras.main, app.controls, helpers.cameraHelper );
+  initNearSlider( cameras.main, helpers.cameraHelper );
+  initFarSlider( cameras.main, helpers.cameraHelper );
 
-  switchCameraControl( app, cameraMain, cameraOverview, cameraHelper );
+  switchCameraControl( app, cameras, helpers.cameraHelper );
 
 }

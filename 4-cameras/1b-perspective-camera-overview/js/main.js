@@ -28,6 +28,7 @@ async function initScene() {
   app.controls.target.y = 1;
 
   const cameras = setupCameras( app );
+
   setupOnResize( app, cameras );
 
   app.start();

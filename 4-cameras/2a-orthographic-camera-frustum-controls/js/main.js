@@ -4,33 +4,52 @@ import {
 
 import App from './vendor/App.module.js';
 
-import setupCameras from './camera.js';
-import setupCameraParamControls from './interactivity.js';
-
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
-function initScene() {
+import setupCamera from './cameras.js';
+
+import setupControls from './interactivity.js';
+
+import setupOnResize from './resize.js';
+
+async function initScene() {
 
   const app = new App( { container: '#scene-container' } );
 
-  // remember to create the camera before calling app.init
-  setupCameras( app );
+  // remember to create the custom camera before calling app.init!
+  setupCamera( app );
 
   app.init();
 
   app.renderer.toneMappingExposure = 0.5;
   app.scene.background = new Color( 0x23485c );
+  app.controls.target.y = 1;
 
-  setupCameraParamControls( app.camera, app.controls );
+  setupOnResize( app );
 
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
-  const meshes = createMeshes();
-  app.scene.add( ...meshes.spheresArray );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+
+  const meshes = createMeshes( geometries, materials );
+
+  setupControls( app );
+
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    ...meshes.spheresArray,
+
+  );
 
 }
 
