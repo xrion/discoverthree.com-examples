@@ -37,14 +37,14 @@ function createAxesHelper() {
 
   const axesHelper = new AxesHelper( size );
   axesHelper.position.set( 0, -5, 0 );
+
   return axesHelper;
 
 }
 
 function createBoxHelper( model ) {
 
-  const boxHelper = new BoxHelper( model, 0x800080 );
-  return boxHelper;
+  return new BoxHelper( model, 0x800080 );
 
 }
 
@@ -54,8 +54,7 @@ function createBox3Helper() {
   const max = new Vector3( 5, 5, 5 );
   const box = new Box3( min, max );
 
-  const box3Helper = new Box3Helper( box, 0xdddddd );
-  return box3Helper;
+  return new Box3Helper( box, 0xdddddd );
 
 }
 

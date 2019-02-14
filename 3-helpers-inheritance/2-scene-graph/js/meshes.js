@@ -1,20 +1,15 @@
 import {
-  BoxBufferGeometry,
   Mesh,
-  MeshStandardMaterial,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
-
-  const geometry = new BoxBufferGeometry( 0.5, 0.5, 0.5 );
-  const material = new MeshStandardMaterial( { color: 0x800080 } );
+export default function createMeshes( geometries, materials ) {
 
   // create the first mesh, initially positioned at (0, 0, 0)
-  const meshA = new Mesh( geometry, material );
+  const meshA = new Mesh( geometries.box, materials.standard );
 
   // set the position of the first mesh.
   // every other mesh will be positioned relative to this
-  meshA.position.x = 0.5;
+  meshA.position.x = 1;
 
   // create 9 copies for a total of 10 meshes.
   // Each of these is also positioned at (0, 0, 0) to start with
@@ -54,16 +49,6 @@ export default function createMeshes() {
   meshH.position.set( 0, 0, -1 );
   meshI.position.set( 0, 0, -1 );
   meshJ.position.set( 0, 0, -1 );
-
-  [ meshA, meshB, meshC, meshD, meshE, meshF, meshG, meshH, meshI, meshJ ].forEach( ( mesh ) => {
-
-    mesh.userData.onUpdate = ( delta ) => {
-
-      mesh.rotation.z += delta / 2;
-
-    };
-
-  } );
 
   return { meshA };
 

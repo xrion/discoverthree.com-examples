@@ -146,12 +146,12 @@ function rightControl( object ) {
 
 }
 
-export default function setupControls( object ) {
+export default function setupControls( models ) {
 
-  resetControl( object );
-  forwardsControl( object );
-  backwardControl( object );
-  leftControl( object );
-  rightControl( object );
+  resetControl( models.horse );
+  forwardsControl( models.horse );
+  backwardControl( models.horse );
+  leftControl( models.horse );
+  rightControl( models.horse );
 
 }

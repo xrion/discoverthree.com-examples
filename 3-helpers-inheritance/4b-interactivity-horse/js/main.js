@@ -6,8 +6,14 @@ import {
 import App from './vendor/App.module.js';
 
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+
 import loadModels from './models.js';
+
+import setupAnimation from './animation.js';
 
 import setupControls from './interactivity.js';
 
@@ -31,18 +37,29 @@ async function initScene() {
   // them to control our horse
   app.controls.enableKeys = false;
 
-  const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
+  app.start();
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.ground );
+  const lights = createLights();
+
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
 
   const models = await loadModels();
-  app.scene.add( models.horse );
 
-  setupControls( models.horse );
+  setupAnimation( models );
+  setupControls( models );
 
-  app.start();
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    meshes.ground,
+
+    models.horse,
+
+  );
 
 }
 

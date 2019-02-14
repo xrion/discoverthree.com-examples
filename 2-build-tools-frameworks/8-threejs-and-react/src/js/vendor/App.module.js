@@ -69,7 +69,7 @@ export default class App {
     this.onUpdate = null;
 
     // optional functional evaluated on window resize event
-    // if autoResize is enabled
+    // if spec.autoResize is true
     this.onResize = null;
 
   }
@@ -249,7 +249,7 @@ export default class App {
 
   onWindowResize() {
 
-    if ( !this.spec.autoResize ) return;
+    if ( !this.spec.autoResize === false ) return;
 
     this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
 

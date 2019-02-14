@@ -20,7 +20,9 @@ function createArrowHelper() {
 export default function createHelpers() {
 
   return {
+
     arrowHelper: createArrowHelper(),
+
   };
 
 }
