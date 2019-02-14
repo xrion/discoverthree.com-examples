@@ -4,12 +4,20 @@ import {
 
 import App from './vendor/App.module.js';
 
-import setupCameras from './camera.js';
-
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
-function initScene() {
+import createHelpers from './helpers.js';
+
+import setupCameras from './cameras.js';
+import setupControls from './interactivity.js';
+
+import setupOnResize from './resize.js';
+
+async function initScene() {
 
   const app = new App( { container: '#scene-container' } );
 
@@ -19,15 +27,32 @@ function initScene() {
   app.scene.background = new Color( 0x23485c );
   app.controls.target.y = 1;
 
-  setupCameras( app );
+  const cameras = setupCameras( app );
+  setupOnResize( app, cameras );
 
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
-  const meshes = createMeshes();
-  app.scene.add( ...meshes.spheresArray );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+
+  const meshes = createMeshes( geometries, materials );
+
+  const helpers = createHelpers( app.camera );
+
+  setupControls( app, cameras, helpers );
+
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    ...meshes.spheresArray,
+
+    helpers.cameraHelper,
+
+  );
 
 }
 

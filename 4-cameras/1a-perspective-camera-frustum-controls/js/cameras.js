@@ -1,4 +1,4 @@
-export default function setupCameras( camera ) {
+export default function setupCamera( camera ) {
 
   camera.position.set( 5, 5, 30 );
 

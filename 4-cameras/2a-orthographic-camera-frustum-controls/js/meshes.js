@@ -1,18 +1,11 @@
 import {
-  SphereBufferGeometry,
   Math as MathUtils,
   Mesh,
-  MeshStandardMaterial,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
+export default function createMeshes( geometries, materials ) {
 
-  const geometry = new SphereBufferGeometry( 1, 16, 16 );
-  const material = new MeshStandardMaterial( {
-    flatShading: true,
-  } );
-
-  const protoMesh = new Mesh( geometry, material );
+  const protoMesh = new Mesh( geometries.sphere, materials.standard );
 
   const spheresArray = [];
 

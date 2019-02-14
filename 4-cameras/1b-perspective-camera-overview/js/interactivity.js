@@ -1,4 +1,4 @@
-function initAspectValue( camera ) {
+function updateAspectRatioInfo( camera ) {
 
   const value = document.querySelector( '#aspect-value' );
 
@@ -12,7 +12,7 @@ function initAspectValue( camera ) {
 
 }
 
-function updateEffectiveFOV( camera, domeElement ) {
+function updateEffectiveFOVInfo( camera, domeElement ) {
 
   const effectiveFOV = camera.getEffectiveFOV();
 
@@ -21,7 +21,7 @@ function updateEffectiveFOV( camera, domeElement ) {
 }
 
 
-function initFOVSlider( camera, cameraHelper ) {
+function setupFOVSlider( camera, cameraHelper ) {
 
   const slider = document.querySelector( '#fov-slider' );
   const value = document.querySelector( '#fov-value' );
@@ -36,7 +36,7 @@ function initFOVSlider( camera, cameraHelper ) {
 
     cameraHelper.update();
 
-    updateEffectiveFOV( camera, effectiveFOV );
+    updateEffectiveFOVInfo( camera, effectiveFOV );
 
     e.preventDefault();
 
@@ -44,7 +44,7 @@ function initFOVSlider( camera, cameraHelper ) {
 
 }
 
-function initZoomSlider( camera, cameraHelper ) {
+function setupZoomSlider( camera, cameraHelper ) {
 
   const slider = document.querySelector( '#zoom-slider' );
   const value = document.querySelector( '#zoom-value' );
@@ -59,7 +59,7 @@ function initZoomSlider( camera, cameraHelper ) {
 
     cameraHelper.update();
 
-    updateEffectiveFOV( camera, effectiveFOV );
+    updateEffectiveFOVInfo( camera, effectiveFOV );
 
     e.preventDefault();
 
@@ -67,7 +67,7 @@ function initZoomSlider( camera, cameraHelper ) {
 
 }
 
-function initNearSlider( camera, cameraHelper ) {
+function setupNearClippingPlaneSlider( camera, cameraHelper ) {
 
   const slider = document.querySelector( '#near-slider' );
   const value = document.querySelector( '#near-value' );
@@ -86,7 +86,7 @@ function initNearSlider( camera, cameraHelper ) {
 
 }
 
-function initFarSlider( camera, cameraHelper ) {
+function setupFarClippingPlaneSlider( camera, cameraHelper ) {
 
   const slider = document.querySelector( '#far-slider' );
   const value = document.querySelector( '#far-value' );
@@ -105,7 +105,7 @@ function initFarSlider( camera, cameraHelper ) {
 
 }
 
-function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
+function setupCameraToggle( app, cameras, cameraHelper ) {
 
   let overview = false;
 
@@ -115,15 +115,15 @@ function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
 
     if ( !overview ) {
 
-      app.camera = cameraOverview;
-      app.scene.add( cameraHelper );
+      app.camera = cameras.overview;
+      cameraHelper.visible = true;
 
       button.textContent = 'Switch to Main Camera';
 
     } else {
 
-      app.camera = cameraMain;
-      app.scene.remove( cameraHelper );
+      app.camera = cameras.main;
+      cameraHelper.visible = false;
 
       button.textContent = 'Switch to Overview Camera';
 
@@ -132,17 +132,18 @@ function switchCameraControl( app, cameraMain, cameraOverview, cameraHelper ) {
     overview = !overview;
 
     e.preventDefault();
+
   } );
 }
 
-export default function setupCameraControls( app, cameraMain, cameraOverview, cameraHelper ) {
+export default function setupControls( app, cameras, helpers ) {
 
-  initAspectValue( cameraMain, cameraHelper );
-  initFOVSlider( cameraMain, cameraHelper );
-  initZoomSlider( cameraMain, cameraHelper );
-  initNearSlider( cameraMain, cameraHelper );
-  initFarSlider( cameraMain, cameraHelper );
+  updateAspectRatioInfo( cameras.main, helpers.cameraHelper );
+  setupFOVSlider( cameras.main, helpers.cameraHelper );
+  setupZoomSlider( cameras.main, helpers.cameraHelper );
+  setupNearClippingPlaneSlider( cameras.main, helpers.cameraHelper );
+  setupFarClippingPlaneSlider( cameras.main, helpers.cameraHelper );
 
-  switchCameraControl( app, cameraMain, cameraOverview, cameraHelper );
+  setupCameraToggle( app, cameras, helpers.cameraHelper );
 
 }
