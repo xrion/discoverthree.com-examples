@@ -4,10 +4,11 @@ import {
 
 import App from './vendor/App.js';
 
+import createGeometries from './geometries.js';
 import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
-function initScene() {
+async function initScene() {
 
   const app = new App( { container: '#scene-container' } );
 
@@ -19,10 +20,17 @@ function initScene() {
 
   app.start();
 
+  const geometries = createGeometries();
   const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
 
-  const meshes = createMeshes( materials.shaderMaterial );
-  app.scene.add( meshes.box );
+  app.scene.add(
+
+    meshes.box,
+
+  );
+
+  console.log( 'Here\'s the ShaderMaterial you just created: ', materials.purple );
 
 
 }

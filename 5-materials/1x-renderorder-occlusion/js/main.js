@@ -1,7 +1,13 @@
 import App from './vendor/App.js';
 
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+
+import loadTextures from './textures.js';
 import loadModels from './models.js';
+
+import setupAnimation from './animation.js';
 
 async function initScene() {
 
@@ -14,12 +20,23 @@ async function initScene() {
 
   app.start();
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.moon );
-  app.controls.target.copy( meshes.moon.position );
+  const geometries = createGeometries();
+
+  const textures = loadTextures();
+  const materials = createMaterials( textures );
+  const meshes = createMeshes( geometries, materials );
 
   const models = await loadModels();
-  app.scene.add( models.parrot );
+
+  setupAnimation( models );
+
+  app.scene.add(
+
+    meshes.moon,
+
+    models.parrot,
+
+  );
 
 }
 

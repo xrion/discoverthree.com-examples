@@ -1,21 +1,13 @@
 import {
-  PlaneBufferGeometry,
   Mesh,
-  MeshBasicMaterial,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
+export default function createMeshes( geometries, materials ) {
 
-  // create a plane geometry. The vertices of this plane will
-  // be at -1 and 1 on the X axis and Y axis, meaning that
-  // if we don't transform them by any matrices then the
-  // plane will take up the full screen
-  const geometry = new PlaneBufferGeometry( 2, 2 );
+  return {
 
-  const tempMat = new MeshBasicMaterial();
+    fullscreenQuad: new Mesh( geometries.plane, materials.fullscreen ),
 
-  const quad = new Mesh( geometry, tempMat );
-
-  return { quad };
+  };
 
 }

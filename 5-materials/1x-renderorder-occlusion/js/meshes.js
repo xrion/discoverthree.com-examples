@@ -1,20 +1,10 @@
 import {
-  CircleBufferGeometry,
   Mesh,
-  MeshBasicMaterial,
-  sRGBEncoding,
-  TextureLoader,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
+export default function createMeshes( geometries, materials ) {
 
-  const map = new TextureLoader().load( 'textures/color/moon.jpg' );
-  map.encoding = sRGBEncoding;
-
-  const geometry = new CircleBufferGeometry( 8, 128 );
-  const material = new MeshBasicMaterial( { map } );
-
-  const moon = new Mesh( geometry, material );
+  const moon = new Mesh( geometries.circle, materials.moon );
 
   moon.position.set( 0, 0, -10 );
 

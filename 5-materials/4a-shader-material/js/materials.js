@@ -46,7 +46,8 @@ void main() {
                       1.0); // Alpa, or transpareny
 }
 `;
-export default function createMaterials() {
+
+function createShaderMaterial() {
 
   const shaderMaterial = new ShaderMaterial( {
 
@@ -56,8 +57,17 @@ export default function createMaterials() {
 
   } );
 
-  console.log( 'Here\'s the ShaderMaterial you just created: ', shaderMaterial );
+  return shaderMaterial;
 
-  return { shaderMaterial };
+}
+
+export default function createMaterials() {
+
+
+  return {
+
+    purple: createShaderMaterial(),
+
+  };
 
 }

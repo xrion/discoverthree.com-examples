@@ -4,10 +4,13 @@ import {
 
 import App from './vendor/App.js';
 
+import createGeometries from './geometries.js';
 import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
-function initScene() {
+import setupAnimation from './animation.js';
+
+async function initScene() {
 
   const app = new App( { container: '#scene-container' } );
 
@@ -19,17 +22,20 @@ function initScene() {
 
   app.start();
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.quad );
-
+  const geometries = createGeometries();
   const materials = createMaterials();
-  meshes.quad.material = materials.shaderMaterial;
+  const meshes = createMeshes( geometries, materials );
 
-  meshes.quad.userData.onUpdate = ( delta ) => {
+  setupAnimation( meshes );
 
-    materials.shaderMaterial.uniforms.time.value += delta;
 
-  };
+  app.scene.add(
+
+    meshes.fullscreenQuad,
+
+  );
+
+  console.log( 'Here\'s the ShaderMaterial you just created: ', materials.fullscreen );
 
 }
 

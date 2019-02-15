@@ -44,7 +44,7 @@ function createShaderMaterial() {
     time: { value: 0.0 },
   };
 
-  const material = new ShaderMaterial( {
+  const shaderMaterial = new ShaderMaterial( {
 
     uniforms,
     vertexShader,
@@ -52,16 +52,16 @@ function createShaderMaterial() {
 
   } );
 
-  console.log( 'Here\'s the ShaderMaterial you just created: ', material );
-
-  return material;
+  return shaderMaterial;
 
 }
 
 export default function createMaterials() {
 
   return {
-    shaderMaterial: createShaderMaterial(),
+
+    fullscreen: createShaderMaterial(),
+
   };
 
 }
