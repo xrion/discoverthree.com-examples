@@ -2,13 +2,10 @@ import {
   MeshStandardMaterial,
 } from './vendor/three/three.module.js';
 
-export default function createMaterials( envMap ) {
+export default function createMaterials( environments ) {
 
   const brassColor = 0xccb47e;
   const silverColor = 0xC5C6C8;
-
-  // const brassColor = 0xB5A642;
-  // const silverColor = 0xC4CACE;
 
   const materials = {
 
@@ -16,7 +13,7 @@ export default function createMaterials( envMap ) {
       metalness: 0.9,
       roughness: 0.2,
       color: brassColor,
-      envMap,
+      envMap: environments.sky,
       envMapIntensity: 1,
     } ),
 
@@ -24,14 +21,14 @@ export default function createMaterials( envMap ) {
       metalness: 0.9,
       roughness: 0.2,
       color: silverColor,
-      envMap,
+      envMap: environments.sky,
       envMapIntensity: 1,
     } ),
 
     plinth: new MeshStandardMaterial( {
       metalness: 0.25,
       roughness: 0.25,
-      envMap,
+      envMap: environments.sky,
     } ),
 
   };

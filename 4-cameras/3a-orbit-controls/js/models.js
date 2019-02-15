@@ -26,7 +26,6 @@ function createHorsesArray( protoHorse ) {
 
 }
 
-
 export default async function loadGLTFModels() {
 
   const loader = createAsyncLoader( new GLTFLoader() );
