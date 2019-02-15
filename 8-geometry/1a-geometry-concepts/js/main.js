@@ -1,14 +1,16 @@
-
 import {
   Color,
-  FaceNormalsHelper,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.js';
 
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
-function initScene() {
+import createHelpers from './helpers.js';
+
+async function initScene() {
 
   const app = new App( { container: '#scene-container' } );
 
@@ -20,19 +22,26 @@ function initScene() {
 
   app.start();
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.cube, meshes.sphere );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
 
-  // yellow lines represent "normals" of each face
-  // that is, the direction that is perpendicular to the face
-  app.scene.add( new FaceNormalsHelper( meshes.cube ) );
+  const helpers = createHelpers( meshes );
 
-  // Note that, even though the normals are defined per Face,
-  // when it comes to actually renderering the Geometry it gets
-  // converted to a BufferGeometry, and normals are calculated
-  // per Vertex instead
-  app.scene.add( new FaceNormalsHelper( meshes.sphere ) );
+  app.scene.add(
+
+    meshes.box,
+    meshes.sphere,
+
+    helpers.boxFacesHelper,
+    helpers.sphereFacesHelper,
+
+  );
+
+  console.log( 'Here\'s the box geometry you just created: ', geometries.box );
+  console.log( '...and here\'s the sphere geometry you just created: ', geometries.sphere );
 
 }
 
 initScene();
+

@@ -1,12 +1,17 @@
 import {
   Color,
-  VertexNormalsHelper,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.js';
 
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+import createHelpers from './helpers.js';
+
 import loadModels from './models.js';
+
+import setupAnimation from './animation.js';
 
 async function initScene() {
 
@@ -16,27 +21,32 @@ async function initScene() {
 
   app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( 10, 5, 15 );
+  app.camera.position.set( 0, 0, 20 );
 
   app.start();
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.sphere );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
 
-  // For BufferGeometry, we'll use a VertexNormalsHelper
-  // instead of a FaceNormalsHelper, since normals are
-  // defined per Vertex, rather than per Face
-  // The normals are the red lines coming out of the sphere
-  app.scene.add( new VertexNormalsHelper( meshes.sphere ) );
+  const helpers = createHelpers( meshes );
 
-  const models = await loadModels();
-  app.scene.add( models.horse );
+  const models = await loadModels( materials );
 
-  // the horse geometry doesn't have any normals,
-  // since it uses vertex colors and flat shading,
-  // normals were omitted to reduce model size
-  // trying to add a normals helper will throw an error
-  // app.scene.add( new VertexNormalsHelper( models.horse ) );
+  setupAnimation( meshes, models, helpers );
+
+  app.scene.add(
+
+    meshes.shape,
+
+    models.horse,
+
+    helpers.vertexNormals,
+
+  );
+
+  console.log( 'Here\'s the sphere geometry you just created: ', geometries.sphere );
+  console.log( '...and here\'s the geometry from the horse: ', models.horse.geometry );
 
 }
 

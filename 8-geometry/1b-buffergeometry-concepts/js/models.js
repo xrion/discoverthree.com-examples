@@ -1,53 +1,24 @@
-import {
-  AnimationMixer,
-  MeshBasicMaterial,
-  VertexColors,
-} from './vendor/three/three.module.js';
-
 import createAsyncLoader from './vendor/utility/createAsyncLoader.js';
 
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.js';
 
-function setupModel( gltf ) {
-
-  const horse = gltf.scene.children[ 0 ];
-  const animation = gltf.animations[ 0 ];
-
-  horse.position.set( -2, -2, 0 );
-
-  console.log( 'And here\'s the buffer geometry from the loaded model: ', horse.geometry );
-
-  horse.material = new MeshBasicMaterial( {
-    wireframe: true,
-    morphTargets: true,
-    vertexColors: VertexColors,
-  } );
-
-
-  const mixer = new AnimationMixer( horse );
-
-  horse.userData.onUpdate = ( delta ) => {
-
-    mixer.update( delta );
-
-  };
-
-  const action = mixer.clipAction( animation );
-  action.play();
-
-  return horse;
-
-}
-
-
-export default async function loadModels() {
+export default async function loadGLTFModels( materials ) {
 
   const loader = createAsyncLoader( new GLTFLoader() );
 
-  const horse = setupModel(
-    await loader.load( 'models/Horse.glb' ),
-  );
+  const gltf = await loader.load( 'models/Horse.glb' );
 
-  return { horse };
+  const horse = gltf.scene.children[ 0 ];
+  horse.animations = gltf.animations;
+
+  horse.material = materials.horse;
+
+  horse.position.set( 0, -2, 0 );
+
+  return {
+
+    horse,
+
+  };
 
 }
