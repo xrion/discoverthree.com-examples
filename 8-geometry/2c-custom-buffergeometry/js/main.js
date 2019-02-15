@@ -5,7 +5,7 @@ import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 import createHelpers from './helpers.js';
 
-import setupMaterialControl from './interactivity.js';
+import setupControls from './interactivity.js';
 
 function initScene() {
 
@@ -21,20 +21,25 @@ function initScene() {
   const geometries = createGeometries();
 
   const materials = createMaterials();
-  setupMaterialControl( materials );
 
   const meshes = createMeshes( geometries, materials );
 
   const helpers = createHelpers( meshes );
 
+  setupControls( materials );
+
+  app.scene.add(
+
+    meshes.leftQuad,
+    meshes.rightQuad,
+
+    helpers.vertexNormalsHelper,
+
+  );
+
   console.log( 'Here\'s the non-ndexed BufferGeometry you just created: ', geometries.nonIndexed );
   console.log( '...and here\'s the indexed BufferGeometry you just created: ', geometries.indexed );
 
-  app.scene.add(
-    meshes.leftQuad,
-    meshes.rightQuad,
-    helpers.vertexNormalsHelper,
-  );
 
 }
 

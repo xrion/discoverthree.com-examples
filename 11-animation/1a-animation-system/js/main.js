@@ -25,7 +25,6 @@ function initScene() {
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
   const geometries = createGeometries();
   const materials = createMaterials();
@@ -33,7 +32,15 @@ function initScene() {
 
   setupAnimation( meshes.box );
 
-  app.scene.add( meshes.box );
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    meshes.box
+
+  );
+
 }
 
 initScene();

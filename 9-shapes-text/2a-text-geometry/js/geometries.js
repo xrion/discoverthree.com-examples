@@ -35,7 +35,9 @@ function createTextGeometry( fonts ) {
 export default function createGeometries( fonts ) {
 
   return {
+
     text: createTextGeometry( fonts ),
+
   };
 
 }

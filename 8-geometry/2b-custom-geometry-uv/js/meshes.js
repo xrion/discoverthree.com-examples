@@ -5,10 +5,9 @@ import {
 export default function createMeshes( geometries, materials ) {
 
   return {
-    tri: new Mesh(
-      geometries.bufferGeometry,
-      materials.basic,
-    ),
+
+    quad: new Mesh( geometries.bufferGeometry, materials.basic ),
+
   };
 
 }

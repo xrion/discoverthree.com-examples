@@ -25,9 +25,11 @@ function initScene() {
   const shapes = createShapes( geometries, materials );
 
   app.scene.add(
+
     shapes.lineSegments,
     shapes.line,
     shapes.lineLoop,
+
   );
 
 }

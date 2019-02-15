@@ -1,5 +1,5 @@
-export default function setupMaterialControl( materials ) {
-  console.log(materials);
+export default function setupControls( materials ) {
+
   const button = document.querySelector( '#toggle-wireframe' );
 
   button.addEventListener( 'click', ( e ) => {

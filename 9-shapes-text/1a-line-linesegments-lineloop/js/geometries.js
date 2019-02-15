@@ -23,7 +23,9 @@ function createSquareGeometry() {
 export default function createGeometries() {
 
   return {
+
     square: createSquareGeometry(),
+
   };
 
 }

@@ -26,7 +26,9 @@ function createLine( geometries, materials ) {
 export default function initShapes( geometries, materials ) {
 
   return {
+
     square: createLine( geometries, materials ),
+
   };
 
 }

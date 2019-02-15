@@ -54,8 +54,10 @@ export default function createGeometries() {
   const bufferGeometry = convertGeometryToBufferGeometry( geometry );
 
   return {
+
     geometry,
     bufferGeometry,
+
   };
 
 }

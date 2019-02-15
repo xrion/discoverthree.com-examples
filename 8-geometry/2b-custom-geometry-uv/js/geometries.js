@@ -73,7 +73,6 @@ function convertGeometryToBufferGeometry( geometry ) {
 
   return new BufferGeometry().fromGeometry( geometry );
 
-
 }
 
 export default function createGeometries() {
@@ -82,8 +81,10 @@ export default function createGeometries() {
   const bufferGeometry = convertGeometryToBufferGeometry( geometry );
 
   return {
+
     geometry,
     bufferGeometry,
+
   };
 
 }

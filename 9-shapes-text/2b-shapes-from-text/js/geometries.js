@@ -47,7 +47,9 @@ function createGeometriesFromShapes( glyphs ) {
 export default function createGeometries( shapes ) {
 
   return {
+
     glyphGeometries: createGeometriesFromShapes( shapes.glyphs ),
+
   };
 
 }

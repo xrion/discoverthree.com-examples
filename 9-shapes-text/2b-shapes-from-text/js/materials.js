@@ -6,9 +6,13 @@ import {
 export default function createMaterials() {
 
   return {
+
     basic: new LineBasicMaterial( {
+
       side: DoubleSide,
+
     } ),
+
   };
 
 }

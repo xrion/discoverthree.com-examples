@@ -1,4 +1,4 @@
-export default function setupMaterialControl( materials ) {
+export default function setupControls( materials ) {
 
   const button = document.querySelector( '#toggle-wireframe' );
 

@@ -7,7 +7,9 @@ export default function createMaterials( textures ) {
   return {
 
     standard: new MeshStandardMaterial( {
+
       map: textures.canvasTexture,
+
     } ),
 
   };

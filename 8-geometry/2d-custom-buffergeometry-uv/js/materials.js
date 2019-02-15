@@ -5,7 +5,9 @@ import {
 export default function createMaterials( textures ) {
 
   return {
-    basic: new MeshBasicMaterial( { map: textures.map } ),
+
+    basic: new MeshBasicMaterial( { map: textures.deer } ),
+
   };
 
 }

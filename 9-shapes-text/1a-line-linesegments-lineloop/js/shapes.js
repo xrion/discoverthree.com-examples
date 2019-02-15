@@ -55,6 +55,7 @@ function createLineLoop( geometries, materials ) {
 export default function initShapes( geometries, materials ) {
 
   return {
+
     lineSegments: createLineSegments( geometries, materials ),
     line: createLine( geometries, materials ),
     lineLoop: createLineLoop( geometries, materials ),

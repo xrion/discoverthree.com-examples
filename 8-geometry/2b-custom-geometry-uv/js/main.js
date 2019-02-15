@@ -5,7 +5,7 @@ import loadTextures from './textures.js';
 import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
-import setupMaterialControl from './interactivity.js';
+import setupControls from './interactivity.js';
 
 function initScene() {
 
@@ -14,7 +14,7 @@ function initScene() {
   app.init();
 
   app.renderer.toneMappingExposure = 1;
-  app.camera.position.set( 0, 0, 10 );
+  app.camera.position.set( 0, 0, 5 );
 
   app.start();
 
@@ -22,14 +22,15 @@ function initScene() {
   const textures = loadTextures();
 
   const materials = createMaterials( textures );
-  setupMaterialControl( materials );
 
   const meshes = createMeshes( geometries, materials );
 
+  setupControls( materials );
+
+  app.scene.add( meshes.quad );
+
   console.log( 'Here\'s the geometry you just created: ', geometries.geometry );
   console.log( '... and here\'s what it looks like after being converted to a BufferGeometry: ', geometries.bufferGeometry );
-
-  app.scene.add( meshes.tri );
 
 }
 

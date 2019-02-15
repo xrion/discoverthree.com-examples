@@ -13,7 +13,9 @@ function createGlyphsFromText( font ) {
 export default function createShapes( fonts ) {
 
   return {
+
     glyphs: createGlyphsFromText( fonts.droidSerifRegular ),
+
   };
 
 }

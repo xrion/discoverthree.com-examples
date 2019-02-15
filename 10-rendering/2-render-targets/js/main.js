@@ -37,10 +37,12 @@ function initScene() {
   setupAnimation( meshes );
 
   app.scene.add(
+
     lights.ambient,
     lights.main,
 
     meshes.box,
+
   );
 
   RT.scene.add(

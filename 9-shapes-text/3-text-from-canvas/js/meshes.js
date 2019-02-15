@@ -2,7 +2,6 @@ import {
   Mesh,
 } from './vendor/three/three.module.js';
 
-
 export default function createMeshes( geomtries, materials ) {
 
   const box = new Mesh( geomtries.box, materials.standard );
@@ -11,6 +10,11 @@ export default function createMeshes( geomtries, materials ) {
   const sphere = new Mesh( geomtries.sphere, materials.standard );
   sphere.position.x -= 1.5;
 
-  return { box, sphere };
+  return {
+
+    box,
+    sphere
+
+  };
 
 }
