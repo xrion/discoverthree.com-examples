@@ -16,6 +16,10 @@ export default async function loadGLTFModels() {
 
   const rhino = gltf.scene.children[ 0 ];
 
-  return { rhino };
+  return {
+
+    rhino,
+
+  };
 
 }
