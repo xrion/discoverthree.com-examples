@@ -2,7 +2,7 @@ import {
   FlyControls,
 } from './vendor/three/controls/FlyControls.js';
 
-function setupFlyControls( app ) {
+function createFlyControls( app ) {
 
   // setup the fly controls. Our App skipped
   // setting up OrbitControls since we didn't load the script,
@@ -48,14 +48,14 @@ function initOverlay( app ) {
 
     overlay.style.display = 'none';
 
-    setupFlyControls( app );
+    createFlyControls( app );
 
   } );
 
 }
 
 
-export default function setupCameraControls( app ) {
+export default function createCameraControls( app ) {
 
   // Fly controls don't have an "enabled"
   // flag for some reason, so we'll set up the

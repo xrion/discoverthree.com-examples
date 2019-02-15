@@ -1,7 +1,7 @@
 
 import {
 	Vector3,
-MathUtils as MathUtils,
+	Math as MathUtils,
 } from '../three.module.js';
 var FirstPersonControls = function ( object, domElement ) {
 

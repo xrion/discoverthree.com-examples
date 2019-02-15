@@ -4,6 +4,8 @@ import {
 
 import App from './vendor/App.js';
 
+import createCameraControls from './controls.js';
+
 import createLights from './lights.js';
 
 import createGeometries from './geometries.js';
@@ -14,11 +16,16 @@ import loadModels from './models.js';
 
 import setupAnimation from './animation.js';
 
-import setupCameraControls from './controls.js';
 
 async function initScene() {
 
-  const app = new App( { container: '#scene-container' } );
+  const app = new App( {
+    container: '#scene-container',
+    controls: {
+      // we don't want to setup the default OrbitControls here
+      setupOrbitControls: false,
+    },
+  } );
 
   app.init();
 
@@ -26,7 +33,11 @@ async function initScene() {
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( -20, 30, 30 );
 
-  setupCameraControls( app.controls );
+  createCameraControls( app );
+
+  // some control types require you to point the camera after
+  // they have been set up, others do it automatically
+  // app.camera.lookAt( 0, 0, 0 );
 
   app.start();
 

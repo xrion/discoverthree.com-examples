@@ -1,10 +1,11 @@
 
-import { EventDispatcher,
-Vector3,
-Quaternion,
-Spherical,
-Vector2,
-MOUSE,
+import {
+	EventDispatcher,
+	Vector3,
+	Quaternion,
+	Spherical,
+	Vector2,
+	MOUSE,
 } from '../three.module.js';
 // This set of controls performs orbiting, dollying (zooming), and panning.
 // Unlike TrackballControls, it maintains the "up" direction object.up (+Y by default).

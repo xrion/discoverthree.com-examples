@@ -17,7 +17,6 @@ function setupSimpleRotation( mesh ) {
 
 function setupCircularRunningAnimation( horse ) {
 
-  console.log(horse);
   const mixer = new AnimationMixer( horse );
 
   const spherical = new Spherical().setFromVector3( horse.position );

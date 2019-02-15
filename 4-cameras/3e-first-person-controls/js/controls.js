@@ -17,7 +17,7 @@ function initOverlay( controls ) {
 
 }
 
-export default function setupCameraControls( app ) {
+export default function createCameraControls( app ) {
 
   app.controls = new FirstPersonControls( app.camera, app.container );
 

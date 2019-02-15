@@ -47,7 +47,7 @@ let _isRunning = false;
 
 //   controls: {
 //     // whether or not to call the controls.update function once per frame
-//     setup: true,
+//     setupOrbitControls: true,
 //     autoUpdate: true,
 //   },
 
@@ -134,14 +134,14 @@ export default class App {
     // setup controls spec, overwriting with user defined values if provided
     this.spec.controls = {
       ...{
-        setup: true,
+        setupOrbitControls: true,
         autoUpdate: true,
       },
       ...this.spec.controls,
     };
 
     // if the controls script was loaded, we'll set them up
-    if ( typeof OrbitControls === 'function' && this.spec.controls.setup ) this.controls = new OrbitControls( this.camera, this.container );
+    if ( typeof OrbitControls === 'function' && this.spec.controls.setupOrbitControls ) this.controls = new OrbitControls( this.camera, this.container );
 
     // otherwise we'll skip them
     else return;
