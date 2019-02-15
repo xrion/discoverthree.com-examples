@@ -1,6 +1,6 @@
 import {
   TransformControls,
-} from './vendor/three/controls/todo.js';
+} from './vendor/three/controls/TransformControls.js';
 
 import setupGizmoTypeSelect from './interactivity.js';
 

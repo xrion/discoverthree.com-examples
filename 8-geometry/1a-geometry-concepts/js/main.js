@@ -4,7 +4,7 @@ import {
   FaceNormalsHelper,
 } from './vendor/three/three.module.js';
 
-import App from './vendor/App.module.js';
+import App from './vendor/App.js';
 
 import createMeshes from './meshes.js';
 

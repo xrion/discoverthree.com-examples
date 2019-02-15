@@ -1,4 +1,4 @@
-import App from './vendor/App.module.js';
+import App from './vendor/App.js';
 
 import setupRender from './renderer.js';
 

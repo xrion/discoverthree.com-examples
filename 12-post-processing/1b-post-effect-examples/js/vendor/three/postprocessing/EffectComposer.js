@@ -1,22 +1,37 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- */
 
-THREE.EffectComposer = function ( renderer, renderTarget ) {
+
+import {
+	WebGLRenderTarget,
+	LinearFilter,
+	RGBAFormat,
+} from '../three.module.js';
+
+
+import {
+	MaskPass,
+	ClearMaskPass
+} from './MaskPass.js';
+
+import { ShaderPass } from './ShaderPass.js';
+import { CopyShader } from '../shaders/CopyShader.js';
+
+
+
+var EffectComposer = function ( renderer, renderTarget ) {
 
 	this.renderer = renderer;
 
 	if ( renderTarget === undefined ) {
 
 		var parameters = {
-			minFilter: THREE.LinearFilter,
-			magFilter: THREE.LinearFilter,
-			format: THREE.RGBAFormat,
+			minFilter: LinearFilter,
+			magFilter: LinearFilter,
+			format: RGBAFormat,
 			stencilBuffer: false
 		};
 
 		var size = renderer.getDrawingBufferSize();
-		renderTarget = new THREE.WebGLRenderTarget( size.width, size.height, parameters );
+		renderTarget = new WebGLRenderTarget( size.width, size.height, parameters );
 		renderTarget.texture.name = 'EffectComposer.rt1';
 
 	}
@@ -32,23 +47,23 @@ THREE.EffectComposer = function ( renderer, renderTarget ) {
 
 	// dependencies
 
-	if ( THREE.CopyShader === undefined ) {
+	if ( CopyShader === undefined ) {
 
-		console.error( 'THREE.EffectComposer relies on THREE.CopyShader' );
-
-	}
-
-	if ( THREE.ShaderPass === undefined ) {
-
-		console.error( 'THREE.EffectComposer relies on THREE.ShaderPass' );
+		console.error( 'EffectComposer relies on CopyShader' );
 
 	}
 
-	this.copyPass = new THREE.ShaderPass( THREE.CopyShader );
+	if ( ShaderPass === undefined ) {
+
+		console.error( 'EffectComposer relies on ShaderPass' );
+
+	}
+
+	this.copyPass = new ShaderPass( CopyShader );
 
 };
 
-Object.assign( THREE.EffectComposer.prototype, {
+Object.assign( EffectComposer.prototype, {
 
 	swapBuffers: function () {
 
@@ -105,13 +120,13 @@ Object.assign( THREE.EffectComposer.prototype, {
 
 			}
 
-			if ( THREE.MaskPass !== undefined ) {
+			if ( MaskPass !== undefined ) {
 
-				if ( pass instanceof THREE.MaskPass ) {
+				if ( pass instanceof MaskPass ) {
 
 					maskActive = true;
 
-				} else if ( pass instanceof THREE.ClearMaskPass ) {
+				} else if ( pass instanceof ClearMaskPass ) {
 
 					maskActive = false;
 
@@ -159,31 +174,4 @@ Object.assign( THREE.EffectComposer.prototype, {
 
 } );
 
-
-THREE.Pass = function () {
-
-	// if set to true, the pass is processed by the composer
-	this.enabled = true;
-
-	// if set to true, the pass indicates to swap read and write buffer after rendering
-	this.needsSwap = true;
-
-	// if set to true, the pass clears its buffer before rendering
-	this.clear = false;
-
-	// if set to true, the result of the pass is rendered to screen
-	this.renderToScreen = false;
-
-};
-
-Object.assign( THREE.Pass.prototype, {
-
-	setSize: function ( width, height ) {},
-
-	render: function ( renderer, writeBuffer, readBuffer, delta, maskActive ) {
-
-		console.error( 'THREE.Pass: .render() must be implemented in derived pass.' );
-
-	}
-
-} );
+export { EffectComposer }

@@ -1,6 +1,6 @@
 import {
   OrthographicTrackballControls,
-} from './vendor/three/controls/todo.js';
+} from './vendor/three/controls/OrthographicTrackballControls.js';
 
 
 function initOverlay( controls ) {

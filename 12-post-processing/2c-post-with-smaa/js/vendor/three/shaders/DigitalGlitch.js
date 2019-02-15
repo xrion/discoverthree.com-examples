@@ -1,16 +1,6 @@
-/**
- * @author felixturner / http://airtight.cc/
- *
- * RGB Shift Shader
- * Shifts red and blue channels from center in opposite directions
- * Ported from http://kriss.cx/tom/2009/05/rgb-shift/
- * by Tom Butterworth / http://kriss.cx/tom/
- *
- * amount: shift distance (1 is width of input)
- * angle: shift angle in radians
- */
 
-THREE.DigitalGlitch = {
+
+var DigitalGlitch = {
 
 	uniforms: {
 
@@ -38,10 +28,10 @@ THREE.DigitalGlitch = {
 
 	fragmentShader: [
 		"uniform int byp;",//should we apply the glitch ?
-		
+
 		"uniform sampler2D tDiffuse;",
 		"uniform sampler2D tDisp;",
-		
+
 		"uniform float amount;",
 		"uniform float angle;",
 		"uniform float seed;",
@@ -50,14 +40,13 @@ THREE.DigitalGlitch = {
 		"uniform float distortion_x;",
 		"uniform float distortion_y;",
 		"uniform float col_s;",
-			
+
 		"varying vec2 vUv;",
-		
-		
+
 		"float rand(vec2 co){",
 			"return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);",
 		"}",
-				
+
 		"void main() {",
 			"if(byp<1) {",
 				"vec2 p = vUv;",
@@ -101,3 +90,5 @@ THREE.DigitalGlitch = {
 	].join( "\n" )
 
 };
+
+export { DigitalGlitch }

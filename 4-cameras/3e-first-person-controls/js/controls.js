@@ -1,6 +1,6 @@
 import {
   FirstPersonControls,
-} from './vendor/three/controls/todo.js';
+} from './vendor/three/controls/FirstPersonControls.js';
 
 function initOverlay( controls ) {
 

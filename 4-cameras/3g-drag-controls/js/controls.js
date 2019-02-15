@@ -4,7 +4,7 @@ import {
 
 import {
   DragControls,
-} from './vendor/three/controls/todo.js';
+} from './vendor/three/controls/DragControls.js';
 
 function initOverlay( controls ) {
 

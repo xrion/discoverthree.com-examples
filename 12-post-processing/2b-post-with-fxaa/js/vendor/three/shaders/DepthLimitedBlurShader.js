@@ -1,4 +1,6 @@
-THREE.DepthLimitedBlurShader = {
+
+import { Vector2 } from '../three.module.js';
+var DepthLimitedBlurShader = {
 	defines: {
 		'KERNEL_RADIUS': 4,
 		'DEPTH_PACKING': 1,
@@ -6,8 +8,8 @@ THREE.DepthLimitedBlurShader = {
 	},
 	uniforms: {
 		'tDiffuse': { type: 't', value: null },
-		'size': { type: 'v2', value: new THREE.Vector2( 512, 512 ) },
-		'sampleUvOffsets': { type: 'v2v', value: [ new THREE.Vector2( 0, 0 ) ] },
+		'size': { type: 'v2', value: new Vector2( 512, 512 ) },
+		'sampleUvOffsets': { type: 'v2v', value: [ new Vector2( 0, 0 ) ] },
 		'sampleWeights': { type: '1fv', value: [ 1.0 ] },
 		'tDepth': { type: 't', value: null },
 		'cameraNear': { type: 'f', value: 10 },
@@ -107,7 +109,7 @@ THREE.DepthLimitedBlurShader = {
 	].join( "\n" )
 };
 
-THREE.BlurShaderUtils = {
+var BlurShaderUtils = {
 
 	createSampleWeights: function ( kernelRadius, stdDev ) {
 
@@ -146,10 +148,15 @@ THREE.BlurShaderUtils = {
 	configure: function ( material, kernelRadius, stdDev, uvIncrement ) {
 
 		material.defines[ 'KERNEL_RADIUS' ] = kernelRadius;
-		material.uniforms[ 'sampleUvOffsets' ].value = THREE.BlurShaderUtils.createSampleOffsets( kernelRadius, uvIncrement );
-		material.uniforms[ 'sampleWeights' ].value = THREE.BlurShaderUtils.createSampleWeights( kernelRadius, stdDev );
+		material.uniforms[ 'sampleUvOffsets' ].value = BlurShaderUtils.createSampleOffsets( kernelRadius, uvIncrement );
+		material.uniforms[ 'sampleWeights' ].value = BlurShaderUtils.createSampleWeights( kernelRadius, stdDev );
 		material.needsUpdate = true;
 
 	}
 
 };
+
+export {
+	DepthLimitedBlurShader,
+	BlurShaderUtils
+}

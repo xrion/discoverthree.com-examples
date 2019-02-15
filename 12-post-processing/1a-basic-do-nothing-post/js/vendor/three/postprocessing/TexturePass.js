@@ -1,22 +1,34 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- */
 
-THREE.TexturePass = function ( map, opacity ) {
 
-	THREE.Pass.call( this );
+import {
+	ShaderMaterial,
+	OrthographicCamera,
+	Scene,
+	Mesh,
+	PlaneBufferGeometry,
+	UniformsUtils,
+} from '../three.module.js';
 
-	if ( THREE.CopyShader === undefined )
-		console.error( "THREE.TexturePass relies on THREE.CopyShader" );
 
-	var shader = THREE.CopyShader;
+import { Pass } from './Pass.js';
+import { CopyShader } from '../shaders/CopyShader.js';
+
+
+var TexturePass = function ( map, opacity ) {
+
+	Pass.call( this );
+
+	if ( CopyShader === undefined )
+		console.error( "TexturePass relies on CopyShader" );
+
+	var shader = CopyShader;
 
 	this.map = map;
 	this.opacity = ( opacity !== undefined ) ? opacity : 1.0;
 
-	this.uniforms = THREE.UniformsUtils.clone( shader.uniforms );
+	this.uniforms = UniformsUtils.clone( shader.uniforms );
 
-	this.material = new THREE.ShaderMaterial( {
+	this.material = new ShaderMaterial( {
 
 		uniforms: this.uniforms,
 		vertexShader: shader.vertexShader,
@@ -28,18 +40,18 @@ THREE.TexturePass = function ( map, opacity ) {
 
 	this.needsSwap = false;
 
-	this.camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
-	this.scene  = new THREE.Scene();
+	this.camera = new OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+	this.scene  = new Scene();
 
-	this.quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2 ), null );
+	this.quad = new Mesh( new PlaneBufferGeometry( 2, 2 ), null );
 	this.quad.frustumCulled = false; // Avoid getting clipped
 	this.scene.add( this.quad );
 
 };
 
-THREE.TexturePass.prototype = Object.assign( Object.create( THREE.Pass.prototype ), {
+TexturePass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
-	constructor: THREE.TexturePass,
+	constructor: TexturePass,
 
 	render: function ( renderer, writeBuffer, readBuffer, delta, maskActive ) {
 
@@ -58,3 +70,5 @@ THREE.TexturePass.prototype = Object.assign( Object.create( THREE.Pass.prototype
 	}
 
 } );
+
+export { TexturePass }

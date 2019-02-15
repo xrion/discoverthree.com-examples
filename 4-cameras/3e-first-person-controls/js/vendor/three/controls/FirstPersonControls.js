@@ -1,13 +1,12 @@
-/**
- * @author mrdoob / http://mrdoob.com/
- * @author alteredq / http://alteredqualia.com/
- * @author paulirish / http://paulirish.com/
- */
 
-THREE.FirstPersonControls = function ( object, domElement ) {
+import {
+	Vector3,
+MathUtils as MathUtils,
+} from '../three.module.js';
+var FirstPersonControls = function ( object, domElement ) {
 
 	this.object = object;
-	this.target = new THREE.Vector3( 0, 0, 0 );
+	this.target = new Vector3( 0, 0, 0 );
 
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
 
@@ -142,20 +141,20 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		switch ( event.keyCode ) {
 
-			case 38: /*up*/
-			case 87: /*W*/ this.moveForward = true; break;
+			case 38:
+			case 87:  this.moveForward = true; break;
 
-			case 37: /*left*/
-			case 65: /*A*/ this.moveLeft = true; break;
+			case 37:
+			case 65:  this.moveLeft = true; break;
 
-			case 40: /*down*/
-			case 83: /*S*/ this.moveBackward = true; break;
+			case 40:
+			case 83:  this.moveBackward = true; break;
 
-			case 39: /*right*/
-			case 68: /*D*/ this.moveRight = true; break;
+			case 39:
+			case 68:  this.moveRight = true; break;
 
-			case 82: /*R*/ this.moveUp = true; break;
-			case 70: /*F*/ this.moveDown = true; break;
+			case 82:  this.moveUp = true; break;
+			case 70:  this.moveDown = true; break;
 
 		}
 
@@ -165,20 +164,20 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		switch ( event.keyCode ) {
 
-			case 38: /*up*/
-			case 87: /*W*/ this.moveForward = false; break;
+			case 38:
+			case 87:  this.moveForward = false; break;
 
-			case 37: /*left*/
-			case 65: /*A*/ this.moveLeft = false; break;
+			case 37:
+			case 65:  this.moveLeft = false; break;
 
-			case 40: /*down*/
-			case 83: /*S*/ this.moveBackward = false; break;
+			case 40:
+			case 83:  this.moveBackward = false; break;
 
-			case 39: /*right*/
-			case 68: /*D*/ this.moveRight = false; break;
+			case 39:
+			case 68:  this.moveRight = false; break;
 
-			case 82: /*R*/ this.moveUp = false; break;
-			case 70: /*F*/ this.moveDown = false; break;
+			case 82:  this.moveUp = false; break;
+			case 70:  this.moveDown = false; break;
 
 		}
 
@@ -190,7 +189,7 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 
 		if ( this.heightSpeed ) {
 
-			var y = THREE.Math.clamp( this.object.position.y, this.heightMin, this.heightMax );
+			var y = MathUtils.clamp( this.object.position.y, this.heightMin, this.heightMax );
 			var heightDelta = y - this.heightMin;
 
 			this.autoSpeedFactor = delta * ( heightDelta * this.heightCoef );
@@ -232,13 +231,13 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 		if ( this.lookVertical ) this.lat -= this.mouseY * actualLookSpeed * verticalLookRatio;
 
 		this.lat = Math.max( - 85, Math.min( 85, this.lat ) );
-		this.phi = THREE.Math.degToRad( 90 - this.lat );
+		this.phi = MathUtils.degToRad( 90 - this.lat );
 
-		this.theta = THREE.Math.degToRad( this.lon );
+		this.theta = MathUtils.degToRad( this.lon );
 
 		if ( this.constrainVertical ) {
 
-			this.phi = THREE.Math.mapLinear( this.phi, 0, Math.PI, this.verticalMin, this.verticalMax );
+			this.phi = MathUtils.mapLinear( this.phi, 0, Math.PI, this.verticalMin, this.verticalMax );
 
 		}
 
@@ -298,3 +297,5 @@ THREE.FirstPersonControls = function ( object, domElement ) {
 	this.handleResize();
 
 };
+
+export { FirstPersonControls }

@@ -1,37 +1,51 @@
-/**
- * @author HypnosNova / https://www.threejs.org.cn/gallery/
- */
 
-THREE.AfterimagePass = function ( damp ) {
+import {
+	WebGLRenderTarget,
+	ShaderMaterial,
+	Scene,
+	OrthographicCamera,
+	PlaneBufferGeometry,
+	Mesh,
+	MeshBasicMaterial,
+	NearestFilter,
+	LinearFilter,
+	RGBAFormat,
+	UniformsUtils,
+} from '../three.module.js';
 
-	THREE.Pass.call( this );
+import { Pass } from './Pass.js';
+import { AfterimageShader } from '../shaders/AfterimageShader.js';
 
-	if ( THREE.AfterimageShader === undefined )
-		console.error( "THREE.AfterimagePass relies on THREE.AfterimageShader" );
+var AfterimagePass = function ( damp ) {
 
-	this.shader = THREE.AfterimageShader;
+	Pass.call( this );
 
-	this.uniforms = THREE.UniformsUtils.clone( this.shader.uniforms );
+	if ( AfterimageShader === undefined )
+		console.error( "AfterimagePass relies on AfterimageShader" );
+
+	this.shader = AfterimageShader;
+
+	this.uniforms = UniformsUtils.clone( this.shader.uniforms );
 
 	this.uniforms[ "damp" ].value = damp !== undefined ? damp : 0.96;
 
-	this.textureComp = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, {
+	this.textureComp = new WebGLRenderTarget( window.innerWidth, window.innerHeight, {
 
-		minFilter: THREE.LinearFilter,
-		magFilter: THREE.NearestFilter,
-		format: THREE.RGBAFormat
-
-	} );
-
-	this.textureOld = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, {
-
-		minFilter: THREE.LinearFilter,
-		magFilter: THREE.NearestFilter,
-		format: THREE.RGBAFormat
+		minFilter: LinearFilter,
+		magFilter: NearestFilter,
+		format: RGBAFormat
 
 	} );
 
-	this.shaderMaterial = new THREE.ShaderMaterial( {
+	this.textureOld = new WebGLRenderTarget( window.innerWidth, window.innerHeight, {
+
+		minFilter: LinearFilter,
+		magFilter: NearestFilter,
+		format: RGBAFormat
+
+	} );
+
+	this.shaderMaterial = new ShaderMaterial( {
 
 		uniforms: this.uniforms,
 		vertexShader: this.shader.vertexShader,
@@ -39,29 +53,29 @@ THREE.AfterimagePass = function ( damp ) {
 
 	} );
 
-	this.sceneComp = new THREE.Scene();
-	this.scene = new THREE.Scene();
+	this.sceneComp = new Scene();
+	this.scene = new Scene();
 
-	this.camera = new THREE.OrthographicCamera( -1, 1, 1, -1, 0, 1 );
+	this.camera = new OrthographicCamera( -1, 1, 1, -1, 0, 1 );
 	this.camera.position.z = 1;
 
-	var geometry = new THREE.PlaneBufferGeometry( 2, 2 );
+	var geometry = new PlaneBufferGeometry( 2, 2 );
 
-	this.quadComp = new THREE.Mesh( geometry, this.shaderMaterial );
+	this.quadComp = new Mesh( geometry, this.shaderMaterial );
 	this.sceneComp.add( this.quadComp );
 
-	var material = new THREE.MeshBasicMaterial( { 
+	var material = new MeshBasicMaterial( {
 		map: this.textureComp.texture
 	} );
 
-	var quadScreen = new THREE.Mesh( geometry, material );
+	var quadScreen = new Mesh( geometry, material );
 	this.scene.add( quadScreen );
 
 };
 
-THREE.AfterimagePass.prototype = Object.assign( Object.create( THREE.Pass.prototype ), {
+AfterimagePass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
-	constructor: THREE.AfterimagePass,
+	constructor: AfterimagePass,
 
 	render: function ( renderer, writeBuffer, readBuffer ) {
 
@@ -72,17 +86,19 @@ THREE.AfterimagePass.prototype = Object.assign( Object.create( THREE.Pass.protot
 
 		renderer.render( this.sceneComp, this.camera, this.textureComp );
 		renderer.render( this.scene, this.camera, this.textureOld );
-		
+
 		if ( this.renderToScreen ) {
-			
+
 			renderer.render( this.scene, this.camera );
-			
+
 		} else {
-			
+
 			renderer.render( this.scene, this.camera, writeBuffer, this.clear );
-			
+
 		}
 
 	}
 
 } );
+
+export { AfterimagePass }

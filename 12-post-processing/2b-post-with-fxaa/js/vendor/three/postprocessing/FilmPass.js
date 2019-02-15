@@ -1,19 +1,30 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- */
 
-THREE.FilmPass = function ( noiseIntensity, scanlinesIntensity, scanlinesCount, grayscale ) {
 
-	THREE.Pass.call( this );
+import {
+	ShaderMaterial,
+	OrthographicCamera,
+	Scene,
+	Mesh,
+	PlaneBufferGeometry,
+	UniformsUtils,
+} from '../three.module.js';
 
-	if ( THREE.FilmShader === undefined )
-		console.error( "THREE.FilmPass relies on THREE.FilmShader" );
 
-	var shader = THREE.FilmShader;
+import { Pass } from './Pass.js';
+import { FilmShader } from '../shaders/FilmShader.js'
 
-	this.uniforms = THREE.UniformsUtils.clone( shader.uniforms );
+var FilmPass = function ( noiseIntensity, scanlinesIntensity, scanlinesCount, grayscale ) {
 
-	this.material = new THREE.ShaderMaterial( {
+	Pass.call( this );
+
+	if ( FilmShader === undefined )
+		console.error( "FilmPass relies on FilmShader" );
+
+	var shader = FilmShader;
+
+	this.uniforms = UniformsUtils.clone( shader.uniforms );
+
+	this.material = new ShaderMaterial( {
 
 		uniforms: this.uniforms,
 		vertexShader: shader.vertexShader,
@@ -26,18 +37,18 @@ THREE.FilmPass = function ( noiseIntensity, scanlinesIntensity, scanlinesCount, 
 	if ( scanlinesIntensity !== undefined ) this.uniforms.sIntensity.value = scanlinesIntensity;
 	if ( scanlinesCount !== undefined ) this.uniforms.sCount.value = scanlinesCount;
 
-	this.camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
-	this.scene  = new THREE.Scene();
+	this.camera = new OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+	this.scene  = new Scene();
 
-	this.quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2 ), null );
+	this.quad = new Mesh( new PlaneBufferGeometry( 2, 2 ), null );
 	this.quad.frustumCulled = false; // Avoid getting clipped
 	this.scene.add( this.quad );
 
 };
 
-THREE.FilmPass.prototype = Object.assign( Object.create( THREE.Pass.prototype ), {
+FilmPass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
-	constructor: THREE.FilmPass,
+	constructor: FilmPass,
 
 	render: function ( renderer, writeBuffer, readBuffer, delta, maskActive ) {
 
@@ -59,3 +70,5 @@ THREE.FilmPass.prototype = Object.assign( Object.create( THREE.Pass.prototype ),
 	}
 
 } );
+
+export { FilmPass }

@@ -1,12 +1,6 @@
-/**
- * @author HypnosNova / https://www.threejs.org.cn/gallery/
- *
- * Afterimage shader
- * I created this effect inspired by a demo on codepen:
- * https://codepen.io/brunoimbrizi/pen/MoRJaN?page=1&
- */
 
-THREE.AfterimageShader = {
+
+var AfterimageShader = {
 
 	uniforms: {
 
@@ -37,7 +31,7 @@ THREE.AfterimageShader = {
 		"uniform sampler2D tNew;",
 
 		"varying vec2 vUv;",
-		
+
 		"vec4 when_gt( vec4 x, float y ) {",
 
 			"return max( sign( x - y ), 0.0 );",
@@ -48,7 +42,7 @@ THREE.AfterimageShader = {
 
 			"vec4 texelOld = texture2D( tOld, vUv );",
 			"vec4 texelNew = texture2D( tNew, vUv );",
-			
+
 			"texelOld *= damp * when_gt( texelOld, 0.1 );",
 
 			"gl_FragColor = max(texelNew, texelOld);",
@@ -58,3 +52,5 @@ THREE.AfterimageShader = {
 	].join( "\n" )
 
 };
+
+export { AfterimageShader }

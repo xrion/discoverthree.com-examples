@@ -1,10 +1,26 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- */
 
-THREE.BloomPass = function ( strength, kernelSize, sigma, resolution ) {
+import {
+	WebGLRenderTarget,
+	ShaderMaterial,
+	OrthographicCamera,
+	Scene,
+	Mesh,
+	PlaneBufferGeometry,
+	Vector2,
+	AdditiveBlending,
+	LinearFilter,
+	RGBAFormat,
+	UniformsUtils,
+} from '../three.module.js';
 
-	THREE.Pass.call( this );
+
+import { Pass } from './Pass.js';
+import { CopyShader } from '../shaders/CopyShader.js';
+import { ConvolutionShader } from '../shaders/ConvolutionShader.js';
+
+var BloomPass = function ( strength, kernelSize, sigma, resolution ) {
+
+	Pass.call( this );
 
 	strength = ( strength !== undefined ) ? strength : 1;
 	kernelSize = ( kernelSize !== undefined ) ? kernelSize : 25;
@@ -13,47 +29,47 @@ THREE.BloomPass = function ( strength, kernelSize, sigma, resolution ) {
 
 	// render targets
 
-	var pars = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat };
+	var pars = { minFilter: LinearFilter, magFilter: LinearFilter, format: RGBAFormat };
 
-	this.renderTargetX = new THREE.WebGLRenderTarget( resolution, resolution, pars );
+	this.renderTargetX = new WebGLRenderTarget( resolution, resolution, pars );
 	this.renderTargetX.texture.name = "BloomPass.x";
-	this.renderTargetY = new THREE.WebGLRenderTarget( resolution, resolution, pars );
+	this.renderTargetY = new WebGLRenderTarget( resolution, resolution, pars );
 	this.renderTargetY.texture.name = "BloomPass.y";
 
 	// copy material
 
-	if ( THREE.CopyShader === undefined )
-		console.error( "THREE.BloomPass relies on THREE.CopyShader" );
+	if ( CopyShader === undefined )
+		console.error( "BloomPass relies on CopyShader" );
 
-	var copyShader = THREE.CopyShader;
+	var copyShader = CopyShader;
 
-	this.copyUniforms = THREE.UniformsUtils.clone( copyShader.uniforms );
+	this.copyUniforms = UniformsUtils.clone( copyShader.uniforms );
 
 	this.copyUniforms[ "opacity" ].value = strength;
 
-	this.materialCopy = new THREE.ShaderMaterial( {
+	this.materialCopy = new ShaderMaterial( {
 
 		uniforms: this.copyUniforms,
 		vertexShader: copyShader.vertexShader,
 		fragmentShader: copyShader.fragmentShader,
-		blending: THREE.AdditiveBlending,
+		blending: AdditiveBlending,
 		transparent: true
 
 	} );
 
 	// convolution material
 
-	if ( THREE.ConvolutionShader === undefined )
-		console.error( "THREE.BloomPass relies on THREE.ConvolutionShader" );
+	if ( ConvolutionShader === undefined )
+		console.error( "BloomPass relies on ConvolutionShader" );
 
-	var convolutionShader = THREE.ConvolutionShader;
+	var convolutionShader = ConvolutionShader;
 
-	this.convolutionUniforms = THREE.UniformsUtils.clone( convolutionShader.uniforms );
+	this.convolutionUniforms = UniformsUtils.clone( convolutionShader.uniforms );
 
-	this.convolutionUniforms[ "uImageIncrement" ].value = THREE.BloomPass.blurX;
-	this.convolutionUniforms[ "cKernel" ].value = THREE.ConvolutionShader.buildKernel( sigma );
+	this.convolutionUniforms[ "uImageIncrement" ].value = BloomPass.blurX;
+	this.convolutionUniforms[ "cKernel" ].value = ConvolutionShader.buildKernel( sigma );
 
-	this.materialConvolution = new THREE.ShaderMaterial( {
+	this.materialConvolution = new ShaderMaterial( {
 
 		uniforms: this.convolutionUniforms,
 		vertexShader:  convolutionShader.vertexShader,
@@ -67,18 +83,18 @@ THREE.BloomPass = function ( strength, kernelSize, sigma, resolution ) {
 
 	this.needsSwap = false;
 
-	this.camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
-	this.scene  = new THREE.Scene();
+	this.camera = new OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+	this.scene  = new Scene();
 
-	this.quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2 ), null );
+	this.quad = new Mesh( new PlaneBufferGeometry( 2, 2 ), null );
 	this.quad.frustumCulled = false; // Avoid getting clipped
 	this.scene.add( this.quad );
 
 };
 
-THREE.BloomPass.prototype = Object.assign( Object.create( THREE.Pass.prototype ), {
+BloomPass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
-	constructor: THREE.BloomPass,
+	constructor: BloomPass,
 
 	render: function ( renderer, writeBuffer, readBuffer, delta, maskActive ) {
 
@@ -89,15 +105,14 @@ THREE.BloomPass.prototype = Object.assign( Object.create( THREE.Pass.prototype )
 		this.quad.material = this.materialConvolution;
 
 		this.convolutionUniforms[ "tDiffuse" ].value = readBuffer.texture;
-		this.convolutionUniforms[ "uImageIncrement" ].value = THREE.BloomPass.blurX;
+		this.convolutionUniforms[ "uImageIncrement" ].value = BloomPass.blurX;
 
 		renderer.render( this.scene, this.camera, this.renderTargetX, true );
-
 
 		// Render quad with blured scene into texture (convolution pass 2)
 
 		this.convolutionUniforms[ "tDiffuse" ].value = this.renderTargetX.texture;
-		this.convolutionUniforms[ "uImageIncrement" ].value = THREE.BloomPass.blurY;
+		this.convolutionUniforms[ "uImageIncrement" ].value = BloomPass.blurY;
 
 		renderer.render( this.scene, this.camera, this.renderTargetY, true );
 
@@ -115,5 +130,7 @@ THREE.BloomPass.prototype = Object.assign( Object.create( THREE.Pass.prototype )
 
 } );
 
-THREE.BloomPass.blurX = new THREE.Vector2( 0.001953125, 0.0 );
-THREE.BloomPass.blurY = new THREE.Vector2( 0.0, 0.001953125 );
+BloomPass.blurX = new Vector2( 0.001953125, 0.0 );
+BloomPass.blurY = new Vector2( 0.0, 0.001953125 );
+
+export { BloomPass }

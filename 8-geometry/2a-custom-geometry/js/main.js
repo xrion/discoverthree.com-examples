@@ -1,4 +1,4 @@
-import App from './vendor/App.module.js';
+import App from './vendor/App.js';
 
 import createGeometries from './geometries.js';
 import createMaterials from './materials.js';

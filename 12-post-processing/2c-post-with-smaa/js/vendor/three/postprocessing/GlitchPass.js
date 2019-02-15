@@ -1,32 +1,45 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- */
 
-THREE.GlitchPass = function ( dt_size ) {
 
-	THREE.Pass.call( this );
+import {
+	ShaderMaterial,
+	OrthographicCamera,
+	Scene,
+	Mesh,
+	PlaneBufferGeometry,
+	DataTexture,
+	FloatType,
+	RGBFormat,
+	UniformsUtils,
+	MathUtils as MathUtils,
+} from '../three.module.js';
 
-	if ( THREE.DigitalGlitch === undefined ) console.error( "THREE.GlitchPass relies on THREE.DigitalGlitch" );
 
-	var shader = THREE.DigitalGlitch;
-	this.uniforms = THREE.UniformsUtils.clone( shader.uniforms );
+import { Pass } from './Pass.js';
+import { DigitalGlitch } from '../shaders/DigitalGlitch.js'
+
+var GlitchPass = function ( dt_size ) {
+
+	Pass.call( this );
+
+	if ( DigitalGlitch === undefined ) console.error( "GlitchPass relies on DigitalGlitch" );
+
+	var shader = DigitalGlitch;
+	this.uniforms = UniformsUtils.clone( shader.uniforms );
 
 	if ( dt_size == undefined ) dt_size = 64;
 
-
 	this.uniforms[ "tDisp" ].value = this.generateHeightmap( dt_size );
 
-
-	this.material = new THREE.ShaderMaterial( {
+	this.material = new ShaderMaterial( {
 		uniforms: this.uniforms,
 		vertexShader: shader.vertexShader,
 		fragmentShader: shader.fragmentShader
 	} );
 
-	this.camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
-	this.scene  = new THREE.Scene();
+	this.camera = new OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+	this.scene  = new Scene();
 
-	this.quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2 ), null );
+	this.quad = new Mesh( new PlaneBufferGeometry( 2, 2 ), null );
 	this.quad.frustumCulled = false; // Avoid getting clipped
 	this.scene.add( this.quad );
 
@@ -36,9 +49,9 @@ THREE.GlitchPass = function ( dt_size ) {
 
 };
 
-THREE.GlitchPass.prototype = Object.assign( Object.create( THREE.Pass.prototype ), {
+GlitchPass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
-	constructor: THREE.GlitchPass,
+	constructor: GlitchPass,
 
 	render: function ( renderer, writeBuffer, readBuffer, delta, maskActive ) {
 
@@ -49,22 +62,22 @@ THREE.GlitchPass.prototype = Object.assign( Object.create( THREE.Pass.prototype 
 		if ( this.curF % this.randX == 0 || this.goWild == true ) {
 
 			this.uniforms[ 'amount' ].value = Math.random() / 30;
-			this.uniforms[ 'angle' ].value = THREE.Math.randFloat( - Math.PI, Math.PI );
-			this.uniforms[ 'seed_x' ].value = THREE.Math.randFloat( - 1, 1 );
-			this.uniforms[ 'seed_y' ].value = THREE.Math.randFloat( - 1, 1 );
-			this.uniforms[ 'distortion_x' ].value = THREE.Math.randFloat( 0, 1 );
-			this.uniforms[ 'distortion_y' ].value = THREE.Math.randFloat( 0, 1 );
+			this.uniforms[ 'angle' ].value = MathUtils.randFloat( - Math.PI, Math.PI );
+			this.uniforms[ 'seed_x' ].value = MathUtils.randFloat( - 1, 1 );
+			this.uniforms[ 'seed_y' ].value = MathUtils.randFloat( - 1, 1 );
+			this.uniforms[ 'distortion_x' ].value = MathUtils.randFloat( 0, 1 );
+			this.uniforms[ 'distortion_y' ].value = MathUtils.randFloat( 0, 1 );
 			this.curF = 0;
 			this.generateTrigger();
 
 		} else if ( this.curF % this.randX < this.randX / 5 ) {
 
 			this.uniforms[ 'amount' ].value = Math.random() / 90;
-			this.uniforms[ 'angle' ].value = THREE.Math.randFloat( - Math.PI, Math.PI );
-			this.uniforms[ 'distortion_x' ].value = THREE.Math.randFloat( 0, 1 );
-			this.uniforms[ 'distortion_y' ].value = THREE.Math.randFloat( 0, 1 );
-			this.uniforms[ 'seed_x' ].value = THREE.Math.randFloat( - 0.3, 0.3 );
-			this.uniforms[ 'seed_y' ].value = THREE.Math.randFloat( - 0.3, 0.3 );
+			this.uniforms[ 'angle' ].value = MathUtils.randFloat( - Math.PI, Math.PI );
+			this.uniforms[ 'distortion_x' ].value = MathUtils.randFloat( 0, 1 );
+			this.uniforms[ 'distortion_y' ].value = MathUtils.randFloat( 0, 1 );
+			this.uniforms[ 'seed_x' ].value = MathUtils.randFloat( - 0.3, 0.3 );
+			this.uniforms[ 'seed_y' ].value = MathUtils.randFloat( - 0.3, 0.3 );
 
 		} else if ( this.goWild == false ) {
 
@@ -89,7 +102,7 @@ THREE.GlitchPass.prototype = Object.assign( Object.create( THREE.Pass.prototype 
 
 	generateTrigger: function() {
 
-		this.randX = THREE.Math.randInt( 120, 240 );
+		this.randX = MathUtils.randInt( 120, 240 );
 
 	},
 
@@ -100,17 +113,19 @@ THREE.GlitchPass.prototype = Object.assign( Object.create( THREE.Pass.prototype 
 
 		for ( var i = 0; i < length; i ++ ) {
 
-			var val = THREE.Math.randFloat( 0, 1 );
+			var val = MathUtils.randFloat( 0, 1 );
 			data_arr[ i * 3 + 0 ] = val;
 			data_arr[ i * 3 + 1 ] = val;
 			data_arr[ i * 3 + 2 ] = val;
 
 		}
 
-		var texture = new THREE.DataTexture( data_arr, dt_size, dt_size, THREE.RGBFormat, THREE.FloatType );
+		var texture = new DataTexture( data_arr, dt_size, dt_size, RGBFormat, FloatType );
 		texture.needsUpdate = true;
 		return texture;
 
 	}
 
 } );
+
+export { GlitchPass }

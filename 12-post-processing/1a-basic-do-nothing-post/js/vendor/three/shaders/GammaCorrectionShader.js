@@ -1,11 +1,6 @@
-/**
- * @author WestLangley / http://github.com/WestLangley
- *
- * Gamma Correction Shader
- * http://en.wikipedia.org/wiki/gamma_correction
- */
 
-THREE.GammaCorrectionShader = {
+
+var GammaCorrectionShader = {
 
 	uniforms: {
 
@@ -43,3 +38,5 @@ THREE.GammaCorrectionShader = {
 	].join( "\n" )
 
 };
+
+export { GammaCorrectionShader }

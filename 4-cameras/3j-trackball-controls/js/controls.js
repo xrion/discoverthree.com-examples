@@ -1,6 +1,6 @@
 import {
   TrackballControls,
-} from './vendor/three/controls/todo.js';
+} from './vendor/three/controls/TrackballControls.js';
 
 function initOverlay( controls ) {
 

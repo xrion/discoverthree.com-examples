@@ -1,10 +1,6 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- *
- * Based on Nvidia Cg tutorial
- */
 
-THREE.FresnelShader = {
+
+var FresnelShader = {
 
 	uniforms: {
 
@@ -72,3 +68,5 @@ THREE.FresnelShader = {
 	].join( "\n" )
 
 };
+
+export { FresnelShader }

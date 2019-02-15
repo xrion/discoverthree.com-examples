@@ -1,10 +1,6 @@
-/**
- * @author wongbryan / http://wongbryan.github.io
- *
- * Pixelation shader
- */
 
-THREE.PixelShader = {
+
+var PixelShader = {
 
 	uniforms: {
 
@@ -45,3 +41,5 @@ THREE.PixelShader = {
 
 	].join( "\n" )
 };
+
+export { PixelShader }

@@ -1,6 +1,6 @@
 import {
   PointerLockControls,
-} from './vendor/three/controls/todo.js';
+} from './vendor/three/controls/PointerLockControls.js';
 
 function initOverlay( controls ) {
 

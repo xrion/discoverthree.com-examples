@@ -1,13 +1,6 @@
-/**
- * @author meatbags / xavierburrow.com, github/meatbags
- *
- * RGB Halftone shader for three.js.
- *	NOTE:
- * 		Shape (1 = Dot, 2 = Ellipse, 3 = Line, 4 = Square)
- *		Blending Mode (1 = Linear, 2 = Multiply, 3 = Add, 4 = Lighter, 5 = Darker)
- */
 
-THREE.HalftoneShader = {
+
+var HalftoneShader = {
 
 	uniforms: {
 		"tDiffuse": { value: null },
@@ -312,3 +305,5 @@ THREE.HalftoneShader = {
 	].join( "\n" )
 
 };
+
+export { HalftoneShader }

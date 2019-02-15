@@ -1,6 +1,6 @@
 import {
   Mesh,
-} from './vendor/three/three.module.js';
+} from './vendor/three/three.js';
 
 export default function createMeshes( geometries, materials ) {
 

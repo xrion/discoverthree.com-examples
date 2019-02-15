@@ -1,12 +1,7 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- *
- * Convolution shader
- * ported from o3d sample to WebGL / GLSL
- * http://o3d.googlecode.com/svn/trunk/samples/convolution.html
- */
 
-THREE.ConvolutionShader = {
+import { Vector2 } from '../three.module.js';
+
+var ConvolutionShader = {
 
 	defines: {
 
@@ -18,7 +13,7 @@ THREE.ConvolutionShader = {
 	uniforms: {
 
 		"tDiffuse":        { value: null },
-		"uImageIncrement": { value: new THREE.Vector2( 0.001953125, 0.0 ) },
+		"uImageIncrement": { value: new Vector2( 0.001953125, 0.0 ) },
 		"cKernel":         { value: [] }
 
 	},
@@ -63,7 +58,6 @@ THREE.ConvolutionShader = {
 
 		"}"
 
-
 	].join( "\n" ),
 
 	buildKernel: function ( sigma ) {
@@ -99,3 +93,5 @@ THREE.ConvolutionShader = {
 	}
 
 };
+
+export { ConvolutionShader }

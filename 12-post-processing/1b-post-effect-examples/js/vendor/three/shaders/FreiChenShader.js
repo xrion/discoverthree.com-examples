@@ -1,18 +1,12 @@
-/**
- * @author zz85 / https://github.com/zz85 | https://www.lab4games.net/zz85/blog
- *
- * Edge Detection Shader using Frei-Chen filter
- * Based on http://rastergrid.com/blog/2011/01/frei-chen-edge-detector
- *
- * aspect: vec2 of (1/width, 1/height)
- */
 
-THREE.FreiChenShader = {
+import { Vector2 } from '../three.module.js';
+
+var FreiChenShader = {
 
 	uniforms: {
 
 		"tDiffuse": { value: null },
-		"aspect":    { value: new THREE.Vector2( 512, 512 ) }
+		"aspect":    { value: new Vector2( 512, 512 ) }
 	},
 
 	vertexShader: [
@@ -36,7 +30,6 @@ THREE.FreiChenShader = {
 		"uniform vec2 aspect;",
 
 		"vec2 texel = vec2(1.0 / aspect.x, 1.0 / aspect.y);",
-
 
 		"mat3 G[9];",
 
@@ -69,7 +62,6 @@ THREE.FreiChenShader = {
 			"float cnv[9];",
 			"vec3 sample;",
 
-			/* fetch the 3x3 neighbourhood and use the RGB vector's length as intensity value */
 			"for (float i=0.0; i<3.0; i++) {",
 				"for (float j=0.0; j<3.0; j++) {",
 					"sample = texture2D(tDiffuse, vUv + texel * vec2(i-1.0,j-1.0) ).rgb;",
@@ -77,7 +69,6 @@ THREE.FreiChenShader = {
 				"}",
 			"}",
 
-			/* calculate the convolution values for all the masks */
 			"for (int i=0; i<9; i++) {",
 				"float dp3 = dot(G[i][0], I[0]) + dot(G[i][1], I[1]) + dot(G[i][2], I[2]);",
 				"cnv[i] = dp3 * dp3;",
@@ -91,3 +82,5 @@ THREE.FreiChenShader = {
 
 	].join( "\n" )
 };
+
+export { FreiChenShader }

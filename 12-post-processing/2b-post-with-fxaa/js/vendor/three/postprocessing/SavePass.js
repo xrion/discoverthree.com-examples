@@ -1,21 +1,35 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- */
 
-THREE.SavePass = function ( renderTarget ) {
 
-	THREE.Pass.call( this );
+import {
+	ShaderMaterial,
+	WebGLRenderTarget,
+	OrthographicCamera,
+	Scene,
+	Mesh,
+	PlaneBufferGeometry,
+	LinearFilter,
+	RGBFormat,
+	UniformsUtils,
+} from '../three.module.js';
 
-	if ( THREE.CopyShader === undefined )
-		console.error( "THREE.SavePass relies on THREE.CopyShader" );
 
-	var shader = THREE.CopyShader;
+import { Pass } from './Pass.js';
+import { CopyShader } from '../shaders/CopyShader.js';
+
+var SavePass = function ( renderTarget ) {
+
+	Pass.call( this );
+
+	if ( CopyShader === undefined )
+		console.error( "SavePass relies on CopyShader" );
+
+	var shader = CopyShader;
 
 	this.textureID = "tDiffuse";
 
-	this.uniforms = THREE.UniformsUtils.clone( shader.uniforms );
+	this.uniforms = UniformsUtils.clone( shader.uniforms );
 
-	this.material = new THREE.ShaderMaterial( {
+	this.material = new ShaderMaterial( {
 
 		uniforms: this.uniforms,
 		vertexShader: shader.vertexShader,
@@ -27,25 +41,25 @@ THREE.SavePass = function ( renderTarget ) {
 
 	if ( this.renderTarget === undefined ) {
 
-		this.renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBFormat, stencilBuffer: false } );
+		this.renderTarget = new WebGLRenderTarget( window.innerWidth, window.innerHeight, { minFilter: LinearFilter, magFilter: LinearFilter, format: RGBFormat, stencilBuffer: false } );
 		this.renderTarget.texture.name = "SavePass.rt";
 
 	}
 
 	this.needsSwap = false;
 
-	this.camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
-	this.scene = new THREE.Scene();
+	this.camera = new OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+	this.scene = new Scene();
 
-	this.quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2 ), null );
+	this.quad = new Mesh( new PlaneBufferGeometry( 2, 2 ), null );
 	this.quad.frustumCulled = false; // Avoid getting clipped
 	this.scene.add( this.quad );
 
 };
 
-THREE.SavePass.prototype = Object.assign( Object.create( THREE.Pass.prototype ), {
+SavePass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
-	constructor: THREE.SavePass,
+	constructor: SavePass,
 
 	render: function ( renderer, writeBuffer, readBuffer ) {
 
@@ -62,3 +76,5 @@ THREE.SavePass.prototype = Object.assign( Object.create( THREE.Pass.prototype ),
 	}
 
 } );
+
+export { SavePass }

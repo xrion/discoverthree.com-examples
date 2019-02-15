@@ -1,4 +1,10 @@
-THREE.SAOShader = {
+
+import {
+	Vector2,
+ 	Matrix4
+} from '../three.module.js';
+
+var SAOShader = {
 	defines: {
 		'NUM_SAMPLES': 7,
 		'NUM_RINGS': 4,
@@ -12,12 +18,12 @@ THREE.SAOShader = {
 		'tDepth': { type: 't', value: null },
 		'tDiffuse': { type: 't', value: null },
 		'tNormal': { type: 't', value: null },
-		'size': { type: 'v2', value: new THREE.Vector2( 512, 512 ) },
+		'size': { type: 'v2', value: new Vector2( 512, 512 ) },
 
 		'cameraNear': { type: 'f', value: 1 },
 		'cameraFar': { type: 'f', value: 100 },
-		'cameraProjectionMatrix': { type: 'm4', value: new THREE.Matrix4() },
-		'cameraInverseProjectionMatrix': { type: 'm4', value: new THREE.Matrix4() },
+		'cameraProjectionMatrix': { type: 'm4', value: new Matrix4() },
+		'cameraInverseProjectionMatrix': { type: 'm4', value: new Matrix4() },
 
 		'scale': { type: 'f', value: 1.0 },
 		'intensity': { type: 'f', value: 0.1 },
@@ -158,7 +164,6 @@ THREE.SAOShader = {
 		"	return occlusionSum * ( intensity / weightSum );",
 		"}",
 
-
 		"void main() {",
 		"	float centerDepth = getDepth( vUv );",
 		"	if( centerDepth >= ( 1.0 - EPSILON ) ) {",
@@ -175,3 +180,5 @@ THREE.SAOShader = {
 		"}"
 	].join( "\n" )
 };
+
+export { SAOShader }

@@ -7,7 +7,7 @@ import {
 
 import {
   OrbitControls,
-} from './vendor/three/controls/OrbitControls.module.js';
+} from './vendor/three/controls/OrbitControls.js';
 
 // private variable that user can access via app.isRunning
 let _isRunning = false;
@@ -233,7 +233,7 @@ export default class App {
 
   onWindowResize() {
 
-    if ( !this.spec.autoResize ) return;
+    if ( !this.spec.autoResize === false ) return;
 
     this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
 

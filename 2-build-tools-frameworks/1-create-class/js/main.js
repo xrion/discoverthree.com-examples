@@ -12,12 +12,12 @@ import {
 
 import {
   OrbitControls,
-} from './vendor/three/controls/OrbitControls.module.js';
+} from './vendor/three/controls/OrbitControls.js';
 
 
 import {
   GLTFLoader,
-} from './vendor/three/loaders/GLTFLoader.module.js';
+} from './vendor/three/loaders/GLTFLoader.js';
 
 class App {
 

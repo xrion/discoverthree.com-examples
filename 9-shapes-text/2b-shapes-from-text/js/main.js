@@ -2,7 +2,7 @@ import {
   Color,
 } from './vendor/three/three.module.js';
 
-import App from './vendor/App.module.js';
+import App from './vendor/App.js';
 
 import loadFonts from './fonts.js';
 import createShapes from './shapes.js';

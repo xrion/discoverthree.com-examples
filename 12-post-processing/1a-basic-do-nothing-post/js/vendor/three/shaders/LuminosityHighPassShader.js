@@ -1,11 +1,7 @@
-/**
- * @author bhouston / http://clara.io/
- *
- * Luminosity
- * http://en.wikipedia.org/wiki/Luminosity
- */
 
-THREE.LuminosityHighPassShader = {
+import { Color } from '../three.module.js';
+
+var LuminosityHighPassShader = {
 
   shaderID: "luminosityHighPass",
 
@@ -14,7 +10,7 @@ THREE.LuminosityHighPassShader = {
 		"tDiffuse": { type: "t", value: null },
 		"luminosityThreshold": { type: "f", value: 1.0 },
 		"smoothWidth": { type: "f", value: 1.0 },
-		"defaultColor": { type: "c", value: new THREE.Color( 0x000000 ) },
+		"defaultColor": { type: "c", value: new Color( 0x000000 ) },
 		"defaultOpacity":  { type: "f", value: 0.0 }
 
 	},
@@ -62,3 +58,5 @@ THREE.LuminosityHighPassShader = {
 	].join("\n")
 
 };
+
+export { LuminosityHighPassShader }

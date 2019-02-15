@@ -1,15 +1,12 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- *
- * Colorify shader
- */
 
-THREE.ColorifyShader = {
+import { Color } from '../three.module.js';
+
+var ColorifyShader = {
 
 	uniforms: {
 
 		"tDiffuse": { value: null },
-		"color":    { value: new THREE.Color( 0xffffff ) }
+		"color":    { value: new Color( 0xffffff ) }
 
 	},
 
@@ -47,3 +44,5 @@ THREE.ColorifyShader = {
 	].join( "\n" )
 
 };
+
+export { ColorifyShader }

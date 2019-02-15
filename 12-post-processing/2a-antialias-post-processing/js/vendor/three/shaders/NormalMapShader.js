@@ -1,17 +1,13 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- *
- * Normal map shader
- * - compute normals from heightmap
- */
 
-THREE.NormalMapShader = {
+import { Vector2 } from '../three.module.js';
+
+var NormalMapShader = {
 
 	uniforms: {
 
 		"heightMap":  { value: null },
-		"resolution": { value: new THREE.Vector2( 512, 512 ) },
-		"scale":      { value: new THREE.Vector2( 1, 1 ) },
+		"resolution": { value: new Vector2( 512, 512 ) },
+		"scale":      { value: new Vector2( 1, 1 ) },
 		"height":     { value: 0.05 }
 
 	},
@@ -51,3 +47,5 @@ THREE.NormalMapShader = {
 	].join( "\n" )
 
 };
+
+export { NormalMapShader }

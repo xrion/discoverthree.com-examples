@@ -1,21 +1,12 @@
-/**
- * @author zz85 / http://www.lab4games.net/zz85/blog
- *
- * Triangle blur shader
- * based on glfx.js triangle blur shader
- * https://github.com/evanw/glfx.js
- *
- * A basic blur filter, which convolves the image with a
- * pyramid filter. The pyramid filter is separable and is applied as two
- * perpendicular triangle filters.
- */
 
-THREE.TriangleBlurShader = {
+import { Vector2 } from '../three.module.js';
+
+var TriangleBlurShader = {
 
 	uniforms : {
 
 		"texture": { value: null },
-		"delta":   { value: new THREE.Vector2( 1, 1 ) }
+		"delta":   { value: new Vector2( 1, 1 ) }
 
 	},
 
@@ -70,3 +61,5 @@ THREE.TriangleBlurShader = {
 	].join( "\n" )
 
 };
+
+export { TriangleBlurShader }

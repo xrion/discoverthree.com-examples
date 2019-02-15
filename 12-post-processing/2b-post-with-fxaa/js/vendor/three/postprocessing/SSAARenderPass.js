@@ -1,18 +1,27 @@
-/**
-*
-* Supersample Anti-Aliasing Render Pass
-*
-* @author bhouston / http://clara.io/
-*
-* This manual approach to SSAA re-renders the scene ones for each sample with camera jitter and accumulates the results.
-*
-* References: https://en.wikipedia.org/wiki/Supersampling
-*
-*/
 
-THREE.SSAARenderPass = function ( scene, camera, clearColor, clearAlpha ) {
 
-	THREE.Pass.call( this );
+import {
+	ShaderMaterial,
+	OrthographicCamera,
+	Scene,
+	Mesh,
+	PlaneBufferGeometry,
+	WebGLRenderTarget,
+	AdditiveBlending,
+	LinearFilter,
+	RGBAFormat,
+	UniformsUtils,
+} from '../three.module.js';
+
+
+import { Pass } from './Pass.js';
+import { CopyShader } from '../shaders/CopyShader.js';
+import { LuminosityShader } from '../shaders/LuminosityShader.js';
+import { ToneMapShader } from '../shaders/ToneMapShader.js';
+
+var SSAARenderPass = function ( scene, camera, clearColor, clearAlpha ) {
+
+	Pass.call( this );
 
 	this.scene = scene;
 	this.camera = camera;
@@ -24,33 +33,33 @@ THREE.SSAARenderPass = function ( scene, camera, clearColor, clearAlpha ) {
 	this.clearColor = ( clearColor !== undefined ) ? clearColor : 0x000000;
 	this.clearAlpha = ( clearAlpha !== undefined ) ? clearAlpha : 0;
 
-	if ( THREE.CopyShader === undefined ) console.error( "THREE.SSAARenderPass relies on THREE.CopyShader" );
+	if ( CopyShader === undefined ) console.error( "SSAARenderPass relies on CopyShader" );
 
-	var copyShader = THREE.CopyShader;
-	this.copyUniforms = THREE.UniformsUtils.clone( copyShader.uniforms );
+	var copyShader = CopyShader;
+	this.copyUniforms = UniformsUtils.clone( copyShader.uniforms );
 
-	this.copyMaterial = new THREE.ShaderMaterial(	{
+	this.copyMaterial = new ShaderMaterial(	{
 		uniforms: this.copyUniforms,
 		vertexShader: copyShader.vertexShader,
 		fragmentShader: copyShader.fragmentShader,
 		premultipliedAlpha: true,
 		transparent: true,
-		blending: THREE.AdditiveBlending,
+		blending: AdditiveBlending,
 		depthTest: false,
 		depthWrite: false
 	} );
 
-	this.camera2 = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
-	this.scene2	= new THREE.Scene();
-	this.quad2 = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2 ), this.copyMaterial );
+	this.camera2 = new OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+	this.scene2	= new Scene();
+	this.quad2 = new Mesh( new PlaneBufferGeometry( 2, 2 ), this.copyMaterial );
 	this.quad2.frustumCulled = false; // Avoid getting clipped
 	this.scene2.add( this.quad2 );
 
 };
 
-THREE.SSAARenderPass.prototype = Object.assign( Object.create( THREE.Pass.prototype ), {
+SSAARenderPass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
-	constructor: THREE.SSAARenderPass,
+	constructor: SSAARenderPass,
 
 	dispose: function () {
 
@@ -73,12 +82,12 @@ THREE.SSAARenderPass.prototype = Object.assign( Object.create( THREE.Pass.protot
 
 		if ( ! this.sampleRenderTarget ) {
 
-			this.sampleRenderTarget = new THREE.WebGLRenderTarget( readBuffer.width, readBuffer.height, { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat } );
+			this.sampleRenderTarget = new WebGLRenderTarget( readBuffer.width, readBuffer.height, { minFilter: LinearFilter, magFilter: LinearFilter, format: RGBAFormat } );
 			this.sampleRenderTarget.texture.name = "SSAARenderPass.sample";
 
 		}
 
-		var jitterOffsets = THREE.SSAARenderPass.JitterVectors[ Math.max( 0, Math.min( this.sampleLevel, 5 ) ) ];
+		var jitterOffsets = SSAARenderPass.JitterVectors[ Math.max( 0, Math.min( this.sampleLevel, 5 ) ) ];
 
 		var autoClear = renderer.autoClear;
 		renderer.autoClear = false;
@@ -141,13 +150,12 @@ THREE.SSAARenderPass.prototype = Object.assign( Object.create( THREE.Pass.protot
 
 } );
 
-
 // These jitter vectors are specified in integers because it is easier.
 // I am assuming a [-8,8) integer grid, but it needs to be mapped onto [-0.5,0.5)
 // before being used, thus these integers need to be scaled by 1/16.
 //
 // Sample patterns reference: https://msdn.microsoft.com/en-us/library/windows/desktop/ff476218%28v=vs.85%29.aspx?f=255&MSPPError=-2147217396
-THREE.SSAARenderPass.JitterVectors = [
+SSAARenderPass.JitterVectors = [
 	[
 		[ 0, 0 ]
 	],
@@ -178,3 +186,5 @@ THREE.SSAARenderPass.JitterVectors = [
 		[ 2, 5 ], [ 7, 5 ], [ 5, 6 ], [ 3, 7 ]
 	]
 ];
+
+export { SSAARenderPass }

@@ -1,10 +1,6 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- *
- * Blend two textures
- */
 
-THREE.BlendShader = {
+
+var BlendShader = {
 
 	uniforms: {
 
@@ -49,3 +45,5 @@ THREE.BlendShader = {
 	].join( "\n" )
 
 };
+
+export { BlendShader }

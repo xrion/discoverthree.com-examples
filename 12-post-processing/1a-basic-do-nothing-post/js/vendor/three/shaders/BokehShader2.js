@@ -1,16 +1,8 @@
-/**
- * @author zz85 / https://github.com/zz85 | twitter.com/blurspline
- *
- * Depth-of-field shader with bokeh
- * ported from GLSL shader by Martins Upitis
- * http://blenderartists.org/forum/showthread.php?237488-GLSL-depth-of-field-with-bokeh-v2-4-(update)
- *
- * Requires #define RINGS and SAMPLES integers
- */
 
-
-
-THREE.BokehShader = {
+import {
+	Vector2,
+} from '../three.module.js';
+var BokehShader2 = {
 
 	uniforms: {
 
@@ -44,8 +36,7 @@ THREE.BokehShader = {
 		"pentagon": { value: 0 },
 
 		"shaderFocus":  { value: 1 },
-		"focusCoords":  { value: new THREE.Vector2() }
-
+		"focusCoords":  { value: new Vector2() }
 
 	},
 
@@ -78,9 +69,7 @@ THREE.BokehShader = {
 		"uniform float fstop; //f-stop value",
 		"uniform bool showFocus; //show debug focus point and focal range (red = focal point, green = focal range)",
 
-		"/*",
-		"make sure that these two values are the same for your camera, otherwise distances will be wrong.",
-		"*/",
+		"",
 
 		"uniform float znear; // camera clipping start",
 		"uniform float zfar; // camera clipping end",
@@ -130,11 +119,7 @@ THREE.BokehShader = {
 		"uniform bool depthblur; // blur the depth buffer",
 		"float dbsize = 1.25; // depth blur size",
 
-		"/*",
-		"next part is experimental",
-		"not looking good with small sample and ring count",
-		"looks okay starting from samples = 4, rings = 4",
-		"*/",
+		"",
 
 		"uniform bool pentagon; //use pentagon as bokeh shape?",
 		"float feather = 0.4; //pentagon shape feather",
@@ -200,7 +185,6 @@ THREE.BokehShader = {
 			"kernel[3] = 2.0/16.0;   kernel[4] = 4.0/16.0;   kernel[5] = 2.0/16.0;",
 			"kernel[6] = 1.0/16.0;   kernel[7] = 2.0/16.0;   kernel[8] = 1.0/16.0;",
 
-
 			"for( int i=0; i<9; i++ ) {",
 				"float tmp = texture2D(tDepth, coords + offset[i]).r;",
 				"d += tmp * kernel[i];",
@@ -208,7 +192,6 @@ THREE.BokehShader = {
 
 			"return d;",
 		"}",
-
 
 		"vec3 color(vec2 coords,float blur) {",
 			"//processing the sample",
@@ -240,7 +223,6 @@ THREE.BokehShader = {
 		"float linearize(float depth) {",
 			"return -zfar * znear / (depth * (zfar - znear) - zfar);",
 		"}",
-
 
 		"float vignette() {",
 			"float dist = distance(vUv.xy, vec2(0.5,0.5));",
@@ -326,14 +308,14 @@ THREE.BokehShader = {
 				"int ringsamples;",
 
 				"for (int i = 1; i <= rings; i++) {",
-					"/*unboxstart*/",
+					"",
 					"ringsamples = i * samples;",
 
 					"for (int j = 0 ; j < maxringsamples ; j++) {",
 						"if (j >= ringsamples) break;",
 						"s += gather(float(i), float(j), ringsamples, col, w, h, blur);",
 					"}",
-					"/*unboxend*/",
+					"",
 				"}",
 
 				"col /= s; //divide by sample count",
@@ -355,7 +337,7 @@ THREE.BokehShader = {
 
 };
 
-THREE.BokehDepthShader = {
+var BokehDepthShader = {
 
 	uniforms: {
 
@@ -396,3 +378,8 @@ THREE.BokehDepthShader = {
 	].join( "\n" )
 
 };
+
+export {
+	BokehShader2,
+	BokehDepthShader
+}

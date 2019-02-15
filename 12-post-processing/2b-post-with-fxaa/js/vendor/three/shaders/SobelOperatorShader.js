@@ -1,18 +1,12 @@
-/**
- * @author Mugen87 / https://github.com/Mugen87
- *
- * Sobel Edge Detection (see https://youtu.be/uihBwtPIBxM)
- *
- * As mentioned in the video the Sobel operator expects a grayscale image as input.
- *
- */
 
-THREE.SobelOperatorShader = {
+import { Vector2 } from '../three.module.js';
+
+var SobelOperatorShader = {
 
 	uniforms: {
 
 		"tDiffuse": { value: null },
-		"resolution": { value: new THREE.Vector2() }
+		"resolution": { value: new Vector2() }
 
 	},
 
@@ -88,3 +82,5 @@ THREE.SobelOperatorShader = {
 	].join( "\n" )
 
 };
+
+export { SobelOperatorShader }

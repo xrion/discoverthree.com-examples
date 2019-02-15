@@ -1,11 +1,13 @@
-/**
- * @author richt / http://richt.me
- * @author WestLangley / http://github.com/WestLangley
- *
- * W3C Device Orientation control (http://w3c.github.io/deviceorientation/spec-source-orientation.html)
- */
 
-THREE.DeviceOrientationControls = function ( object ) {
+
+import {
+	Euler,
+	Quaternion,
+	Vector3,
+	Math as MathUtils
+} from '../three.module.js';
+
+var DeviceOrientationControls = function ( object ) {
 
 	var scope = this;
 
@@ -35,13 +37,13 @@ THREE.DeviceOrientationControls = function ( object ) {
 
 	var setObjectQuaternion = function () {
 
-		var zee = new THREE.Vector3( 0, 0, 1 );
+		var zee = new Vector3( 0, 0, 1 );
 
-		var euler = new THREE.Euler();
+		var euler = new Euler();
 
-		var q0 = new THREE.Quaternion();
+		var q0 = new Quaternion();
 
-		var q1 = new THREE.Quaternion( - Math.sqrt( 0.5 ), 0, 0, Math.sqrt( 0.5 ) ); // - PI/2 around the x-axis
+		var q1 = new Quaternion( - Math.sqrt( 0.5 ), 0, 0, Math.sqrt( 0.5 ) ); // - PI/2 around the x-axis
 
 		return function ( quaternion, alpha, beta, gamma, orient ) {
 
@@ -85,18 +87,17 @@ THREE.DeviceOrientationControls = function ( object ) {
 
 		if ( device ) {
 
-			var alpha = device.alpha ? THREE.Math.degToRad( device.alpha ) + scope.alphaOffset : 0; // Z
+			var alpha = device.alpha ? MathUtils.degToRad( device.alpha ) + scope.alphaOffset : 0; // Z
 
-			var beta = device.beta ? THREE.Math.degToRad( device.beta ) : 0; // X'
+			var beta = device.beta ? MathUtils.degToRad( device.beta ) : 0; // X'
 
-			var gamma = device.gamma ? THREE.Math.degToRad( device.gamma ) : 0; // Y''
+			var gamma = device.gamma ? MathUtils.degToRad( device.gamma ) : 0; // Y''
 
-			var orient = scope.screenOrientation ? THREE.Math.degToRad( scope.screenOrientation ) : 0; // O
+			var orient = scope.screenOrientation ? MathUtils.degToRad( scope.screenOrientation ) : 0; // O
 
 			setObjectQuaternion( scope.object.quaternion, alpha, beta, gamma, orient );
 
 		}
-
 
 	};
 
@@ -109,3 +110,5 @@ THREE.DeviceOrientationControls = function ( object ) {
 	this.connect();
 
 };
+
+export { DeviceOrientationControls }

@@ -12,7 +12,7 @@ function createHemisphereLight() {
 
 function createDirectionalLight() {
 
-  const direct = new DirectionalLight( 0xfffffc, 5 );
+  const direct = new DirectionalLight( 0xfffffc, 15 );
   direct.position.set( 10, 5, 10 );
 
   return direct;

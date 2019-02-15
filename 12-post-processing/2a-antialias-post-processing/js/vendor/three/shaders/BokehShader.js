@@ -1,12 +1,6 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- *
- * Depth-of-field shader with bokeh
- * ported from GLSL shader by Martins Upitis
- * http://artmartinsh.blogspot.com/2010/02/glsl-lens-blur-filter-with-bokeh.html
- */
 
-THREE.BokehShader = {
+
+var BokehShader = {
 
 	defines: {
 		"DEPTH_PACKING": 1,
@@ -73,12 +67,11 @@ THREE.BokehShader = {
 		"	return orthographicDepthToViewZ( depth, nearClip, farClip );",
 		"	#endif",
 		"}",
-		
 
 		"void main() {",
 
 			"vec2 aspectcorrect = vec2( 1.0, aspect );",
-	
+
 			"float viewZ = getViewZ( getDepth( vUv ) );",
 
 			"float factor = ( focus + viewZ );",  // viewZ is <= 0, so this is a difference equation
@@ -144,3 +137,5 @@ THREE.BokehShader = {
 	].join( "\n" )
 
 };
+
+export { BokehShader }

@@ -1,9 +1,11 @@
+
+
 // Parallax Occlusion shaders from
 //    http://sunandblackcat.com/tipFullView.php?topicid=28
 // No tangent-space transforms logic based on
 //   http://mmikkelsen3d.blogspot.sk/2012/02/parallaxpoc-mapping-and-no-tangent.html
 
-THREE.ParallaxShader = {
+var ParallaxShader = {
 	// Ordered from fastest to best quality.
 	modes: {
 		none:  'NO_PARALLAX',
@@ -182,3 +184,5 @@ THREE.ParallaxShader = {
   ].join( "\n" )
 
 };
+
+export { ParallaxShader }

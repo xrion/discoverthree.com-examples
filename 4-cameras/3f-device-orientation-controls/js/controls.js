@@ -1,8 +1,8 @@
 import {
   DeviceOrientationControls,
-} from './vendor/three/controls/todo.js';
+} from './vendor/three/controls/DeviceOrientationControls.js';
 
-function initOverlay( controls, app ) {
+function initOverlay( controls ) {
 
   controls.enabled = false;
 
@@ -21,7 +21,7 @@ export default function setupCameraControls( app ) {
 
   app.controls = new DeviceOrientationControls( app.camera, app.container );
 
-  initOverlay( app.controls, app );
+  initOverlay( app.controls );
 
   // how much to offset the rotation
   // app.controls.alphaOffset = 0; // radians

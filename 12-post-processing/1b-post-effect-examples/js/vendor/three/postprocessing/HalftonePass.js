@@ -1,25 +1,34 @@
-/**
- * @author meatbags / xavierburrow.com, github/meatbags
- *
- * RGB Halftone pass for three.js effects composer. Requires THREE.HalftoneShader.
- *
- */
 
-THREE.HalftonePass = function ( width, height, params ) {
 
-	THREE.Pass.call( this );
+import {
+	ShaderMaterial,
+	OrthographicCamera,
+	Scene,
+	Mesh,
+	PlaneBufferGeometry,
+	UniformsUtils,
+} from '../three.module.js';
 
- 	if ( THREE.HalftoneShader === undefined ) {
 
- 		console.error( 'THREE.HalftonePass requires THREE.HalftoneShader' );
+import { Pass } from './Pass.js';
+import { HalftoneShader } from '../shaders/HalftoneShader.js';
+
+
+var HalftonePass = function ( width, height, params ) {
+
+	Pass.call( this );
+
+ 	if ( HalftoneShader === undefined ) {
+
+ 		console.error( 'HalftonePass requires HalftoneShader' );
 
  	}
 
- 	this.uniforms = THREE.UniformsUtils.clone( THREE.HalftoneShader.uniforms );
- 	this.material = new THREE.ShaderMaterial( {
+ 	this.uniforms = UniformsUtils.clone( HalftoneShader.uniforms );
+ 	this.material = new ShaderMaterial( {
  		uniforms: this.uniforms,
- 		fragmentShader: THREE.HalftoneShader.fragmentShader,
- 		vertexShader: THREE.HalftoneShader.vertexShader
+ 		fragmentShader: HalftoneShader.fragmentShader,
+ 		vertexShader: HalftoneShader.vertexShader
  	} );
 
 	// set params
@@ -36,17 +45,17 @@ THREE.HalftonePass = function ( width, height, params ) {
 
 	}
 
- 	this.camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
- 	this.scene = new THREE.Scene();
- 	this.quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2 ), null );
+ 	this.camera = new OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+ 	this.scene = new Scene();
+ 	this.quad = new Mesh( new PlaneBufferGeometry( 2, 2 ), null );
  	this.quad.frustumCulled = false;
  	this.scene.add( this.quad );
 
  };
 
- THREE.HalftonePass.prototype = Object.assign( Object.create( THREE.Pass.prototype ), {
+ HalftonePass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
-	constructor: THREE.HalftonePass,
+	constructor: HalftonePass,
 
 	render: function ( renderer, writeBuffer, readBuffer, delta, maskActive ) {
 
@@ -72,3 +81,5 @@ THREE.HalftonePass = function ( width, height, params ) {
 
  	}
 } );
+
+export { HalftonePass }

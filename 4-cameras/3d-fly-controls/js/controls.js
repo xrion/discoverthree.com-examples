@@ -1,6 +1,6 @@
 import {
   FlyControls,
-} from './vendor/three/controls/todo.js';
+} from './vendor/three/controls/FlyControls.js';
 
 function setupFlyControls( app ) {
 

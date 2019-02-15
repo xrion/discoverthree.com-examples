@@ -4,7 +4,7 @@ import {
 
 import {
   MapControls,
-} from './vendor/three/controls/todo.js';
+} from './vendor/three/controls/MapControls.js';
 
 function initOverlay( controls ) {
 

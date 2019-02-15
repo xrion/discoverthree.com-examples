@@ -1,10 +1,6 @@
-/**
- * @author mrdoob / http://www.mrdoob.com
- *
- * Simple test shader
- */
 
-THREE.BasicShader = {
+
+var BasicShader = {
 
 	uniforms: {},
 
@@ -29,3 +25,5 @@ THREE.BasicShader = {
 	].join( "\n" )
 
 };
+
+export { BasicShader }

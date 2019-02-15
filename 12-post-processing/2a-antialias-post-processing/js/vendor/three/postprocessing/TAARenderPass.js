@@ -1,68 +1,62 @@
-/**
- *
- * Temporal Anti-Aliasing Render Pass
- *
- * @author bhouston / http://clara.io/
- *
- * When there is no motion in the scene, the TAA render pass accumulates jittered camera samples across frames to create a high quality anti-aliased result.
- *
- * References:
- *
- * TODO: Add support for motion vector pas so that accumulation of samples across frames can occur on dynamics scenes.
- *
- */
 
-THREE.TAARenderPass = function ( scene, camera, params ) {
 
-	if ( THREE.SSAARenderPass === undefined ) {
+import {
+	WebGLRenderTarget,
+} from '../three.module.js';
 
-		console.error( "THREE.TAARenderPass relies on THREE.SSAARenderPass" );
+import { SSAARenderPass } from './SSAARenderPass.js'
+
+var TAARenderPass = function ( scene, camera, params ) {
+
+	if ( SSAARenderPass === undefined ) {
+
+		console.error( "TAARenderPass relies on SSAARenderPass" );
 
 	}
 
-	THREE.SSAARenderPass.call( this, scene, camera, params );
+	SSAARenderPass.call( this, scene, camera, params );
 
 	this.sampleLevel = 0;
 	this.accumulate = false;
 
 };
 
-THREE.TAARenderPass.JitterVectors = THREE.SSAARenderPass.JitterVectors;
+TAARenderPass.JitterVectors = SSAARenderPass.JitterVectors;
 
-THREE.TAARenderPass.prototype = Object.assign( Object.create( THREE.SSAARenderPass.prototype ), {
+TAARenderPass.prototype = Object.assign( Object.create( SSAARenderPass.prototype ), {
 
-	constructor: THREE.TAARenderPass,
+	constructor: TAARenderPass,
 
 	render: function ( renderer, writeBuffer, readBuffer, delta ) {
 
 		if ( ! this.accumulate ) {
 
-			THREE.SSAARenderPass.prototype.render.call( this, renderer, writeBuffer, readBuffer, delta );
+			SSAARenderPass.prototype.render.call( this, renderer, writeBuffer, readBuffer, delta );
 
 			this.accumulateIndex = - 1;
 			return;
 
 		}
 
-		var jitterOffsets = THREE.TAARenderPass.JitterVectors[ 5 ];
+		var jitterOffsets = TAARenderPass.JitterVectors[ 5 ];
 
 		if ( ! this.sampleRenderTarget ) {
 
-			this.sampleRenderTarget = new THREE.WebGLRenderTarget( readBuffer.width, readBuffer.height, this.params );
+			this.sampleRenderTarget = new WebGLRenderTarget( readBuffer.width, readBuffer.height, this.params );
 			this.sampleRenderTarget.texture.name = "TAARenderPass.sample";
 
 		}
 
 		if ( ! this.holdRenderTarget ) {
 
-			this.holdRenderTarget = new THREE.WebGLRenderTarget( readBuffer.width, readBuffer.height, this.params );
+			this.holdRenderTarget = new WebGLRenderTarget( readBuffer.width, readBuffer.height, this.params );
 			this.holdRenderTarget.texture.name = "TAARenderPass.hold";
 
 		}
 
 		if ( this.accumulate && this.accumulateIndex === - 1 ) {
 
-			THREE.SSAARenderPass.prototype.render.call( this, renderer, this.holdRenderTarget, readBuffer, delta );
+			SSAARenderPass.prototype.render.call( this, renderer, this.holdRenderTarget, readBuffer, delta );
 
 			this.accumulateIndex = 0;
 
@@ -129,3 +123,5 @@ THREE.TAARenderPass.prototype = Object.assign( Object.create( THREE.SSAARenderPa
 	}
 
 } );
+
+export { TAARenderPass }

@@ -1,16 +1,6 @@
-/**
- * @author felixturner / http://airtight.cc/
- *
- * Kaleidoscope Shader
- * Radial reflection around center point
- * Ported from: http://pixelshaders.com/editor/
- * by Toby Schachman / http://tobyschachman.com/
- *
- * sides: number of reflections
- * angle: initial angle in radians
- */
 
-THREE.KaleidoShader = {
+
+var KaleidoShader = {
 
 	uniforms: {
 
@@ -38,7 +28,7 @@ THREE.KaleidoShader = {
 		"uniform sampler2D tDiffuse;",
 		"uniform float sides;",
 		"uniform float angle;",
-		
+
 		"varying vec2 vUv;",
 
 		"void main() {",
@@ -58,3 +48,5 @@ THREE.KaleidoShader = {
 	].join( "\n" )
 
 };
+
+export { KaleidoShader }

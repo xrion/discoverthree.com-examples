@@ -1,13 +1,6 @@
-/**
- * @author felixturner / http://airtight.cc/
- *
- * Mirror Shader
- * Copies half the input to the other half
- *
- * side: side of input to mirror (0 = left, 1 = right, 2 = top, 3 = bottom)
- */
 
-THREE.MirrorShader = {
+
+var MirrorShader = {
 
 	uniforms: {
 
@@ -33,7 +26,7 @@ THREE.MirrorShader = {
 
 		"uniform sampler2D tDiffuse;",
 		"uniform int side;",
-		
+
 		"varying vec2 vUv;",
 
 		"void main() {",
@@ -56,3 +49,5 @@ THREE.MirrorShader = {
 	].join( "\n" )
 
 };
+
+export { MirrorShader }

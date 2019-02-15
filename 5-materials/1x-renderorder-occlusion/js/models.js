@@ -4,9 +4,9 @@ import {
   Vector3,
 } from './vendor/three/three.module.js';
 
-import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
+import createAsyncLoader from './vendor/utility/createAsyncLoader.js';
 
-import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
+import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.js';
 
 function setupModel( gltf ) {
 

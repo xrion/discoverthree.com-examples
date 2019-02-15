@@ -1,23 +1,33 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- */
 
-THREE.DotScreenPass = function ( center, angle, scale ) {
 
-	THREE.Pass.call( this );
+import {
+	ShaderMaterial,
+	OrthographicCamera,
+	Scene,
+	Mesh,
+	PlaneBufferGeometry,
+	UniformsUtils,
+} from '../three.module.js';
 
-	if ( THREE.DotScreenShader === undefined )
-		console.error( "THREE.DotScreenPass relies on THREE.DotScreenShader" );
+import { Pass } from './Pass.js';
+import { DotScreenShader } from '../shaders/DotScreenShader.js'
 
-	var shader = THREE.DotScreenShader;
+var DotScreenPass = function ( center, angle, scale ) {
 
-	this.uniforms = THREE.UniformsUtils.clone( shader.uniforms );
+	Pass.call( this );
+
+	if ( DotScreenShader === undefined )
+		console.error( "DotScreenPass relies on DotScreenShader" );
+
+	var shader = DotScreenShader;
+
+	this.uniforms = UniformsUtils.clone( shader.uniforms );
 
 	if ( center !== undefined ) this.uniforms[ "center" ].value.copy( center );
 	if ( angle !== undefined ) this.uniforms[ "angle" ].value = angle;
 	if ( scale !== undefined ) this.uniforms[ "scale" ].value = scale;
 
-	this.material = new THREE.ShaderMaterial( {
+	this.material = new ShaderMaterial( {
 
 		uniforms: this.uniforms,
 		vertexShader: shader.vertexShader,
@@ -25,18 +35,18 @@ THREE.DotScreenPass = function ( center, angle, scale ) {
 
 	} );
 
-	this.camera = new THREE.OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
-	this.scene  = new THREE.Scene();
+	this.camera = new OrthographicCamera( - 1, 1, 1, - 1, 0, 1 );
+	this.scene  = new Scene();
 
-	this.quad = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2, 2 ), null );
+	this.quad = new Mesh( new PlaneBufferGeometry( 2, 2 ), null );
 	this.quad.frustumCulled = false; // Avoid getting clipped
 	this.scene.add( this.quad );
 
 };
 
-THREE.DotScreenPass.prototype = Object.assign( Object.create( THREE.Pass.prototype ), {
+DotScreenPass.prototype = Object.assign( Object.create( Pass.prototype ), {
 
-	constructor: THREE.DotScreenPass,
+	constructor: DotScreenPass,
 
 	render: function ( renderer, writeBuffer, readBuffer, delta, maskActive ) {
 
@@ -58,3 +68,5 @@ THREE.DotScreenPass.prototype = Object.assign( Object.create( THREE.Pass.prototy
 	}
 
 } );
+
+export { DotScreenPass }

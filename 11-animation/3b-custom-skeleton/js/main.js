@@ -4,7 +4,7 @@ import {
   SkeletonHelper,
 } from './vendor/three/three.module.js';
 
-import App from './vendor/App.module.js';
+import App from './vendor/App.js';
 
 import createLights from './lights.js';
 import createMeshes from './meshes.js';

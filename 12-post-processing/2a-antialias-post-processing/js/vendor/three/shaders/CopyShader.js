@@ -1,10 +1,6 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- *
- * Full-screen textured quad shader
- */
 
-THREE.CopyShader = {
+
+var CopyShader = {
 
 	uniforms: {
 
@@ -44,3 +40,5 @@ THREE.CopyShader = {
 	].join( "\n" )
 
 };
+
+export { CopyShader }

@@ -1,12 +1,6 @@
-/**
- * @author mpk / http://polko.me/
- *
- * WebGL port of Subpixel Morphological Antialiasing (SMAA) v2.8
- * Preset: SMAA 1x Medium (with color edge detection)
- * https://github.com/iryoku/smaa/releases/tag/v2.8
- */
 
-THREE.SMAAShader = [ {
+import { Vector2 } from '../three.module.js';
+var SMAAShader = [ {
 
 	defines: {
 
@@ -17,7 +11,7 @@ THREE.SMAAShader = [ {
 	uniforms: {
 
 		"tDiffuse":		{ value: null },
-		"resolution":	{ value: new THREE.Vector2( 1 / 1024, 1 / 512 ) }
+		"resolution":	{ value: new Vector2( 1 / 1024, 1 / 512 ) }
 
 	},
 
@@ -129,7 +123,7 @@ THREE.SMAAShader = [ {
 		"tDiffuse":		{ value: null },
 		"tArea":		{ value: null },
 		"tSearch":		{ value: null },
-		"resolution":	{ value: new THREE.Vector2( 1 / 1024, 1 / 512 ) }
+		"resolution":	{ value: new Vector2( 1 / 1024, 1 / 512 ) }
 
 	},
 
@@ -192,13 +186,7 @@ THREE.SMAAShader = [ {
 		"}",
 
 		"float SMAASearchXLeft( sampler2D edgesTex, sampler2D searchTex, vec2 texcoord, float end ) {",
-			/**
-			* @PSEUDO_GATHER4
-			* This texcoord has been offset by (-0.25, -0.125) in the vertex shader to
-			* sample between edge, thus fetching four edges in a row.
-			* Sampling with different offsets in each direction allows to disambiguate
-			* which edges are active from the four fetched ones.
-			*/
+
 			"vec2 e = vec2( 0.0, 1.0 );",
 
 			"for ( int i = 0; i < SMAA_MAX_SEARCH_STEPS; i ++ ) {", // WebGL port note: Changed while to for
@@ -373,7 +361,7 @@ THREE.SMAAShader = [ {
 
 		"tDiffuse":		{ value: null },
 		"tColor":		{ value: null },
-		"resolution":	{ value: new THREE.Vector2( 1 / 1024, 1 / 512 ) }
+		"resolution":	{ value: new Vector2( 1 / 1024, 1 / 512 ) }
 
 	},
 
@@ -460,3 +448,5 @@ THREE.SMAAShader = [ {
 	].join("\n")
 
 } ];
+
+export { SMAAShader }

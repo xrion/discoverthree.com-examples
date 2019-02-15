@@ -5,7 +5,7 @@ import {
 
 import {
   GLTFLoader,
-} from './vendor/three/loaders/GLTFLoader.module.js';
+} from './vendor/three/loaders/GLTFLoader.js';
 
 // A reusable function to setup the models
 // assumes that the gltf file contains a single model

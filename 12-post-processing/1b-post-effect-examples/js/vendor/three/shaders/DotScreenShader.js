@@ -1,18 +1,13 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- *
- * Dot screen shader
- * based on glfx.js sepia shader
- * https://github.com/evanw/glfx.js
- */
 
-THREE.DotScreenShader = {
+import { Vector2 } from '../three.module.js';
+
+var DotScreenShader = {
 
 	uniforms: {
 
 		"tDiffuse": { value: null },
-		"tSize":    { value: new THREE.Vector2( 256, 256 ) },
-		"center":   { value: new THREE.Vector2( 0.5, 0.5 ) },
+		"tSize":    { value: new Vector2( 256, 256 ) },
+		"center":   { value: new Vector2( 0.5, 0.5 ) },
 		"angle":    { value: 1.57 },
 		"scale":    { value: 1.0 }
 
@@ -66,3 +61,5 @@ THREE.DotScreenShader = {
 	].join( "\n" )
 
 };
+
+export { DotScreenShader }

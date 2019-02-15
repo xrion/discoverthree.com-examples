@@ -1,11 +1,6 @@
-/**
- * @author alteredq / http://alteredqualia.com/
- *
- * Luminosity
- * http://en.wikipedia.org/wiki/Luminosity
- */
 
-THREE.LuminosityShader = {
+
+var LuminosityShader = {
 
 	uniforms: {
 
@@ -48,3 +43,5 @@ THREE.LuminosityShader = {
 	].join( "\n" )
 
 };
+
+export { LuminosityShader }

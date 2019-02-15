@@ -1,11 +1,12 @@
-/**
- * @author Eberhard Graether / http://egraether.com/
- * @author Mark Lundin 	/ http://mark-lundin.com
- * @author Patrick Fuller / http://patrick-fuller.com
- * @author Max Smolens / https://github.com/msmolens
- */
 
-THREE.OrthographicTrackballControls = function ( object, domElement ) {
+import {
+	EventDispatcher,
+	Vector3,
+	Vector2,
+	Quaternion,
+} from '../three.module.js';
+
+var OrthographicTrackballControls = function ( object, domElement ) {
 
 	var _this = this;
 	var STATE = { NONE: - 1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM_PAN: 4 };
@@ -32,11 +33,11 @@ THREE.OrthographicTrackballControls = function ( object, domElement ) {
 	this.staticMoving = false;
 	this.dynamicDampingFactor = 0.2;
 
-	this.keys = [ 65 /*A*/, 83 /*S*/, 68 /*D*/ ];
+	this.keys = [ 65 , 83 , 68  ];
 
 	// internals
 
-	this.target = new THREE.Vector3();
+	this.target = new Vector3();
 
 	var EPS = 0.000001;
 
@@ -45,19 +46,19 @@ THREE.OrthographicTrackballControls = function ( object, domElement ) {
 	var _state = STATE.NONE,
 		_prevState = STATE.NONE,
 
-		_eye = new THREE.Vector3(),
+		_eye = new Vector3(),
 
-		_rotateStart = new THREE.Vector3(),
-		_rotateEnd = new THREE.Vector3(),
+		_rotateStart = new Vector3(),
+		_rotateEnd = new Vector3(),
 
-		_zoomStart = new THREE.Vector2(),
-		_zoomEnd = new THREE.Vector2(),
+		_zoomStart = new Vector2(),
+		_zoomEnd = new Vector2(),
 
 		_touchZoomDistanceStart = 0,
 		_touchZoomDistanceEnd = 0,
 
-		_panStart = new THREE.Vector2(),
-		_panEnd = new THREE.Vector2();
+		_panStart = new Vector2(),
+		_panEnd = new Vector2();
 
 	// for reset
 
@@ -75,7 +76,6 @@ THREE.OrthographicTrackballControls = function ( object, domElement ) {
 	var changeEvent = { type: 'change' };
 	var startEvent = { type: 'start' };
 	var endEvent = { type: 'end' };
-
 
 	// methods
 
@@ -111,7 +111,7 @@ THREE.OrthographicTrackballControls = function ( object, domElement ) {
 
 	var getMouseOnScreen = ( function () {
 
-		var vector = new THREE.Vector2();
+		var vector = new Vector2();
 
 		return function getMouseOnScreen( pageX, pageY ) {
 
@@ -128,9 +128,9 @@ THREE.OrthographicTrackballControls = function ( object, domElement ) {
 
 	var getMouseProjectionOnBall = ( function () {
 
-		var vector = new THREE.Vector3();
-		var objectUp = new THREE.Vector3();
-		var mouseOnBall = new THREE.Vector3();
+		var vector = new Vector3();
+		var objectUp = new Vector3();
+		var mouseOnBall = new Vector3();
 
 		return function getMouseProjectionOnBall( pageX, pageY ) {
 
@@ -178,9 +178,8 @@ THREE.OrthographicTrackballControls = function ( object, domElement ) {
 
 	this.rotateCamera = ( function () {
 
-		var axis = new THREE.Vector3(),
-			quaternion = new THREE.Quaternion();
-
+		var axis = new Vector3(),
+			quaternion = new Quaternion();
 
 		return function rotateCamera() {
 
@@ -257,9 +256,9 @@ THREE.OrthographicTrackballControls = function ( object, domElement ) {
 
 	this.panCamera = ( function () {
 
-		var mouseChange = new THREE.Vector2(),
-			objectUp = new THREE.Vector3(),
-			pan = new THREE.Vector3();
+		var mouseChange = new Vector2(),
+			objectUp = new Vector3(),
+			pan = new Vector3();
 
 		return function panCamera() {
 
@@ -622,5 +621,7 @@ THREE.OrthographicTrackballControls = function ( object, domElement ) {
 
 };
 
-THREE.OrthographicTrackballControls.prototype = Object.create( THREE.EventDispatcher.prototype );
-THREE.OrthographicTrackballControls.prototype.constructor = THREE.OrthographicTrackballControls;
+OrthographicTrackballControls.prototype = Object.create( EventDispatcher.prototype );
+OrthographicTrackballControls.prototype.constructor = OrthographicTrackballControls;
+
+export { OrthographicTrackballControls }
