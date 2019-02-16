@@ -3,24 +3,29 @@ import {
 } from './vendor/three/three.module.js';
 
 import {
-  CopyShader,
-  EffectComposer,
-  FXAAShader,
   OutlinePass,
+} from './vendor/three/postprocessing/OutlinePass.js';
+
+import {
   RenderPass,
+} from './vendor/three/postprocessing/RenderPass.js';
+
+import {
   ShaderPass,
-} from './vendor/three/todo.js';
+} from './vendor/three/postprocessing/ShaderPass.js';
 
-export default function initPostProcessing( renderer, scene, camera, container ) {
+import {
+  FXAAShader,
+} from './vendor/three/shaders/FXAAShader.js';
 
-  const composer = new EffectComposer( renderer );
+export default function setupPostProcessing( composer, app ) {
 
   // first we need a render pass, which renders the actual scene
   // so that later passes can apply effects to it.
-  const renderPass = new RenderPass( scene, camera );
+  const renderPass = new RenderPass( app.scene, app.camera );
   composer.addPass( renderPass );
 
-  const outlinePass = new OutlinePass( new Vector2( container.clientWidth, container.clientHeight ), scene, camera, scene.children );
+  const outlinePass = new OutlinePass( new Vector2( app.container.clientWidth, app.container.clientHeight ), app.scene, app.camera, app.scene.children );
   // outlinePass.renderToScreen = true;
   composer.addPass( outlinePass );
 
@@ -33,12 +38,17 @@ export default function initPostProcessing( renderer, scene, camera, container )
   composer.addPass( fxaaPass );
 
   return {
+
     composer,
+
     passes: {
+
       renderPass,
       outlinePass,
       fxaaPass,
+
     },
+
   };
 
 }

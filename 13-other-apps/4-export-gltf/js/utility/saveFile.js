@@ -10,20 +10,15 @@ function save( blob, filename ) {
 
 }
 
-function saveString( text, filename ) {
+export function saveString( text, filename ) {
 
   save( new Blob( [ text ], { type: 'text/plain' } ), filename );
 
 }
 
 
-function saveArrayBuffer( buffer, filename ) {
+export function saveArrayBuffer( buffer, filename ) {
 
   save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
 
 }
-
-module.exports = {
-  saveString,
-  saveArrayBuffer,
-};

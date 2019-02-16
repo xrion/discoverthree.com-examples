@@ -2,49 +2,56 @@ import {
   Color,
 } from './vendor/three/three.module.js';
 
+import {
+  EffectComposer,
+} from './vendor/three/postprocessing/EffectComposer.js';
+
 import App from './vendor/App.js';
 
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+
+import loadModels from './models.js';
+
+import setupAnimation from './animation.js';
 
 import setupPostProcessing from './postProcessing.js';
 
-function initScene() {
+import setupOnResize from './resize.js';
 
-  const app = new App( { container: '#scene-container' } );
+async function initScene() {
 
-  // this should be fault for post processing
-  // app.gammaOutput = false;
+  const app = new App( {
+
+    container: '#scene-container',
+
+    renderer: {
+
+      // we should disable gamma correction for
+      // post processing, since gamma correction
+      // needs to always be done as the final step
+      // We "should" be adding a gamma correction pass
+      // as the final pass
+      // For simplicity we'll skip that in these examples
+
+      // gammaOutput: false,
+
+    },
+
+  } );
 
   app.init();
 
-  app.renderer.toneMappingExposure = 1;
+  app.renderer.toneMappingExposure = 0.4;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 3, 5, 6 );
 
-  app.start();
+  app.controls.target.y = 1;
 
-  const composer = setupPostProcessing( app.renderer, app.scene, app.camera );
-
-  // We'll need to add an onResize function.
-  // The app will take of updating the renderer's size and pizel ratio for us,
-  // so we just to take these and calculate the new size for the composer
-  app.onResize = () => {
-
-    const pixelRatio = app.renderer.getPixelRatio();
-    const size = app.renderer.getSize();
-
-    const newWidth = Math.floor( size.width * pixelRatio ) || 1;
-    const newHeight = Math.floor( size.height * pixelRatio ) || 1;
-    composer.setSize( newWidth, newHeight );
-
-  };
-
-  const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
-
-  const meshes = createMeshes();
-  app.scene.add( meshes.box );
+  const composer = new EffectComposer( app.renderer );
 
   // overwrite the app's default render function to use the
   // EffectComposer instead
@@ -54,6 +61,33 @@ function initScene() {
     composer.render();
 
   };
+
+  setupPostProcessing( composer, app );
+
+  setupOnResize( app, composer );
+
+  app.start();
+
+  const lights = createLights();
+
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
+
+  const models = await loadModels();
+
+  setupAnimation( meshes, models );
+
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    meshes.box,
+
+    models.parrot,
+
+  );
 
 }
 

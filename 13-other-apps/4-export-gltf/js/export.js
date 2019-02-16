@@ -1,7 +1,11 @@
 import {
-  GLTFExporter
-} from './vendor/three/todo.js';
+  GLTFExporter,
+} from './vendor/three/exporters/GLTFExporter.js';
 
+import {
+  saveArrayBuffer,
+  saveString,
+} from './utility/saveFile.js';
 
 function exportGLTF( input, animations ) {
 
@@ -38,14 +42,13 @@ function exportGLTF( input, animations ) {
 
 }
 
-
-function setupExportControl( input, animations ) {
+export default function setupExport( meshes, animations ) {
 
   const button = document.querySelector( '#export_scene' );
 
   button.addEventListener( 'click', ( e ) => {
 
-    exportGLTF( input, animations );
+    exportGLTF( meshes.shapes, animations );
 
     e.preventDefault();
 

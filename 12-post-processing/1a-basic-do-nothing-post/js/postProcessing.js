@@ -1,17 +1,20 @@
 import {
-  CopyShader,
-  EffectComposer,
   RenderPass,
+} from './vendor/three/postprocessing/RenderPass.js';
+
+import {
   ShaderPass,
-} from './vendor/three/todo.js';
+} from './vendor/three/postprocessing/ShaderPass.js';
 
-export default function setupPostProcessing( renderer, scene, camera ) {
+import {
+  CopyShader,
+} from './vendor/three/shaders/CopyShader.js';
 
-  const composer = new EffectComposer( renderer );
+export default function setupPostProcessing( composer, app ) {
 
   // first we need a render pass, which renders the actual scene
   // so that later passes can apply effects to it.
-  const renderPass = new RenderPass( scene, camera );
+  const renderPass = new RenderPass( app.scene, app.camera );
   composer.addPass( renderPass );
 
   const copyPass = new ShaderPass( CopyShader );

@@ -10,9 +10,7 @@ export default async function loadModels() {
 
   const parrot = gltf.scene.children[ 0 ];
   parrot.animations = gltf.animations;
-
-  parrot.position.y = 1.5;
-  parrot.scale.multiplyScalar( 3 );
+  parrot.position.y = 2.5;
 
   return {
 

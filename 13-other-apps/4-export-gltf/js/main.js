@@ -5,7 +5,14 @@ import {
 import App from './vendor/App.js';
 
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+
+import setupAnimation from './animation.js';
+
+import setupExport from './export.js';
 
 function initScene() {
 
@@ -20,14 +27,23 @@ function initScene() {
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.torusKnot );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
 
-  const clips = initAnimation( meshes.torusKnot );
+  const clips = setupAnimation( meshes );
 
-  setupExportControl( meshes.torusKnot, clips );
+  setupExport( meshes, clips );
+
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    meshes.shapes,
+
+  );
 
 }
 

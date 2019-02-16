@@ -1,7 +1,7 @@
 import {
   AnimationClip,
   AnimationMixer,
-  NumberKeyframeTrack,
+  // NumberKeyframeTrack,
   Quaternion,
   QuaternionKeyframeTrack,
   Vector3,
@@ -63,9 +63,9 @@ function initRotationKeyframeTrack() {
 
 // }
 
-export default function initAnimation( object ) {
+export default function setupAnimation( meshes ) {
 
-  const mixer = new AnimationMixer( object );
+  const mixer = new AnimationMixer( meshes.shapes );
 
   const rotationKF = initRotationKeyframeTrack();
 
@@ -82,7 +82,7 @@ export default function initAnimation( object ) {
 
   // finally, we need to update the mixer by the amount of time
   // that has elapsed since the previous frame
-  object.userData.onUpdate = ( delta ) => {
+  meshes.shapes.userData.onUpdate = ( delta ) => {
 
     mixer.update( delta );
 

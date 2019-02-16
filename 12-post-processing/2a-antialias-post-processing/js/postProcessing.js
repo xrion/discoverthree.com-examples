@@ -1,37 +1,34 @@
 import {
   EffectComposer,
-  CopyShader,
-  FXAAShader,
+} from './vendor/three/postprocessing/EffectComposer.js';
+
+import {
   RenderPass,
-  ShaderPass,
-  SMAAPass,
+} from './vendor/three/postprocessing/RenderPass.js';
+
+import {
   SSAARenderPass,
+} from './vendor/three/postprocessing/SSAARenderPass.js';
+
+import {
+  ShaderPass,
+} from './vendor/three/postprocessing/ShaderPass.js';
+
+import {
+  SMAAPass,
+} from './vendor/three/postprocessing/SMAAPass.js';
+
+import {
   TAARenderPass,
-} from './vendor/three/todo.js';
+} from './vendor/three/postprocessing/TAARenderPass.js';
 
-function initComposers( renderer, scene, camera ) {
+import {
+  CopyShader,
+} from './vendor/three/shaders/CopyShader.js';
 
-  const composers = {};
-
-  composers.noAA = initComposerNoAA( renderer, scene, camera );
-
-  const ssaa = initComposerSSAA( renderer, scene, camera );
-  composers.ssaa = ssaa.composerSSAA;
-  composers.ssaaRenderPass = ssaa.ssaaRenderPass;
-
-  const taa = initComposerTAA( renderer, scene, camera );
-  composers.taa = taa.composerTAA;
-  composers.taaRenderPass = taa.taaRenderPass;
-
-  const fxaa = initComposerFXAA( renderer, scene, camera );
-  composers.fxaa = fxaa.composerFXAA;
-  composers.fxaaShader = fxaa.fxaaShader;
-
-  composers.smaa = initComposerSMAA( renderer, scene, camera );
-
-  return composers;
-
-}
+import {
+  FXAAShader,
+} from './vendor/three/shaders/FXAAShader.js';
 
 function initComposerNoAA( renderer, scene, camera ) {
 
@@ -92,7 +89,7 @@ function initComposerFXAA( renderer, scene, camera ) {
   const renderPass = new RenderPass( scene, camera );
   composerFXAA.addPass( renderPass );
 
-  let fxaaShader = new ShaderPass( FXAAShader );
+  const fxaaShader = new ShaderPass( FXAAShader );
 
   fxaaShader.renderToScreen = true;
   composerFXAA.addPass( fxaaShader );
@@ -117,5 +114,29 @@ function initComposerSMAA( renderer, scene, camera ) {
   // console.log(smaaPass);
 
   return composerSMAA;
+
+}
+
+export default function initComposers( renderer, scene, camera ) {
+
+  const composers = {};
+
+  composers.noAA = initComposerNoAA( renderer, scene, camera );
+
+  const ssaa = initComposerSSAA( renderer, scene, camera );
+  composers.ssaa = ssaa.composerSSAA;
+  composers.ssaaRenderPass = ssaa.ssaaRenderPass;
+
+  const taa = initComposerTAA( renderer, scene, camera );
+  composers.taa = taa.composerTAA;
+  composers.taaRenderPass = taa.taaRenderPass;
+
+  const fxaa = initComposerFXAA( renderer, scene, camera );
+  composers.fxaa = fxaa.composerFXAA;
+  composers.fxaaShader = fxaa.fxaaShader;
+
+  composers.smaa = initComposerSMAA( renderer, scene, camera );
+
+  return composers;
 
 }

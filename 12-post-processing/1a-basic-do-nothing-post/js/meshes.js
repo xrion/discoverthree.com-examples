@@ -1,23 +1,13 @@
 import {
-  BoxBufferGeometry,
   Mesh,
-  MeshStandardMaterial,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
+export default function createMeshes( geometries, materials ) {
 
-  const geometry = new BoxBufferGeometry( 2, 2, 2 );
+  return {
 
-  const material = new MeshBasicMaterial( { color: 0x800080 } );
-
-  const box = new Mesh( geometry, material );
-
-  box.userData.onUpdate = ( delta ) => {
-
-    box.rotation.y -= delta / 5;
+    box: new Mesh( geometries.box, materials.standard ),
 
   };
-
-  return { box };
 
 }
