@@ -25,7 +25,9 @@ function initScene() {
   const shapes = createShapes( geometries, materials );
 
   app.scene.add(
+
     shapes.square,
+
   );
 
 }

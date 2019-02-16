@@ -12,45 +12,6 @@ import {
   VectorKeyframeTrack,
 } from './vendor/three/three.module.js';
 
-export default function setupAnimation( object ) {
-
-  // create some KeyframeTracks
-  const positionKF = initPositionKeyframeTrack(); // a VectorKeyframeTrack
-  const scaleKF = initScaleKeyframeTrack(); // a VectorKeyframeTrack
-  const quaternionKF = initRotationKeyframeTrack(); // a QuaternionKeyframeTrack
-  const colorKF = initColorKeyframeTrack(); // a ColorKeyframeTrack
-  const opacityKF = initOpacityKeyframeTrack(); // a NumberKeyframeTrack
-
-  // Other KeyframeTrack types: BooleanKeyframeTrack, StringKeyframeTrack
-
-  const clip = new AnimationClip(
-
-    // name the clip anything you like
-    'clipA',
-
-    // set the length, or enter -1 to use the length of the longest keyframe track
-    -1,
-
-    // an array containing any number of keyframe tracks
-    [ positionKF, scaleKF, quaternionKF, colorKF, opacityKF ],
-  );
-
-  // setup the AnimationMixer
-  const mixer = new AnimationMixer( object );
-
-  // create a ClipAction and set it to play
-  const clipAction = mixer.clipAction( clip );
-  clipAction.play();
-
-  // finally, we need to update the mixer by the amount of time
-  // that has elapsed since the previous frame
-  object.userData.onUpdate = ( delta ) => {
-
-    mixer.update( delta );
-
-  };
-
-}
 
 function initPositionKeyframeTrack() {
 
@@ -104,13 +65,13 @@ function initScaleKeyframeTrack() {
 
     // the default most keyframe track types
     // use Linear interpolation
-    // InterpolateLinear
+    // InterpolateLinear,
 
     // Jump directly from one value to the next
-    // InterpolateDiscrete
+    // InterpolateDiscrete,
 
     // use Cubic interpolation
-    // InterpolateSmooth
+    // InterpolateSmooth,
 
   );
 
@@ -198,5 +159,45 @@ function initOpacityKeyframeTrack() {
   console.log( 'Here\'s the KeyframeTrack for opacity: ', opacityKF );
 
   return opacityKF;
+
+}
+
+export default function setupAnimation( meshes ) {
+
+  // create some KeyframeTracks
+  const positionKF = initPositionKeyframeTrack(); // a VectorKeyframeTrack
+  const scaleKF = initScaleKeyframeTrack(); // a VectorKeyframeTrack
+  const quaternionKF = initRotationKeyframeTrack(); // a QuaternionKeyframeTrack
+  const colorKF = initColorKeyframeTrack(); // a ColorKeyframeTrack
+  const opacityKF = initOpacityKeyframeTrack(); // a NumberKeyframeTrack
+
+  // Other KeyframeTrack types: BooleanKeyframeTrack, StringKeyframeTrack
+
+  const clip = new AnimationClip(
+
+    // name the clip anything you like
+    'clipA',
+
+    // set the length, or enter -1 to use the length of the longest keyframe track
+    -1,
+
+    // an array containing any number of keyframe tracks
+    [ positionKF, scaleKF, quaternionKF, colorKF, opacityKF ],
+  );
+
+  // setup the AnimationMixer
+  const mixer = new AnimationMixer( meshes.box );
+
+  // create a ClipAction and set it to play
+  const clipAction = mixer.clipAction( clip );
+  clipAction.play();
+
+  // finally, we need to update the mixer by the amount of time
+  // that has elapsed since the previous frame
+  meshes.box.userData.onUpdate = ( delta ) => {
+
+    mixer.update( delta );
+
+  };
 
 }

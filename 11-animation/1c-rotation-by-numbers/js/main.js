@@ -5,6 +5,9 @@ import {
 import App from './vendor/App.js';
 
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
 import setupAnimation from './animation.js';
@@ -22,13 +25,21 @@ function initScene() {
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.shapes );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
 
   setupAnimation( meshes );
 
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    meshes.shapes,
+
+  );
 
 }
 

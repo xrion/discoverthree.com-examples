@@ -16,7 +16,6 @@ function spherifyControl( mesh ) {
 
 }
 
-
 function twistControl( mesh ) {
 
   const slider = document.querySelector( '#twist-slider' );
@@ -35,9 +34,9 @@ function twistControl( mesh ) {
 
 }
 
-export default function setupMorphControls( mesh ) {
+export default function setupControls( models ) {
 
-  spherifyControl( mesh );
-  twistControl( mesh );
+  spherifyControl( models.morphCube );
+  twistControl( models.morphCube );
 
 }

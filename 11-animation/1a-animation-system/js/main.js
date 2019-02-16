@@ -30,14 +30,14 @@ function initScene() {
   const materials = createMaterials();
   const meshes = createMeshes( geometries, materials );
 
-  setupAnimation( meshes.box );
+  setupAnimation( meshes );
 
   app.scene.add(
 
     lights.ambient,
     lights.main,
 
-    meshes.box
+    meshes.box,
 
   );
 

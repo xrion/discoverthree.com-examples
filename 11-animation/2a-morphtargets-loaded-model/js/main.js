@@ -6,9 +6,11 @@ import App from './vendor/App.js';
 
 import createLights from './lights.js';
 
+import createMaterials from './materials.js';
+
 import loadModels from './models.js';
 
-import setupMorphControls from './interactivity.js';
+import setupControls from './interactivity.js';
 
 async function initScene() {
 
@@ -23,12 +25,23 @@ async function initScene() {
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
-  const models = await loadModels();
-  app.scene.add( models.morphCube );
+  const materials = createMaterials();
 
-  setupMorphControls( models.morphCube );
+  const models = await loadModels( materials );
+
+  setupControls( models );
+
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    models.morphCube,
+
+  );
+
+  console.log( `Here's the model we just loaded: ${models.morphCube}` );
 
 }
 

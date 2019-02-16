@@ -1,23 +1,12 @@
 import {
   Mesh,
-  MeshStandardMaterial,
-  SphereBufferGeometry,
-  TorusKnotBufferGeometry,
 } from './vendor/three/three.module.js';
 
-function createShapes() {
+function createShapes( geometries, materials ) {
 
-  const torusKnotGeo = new TorusKnotBufferGeometry( 3, 0.375, 64, 32, 1, 1 );
-  const torusKnotMat = new MeshStandardMaterial( {
-    color: 0x000000,
-  } );
+  const torusKnot = new Mesh( geometries.torusKnot, materials.standardBlack );
 
-  const torusKnot = new Mesh( torusKnotGeo, torusKnotMat );
-
-  const sphereGeo = new SphereBufferGeometry( 1.875, 32, 32 );
-  const sphereMat = new MeshStandardMaterial();
-
-  const sphere = new Mesh( sphereGeo, sphereMat );
+  const sphere = new Mesh( geometries.sphere, materials.standardWhite );
   sphere.position.set( 1.125, 0, 0 );
 
   torusKnot.add( sphere );
@@ -26,10 +15,12 @@ function createShapes() {
 
 }
 
-export default function createMeshes() {
+export default function createMeshes( geometries, materials ) {
 
-  const shapes = createShapes();
+  return {
 
-  return { shapes };
+    shapes: createShapes( geometries, materials ),
+
+  };
 
 }
