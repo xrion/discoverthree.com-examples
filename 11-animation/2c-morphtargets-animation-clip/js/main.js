@@ -22,12 +22,19 @@ async function initScene() {
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
   const models = await loadModels();
-  app.scene.add( models.morphCube );
 
   setupAnimation( models.morphCube );
+
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    models.morphCube,
+
+  );
 
 }
 

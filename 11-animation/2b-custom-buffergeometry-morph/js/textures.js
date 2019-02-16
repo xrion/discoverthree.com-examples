@@ -8,11 +8,11 @@ export default function loadTextures() {
 
   const textureLoader = new TextureLoader();
 
-  const map = textureLoader.load( 'textures/color/phoenix_park_dublin.jpg' );
-  map.encoding = sRGBEncoding;
+  const deer = textureLoader.load( 'textures/color/phoenix_park_dublin.jpg' );
+  deer.encoding = sRGBEncoding;
 
   return {
-    map,
+    deer,
   };
 
 }

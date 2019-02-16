@@ -34,7 +34,7 @@ export default function setupAnimation( models ) {
     -1, // set automatically from the longest track
     [
       twistMorphTrack,
-      spherifyMorphTrack
+      spherifyMorphTrack,
     ],
   );
 

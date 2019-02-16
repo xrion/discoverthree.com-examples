@@ -5,16 +5,14 @@ import {
 export default function createMaterials( textures ) {
 
   return {
-    left: new MeshBasicMaterial( {
+
+    morph: new MeshBasicMaterial( {
+
       morphTargets: true,
-      map: textures.map,
+      map: textures.deer,
 
     } ),
-    right: new MeshBasicMaterial( {
-      morphTargets: true,
-      map: textures.map,
 
-    } ),
   };
 
 }

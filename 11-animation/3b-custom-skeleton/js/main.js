@@ -1,16 +1,22 @@
-
 import {
   Color,
-  SkeletonHelper,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.js';
 
+
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
 import createSkeleton from './skeleton.js';
-import wireframeControl from './interactivity.js';
+
+import createHelpers from './helpers.js';
+
+import setupControls from './interactivity.js';
+
 
 function initScene() {
 
@@ -25,16 +31,28 @@ function initScene() {
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
+
+  const geometries = createGeometries();
+  const materials = createMaterials();
 
   const skeleton = createSkeleton();
 
-  const meshes = createMeshes( skeleton );
-  app.scene.add( meshes.skinnedMesh );
+  const meshes = createMeshes( geometries, materials, skeleton );
 
-  app.scene.add( new SkeletonHelper( meshes.skinnedMesh ) );
+  const helpers = createHelpers( meshes );
 
-  wireframeControl( [ meshes.skinnedMesh.material ] );
+  setupControls( materials );
+
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    meshes.skinnedMesh,
+
+    helpers.skeletonHelper,
+
+  );
 
 }
 

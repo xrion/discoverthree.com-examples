@@ -1,14 +1,10 @@
-export default function wireframeControl( materials ) {
+export default function setupControls( materials ) {
 
   const button = document.querySelector( '#toggle-wireframe' );
 
   button.addEventListener( 'click', ( e ) => {
 
-    materials.forEach( ( material ) => {
-
-      material.wireframe = !material.wireframe;
-
-    } );
+    materials.skinning.wireframe = !materials.skinning.wireframe;
 
     e.preventDefault();
 

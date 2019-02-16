@@ -38,7 +38,6 @@ function rotateControl( mesh ) {
 
   const targetIndex = mesh.morphTargetDictionary.rotate;
 
-  console.log( mesh);
   slider.addEventListener( 'input', ( e ) => {
 
     value.textContent = slider.value;

@@ -162,8 +162,10 @@ function createIndexedGeometry() {
 export default function createGeometries() {
 
   return {
+
     indexed: createIndexedGeometry(),
     nonIndexed: createNonIndexedGeometry(),
+
   };
 
 }

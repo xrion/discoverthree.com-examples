@@ -111,7 +111,7 @@ export default class App {
     this.spec.camera = {
       ...{
         fov: 35,
-        near: 1,
+        near: 0.1,
         far: 1000,
       },
       ...this.spec.camera,

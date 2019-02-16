@@ -4,12 +4,17 @@ import {
 
 export default function createMeshes( geometries, materials ) {
 
-  const leftQuad = new Mesh( geometries.indexed, materials.left );
+  const leftQuad = new Mesh( geometries.indexed, materials.morph );
   leftQuad.position.x -= 1.5;
 
-  const rightQuad = new Mesh( geometries.nonIndexed, materials.right );
+  const rightQuad = new Mesh( geometries.nonIndexed, materials.morph.clone() );
   rightQuad.position.x += 1.5;
 
-  return { leftQuad, rightQuad };
+  return {
+
+    leftQuad,
+    rightQuad,
+
+  };
 
 }
