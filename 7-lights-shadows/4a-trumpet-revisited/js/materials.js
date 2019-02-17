@@ -3,7 +3,7 @@ import {
   MeshStandardMaterial,
 } from './vendor/three/three.module.js';
 
-export default function createMaterials( envMap ) {
+export default function createMaterials( environments ) {
 
   // generally throughout these examples, we
   // don't care about color accuracy that much
@@ -24,7 +24,7 @@ export default function createMaterials( envMap ) {
       metalness: 1,
       roughness: 0.05,
       color: brassColor,
-      envMap,
+      envMap: environments.sky,
       envMapIntensity: 1,
     } ),
 
@@ -32,14 +32,14 @@ export default function createMaterials( envMap ) {
       metalness: 1,
       roughness: 0.05,
       color: silverColor,
-      envMap,
+      envMap: environments.sky,
       envMapIntensity: 1,
     } ),
 
     plinth: new MeshStandardMaterial( {
       metalness: 0.5,
       roughness: 0.5,
-      envMap,
+      envMap: environments.sky,
       envMapIntensity: 0.1,
     } ),
 

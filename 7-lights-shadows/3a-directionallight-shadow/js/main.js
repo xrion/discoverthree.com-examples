@@ -15,24 +15,20 @@ import createHelpers from './helpers.js';
 
 import loadModels from './models.js';
 
+import setupControls from './interactivity.js';
+
 import setupAnimation from './animation.js';
 
 async function initScene() {
 
-  const app = new App( {
-    container: '#scene-container',
-    renderer: {
-      // physicallyCorrectLights: false,
-    },
-  } );
+  const app = new App( { container: '#scene-container' } );
 
   app.init();
 
-  app.renderer.toneMappingExposure = 0.4;
   app.renderer.shadowMap.enabled = true;
-  app.renderer.shadowMap.autoUpdate = true;
-  // app.renderer.shadowMap.type = PCFSoftShadowMap;
+  app.renderer.shadowMap.type = PCFSoftShadowMap;
 
+  app.renderer.toneMappingExposure = 0.4;
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( -20, 30, 30 );
 
@@ -50,6 +46,8 @@ async function initScene() {
 
   setupAnimation( meshes, models );
 
+  setupControls( lights, helpers );
+
   app.scene.add(
 
     lights.ambient,
@@ -58,7 +56,7 @@ async function initScene() {
     meshes.plinth,
     meshes.shapes,
 
-    // ...models.horsesArray,
+    ...models.horsesArray,
 
     helpers.shadowCameraHelper,
 

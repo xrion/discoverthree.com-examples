@@ -1,11 +1,15 @@
-function createSpiral() {
+import {
+  Group,
+  Mesh,
+} from './vendor/three/three.module.js';
+
+import pointOnSphericalSpiral from './utility/pointOnSphericalSpiral.js';
+
+function createSpiral( geometries, materials ) {
 
   const spiral = new Group();
 
-  const geometry = new SphereBufferGeometry( 0.015, 12, 12 );
-  const material = new MeshBasicMaterial( { color: 0xffffff } );
-
-  const sphere = new Mesh( geometry, material );
+  const sphere = new Mesh( geometries.sphere, materials.basic );
 
   for ( let i = -500; i < 500; i++ ) {
 
@@ -16,28 +20,17 @@ function createSpiral() {
 
   }
 
-  spiral.userData.onUpdate = ( delta ) => {
-
-    spiral.rotation.x -= delta / 8;
-    spiral.rotation.y += delta / 6;
-    spiral.rotation.z -= delta / 5;
-
-  };
-
   return spiral;
 
 }
 
-import {
-  BoxBufferGeometry,
-  Mesh,
-  MeshStandardMaterial,
-} from './vendor/three/three.module.js';
 
-export default function createMeshes() {
+export default function createMeshes( geometries, materials ) {
 
   return {
-    spiral: createSpiral(),
+
+    spiral: createSpiral( geometries, materials ),
+
   };
 
 }

@@ -1,7 +1,7 @@
 import {
   CubeTextureLoader,
   CubeReflectionMapping,
-  sRGBEncoding
+  sRGBEncoding,
 } from './vendor/three/three.module.js';
 
 export default function loadEnvironments() {
@@ -17,10 +17,14 @@ export default function loadEnvironments() {
   ];
 
 
-  const cubemap = cubeTextureLoader.load( urls );
-  cubemap.mapping = CubeReflectionMapping;
-  cubemap.encoding = sRGBEncoding;
+  const sky = cubeTextureLoader.load( urls );
+  sky.mapping = CubeReflectionMapping;
+  sky.encoding = sRGBEncoding;
 
-  return cubemap;
+  return {
+
+    sky,
+
+  };
 
 }

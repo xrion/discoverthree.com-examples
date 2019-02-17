@@ -14,9 +14,9 @@ function createLeaves( materials ) {
 
     sprite.position.set(
 
-      MathUtils.randFloat( -20, 20 ),
-      MathUtils.randFloat( -20, 20 ),
-      MathUtils.randFloat( -20, 20 ),
+      MathUtils.randFloat( -20, 20 ), // x
+      MathUtils.randFloat( -20, 20 ), // y
+      MathUtils.randFloat( -20, 20 ), // z
 
     );
 

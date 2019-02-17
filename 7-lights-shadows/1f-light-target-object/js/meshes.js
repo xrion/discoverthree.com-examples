@@ -39,7 +39,13 @@ function createShapes( geometries, materials ) {
   const torusKnotFront = torusKnot.clone();
   torusKnotFront.position.set( -15, 6, 10 );
 
-  return { middle: torusKnot, front: torusKnotFront, rear: torusKnotRear };
+  return {
+
+    middle: torusKnot,
+    front: torusKnotFront,
+    rear: torusKnotRear,
+
+  };
 
 }
 

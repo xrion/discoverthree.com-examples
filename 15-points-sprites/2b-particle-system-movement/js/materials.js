@@ -5,6 +5,7 @@ import {
 export default function createMaterials( textures ) {
 
   return {
+
     leaf: new PointsMaterial( {
 
       map: textures.leaf,

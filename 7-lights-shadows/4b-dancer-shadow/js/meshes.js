@@ -1,10 +1,15 @@
-function initWall( material ) {
+import {
+  Mesh,
+} from './vendor/three/three.module.js';
 
-  const geometry = new PlaneBufferGeometry( 10, 45 );
+function createWall( geometries, materials ) {
 
-  const backWall = new Mesh( geometry, material );
 
-  backWall.rotation.z += Math.PI / 2;
+  const backWall = new Mesh( geometries.plane, materials.wall );
+
+  // backWall.rotation.z = Math.PI / 2;
+
+  backWall.scale.set( 10, 10, 1 );
 
   backWall.position.set( 0, 5.05, -2.8 );
   backWall.receiveShadow = true;
@@ -19,12 +24,12 @@ function initWall( material ) {
 
 }
 
-function initFloor( material ) {
+function createFloor( geometries, materials ) {
 
-  const geometry = new PlaneBufferGeometry( 10, 120 );
 
-  geometry.rotateZ( Math.PI / 2 );
-  const floor = new Mesh( geometry, material );
+  const floor = new Mesh( geometries.plane, materials.floor );
+
+  floor.scale.set( 10, 10, 1 );
 
   floor.rotation.x = -Math.PI / 2;
   floor.position.z += 2;
@@ -34,11 +39,14 @@ function initFloor( material ) {
 
 }
 
-function createMeshes( materials ) {
+export default function createMeshes( geometries, materials ) {
 
-  const floor = initFloor( materials.floor );
-  const backWall = initWall( materials.wall );
 
-  return { floor, backWall };
+  return {
+
+    floor: createFloor( geometries, materials ),
+    backWall: createWall( geometries, materials ),
+
+  };
 
 }

@@ -2,7 +2,11 @@ import createAsyncLoader from './vendor/utility/createAsyncLoader.js';
 
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.js';
 
-function setupModel( gltf, materials ) {
+export default async function loadGLTFModels( materials ) {
+
+  const loader = createAsyncLoader( new GLTFLoader() );
+
+  const gltf = await loader.load( 'models/trumpet/Trumpet.glb' );
 
   const trumpet = gltf.scene.getObjectByName( 'trumpet' );
 
@@ -17,25 +21,10 @@ function setupModel( gltf, materials ) {
   trumpet.children[ 1 ].castShadow = true;
   trumpet.children[ 1 ].receiveShadow = true;
 
-  trumpet.userData.onUpdate = ( delta ) => {
+  return {
 
-    trumpet.rotation.y += 0.1 * delta;
+    trumpet,
 
   };
-  return trumpet;
 
 }
-
-export default async function loadModels( materials ) {
-
-  const loader = createAsyncLoader( new GLTFLoader() );
-
-  const trumpet = setupModel(
-    await loader.load( 'models/trumpet/trumpet.glb' ),
-    materials,
-  );
-
-  return { trumpet };
-
-}
-

@@ -6,6 +6,7 @@ import {
 // /// SHADERS //////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////////////////////
 const vertexShader = /* glsl */`
+
   precision highp float;
 
     uniform mat4 modelViewMatrix;
@@ -21,9 +22,9 @@ const vertexShader = /* glsl */`
 
     mat3 rotateZ( in float angle ) {
       return mat3(
-        cos(angle),		-sin(angle),	0,
-        sin(angle),		cos(angle),		0,
-        0,				0,		1
+        cos(angle), -sin(angle), 0,
+        sin(angle),		cos(angle), 0,
+        0, 0, 1
       );
     }
 
@@ -57,7 +58,12 @@ const vertexShader = /* glsl */`
       float colorFactor = easeCircOut( tFactor );
       float alphaFactor = easeOutAtEnd( tFactor, 0.1 );
 
-      color = vec4( cos(colorFactor), sin(colorFactor), sin( 1.0-colorFactor ), alphaFactor );
+      color = vec4(
+        cos(colorFactor),       // R
+        sin(colorFactor),       // G
+        sin( 1.0-colorFactor ), // B
+        alphaFactor
+      );
 
       vec3 mvPosition = ( offset + position * ( scaleFactor * 0.2 ) ) * scaleFactor;
       mat3 rot = rotateZ( rotationFactor * 10.0 );
@@ -80,18 +86,32 @@ const fragmentShader = /* glsl */`
   }
 `;
 
-export default function createMaterials() {
+function createSpiralShader() {
 
   const spiral = new RawShaderMaterial( {
+
     uniforms: {
+
       time: { value: 0.0 },
+
     },
+
     vertexShader,
     fragmentShader,
     transparent: true,
 
   } );
 
-  return { spiral };
+  return spiral;
+
+}
+
+export default function createMaterials() {
+
+  return {
+
+    spiral: createSpiralShader(),
+
+  };
 
 }

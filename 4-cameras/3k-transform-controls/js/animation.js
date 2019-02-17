@@ -42,7 +42,7 @@ function setupCircularRunningAnimation( horse ) {
 
     const action = mixer.clipAction( clip );
 
-   // start the animations at a random point so that the horses run out off sync
+    // start the animations at a random point so that the horses run out off sync
     action.startAt( MathUtils.randFloat( 0, 0.5 ) ).play();
 
   } );

@@ -1,6 +1,6 @@
 import {
   HemisphereLight,
-  DirectionalLight,
+  SpotLight,
 } from './vendor/three/three.module.js';
 
 function createDiffuseLight() {

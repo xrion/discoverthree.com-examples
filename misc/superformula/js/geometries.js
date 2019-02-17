@@ -1,11 +1,11 @@
 // the 3D superformula is obtained via the spherical product
 // of two 2D superformulas
 import {
-  BufferAttribute,
+  Float32BufferAttribute,
   BufferGeometry,
 } from './vendor/three/three.module.js';
 
-export default function createGeometry() { {
+function createSuperGeometry() {
 
   const geometry = new BufferGeometry();
   const positions = [];
@@ -14,17 +14,17 @@ export default function createGeometry() { {
   const scaleFactor = 1;
 
   // first 2D superformula params
-  const a1 = 1;
+  const a1 = 6;
   const b1 = 1;
-  const m1 = 1;
+  const m1 = 6;
   const n11 = 1;
-  const n21 = 1;
+  const n21 = 2;
   const n31 = 1;
 
   // second 2D superformula params
-  const m2 = 1;
-  const a2 = 1;
-  const b2 = 1;
+  const m2 = 2;
+  const a2 = 2;
+  const b2 = 2;
   const n12 = 1;
   const n22 = 1;
   const n32 = 1;
@@ -88,14 +88,25 @@ export default function createGeometry() { {
     }
   }
 
+  geometry.addAttribute( 'position', new Float32BufferAttribute( positions, 3 ) );
+
   geometry.setIndex( indices );
 
   geometry.computeVertexNormals();
 
-  geometry.addAttribute( 'position', new THREE.Float32BufferAttribute( positions, 3 ) );
 
   console.log( geometry );
 
   return geometry;
+
+}
+
+export default function createGeometries() {
+
+  return {
+
+    super: createSuperGeometry(),
+
+  };
 
 }

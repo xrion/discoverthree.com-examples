@@ -7,7 +7,7 @@ function createPlinth( geometries, materials ) {
 
   const plinth = new Mesh( geometries.truncatedCone, materials.standardWhiteRough );
 
-  plinth.receiveshadow = true;
+  plinth.receiveShadow = true;
 
   return plinth;
 
@@ -18,13 +18,13 @@ function createShapes( geometries, materials ) {
   const torusKnot = new Mesh( geometries.torusKnot, materials.standardBlack );
   torusKnot.position.set( 0, 6, 0 );
 
-  torusKnot.receiveshadow = true;
+  torusKnot.castShadow = true;
 
   const sphere = new Mesh( geometries.sphere, materials.standardWhite );
   sphere.position.set( 1.125, 0, 0 );
 
-  sphere.castshadow = true;
-  sphere.receiveshadow = true;
+  sphere.castShadow = true;
+  sphere.receiveShadow = true;
 
   torusKnot.add( sphere );
 

@@ -2,9 +2,10 @@ import App from './vendor/App.js';
 
 import loadEnvironment from './environment.js';
 
+import createLights from './lights.js';
+
 import createGeometries from './geometries.js';
 import createMaterials from './materials.js';
-import createLights from './lights.js';
 import createMeshes from './meshes.js';
 
 import loadModels from './models.js';

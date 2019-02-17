@@ -1,8 +1,12 @@
+import {
+  Vector3,
+} from '../vendor/three/three.module.js';
+
 const vec = new Vector3();
 const a = 0.009; // spiral param
 
 // formula for a spherical spiral here: http://mathworld.wolfram.com/SphericalSpiral.html
-function pointOnSphericalSpiral( t ) {
+export default function pointOnSphericalSpiral( t ) {
 
 
   const c = Math.atan( a * t );

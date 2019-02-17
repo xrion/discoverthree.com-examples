@@ -16,11 +16,28 @@
 
 		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 6.3b:</h1>
 
+		<div id="controls">
+
+			<h3>Point Light</h3>
+
+			<span>Color</span>
+			<br>
+			<input type="color" id="color-picker" value="#FFF093">
+			<br>
+			<br>
+
+			<span>Power (in Lumens): <span id="power-value">5000</span></span>
+			<br>
+			<input type="range" id="power-slider" min="0" max="100000" step="1" value="5000">
+			<br>
+
+		</div>
+
 		<div id="scene-container"></div>
 
-	 	<footer>
+		<footer>
 
-			 <script type="module" src="js/main.js"></script>
+			<script type="module" src="js/main.js"></script>
 
 		</footer>
 

@@ -5,7 +5,11 @@ import {
 import App from './vendor/App.js';
 
 import createLights from './lights.js';
+
+import createGeometries from './geometries.js';
+import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
+
 
 function initScene() {
 
@@ -15,16 +19,24 @@ function initScene() {
 
   app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( 0, 0, 10 );
+  app.camera.position.set( -20, 20, 50 );
 
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
-  const meshes = createMeshes();
-  app.scene.add( meshes.superMesh );
+  const geometries = createGeometries();
+  const materials = createMaterials();
+  const meshes = createMeshes( geometries, materials );
 
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    meshes.super,
+
+  );
 
 }
 

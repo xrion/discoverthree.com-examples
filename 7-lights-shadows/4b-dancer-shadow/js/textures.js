@@ -1,33 +1,11 @@
 import {
-  CubeTextureLoader,
-  CubeReflectionMapping,
-  sRGBEncoding,
+  // MirrorRepeatWrapping,
   RepeatWrapping,
-  MirrorRepeatWrapping,
+  sRGBEncoding,
+  TextureLoader,
 } from './vendor/three/three.module.js';
 
-function loadEnvMap() {
-
-  const cubeTextureLoader = new CubeTextureLoader();
-
-  const path = 'textures/environments/cubemap/castle/';
-
-  const urls = [
-    `${path}/px.jpg`, `${path}/nx.jpg`,
-    `${path}/py.jpg`, `${path}/ny.jpg`,
-    `${path}/pz.jpg`, `${path}/nz.jpg`,
-  ];
-
-  const cubemap = cubeTextureLoader.load( urls );
-  cubemap.mapping = CubeReflectionMapping;
-  cubemap.encoding = sRGBEncoding;
-
-  return cubemap;
-
-}
-
-
-function initTextures() {
+export default function loadTextures() {
 
   const textureLoader = new TextureLoader();
 
@@ -38,12 +16,12 @@ function initTextures() {
 
   textures.wallColor = textureLoader.load( 'textures/wall/wall_color.jpg' );
   textures.wallColor.wrapT = RepeatWrapping;
-  textures.wallColor.wrapS = MirrorRepeatWrapping;
+  // textures.wallColor.wrapS = MirrorRepeatWrapping;
   textures.wallColor.repeat.set( repeatU, repeatV );
   textures.wallColor.encoding = sRGBEncoding;
 
   textures.wallBump = textureLoader.load( 'textures/wall/wall_bump.jpg' );
-  textures.wallBump.wrapT = MirrorRepeatWrapping;
+  // textures.wallBump.wrapT = MirrorRepeatWrapping;
   textures.wallBump.wrapS = RepeatWrapping;
   textures.wallBump.repeat.set( repeatU, repeatV );
 
@@ -58,8 +36,6 @@ function initTextures() {
   textures.floorNormal = textureLoader.load( 'textures/floor/floor_normal.jpg' );
   textures.floorNormal.wrapS = textures.floorNormal.wrapT = RepeatWrapping;
   textures.floorNormal.repeat.set( repeatU, repeatV );
-
-  textures.envMap = loadEnvMap();
 
   return textures;
 

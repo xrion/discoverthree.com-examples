@@ -15,6 +15,8 @@ import createHelpers from './helpers.js';
 
 import loadModels from './models.js';
 
+import setupControls from './interactivity.js';
+
 import setupAnimation from './animation.js';
 
 async function initScene() {
@@ -23,7 +25,7 @@ async function initScene() {
 
   app.init();
 
-  app.renderer.toneMappingExposure = 0.3;
+  app.renderer.toneMappingExposure = 0.6;
   app.renderer.shadowMap.enabled = true;
   app.renderer.shadowMap.type = PCFSoftShadowMap;
 
@@ -43,6 +45,8 @@ async function initScene() {
   const models = await loadModels();
 
   setupAnimation( meshes, models );
+
+  setupControls( lights, helpers );
 
   app.scene.add(
 

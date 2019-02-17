@@ -59,7 +59,7 @@ async function initScene() {
 
     ...models.horsesArray,
 
-    helpers.shadowCameraHelper,
+    // helpers.shadowCameraHelper,
 
   );
 

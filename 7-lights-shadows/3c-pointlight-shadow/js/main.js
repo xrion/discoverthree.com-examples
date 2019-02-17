@@ -15,6 +15,8 @@ import createHelpers from './helpers.js';
 
 import loadModels from './models.js';
 
+import setupControls from './interactivity.js';
+
 import setupAnimation from './animation.js';
 
 async function initScene() {
@@ -43,6 +45,8 @@ async function initScene() {
   const models = await loadModels();
 
   setupAnimation( meshes, models );
+
+  setupControls( lights, helpers );
 
   app.scene.add(
 

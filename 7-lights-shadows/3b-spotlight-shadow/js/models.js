@@ -18,8 +18,8 @@ function createHorsesArray( protoHorse ) {
     horse.position.z += 1.6 * i;
     horse.scale.setScalar( 0.66 - 0.066 * i );
 
-    horse.castshadow = true;
-    horse.receiveshadow = true;
+    horse.castShadow = true;
+    horse.receiveShadow = true;
 
     horsesArray.push( horse );
 

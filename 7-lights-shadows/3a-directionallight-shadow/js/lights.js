@@ -18,7 +18,7 @@ function createDirectionalLight() {
   direct.castShadow = true;
   direct.shadow.mapSize.width = 1024;
   direct.shadow.mapSize.height = 1024;
-  direct.shadow.camera.near = 8;
+  direct.shadow.camera.near = 5;
   direct.shadow.camera.far = 35;
 
   direct.shadow.camera.top = 10;
@@ -26,8 +26,8 @@ function createDirectionalLight() {
   direct.shadow.camera.bottom = -8;
   direct.shadow.camera.left = -18;
 
-  // direct.shadow.bias = 0.0001;
-  // direct.shadow.radius = 1.5;
+  direct.shadow.bias = 0;
+  direct.shadow.radius = 0;
 
   return direct;
 

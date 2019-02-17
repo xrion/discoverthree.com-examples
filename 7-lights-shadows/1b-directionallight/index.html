@@ -16,10 +16,28 @@
 
 		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 6.3b:</h1>
 
-<div id="scene-container"></div>
+		<div id="controls">
 
-	 	<footer>
-			 <script type="module" src="js/main.js"></script>
+			<h3>Directional Light</h3>
+
+			<span>Color</span>
+			<br>
+			<input type="color" id="color-picker" value="#ddeeff">
+			<br>
+			<br>
+
+			<span>Intensity: <span id="intensity-value">10</span></span>
+			<br>
+			<input type="range" id="intensity-slider" min="0" max="100" step="1" value="10">
+			<br>
+
+		</div>
+
+		<div id="scene-container"></div>
+
+		<footer>
+
+			<script type="module" src="js/main.js"></script>
 
 		</footer>
 

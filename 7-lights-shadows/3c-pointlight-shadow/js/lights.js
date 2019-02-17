@@ -28,6 +28,8 @@ function creatPointLight() {
   point.shadow.camera.near = 0.1;
   point.shadow.camera.far = 24;
 
+  console.log(point.shadow.camera);
+
   return point;
 
 }
