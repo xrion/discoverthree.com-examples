@@ -20,6 +20,10 @@ export default function loadEnvironments() {
   castle.mapping = CubeReflectionMapping;
   castle.encoding = sRGBEncoding;
 
-  return { castle };
+  return {
+
+    castle,
+
+  };
 
 }

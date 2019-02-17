@@ -8,6 +8,8 @@ import createMaterials from './materials.js';
 
 import createSprites from './sprites.js';
 
+import setupAnimation from './animation.js';
+
 function initScene() {
 
   const app = new App( { container: '#scene-container' } );
@@ -23,13 +25,22 @@ function initScene() {
   app.start();
 
   const lights = createLights();
-  app.scene.add( lights.ambient, lights.main );
 
   const textures = loadTextures();
   const materials = createMaterials( textures );
 
   const sprites = createSprites( materials );
-  app.scene.add( sprites.leaves );
+
+  setupAnimation( sprites );
+
+  app.scene.add(
+
+    lights.ambient,
+    lights.main,
+
+    sprites.leaves,
+
+  );
 
 }
 

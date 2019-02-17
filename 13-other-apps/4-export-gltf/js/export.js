@@ -20,7 +20,7 @@ function exportGLTF( input, animations ) {
     embedImages: document.getElementById( 'option_embedImages' ).checked,
     forcePowerOfTwoTextures: document.getElementById( 'option_forcepot' ).checked,
 
-    // an array of animation clips
+    // optional array of animation clips
     animations,
   };
 

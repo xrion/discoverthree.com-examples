@@ -1,4 +1,4 @@
-export default function setupAnimation( points ) {
+function setupPointsAnimation( points ) {
 
   const positions = points.sphere.geometry.attributes.position.array;
 
@@ -23,5 +23,10 @@ export default function setupAnimation( points ) {
 
   };
 
+}
+
+export default function setupAnimation( points ) {
+
+  setupPointsAnimation( points );
 
 }

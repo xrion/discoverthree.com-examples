@@ -1,9 +1,15 @@
-export default function setupAnimation( points ) {
+function setupSimpleRotation( object ) {
 
-  points.sphere.userData.onUpdate = ( delta ) => {
+  object.userData.onUpdate = ( delta ) => {
 
-    points.sphere.rotation.y -= delta / 3;
+    object.rotation.y -= delta / 3;
 
   };
+
+}
+
+export default function setupAnimation( points ) {
+
+  setupSimpleRotation( points.sphere );
 
 }

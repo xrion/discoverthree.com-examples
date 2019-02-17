@@ -12,7 +12,9 @@ export default function loadTextures() {
   leaf.encoding = sRGBEncoding;
 
   return {
+
     leaf,
+
   };
 
 }

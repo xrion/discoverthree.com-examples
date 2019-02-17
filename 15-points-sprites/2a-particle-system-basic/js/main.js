@@ -32,11 +32,9 @@ function initScene() {
 
   const points = createPoints( geometries, materials );
 
-  setupAnimation( points )
+  setupAnimation( points );
 
   app.scene.add( points.sphere );
-
-
 
 }
 

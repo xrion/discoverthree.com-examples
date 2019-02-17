@@ -5,9 +5,12 @@ import {
 export default function createMaterials( textures ) {
 
   return {
+
     leaf: new SpriteMaterial( {
+
       map: textures.leaf,
       sizeAttenuation: true, // default
+
     } ),
 
   };
