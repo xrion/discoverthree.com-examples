@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>Discoverthreejs.com - Ch 6.3b</title>
+
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta charset="UTF-8" />
+
+		<link rel="icon" href="https://discoverthreejs.com/favicon.ico" type="image/x-icon">
+
+		<link href="styles/main.css" rel="stylesheet" type="text/css">
+		<link href="styles/controls.css" rel="stylesheet" type="text/css">
+
+	</head>
+
+	<body>
+
+		<h1 class="title"><a href="https://discoverthreejs.com/">Discoverthreejs.com</a> - Ch 6.3b:</h1>
+
+		<div id="controls">
+
+			<h3>Spotlight</h3>
+
+			<span>Show Helper</span>
+			<input type="checkbox" id="show-helper" checked>
+			<br>
+
+			<h3>Spotlight Target</h3>
+
+			<p id="target-warn">Target is not in the scene!</p>
+			<button id="add-target-to-scene">Add Target to Scene</button><br>
+
+			<button id="target-default">light.target.position.set( 0, 0, 0 )</button><br>
+			<button id="target-front">light.target.position.set( 10, 6, 0 )</button><br>
+			<button id="target-middle">light.target.position.set( 10, 6, -10 )</button><br>
+			<button id="target-rear">light.target.position.set( -15, 6, 10 )</button>
+
+		</div>
+
+		<div id="scene-container"></div>
+
+	 	<footer>
+
+			<script type="module" src="js/main.js"></script>
+
+		</footer>
+
+	</body>
+
+</html>

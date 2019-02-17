@@ -10,7 +10,7 @@ function setupHelperVisibilityToggle( helper ) {
 
 }
 
-function initRetargetButton( lights, targetName, targets, lightHelper ) {
+function setupTargetButton( lights, targetName, targets, lightHelper ) {
 
   const button = document.querySelector( `#target-${targetName}` );
 
@@ -30,9 +30,9 @@ export default function setupControls( lights, meshes, helpers ) {
 
   setupHelperVisibilityToggle( helpers.spotLightHelper );
 
-  initRetargetButton( lights, 'default', targets, helpers.spotLightHelper );
-  initRetargetButton( lights, 'front', targets, helpers.spotLightHelper );
-  initRetargetButton( lights, 'middle', targets, helpers.spotLightHelper );
-  initRetargetButton( lights, 'rear', targets, helpers.spotLightHelper );
+  setupTargetButton( lights, 'default', targets, helpers.spotLightHelper );
+  setupTargetButton( lights, 'front', targets, helpers.spotLightHelper );
+  setupTargetButton( lights, 'middle', targets, helpers.spotLightHelper );
+  setupTargetButton( lights, 'rear', targets, helpers.spotLightHelper );
 
 }
