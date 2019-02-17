@@ -49,7 +49,6 @@ function setupShadowDimensionsSelect( light ) {
 
 }
 
-
 function setupParameterSlider( parameter, object, helper ) {
 
   const slider = document.querySelector( `#${parameter}-slider` );
@@ -84,7 +83,6 @@ export default function setupControls( lights, helpers, renderer ) {
 
   setupParameterSlider( 'bias', lights.main.shadow );
   setupParameterSlider( 'radius', lights.main.shadow );
-
 
   setupParameterSlider( 'near', shadowCamera, helper );
   setupParameterSlider( 'far', shadowCamera, helper );

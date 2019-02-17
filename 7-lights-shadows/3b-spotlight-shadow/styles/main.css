@@ -39,7 +39,10 @@ a:hover{
   text-align: right;
 }
 
+select, button, input {
+  margin-bottom: 1rem;
+}
 
-input {
+input[type=range] {
   width: 100%;
 }
