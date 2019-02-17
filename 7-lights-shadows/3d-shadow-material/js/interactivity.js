@@ -1,4 +1,16 @@
-function opacityControl( material ) {
+function setupHelperVisibilityToggle( helper ) {
+
+  const toggle = document.querySelector( '#show-helper' );
+
+  toggle.addEventListener( 'input', () => {
+
+    helper.visible = !helper.visible;
+
+  } );
+
+}
+
+function setupOpacitySlider( material ) {
 
   const slider = document.querySelector( '#opacity-slider' );
   const value = document.querySelector( '#opacity-value' );
@@ -15,7 +27,7 @@ function opacityControl( material ) {
 
 }
 
-function colorControl( material ) {
+function setupColorPicker( material ) {
 
   const colorPicker = document.querySelector( '#color-picker' );
 
@@ -29,9 +41,11 @@ function colorControl( material ) {
 
 }
 
-export default function setupControls( materials ) {
+export default function setupControls( materials, helpers ) {
 
-  opacityControl( materials.shadow );
-  colorControl( materials.shadow );
+  setupHelperVisibilityToggle( helpers.shadowCameraHelper );
+
+  setupOpacitySlider( materials.shadow );
+  setupColorPicker( materials.shadow );
 
 }

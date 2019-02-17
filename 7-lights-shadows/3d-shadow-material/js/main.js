@@ -46,7 +46,7 @@ async function initScene() {
 
   setupAnimation( meshes, models );
 
-  setupControls( materials );
+  setupControls( materials, helpers );
 
   app.scene.add(
 
@@ -59,7 +59,7 @@ async function initScene() {
 
     ...models.horsesArray,
 
-    // helpers.shadowCameraHelper,
+    helpers.shadowCameraHelper,
 
   );
 

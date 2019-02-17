@@ -1,3 +1,15 @@
+function setupHelperVisibilityToggle( helper ) {
+
+  const toggle = document.querySelector( '#show-helper' );
+
+  toggle.addEventListener( 'input', () => {
+
+    helper.visible = !helper.visible;
+
+  } );
+
+}
+
 function initRetargetButton( lights, targetName, targets, lightHelper ) {
 
   const button = document.querySelector( `#target-${targetName}` );

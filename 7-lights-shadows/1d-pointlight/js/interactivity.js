@@ -1,24 +1,54 @@
-function initRetargetButton( lights, targetName, targets, lightHelper ) {
+function setupHelperVisibilityToggle( helper ) {
 
-  const button = document.querySelector( `#target-${targetName}` );
+  const toggle = document.querySelector( '#show-helper' );
 
-  button.addEventListener( 'click', () => {
+  toggle.addEventListener( 'input', () => {
 
-    lights.main.target = targets[ targetName ];
-    lightHelper.update();
+    helper.visible = !helper.visible;
 
   } );
+
 }
 
-export default function setupControls( lights, meshes, helpers ) {
+function setupColorPicker( light, helper ) {
 
-  const targets = meshes.targets;
+  const colorPicker = document.querySelector( '#color-picker' );
 
-  targets.default = lights.main.target;
+  colorPicker.addEventListener( 'input', ( e ) => {
 
-  initRetargetButton( lights, 'default', targets, helpers.spotLightHelper );
-  initRetargetButton( lights, 'front', targets, helpers.spotLightHelper );
-  initRetargetButton( lights, 'middle', targets, helpers.spotLightHelper );
-  initRetargetButton( lights, 'rear', targets, helpers.spotLightHelper );
+    light.color.set( colorPicker.value );
+    helper.update();
+
+    e.preventDefault();
+
+  } );
+
+}
+
+function setupParameterSlider( parameter, light ) {
+
+  const slider = document.querySelector( `#${parameter}-slider` );
+  const value = document.querySelector( `#${parameter}-value` );
+
+  slider.addEventListener( 'input', ( e ) => {
+
+    value.textContent = slider.value;
+
+    light[parameter] = parseFloat( slider.value );
+
+    e.preventDefault();
+
+  } );
+
+}
+
+export default function setupControls( lights, helpers, renderer ) {
+
+  setupHelperVisibilityToggle( helpers.pointLightHelper );
+
+  setupColorPicker( lights.main, helpers.pointLightHelper );
+
+  setupParameterSlider( 'power', lights.main );
+  setupParameterSlider( 'toneMappingExposure', renderer );
 
 }

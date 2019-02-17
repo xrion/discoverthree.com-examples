@@ -42,7 +42,7 @@ async function initScene() {
 
   setupAnimation( meshes, models );
 
-  setupControls( lights, helpers );
+  setupControls( lights, helpers, app.renderer );
 
   app.scene.add(
 
@@ -58,6 +58,8 @@ async function initScene() {
     helpers.pointLightHelper,
 
   );
+
+  console.log( 'Here\'s our PointLight: ', lights.main );
 
 }
 
