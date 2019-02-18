@@ -6,11 +6,7 @@ export default function createMaterials() {
 
   return {
 
-    standardBlack: new MeshStandardMaterial( { color: 0x000000 } ),
-
-    standardWhite: new MeshStandardMaterial(),
-
-    standardWhiteRough: new MeshStandardMaterial( {
+    standard: new MeshStandardMaterial( {
       metalness: 0.1,
       roughness: 0.8,
     } ),

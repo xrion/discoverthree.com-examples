@@ -22,17 +22,15 @@ function setupTargetButton( lights, targetName, targets, lightHelper ) {
   } );
 }
 
-export default function setupControls( lights, meshes, helpers ) {
+export default function setupControls( lights, models, helpers ) {
 
-  const targets = meshes.targets;
-
-  targets.default = lights.main.target;
+  models.default = lights.main.target;
 
   setupHelperVisibilityToggle( helpers.spotLightHelper );
 
-  setupTargetButton( lights, 'default', targets, helpers.spotLightHelper );
-  setupTargetButton( lights, 'front', targets, helpers.spotLightHelper );
-  setupTargetButton( lights, 'middle', targets, helpers.spotLightHelper );
-  setupTargetButton( lights, 'rear', targets, helpers.spotLightHelper );
+  setupTargetButton( lights, 'default', models, helpers.spotLightHelper );
+  setupTargetButton( lights, 'duck', models, helpers.spotLightHelper );
+  setupTargetButton( lights, 'head', models, helpers.spotLightHelper );
+  setupTargetButton( lights, 'horse', models, helpers.spotLightHelper );
 
 }

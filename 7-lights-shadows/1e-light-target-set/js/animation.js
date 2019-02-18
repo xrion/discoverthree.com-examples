@@ -1,5 +1,6 @@
 import {
   AnimationMixer,
+  Vector3,
 } from './vendor/three/three.module.js';
 
 function setupAnimationClips( model ) {
@@ -20,11 +21,12 @@ function setupAnimationClips( model ) {
   } );
 
 }
-function setupSimpleRotation( object, axis ) {
+function setupSimpleRotation( object ) {
 
+  const yAxis = new Vector3( 0, 1, 0 );
   object.userData.onUpdate = ( delta ) => {
 
-    object.rotation[ axis ] += delta / 2;
+    object.rotateOnWorldAxis( yAxis, delta / 2 );
 
   };
 
@@ -33,7 +35,7 @@ function setupSimpleRotation( object, axis ) {
 export default function setupAnimations( models ) {
 
   setupAnimationClips( models.horse );
-  setupSimpleRotation( models.duck, 'y' );
-  setupSimpleRotation( models.head, 'z' );
+  setupSimpleRotation( models.duck );
+  setupSimpleRotation( models.head );
 
 }

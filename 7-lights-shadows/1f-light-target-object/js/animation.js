@@ -1,23 +1,41 @@
-function setupSimpleRotation( targets ) {
+import {
+  AnimationMixer,
+  Vector3,
+} from './vendor/three/three.module.js';
 
-  targets.front.userData.onUpdate = ( delta ) => {
+function setupAnimationClips( model ) {
 
-    targets.front.rotation.y += delta / 2;
-    targets.front.rotation.z -= delta / 4;
+  const mixer = new AnimationMixer( model );
 
-    targets.middle.rotation.x += delta / 6;
-    targets.middle.rotation.z -= delta / 2;
+  model.userData.onUpdate = ( delta ) => {
 
-    targets.rear.rotation.x += delta / 3;
-    targets.rear.rotation.y -= delta / 8;
+    mixer.update( delta );
+
+  };
+
+  model.animations.forEach( ( clip ) => {
+
+    const action = mixer.clipAction( clip );
+    action.play();
+
+  } );
+
+}
+function setupSimpleRotation( object ) {
+
+  const yAxis = new Vector3( 0, 1, 0 );
+  object.userData.onUpdate = ( delta ) => {
+
+    object.rotateOnWorldAxis( yAxis, delta / 2 );
 
   };
 
 }
 
+export default function setupAnimations( models ) {
 
-export default function setupAnimations( meshes ) {
-
-  setupSimpleRotation( meshes.targets );
+  setupAnimationClips( models.horse );
+  setupSimpleRotation( models.duck );
+  setupSimpleRotation( models.head );
 
 }

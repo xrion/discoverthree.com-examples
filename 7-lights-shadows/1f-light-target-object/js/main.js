@@ -12,6 +12,8 @@ import createMeshes from './meshes.js';
 
 import createHelpers from './helpers.js';
 
+import loadModels from './models.js';
+
 import setupControls from './interactivity.js';
 
 import setupAnimation from './animation.js';
@@ -22,9 +24,9 @@ async function initScene() {
 
   app.init();
 
-  app.renderer.toneMappingExposure = 0.4;
+  app.renderer.toneMappingExposure = 0.7;
   app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( -20, 30, 40 );
+  app.camera.position.set( -35, 30, -35 );
 
   app.start();
 
@@ -36,20 +38,24 @@ async function initScene() {
 
   const helpers = createHelpers( lights );
 
-  setupAnimation( meshes );
+  const models = await loadModels();
 
-  setupControls( lights, meshes, helpers );
+  setupAnimation( models );
+
+  setupControls( lights, models, helpers );
 
   app.scene.add(
 
     // lights.ambient,
 
     lights.main,
+    lights.main.target,
 
     meshes.plinth,
-    meshes.targets.front,
-    meshes.targets.middle,
-    meshes.targets.rear,
+
+    models.duck,
+    models.horse,
+    models.head,
 
     helpers.spotLightHelper,
 
