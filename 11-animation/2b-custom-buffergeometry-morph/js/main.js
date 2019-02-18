@@ -34,9 +34,6 @@ function initScene() {
 
   );
 
-  console.log( 'Here\'s the non-ndexed BufferGeometry you just created: ', geometries.nonIndexed );
-  console.log( '...and here\'s the indexed BufferGeometry you just created: ', geometries.indexed );
-
 }
 
 initScene();

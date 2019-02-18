@@ -16,22 +16,6 @@ function setupHelperVisibilityToggle( helper ) {
 
 }
 
-function setupShadowTypeSelect( renderer ) {
-
-  const select = document.querySelector( '#map-type' );
-
-  select.addEventListener( 'change', ( e ) => {
-
-    e.preventDefault();
-
-    if ( e.target.value === 'basic' ) renderer.shadowMap.type = BasicShadowMap;
-    else if ( e.target.value === 'pcf' ) renderer.shadowMap.type = PCFShadowMap;
-    else renderer.shadowMap.type = PCFSoftShadowMap;
-
-  } );
-
-}
-
 function setupShadowDimensionsSelect( light ) {
 
   const select = document.querySelector( '#map-size' );
@@ -44,6 +28,10 @@ function setupShadowDimensionsSelect( light ) {
 
     light.shadow.mapSize.width = newDimension;
     light.shadow.mapSize.height = newDimension;
+
+    // force the shadow map to refresh
+    light.shadow.map.dispose(); // import and prevent memory leaks
+    light.shadow.map = null;
 
   } );
 
@@ -71,14 +59,12 @@ function setupParameterSlider( parameter, object, helper ) {
 
 }
 
-export default function setupControls( lights, helpers, renderer ) {
+export default function setupControls( lights, helpers ) {
 
   const shadowCamera = lights.main.shadow.camera;
   const helper = helpers.shadowCameraHelper;
 
   setupHelperVisibilityToggle( helper );
-
-  setupShadowTypeSelect( renderer );
 
   setupShadowDimensionsSelect( lights.main );
 

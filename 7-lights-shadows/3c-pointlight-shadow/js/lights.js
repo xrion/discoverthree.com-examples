@@ -25,7 +25,7 @@ function creatPointLight() {
   point.castShadow = true;
   point.shadow.mapSize.width = 1024;
   point.shadow.mapSize.height = 1024;
-  point.shadow.camera.near = 0.1;
+  point.shadow.camera.near = 1;
   point.shadow.camera.far = 24;
 
   return point;
@@ -35,8 +35,10 @@ function creatPointLight() {
 export default function createLights() {
 
   return {
+
     ambient: createHemisphereLight(),
     main: creatPointLight(),
+
   };
 
 }

@@ -29,9 +29,8 @@ function initScene() {
 
   const lights = createLights();
 
-  const materials = createMaterials( RT.target.texture );
+  const materials = createMaterials( RT.target );
   const geometries = createGeometries();
-
   const meshes = createMeshes( geometries, materials );
 
   setupAnimation( meshes );
@@ -49,8 +48,8 @@ function initScene() {
 
     // remember that due to the way the Scene Graph
     // works, adding things to a second scene will remove them
-    // from the first. So we need to clone the lights to have
-    // them in bth scenes
+    // from the first. So we need to clone the lights to add
+    // them to both scenes
     lights.ambient.clone(),
     lights.main.clone(),
 

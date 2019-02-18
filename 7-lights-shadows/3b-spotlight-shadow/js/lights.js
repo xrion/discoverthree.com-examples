@@ -25,8 +25,8 @@ function createSpotLight() {
   spotLight.position.set( -15, 5, -15 );
 
   spotLight.castShadow = true;
-  spotLight.shadow.mapSize.width = 2048;
-  spotLight.shadow.mapSize.height = 2048;
+  spotLight.shadow.mapSize.width = 1024;
+  spotLight.shadow.mapSize.height = 1024;
   spotLight.shadow.camera.near = 8;
 
   // note that, if you use a light.distance

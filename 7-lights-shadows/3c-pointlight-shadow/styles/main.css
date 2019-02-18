@@ -28,6 +28,7 @@ a:hover{
 
 #controls {
   position: absolute;
+  max-width: 12rem;
   width: auto;
   height: auto;
   top: 5rem;
@@ -37,6 +38,10 @@ a:hover{
   background-color: rgba( 0, 0, 0, 0.1);
   z-index: 1;
   text-align: right;
+}
+
+p {
+  text-align: justify;
 }
 
 select, button, input {

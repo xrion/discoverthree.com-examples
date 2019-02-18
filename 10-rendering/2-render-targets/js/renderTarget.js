@@ -50,7 +50,7 @@ export default function setupRenderTarget( app ) {
   };
 
   // it can be kind of hard to set up the render target
-  // however, remember that you can always just render the targets
+  // however, remember that you can always just render the target's
   // scene and camera to the screen to get it set up correctly!
   // app.render = () => {
 

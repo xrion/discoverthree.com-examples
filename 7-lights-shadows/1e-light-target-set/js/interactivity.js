@@ -52,7 +52,11 @@ function setupAddTargetToSceneButton( lights, app, lightHelper ) {
 
     }
 
-    lightHelper.update();
+    setTimeout( () => {
+
+      lightHelper.update();
+
+    }, 50 );
 
   } );
 
@@ -67,8 +71,8 @@ export default function setupControls( app, lights, helpers ) {
   setupAddTargetToSceneButton( lights, app, helper );
 
   setupPositionButton( lights, 'default', helper, 0, 0, 0 );
-  setupPositionButton( lights, 'front', helper, 10, 6, 0 );
-  setupPositionButton( lights, 'middle', helper, 10, 6, -10 );
-  setupPositionButton( lights, 'rear', helper, -15, 6, 10 );
+  setupPositionButton( lights, 'front', helper, 5, 10, 5 );
+  setupPositionButton( lights, 'middle', helper, 10, 1, -10 );
+  setupPositionButton( lights, 'rear', helper, -12, 1, 0 );
 
 }

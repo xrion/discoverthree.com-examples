@@ -21,7 +21,10 @@ import setupAnimation from './animation.js';
 
 async function initScene() {
 
-  const app = new App( { container: '#scene-container' } );
+  const app = new App( {
+    container: '#scene-container',
+    showStats: true,
+  } );
 
   app.init();
 
@@ -61,6 +64,17 @@ async function initScene() {
     helpers.shadowCameraHelper,
 
   );
+
+  // we'll wait a few milliseconds before logging these to make sure
+  // that everything is set up correctly
+  setTimeout( () => {
+
+    console.log( 'Here\'s the PointLight: ', lights.main );
+    console.log( 'Here\'s its shadow: ', lights.main.shadow );
+    console.log( 'Here\'s the camera used to draw the shadow: ', lights.main.shadow.camera );
+    console.log( '..and here\'s the render target the shadow is drawn onto: ', lights.main.shadow.map );
+
+  }, 500 );
 
 }
 

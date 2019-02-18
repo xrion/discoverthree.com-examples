@@ -64,8 +64,11 @@ function createNonIndexedGeometry() {
 
   ] );
 
+  const morphAttribute = new BufferAttribute( morphPositions, 3 );
+  morphAttribute.name = 'explode';
+
   // add the spherical positions as the first morph target
-  geometry.morphAttributes.position[ 0 ] = new BufferAttribute( morphPositions, 3 );
+  geometry.morphAttributes.position[ 0 ] = morphAttribute;
 
   return geometry;
 
@@ -163,8 +166,8 @@ export default function createGeometries() {
 
   return {
 
-    indexed: createIndexedGeometry(),
     nonIndexed: createNonIndexedGeometry(),
+    indexed: createIndexedGeometry(),
 
   };
 

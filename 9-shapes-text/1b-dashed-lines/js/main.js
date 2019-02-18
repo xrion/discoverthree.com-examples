@@ -6,7 +6,7 @@ import App from './vendor/App.js';
 
 import createGeometries from './geometries.js';
 import createMaterials from './materials.js';
-import createShapes from './shapes.js';
+import createLines from './lines.js';
 
 function initScene() {
 
@@ -22,11 +22,11 @@ function initScene() {
 
   const geometries = createGeometries();
   const materials = createMaterials();
-  const shapes = createShapes( geometries, materials );
+  const lines = createLines( geometries, materials );
 
   app.scene.add(
 
-    shapes.square,
+    lines.square,
 
   );
 

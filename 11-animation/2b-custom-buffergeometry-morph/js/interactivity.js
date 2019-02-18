@@ -15,28 +15,12 @@ function setupWireframeControl( materials ) {
   } );
 }
 
-function setupLeftMorphControl( mesh ) {
+function setupMorphSlider( mesh, morphName ) {
 
-  const slider = document.querySelector( '#left-morph-slider' );
-  const value = document.querySelector( '#left-morph-value' );
+  const slider = document.querySelector( `#${morphName}-slider` );
+  const value = document.querySelector( `#${morphName}-value` );
 
-  slider.addEventListener( 'input', ( e ) => {
-
-    value.textContent = slider.value;
-    mesh.morphTargetInfluences[ 0 ] = slider.value;
-
-    e.preventDefault();
-
-  } );
-
-}
-
-function rotateControl( mesh ) {
-
-  const slider = document.querySelector( '#right-rotate-slider' );
-  const value = document.querySelector( '#right-rotate-value' );
-
-  const targetIndex = mesh.morphTargetDictionary.rotate;
+  const targetIndex = mesh.morphTargetDictionary[ morphName ];
 
   slider.addEventListener( 'input', ( e ) => {
 
@@ -46,39 +30,15 @@ function rotateControl( mesh ) {
     e.preventDefault();
 
   } );
-
-}
-
-
-function scaleControl( mesh ) {
-
-  const slider = document.querySelector( '#right-scale-slider' );
-  const value = document.querySelector( '#right-scale-value' );
-
-  const targetIndex = mesh.morphTargetDictionary.scale;
-
-  slider.addEventListener( 'input', ( e ) => {
-
-    value.textContent = slider.value;
-    mesh.morphTargetInfluences[ targetIndex ] = slider.value;
-
-    e.preventDefault();
-
-  } );
-
-}
-
-function setupRightMorphControl( mesh ) {
-
-  rotateControl( mesh );
-  scaleControl( mesh );
 
 }
 
 export default function setupControls( meshes ) {
 
-  setupLeftMorphControl( meshes.leftQuad );
-  setupRightMorphControl( meshes.rightQuad );
+  setupMorphSlider( meshes.leftQuad, 'explode' );
+  setupMorphSlider( meshes.rightQuad, 'rotate' );
+  setupMorphSlider( meshes.rightQuad, 'scale' );
+
   setupWireframeControl( [ meshes.leftQuad.material, meshes.rightQuad.material ] );
 
 }

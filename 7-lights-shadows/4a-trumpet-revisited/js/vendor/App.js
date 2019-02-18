@@ -9,6 +9,8 @@ import {
   OrbitControls,
 } from './three/controls/OrbitControls.js';
 
+import Stats from './stats.js';
+
 // private variable that user can access via app.isRunning
 let _isRunning = false;
 
