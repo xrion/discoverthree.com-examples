@@ -1,99 +1,70 @@
 import {
-  AnimationMixer,
-  Group,
-  Math as MathUtils,
   Vector3,
 } from './vendor/three/three.module.js';
 
-export default function setupModel( model, animation ) {
+import createAsyncLoader from './vendor/utility/createAsyncLoader.js';
 
-  const mixer = new AnimationMixer( model );
+import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.js';
 
-  model.userData.onUpdate = ( delta ) => {
+import getRandomArrayElement from './utility/getRandomArrayElement.js';
+import createSphericalPositions from './utility/createSphericalPositions.js';
 
-    mixer.update( delta );
+function createBirdsArray( birds ) {
 
-  };
-
-  const action = mixer.clipAction( animation );
-
-  return action;
-
-}
-
-const models = [];
-
-const onLoad = ( gltf, scene, offset ) => {
-
-  const model = gltf.scene.children[ 0 ];
-
-  model.scale.setScalar( 100 );
-
-  const animation = gltf.animations[ 0 ];
+  const birdsArray = [];
 
   const positions = createSphericalPositions();
   const rotationAxis = new Vector3( 0, 1, 0 );
 
-  const group = new Group();
+  positions.forEach( ( position ) => {
 
-  group.userData.onUpdate = ( delta ) => {
+    const protoBird = getRandomArrayElement( birds );
 
-    group.rotation.y += delta / 18;
+    const nextBird = protoBird.clone();
+    nextBird.animations = protoBird.animations;
 
-  };
+    nextBird.scale.setScalar( 0.15 );
 
-  positions.forEach( ( position, index ) => {
+    nextBird.position.copy( position.vec );
+    nextBird.rotateOnWorldAxis( rotationAxis, position.rot );
 
-    if ( index % 2 === offset ) {
-
-      const newModel = model.clone();
-
-      newModel.scale.setScalar( 0.15 );
-
-      newModel.position.copy( position.vec );
-      newModel.rotateOnWorldAxis( rotationAxis, position.rot );
-
-      const action = initAnimation( newModel, animation );
-
-      // set the birds to start at random times so that they  don't flap in sync
-      action.startAt( MathUtils.randFloat( 0, 1.2 ) ).play();
-
-      models[ index ] = newModel;
-
-    }
+    birdsArray.push( nextBird );
 
   } );
 
-  // create the big bird model and do some setup
-  if ( offset === 0 ) {
+  return birdsArray;
 
-    scene.add( group );
-
-    model.scale.setScalar( 3 );
-    model.position.set( 0, 5, 0 );
-    scene.add( model );
-
-    const action = initAnimation( model, animation );
-    action.play();
-
-    initButtons( models, group );
-
-  }
-
-};
+}
 
 export default async function loadModels() {
 
   const loader = createAsyncLoader( new GLTFLoader() );
 
-  const parrots = setupModel(
-    await loader.load( 'models/Parrot.glb' ),
-  );
+  // let gltf = await loader.load( 'models/Flamingo.glb' );
 
-  const storksArray = setupModel(
-    await loader.load( 'models/Stork.glb' ),
-  );
+  // const flamingo = gltf.scene.children[ 0 ];
+  // flamingo.animations = gltf.animations;
 
-  return { bigBird: parrots.bigBird, parrotsArray, storksArray };
+  let gltf = await loader.load( 'models/Parrot.glb' );
+
+  const parrot = gltf.scene.children[ 0 ];
+  parrot.animations = gltf.animations;
+
+  gltf = await loader.load( 'models/Stork.glb' );
+
+  const stork = gltf.scene.children[ 0 ];
+  stork.animations = gltf.animations;
+
+  const bigParrot = parrot.clone();
+  bigParrot.position.set( 0, 4.5, 2 );
+  bigParrot.scale.set( 3, 3, 3 );
+  bigParrot.animations = parrot.animations;
+
+  return {
+
+    parrot: bigParrot,
+    birdsArray: createBirdsArray( [ parrot, stork ] ),
+
+  };
 
 }

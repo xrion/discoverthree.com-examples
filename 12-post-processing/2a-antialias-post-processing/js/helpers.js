@@ -3,6 +3,7 @@ import {
 } from './vendor/three/three.module.js';
 
 function createPolarGridHelper() {
+
   const radius = 5;
   const radials = 16;
   const circles = 8;
@@ -19,6 +20,8 @@ function createPolarGridHelper() {
 export default function createHelpers() {
 
   return {
+
     polarGridHelper: createPolarGridHelper(),
+
   };
 }

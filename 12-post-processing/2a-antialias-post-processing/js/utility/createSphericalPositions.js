@@ -2,7 +2,7 @@ import {
   Math as MathUtils,
   Spherical,
   Vector3,
-} from './vendor/three/three.module.js';
+} from '../vendor/three/three.module.js';
 
 export default function createSphericalPositions() {
 
@@ -18,7 +18,7 @@ export default function createSphericalPositions() {
 
 
     spherical.theta += Math.random() * Math.PI;
-    spherical.radius = MathUtils.randFloat( 6, 8 );
+    spherical.radius = MathUtils.randFloat( 8, 12 );
 
     const position = new Vector3().setFromSpherical( spherical );
     yPos += 0.004;

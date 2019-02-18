@@ -1,12 +1,19 @@
-export default function setupControls( materials ) {
+function setupWireframeToggle( material ) {
 
   const button = document.querySelector( '#toggle-wireframe' );
 
   button.addEventListener( 'click', ( e ) => {
 
-    materials.basic.wireframe = !materials.basic.wireframe;
+    material.wireframe = !material.wireframe;
 
     e.preventDefault();
 
   } );
+
+}
+
+export default function setupControls( materials ) {
+
+  setupWireframeToggle( materials.basic );
+
 }

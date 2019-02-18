@@ -1,6 +1,3 @@
-import {
-  EffectComposer,
-} from './vendor/three/postprocessing/EffectComposer.js';
 
 import {
   RenderPass,
@@ -30,113 +27,90 @@ import {
   FXAAShader,
 } from './vendor/three/shaders/FXAAShader.js';
 
-function initComposerNoAA( renderer, scene, camera ) {
 
-  const composerNoAA = new EffectComposer( renderer );
+function setupNoAA( composers, app ) {
 
-  const renderPass = new RenderPass( scene, camera );
-  composerNoAA.addPass( renderPass );
+  const renderPass = new RenderPass( app.scene, app.camera );
+  composers.noAA.addPass( renderPass );
 
   const copyPass = new ShaderPass( CopyShader );
 
-  // // the on the final shader pass, set renderToScreen to true,
-  // // to let the composer know that this is the result we want to see
   copyPass.renderToScreen = true;
-  composerNoAA.addPass( copyPass );
-
-  return composerNoAA;
+  composers.noAA.addPass( copyPass );
 
 }
 
-function initComposerSSAA( renderer, scene, camera ) {
+function setupFXAAShaderPass( composers, app ) {
 
-  const composerSSAA = new EffectComposer( renderer );
+  const renderPass = new RenderPass( app.scene, app.camera );
+  composers.FXAA.addPass( renderPass );
 
-  const ssaaRenderPass = new SSAARenderPass( scene, camera );
+  const fxaaShaderPass = new ShaderPass( FXAAShader );
+
+  fxaaShaderPass.renderToScreen = true;
+  composers.FXAA.addPass( fxaaShaderPass );
+
+  return fxaaShaderPass;
+
+}
+
+function setupSSAARenderPass( composers, app ) {
+
+  const ssaaRenderPass = new SSAARenderPass( app.scene, app.camera );
   ssaaRenderPass.sampleLevel = 4; // specified as n, where the number of samples is 2^n, so sampleLevel = 4, is 2^4 samples, 16.
-  composerSSAA.addPass( ssaaRenderPass );
+  composers.SSAA.addPass( ssaaRenderPass );
 
   const copyPass = new ShaderPass( CopyShader );
 
   copyPass.renderToScreen = true;
-  composerSSAA.addPass( copyPass );
+  composers.SSAA.addPass( copyPass );
 
-  return { composerSSAA, ssaaRenderPass };
+  return ssaaRenderPass;
 
 }
 
-function initComposerTAA( renderer, scene, camera ) {
+function setupTAARenderPass( composers, app ) {
 
-  const composerTAA = new EffectComposer( renderer );
-
-  const taaRenderPass = new TAARenderPass( scene, camera );
+  const taaRenderPass = new TAARenderPass( app.scene, app.camera );
   taaRenderPass.sampleLevel = 4; // specified as n, where the number of samples is 2^n, so sampleLevel = 4, is 2^4 samples, 16.
-  composerTAA.addPass( taaRenderPass );
+  composers.TAA.addPass( taaRenderPass );
 
   const copyPass = new ShaderPass( CopyShader );
 
   copyPass.renderToScreen = true;
-  composerTAA.addPass( copyPass );
+  composers.TAA.addPass( copyPass );
 
-  return { composerTAA, taaRenderPass };
-
-}
-
-function initComposerFXAA( renderer, scene, camera ) {
-
-  const composerFXAA = new EffectComposer( renderer );
-
-  const renderPass = new RenderPass( scene, camera );
-  composerFXAA.addPass( renderPass );
-
-  const fxaaShader = new ShaderPass( FXAAShader );
-
-  fxaaShader.renderToScreen = true;
-  composerFXAA.addPass( fxaaShader );
-
-  return { composerFXAA, fxaaShader };
+  return taaRenderPass;
 
 }
 
-function initComposerSMAA( renderer, scene, camera ) {
+function setupSMAAShaderPass( composers, app ) {
 
-  const composerSMAA = new EffectComposer( renderer );
+  const renderPass = new RenderPass( app.scene, app.camera );
+  composers.SMAA.addPass( renderPass );
 
-  const renderPass = new RenderPass( scene, camera );
-  composerSMAA.addPass( renderPass );
+  const size = app.renderer.getSize();
+  const pixelRatio = app.renderer.getPixelRatio();
 
-  const size = renderer.getSize();
-  const pixelRatio = renderer.getPixelRatio();
-  const smaaPass = new SMAAPass( size.width * pixelRatio, size.height * pixelRatio );
-  smaaPass.renderToScreen = true;
-  composerSMAA.addPass( smaaPass );
+  const smaaShaderPass = new SMAAPass( size.width * pixelRatio, size.height * pixelRatio );
+  smaaShaderPass.renderToScreen = true;
+  composers.SMAA.addPass( smaaShaderPass );
 
-  // console.log(smaaPass);
-
-  return composerSMAA;
+  return smaaShaderPass;
 
 }
 
-export default function initComposers( renderer, scene, camera ) {
+export default function setupPostProcessing( composers, app ) {
 
-  const composers = {};
+  setupNoAA( composers, app );
 
-  composers.noAA = initComposerNoAA( renderer, scene, camera );
+  return {
 
-  const ssaa = initComposerSSAA( renderer, scene, camera );
-  composers.ssaa = ssaa.composerSSAA;
-  composers.ssaaRenderPass = ssaa.ssaaRenderPass;
+    fxaaShaderPass: setupFXAAShaderPass( composers, app ),
+    smaaShaderPass: setupSMAAShaderPass( composers, app ),
+    ssaaRenderPass: setupSSAARenderPass( composers, app ),
+    taaRenderPass: setupTAARenderPass( composers, app ),
 
-  const taa = initComposerTAA( renderer, scene, camera );
-  composers.taa = taa.composerTAA;
-  composers.taaRenderPass = taa.taaRenderPass;
-
-  const fxaa = initComposerFXAA( renderer, scene, camera );
-  composers.fxaa = fxaa.composerFXAA;
-  composers.fxaaShader = fxaa.fxaaShader;
-
-  composers.smaa = initComposerSMAA( renderer, scene, camera );
-
-  return composers;
+  };
 
 }

@@ -1,28 +1,16 @@
 import {
-  BoxBufferGeometry,
-  DoubleSide,
   Mesh,
-  MeshStandardMaterial,
 } from './vendor/three/three.module.js';
 
-export default function createMeshes() {
+export default function createMeshes( geometries, materials ) {
 
-  const geometry = new BoxBufferGeometry( 3, 4, 3, 4, 4, 4 );
-
-  const material = new MeshStandardMaterial( { color: 0x800080, side: DoubleSide } );
-
-  const box = new Mesh( geometry, material );
-
+  const box = new Mesh( geometries.box, materials.standard );
   box.position.y = 1;
 
-  box.userData.onUpdate = ( delta ) => {
+  return {
 
-    box.rotation.y -= delta / 5;
+    box,
 
   };
-
-  initWireframeToggle( box );
-
-  return { box };
 
 }
