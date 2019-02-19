@@ -1,9 +1,17 @@
 {
   "presets": [
-    ["@babel/env", {
-      "targets": {
-        "browsers": [ "last 2 Chrome versions" ]
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 Chrome versions"
+          ]
+        }
       }
-    }]
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread"
   ]
 }
