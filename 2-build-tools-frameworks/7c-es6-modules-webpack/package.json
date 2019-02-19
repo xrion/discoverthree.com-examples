@@ -31,9 +31,7 @@
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "watch": "webpack --watch --config webpack.dev.js"
   },
-  "dependencies": {
-    "three": "^0.101.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
