@@ -1,0 +1,25 @@
+#controls {
+  position: absolute;
+  max-width: 12rem;
+  width: auto;
+  height: auto;
+  top: 5rem;
+  right: 0rem;
+  padding: 0 1rem;
+  border: 1px solid grey;
+  background-color: rgba( 0, 0, 0, 0.5);
+  z-index: 1;
+  text-align: right;
+}
+
+p {
+  text-align: justify;
+}
+
+span, input, select {
+  margin-bottom: 1rem;
+}
+
+input[type="range"] {
+  width: 100%;
+}
