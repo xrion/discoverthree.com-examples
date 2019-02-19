@@ -2,8 +2,8 @@ import Parrot from '../models/Parrot.glb';
 import Flamingo from '../models/Flamingo.glb';
 import Stork from '../models/Stork.glb';
 
-import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.module.js';
-import createAsyncLoader from './vendor/utility/createAsyncLoader.module.js';
+import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.js';
+import createAsyncLoader from './vendor/utility/createAsyncLoader.js';
 
 export default async function loadGLTFModels() {
 
