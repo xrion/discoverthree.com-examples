@@ -1,12 +1,8 @@
 import {
-  Color,
-} from './vendor/three/three.module.js';
-
-import {
   EffectComposer,
 } from './vendor/three/postprocessing/EffectComposer.js';
 
-import App from './vendor/App.js';
+import createApp from './app.js';
 
 import createLights from './lights.js';
 

@@ -1,8 +1,4 @@
-import {
-  Color,
-} from './vendor/three/three.module.js';
-
-import App from './vendor/App.js';
+import createApp from './app.js';
 
 import createCameraControls from './controls.js';
 
@@ -16,22 +12,9 @@ import loadModels from './models.js';
 
 import setupAnimation from './animation.js';
 
-
 async function initScene() {
 
-  const app = new App( {
-    container: '#scene-container',
-    controls: {
-      // we don't want to setup the default OrbitControls here
-      setupOrbitControls: false,
-    },
-  } );
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 0.4;
-  app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( -20, 30, 30 );
+  const app = createApp();
 
   createCameraControls( app );
 

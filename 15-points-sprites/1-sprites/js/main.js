@@ -1,4 +1,4 @@
-import App from './vendor/App.js';
+import createApp from './app.js';
 
 import createLights from './lights.js';
 
@@ -12,7 +12,7 @@ import setupAnimation from './animation.js';
 
 function initScene() {
 
-  const app = new App( { container: '#scene-container' } );
+  const app = createApp();
 
   app.init();
 

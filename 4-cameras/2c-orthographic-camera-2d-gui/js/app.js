@@ -12,7 +12,7 @@ function createMainApp() {
 
   mainApp.init();
 
-  mainApp.renderer.toneMmainAppingExposure = 0.5;
+  mainApp.renderer.toneMappingExposure = 0.5;
   mainApp.scene.background = new Color( 0x00BFFF );
 
   // adding fog in the distance, the same color as the sky is

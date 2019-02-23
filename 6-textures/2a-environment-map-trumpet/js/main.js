@@ -1,4 +1,4 @@
-import App from './vendor/App.js';
+import createApp from './app.js';
 
 import loadEnvironment from './environment.js';
 
@@ -14,20 +14,11 @@ import setupControls from './interactivity.js';
 
 async function initScene() {
 
-  const app = new App( { container: '#scene-container' } );
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 0.5;
+  const app = createApp();
+  app.start();
 
   const environments = loadEnvironment();
   app.scene.background = environments.sky;
-  app.camera.position.set( 2, 1, 1.5 );
-
-  app.controls.autoRotate = true;
-  app.controls.autoRotateSpeed = -0.2;
-
-  app.start();
 
   const lights = createLights();
 

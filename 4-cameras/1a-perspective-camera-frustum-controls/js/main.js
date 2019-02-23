@@ -1,8 +1,4 @@
-import {
-  Color,
-} from './vendor/three/three.module.js';
-
-import App from './vendor/App.js';
+import createApp from './app.js';
 
 import createLights from './lights.js';
 
@@ -10,22 +6,11 @@ import createGeometries from './geometries.js';
 import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
-import setupCamera from './cameras.js';
 import setupControls from './interactivity.js';
 
 async function initScene() {
 
-  const app = new App( { container: '#scene-container' } );
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 0.5;
-  app.scene.background = new Color( 0x23485c );
-  app.controls.target.y = 1;
-
-  setupCamera( app.camera );
-  setupControls( app.camera );
-
+  const app = createApp();
   app.start();
 
   const lights = createLights();
@@ -34,6 +19,8 @@ async function initScene() {
   const materials = createMaterials();
 
   const meshes = createMeshes( geometries, materials );
+
+  setupControls( app.camera );
 
   app.scene.add(
 

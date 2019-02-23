@@ -1,9 +1,8 @@
 import {
-  Color,
   Group,
 } from './vendor/three/three.module.js';
 
-import App from './vendor/App.js';
+import createApp from './app.js';
 
 import createComposers from './composers.js';
 

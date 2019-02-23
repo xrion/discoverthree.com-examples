@@ -1,8 +1,4 @@
-import {
-  Color,
-} from './vendor/three/three.module.js';
-
-import App from './vendor/App.js';
+import createApp from './app.js';
 
 import createLights from './lights.js';
 
@@ -16,7 +12,7 @@ import setupExport from './export.js';
 
 function initScene() {
 
-  const app = new App( { container: '#scene-container' } );
+  const app = createApp();
 
   app.init();
 

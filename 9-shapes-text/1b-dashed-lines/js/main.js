@@ -1,8 +1,4 @@
-import {
-  Color,
-} from './vendor/three/three.module.js';
-
-import App from './vendor/App.js';
+import createApp from './app.js';
 
 import createGeometries from './geometries.js';
 import createMaterials from './materials.js';
@@ -10,7 +6,7 @@ import createLines from './lines.js';
 
 function initScene() {
 
-  const app = new App( { container: '#scene-container' } );
+  const app = createApp();
 
   app.init();
 
