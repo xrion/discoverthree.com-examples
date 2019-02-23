@@ -6,7 +6,7 @@ export default function createMaterials() {
 
   return {
 
-    standard: new MeshStandardMaterial( {
+    ground: new MeshStandardMaterial( {
       color: 0x001100,
       metalness: 0,
       roughness: 1,

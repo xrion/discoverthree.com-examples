@@ -9,10 +9,17 @@ import createMeshes from './meshes.js';
 import createHelpers from './helpers.js';
 
 import setupControls from './interactivity.js';
+import setupCameras from './cameras.js';
+import setupOnResize from './resize.js';
 
 async function initScene() {
 
-  const app = createApp();
+  // remember to create custom cameras before calling app.init()
+  const cameras = setupCameras();
+
+  const app = createApp( cameras );
+
+  setupOnResize( app, cameras );
 
   app.start();
 

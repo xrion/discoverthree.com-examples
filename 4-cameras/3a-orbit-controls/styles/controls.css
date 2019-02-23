@@ -27,6 +27,15 @@
   text-align: right;
 }
 
+#gui-containerr {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  height: 15rem;
+  width: 15rem;
+  z-index: 2;
+}
+
 p {
   text-align: justify;
 }

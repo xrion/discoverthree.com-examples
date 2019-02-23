@@ -3,10 +3,12 @@ import {
   PerspectiveCamera,
 } from './vendor/three/three.module.js';
 
-function createMainCamera( app ) {
+function createMainCamera() {
 
-  const width = app.container.clientWidth;
-  const height = app.container.clientHeight;
+  const container = document.querySelector( '#scene-container' );
+
+  const width = container.clientWidth;
+  const height = container.clientHeight;
 
   const mainCamera = new OrthographicCamera( -width / 2, width / 2, height / 2, -height / 2, 20, 50 );
 
@@ -24,9 +26,11 @@ function createMainCamera( app ) {
 
 }
 
-function createOverViewCamera( app ) {
+function createOverViewCamera() {
 
-  const overviewCamera = new PerspectiveCamera( 35, app.container.clientWidth / app.container.clientHeight, 1, 1000 );
+  const container = document.querySelector( '#scene-container' );
+
+  const overviewCamera = new PerspectiveCamera( 35, container.clientWidth / container.clientHeight, 1, 1000 );
   overviewCamera.position.set( 100, 0, 100 );
   overviewCamera.lookAt( 0, 0, 0 );
   overviewCamera.far = 1000;
@@ -37,15 +41,14 @@ function createOverViewCamera( app ) {
 }
 
 
-export default function setupCameras( app ) {
+export default function setupCameras() {
 
-  const mainCamera = createMainCamera( app );
-  app.camera = mainCamera;
+  const mainCamera = createMainCamera();
 
   return {
 
     main: mainCamera,
-    overview: createOverViewCamera( app ),
+    overview: createOverViewCamera(),
 
   };
 

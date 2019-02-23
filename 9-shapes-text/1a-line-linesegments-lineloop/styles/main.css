@@ -9,18 +9,18 @@ body {
   text-align: center;
 }
 
+h1 {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  font-size: 1.5rem;
+}
+
 a {
   color: white;
 }
 a:hover{
   color: red;
-}
-
-.title {
-  position: absolute;
-  width: 100%;
-  z-index: 1;
-  font-size: 1.5rem;
 }
 
 #scene-container {
@@ -29,7 +29,7 @@ a:hover{
   height: 100%;
 }
 
-#credits {
+#info {
   position: absolute;
   width: 100%;
   bottom: 0.5rem;
