@@ -12,7 +12,9 @@ export default function loadTextures() {
   moon.encoding = sRGBEncoding;
 
   return {
+
     moon,
+
   };
 
 }

@@ -1,8 +1,5 @@
 import {
-  BufferAttribute,
-  BufferGeometry,
   Line,
-  LineDashedMaterial,
 } from './vendor/three/three.module.js';
 
 // Top Right, WHITE: Line (drawn with gl.LINES)
