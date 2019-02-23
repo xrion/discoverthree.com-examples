@@ -12,16 +12,9 @@ import setupAnimation from './animation.js';
 function initScene() {
 
   const app = createApp();
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 0.4;
-  app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( 3, 5, 6 );
+  app.start();
 
   const RT = setupRenderTarget( app );
-
-  app.start();
 
   const lights = createLights();
 

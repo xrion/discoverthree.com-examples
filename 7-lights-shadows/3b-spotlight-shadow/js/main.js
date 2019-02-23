@@ -23,20 +23,7 @@ import setupAnimation from './animation.js';
 
 async function initScene() {
 
-  const app = new App( {
-    container: '#scene-container',
-    showStats: true,
-  } );
-
-  app.init();
-
-  app.renderer.shadowMap.enabled = true;
-  app.renderer.shadowMap.type = BasicShadowMap;
-
-  app.renderer.toneMappingExposure = 0.6;
-  app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( -20, 30, 30 );
-
+  const app = createApp();
   app.start();
 
   const lights = createLights();

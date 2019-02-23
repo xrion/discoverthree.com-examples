@@ -11,15 +11,6 @@ import setupAnimation from './animation.js';
 async function initScene() {
 
   const app = createApp();
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 0.5;
-  app.scene.background = new Color( 0x23485c );
-
-  app.camera.position.set( 5, 5, 30 );
-  app.controls.target.y = 1;
-
   app.start();
 
   const lights = createLights();

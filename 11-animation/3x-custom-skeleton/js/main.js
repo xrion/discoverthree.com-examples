@@ -17,13 +17,6 @@ import setupControls from './interactivity.js';
 function initScene() {
 
   const app = createApp();
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 1;
-  app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( 10, 10, 15 );
-
   app.start();
 
   const lights = createLights();

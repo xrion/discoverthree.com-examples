@@ -1,5 +1,6 @@
 import {
-  Color,
+  // Color,
+  PCFSoftShadowMap,
 } from './vendor/three/three.module.js';
 
 import App from './vendor/App.js';
@@ -10,9 +11,14 @@ export default function createApp() {
 
   app.init();
 
-  app.renderer.toneMappingExposure = 1;
-  app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( -2.5, 2.5, 6.5 );
+  app.renderer.toneMappingExposure = 0.15;
+  app.renderer.shadowMap.enabled = true;
+  app.renderer.shadowMap.type = PCFSoftShadowMap;
+
+  app.camera.position.set( 0, 2.5, 7 );
+  app.controls.target.set( 0, 1.5, 0 );
+  app.controls.minDistance = 5;
+  app.controls.maxDistance = 15;
 
   return app;
 

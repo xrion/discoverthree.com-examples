@@ -10,7 +10,7 @@ import createGeometries from './geometries.js';
 import createMaterials from './materials.js';
 import createMeshes from './meshes.js';
 
-import createHelpers from './helpers.js';
+// import createHelpers from './helpers.js';
 
 import loadEnvironment from './environment.js';
 import loadModels from './models.js';
@@ -18,21 +18,10 @@ import loadModels from './models.js';
 async function initScene() {
 
   const app = createApp();
-
-  app.init();
-
-  app.renderer.shadowMap.enabled = true;
-  app.renderer.shadowMap.type = PCFSoftShadowMap;
-  app.renderer.toneMappingExposure = 0.5;
+  app.start();
 
   const environments = loadEnvironment();
   app.scene.background = environments.sky;
-  app.camera.position.set( 2, 1, 1.5 );
-
-  app.controls.autoRotate = true;
-  app.controls.autoRotateSpeed = -0.2;
-
-  app.start();
 
   const lights = createLights();
 

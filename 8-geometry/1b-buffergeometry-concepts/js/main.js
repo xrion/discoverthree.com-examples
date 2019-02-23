@@ -12,13 +12,6 @@ import setupAnimation from './animation.js';
 async function initScene() {
 
   const app = createApp();
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 1;
-  app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( 0, 0, 20 );
-
   app.start();
 
   const geometries = createGeometries();

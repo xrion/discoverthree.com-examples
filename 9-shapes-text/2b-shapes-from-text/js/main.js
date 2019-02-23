@@ -11,15 +11,6 @@ import setupAnimation from './animation.js';
 async function initScene() {
 
   const app = createApp();
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 1;
-  app.scene.background = new Color( 0x222222 );
-
-  app.camera.position.set( 15, 5, 20 );
-  app.controls.target.x = 0.5;
-
   app.start();
 
   const fonts = await loadFonts();

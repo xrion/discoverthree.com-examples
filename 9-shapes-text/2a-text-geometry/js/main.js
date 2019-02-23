@@ -8,13 +8,6 @@ import createMeshes from './meshes.js';
 async function initScene() {
 
   const app = createApp();
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 1;
-  app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( 4, 4, 8 );
-
   app.start();
 
   const fonts = await loadFonts();

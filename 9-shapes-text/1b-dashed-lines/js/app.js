@@ -12,7 +12,7 @@ export default function createApp() {
 
   app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( -2.5, 2.5, 6.5 );
+  app.camera.position.set( 0, 0, 5 );
 
   return app;
 

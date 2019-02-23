@@ -1,10 +1,3 @@
-import {
-  Color,
-  BasicShadowMap,
-  PCFShadowMap,
-  PCFSoftShadowMap,
-} from './vendor/three/three.module.js';
-
 import createApp from './app.js';
 
 import createLights from './lights.js';
@@ -23,20 +16,7 @@ import setupAnimation from './animation.js';
 
 async function initScene() {
 
-  const app = new App( {
-    container: '#scene-container',
-    showStats: true,
-  } );
-
-  app.init();
-
-  app.renderer.shadowMap.enabled = true;
-  app.renderer.shadowMap.type = PCFSoftShadowMap;
-
-  app.renderer.toneMappingExposure = 0.4;
-  app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( 20, 30, 30 );
-
+  const app = createApp();
   app.start();
 
   const lights = createLights();

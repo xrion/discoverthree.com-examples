@@ -1,7 +1,3 @@
-import {
-  Color,
-} from './vendor/three/three.module.js';
-
 import App from './vendor/App.js';
 
 export default function createApp() {
@@ -11,8 +7,13 @@ export default function createApp() {
   app.init();
 
   app.renderer.toneMappingExposure = 1;
-  app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( -2.5, 2.5, 6.5 );
+  // app.scene.background = new Color( 0x8FBCD4 );
+  app.camera.position.set( 10, 10, 10 );
+
+  app.controls.rotateSpeed = 0.25;
+  app.controls.zoomSpeed = 0.5;
+  app.controls.enableDamping = true;
+  app.controls.enablePan = false;
 
   return app;
 

@@ -13,16 +13,10 @@ import setupAnimation from './animation.js';
 function initScene() {
 
   const app = createApp();
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 0.25;
-  app.camera.position.set( -20, 0, -20 );
+  app.start();
 
   const environments = loadEnvironments();
   app.scene.background = environments.castle;
-
-  app.start();
 
   const lights = createLights();
 

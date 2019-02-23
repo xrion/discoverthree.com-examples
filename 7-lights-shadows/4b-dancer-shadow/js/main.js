@@ -21,23 +21,11 @@ import setupAnimation from './animation.js';
 async function initScene() {
 
   const app = createApp();
-
-  app.init();
-
-  app.renderer.toneMappingExposure = 0.15;
-  app.renderer.shadowMap.enabled = true;
-  app.renderer.shadowMap.type = PCFSoftShadowMap;
+  app.start();
 
   const environments = loadEnvironments();
   // app.scene.background = environments.castle;
   app.scene.background = new Color( 0xffffff );
-
-  app.camera.position.set( 0, 2.5, 7 );
-  app.controls.target.set( 0, 1.5, 0 );
-  app.controls.minDistance = 5;
-  app.controls.maxDistance = 15;
-
-  app.start();
 
   const lights = createLights();
 
