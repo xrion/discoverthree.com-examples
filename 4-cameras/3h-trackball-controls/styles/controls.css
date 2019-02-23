@@ -27,10 +27,11 @@
   text-align: right;
 }
 
-#gui-container {
+#gui-container,
+#canvas-2d-container {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  bottom: 2rem;
+  right: 2rem;
   height: 15rem;
   width: 15rem;
   z-index: 2;

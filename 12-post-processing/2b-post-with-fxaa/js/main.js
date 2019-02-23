@@ -35,9 +35,9 @@ async function initScene() {
 
   };
 
-  setupPostProcessing( composer, app );
+  const passes = setupPostProcessing( composer, app );
 
-  setupOnResize( app, composer );
+  setupOnResize( app, composer, passes );
 
   app.start();
 

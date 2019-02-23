@@ -39,15 +39,9 @@ export default function setupPostProcessing( composer, app ) {
 
   return {
 
-    composer,
-
-    passes: {
-
-      renderPass,
-      outlinePass,
-      fxaaPass,
-
-    },
+    renderPass,
+    outlinePass,
+    fxaaPass,
 
   };
 
