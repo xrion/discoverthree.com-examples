@@ -28,11 +28,3 @@ a:hover{
   width: 100%;
   height: 100%;
 }
-
-#info {
-  position: absolute;
-  width: 100%;
-  bottom: 0.5rem;
-  text-align: center;
-  z-index: 1;
-}
