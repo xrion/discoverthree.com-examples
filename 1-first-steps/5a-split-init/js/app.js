@@ -7,7 +7,7 @@ let mesh;
 
 function init() {
 
-  container = document.querySelector( '#container' );
+  container = document.querySelector( '#scene-container' );
 
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0x8FBCD4 );

@@ -1,5 +1,5 @@
 // Get a reference to the container element that will hold our scene
-const container = document.querySelector( '#container' );
+const container = document.querySelector( '#scene-container' );
 
 // create a Scene
 const scene = new THREE.Scene();
