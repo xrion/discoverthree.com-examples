@@ -45,7 +45,7 @@ function createLights() {
   const light = new THREE.DirectionalLight( 0xffffff, 3.0 );
 
   // move the light back and up a bit
-  light.position.set( 0, 3, 3 );
+  light.position.set( 10, 10, 10 );
 
   // remember to add the light to the scene
   scene.add( light );
