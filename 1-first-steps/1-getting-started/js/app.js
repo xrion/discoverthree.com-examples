@@ -3,6 +3,7 @@ const container = document.querySelector( '#scene-container' );
 
 // create a Scene
 const scene = new THREE.Scene();
+
 // Set the background color
 scene.background = new THREE.Color( 'skyblue' );
 
