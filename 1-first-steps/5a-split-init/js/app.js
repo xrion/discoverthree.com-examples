@@ -12,10 +12,10 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0x8FBCD4 );
 
-  initCamera();
-  initLights();
-  initMeshes();
-  initRenderer();
+  createCamera();
+  createLights();
+  createMeshes();
+  createRenderer();
 
   renderer.setAnimationLoop( () => {
 
@@ -26,7 +26,7 @@ function init() {
 
 }
 
-function initCamera() {
+function createCamera() {
 
   camera = new THREE.PerspectiveCamera(
     35, // FOV
@@ -39,7 +39,7 @@ function initCamera() {
 
 }
 
-function initLights() {
+function createLights() {
 
   // Create a directional light
   const light = new THREE.DirectionalLight( 0xffffff, 3.0 );
@@ -52,7 +52,7 @@ function initLights() {
 
 }
 
-function initMeshes() {
+function createMeshes() {
 
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
 
@@ -71,7 +71,7 @@ function initMeshes() {
 
 }
 
-function initRenderer() {
+function createRenderer() {
 
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize( container.clientWidth, container.clientHeight );

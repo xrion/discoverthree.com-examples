@@ -15,11 +15,11 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0x8FBCD4 );
 
-  initCamera();
-  initControls();
-  initLights();
+  createCamera();
+  createControls();
+  createLights();
   loadModels();
-  initRenderer();
+  createRenderer();
 
   renderer.setAnimationLoop( () => {
 
@@ -30,20 +30,20 @@ function init() {
 
 }
 
-function initCamera() {
+function createCamera() {
 
   camera = new THREE.PerspectiveCamera( 35, container.clientWidth / container.clientHeight, 1, 1000 );
   camera.position.set( -50, 50, 150 );
 
 }
 
-function initControls() {
+function createControls() {
 
   controls = new THREE.OrbitControls( camera, container );
 
 }
 
-function initLights() {
+function createLights() {
 
   const ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
   scene.add( ambientLight );
@@ -103,7 +103,7 @@ function loadModels() {
 
 }
 
-function initRenderer() {
+function createRenderer() {
 
   // create a WebGLRenderer and set its width and height
   renderer = new THREE.WebGLRenderer( { antialias: true } );

@@ -12,11 +12,11 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0x8FBCD4 );
 
-  initCamera();
-  initControls();
-  initLights();
-  initMeshes();
-  initRenderer();
+  createCamera();
+  createControls();
+  createLights();
+  createMeshes();
+  createRenderer();
 
   renderer.setAnimationLoop( () => {
 
@@ -27,20 +27,20 @@ function init() {
 
 }
 
-function initCamera() {
+function createCamera() {
 
   camera = new THREE.PerspectiveCamera( 35, container.clientWidth / container.clientHeight, 0.1, 100 );
   camera.position.set( -5, 5, 7 );
 
 }
 
-function initControls() {
+function createControls() {
 
   controls = new THREE.OrbitControls( camera, container );
 
 }
 
-function initLights() {
+function createLights() {
 
   const ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
   scene.add( ambientLight );
@@ -55,7 +55,7 @@ function initLights() {
 
 }
 
-function initMeshes() {
+function createMeshes() {
 
   // create a Group to hold the pieces of the train
   const train = new THREE.Group();
@@ -108,7 +108,7 @@ function initMeshes() {
 
 }
 
-function initRenderer() {
+function createRenderer() {
 
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize( container.clientWidth, container.clientHeight );

@@ -13,11 +13,11 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color( 0x8FBCD4 );
 
-  initCamera();
-  initControls();
-  initLights();
-  initMeshes();
-  initRenderer();
+  createCamera();
+  createControls();
+  createLights();
+  createMeshes();
+  createRenderer();
 
   // start the animation loop
   renderer.setAnimationLoop( () => {
@@ -29,7 +29,7 @@ function init() {
 
 }
 
-function initCamera() {
+function createCamera() {
 
   camera = new THREE.PerspectiveCamera(
     35, // FOV
@@ -42,13 +42,13 @@ function initCamera() {
 
 }
 
-function initControls() {
+function createControls() {
 
   controls = new THREE.OrbitControls( camera, container );
 
 }
 
-function initLights() {
+function createLights() {
 
   const ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
   scene.add( ambientLight );
@@ -63,7 +63,7 @@ function initLights() {
 
 }
 
-function initMeshes() {
+function createMeshes() {
 
   const geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
 
@@ -82,7 +82,7 @@ function initMeshes() {
 
 }
 
-function initRenderer() {
+function createRenderer() {
 
   renderer = new THREE.WebGLRenderer( { antialias: true } );
   renderer.setSize( container.clientWidth, container.clientHeight );
