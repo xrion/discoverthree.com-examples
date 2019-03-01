@@ -11,7 +11,7 @@ function createRotationKeyframeTrack( axis ) {
   const values = [ 0, 2 * Math.PI ];
 
   axis = axis || 'x';
-  const xRotationKF = new NumberKeyframeTrack( `.rotation[${axis}]`, times, values  );
+  const xRotationKF = new NumberKeyframeTrack( `.rotation[${axis}]`, times, values );
 
   return xRotationKF;
 
