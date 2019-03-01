@@ -32,7 +32,7 @@ function init() {
 
 function createCamera() {
 
-  camera = new THREE.PerspectiveCamera( 35, container.clientWidth / container.clientHeight, 1, 1000 );
+  camera = new THREE.PerspectiveCamera( 35, container.clientWidth / container.clientHeight, 1, 100 );
   camera.position.set( -1.5, 1.5, 6.5 );
 
 }
