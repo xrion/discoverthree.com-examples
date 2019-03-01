@@ -107,7 +107,9 @@ function createRenderer() {
 
   renderer.setPixelRatio( window.devicePixelRatio );
 
-  // add the automatically created <canvas> element to the page
+  renderer.gammaFactor = 2.2;
+  renderer.gammaOutput = true;
+
   container.appendChild( renderer.domElement );
 
 }

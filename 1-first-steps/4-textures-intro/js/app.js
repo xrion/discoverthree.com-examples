@@ -37,6 +37,10 @@ function init() {
   // if you run into problems here
   const texture = textureLoader.load( 'textures/uv_test_bw.png' );
 
+  // set the "color space" of the texture
+  texture.encoding = THREE.sRGBEncoding;
+
+  // reduce blurring at glancing angles
   texture.anisotropy = 16;
 
   // create a Standard material using the texture we just loaded as a color map
@@ -64,6 +68,11 @@ function init() {
   renderer.setSize( container.clientWidth, container.clientHeight );
 
   renderer.setPixelRatio( window.devicePixelRatio );
+
+  // set the gamma correction so that output colors look
+  // correct on our screens
+  renderer.gammaFactor = 2.2;
+  renderer.gammaOutput = true;
 
   // add the automatically created <canvas> element to the page
   container.appendChild( renderer.domElement );

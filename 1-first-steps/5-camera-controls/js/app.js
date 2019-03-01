@@ -70,6 +70,8 @@ function createMeshes() {
   const textureLoader = new THREE.TextureLoader();
 
   const texture = textureLoader.load( 'textures/uv_test_bw.png' );
+
+  texture.encoding = THREE.sRGBEncoding;
   texture.anisotropy = 16;
 
   const material = new THREE.MeshStandardMaterial( {
@@ -89,7 +91,9 @@ function createRenderer() {
 
   renderer.setPixelRatio( window.devicePixelRatio );
 
-  // add the automatically created <canvas> element to the page
+  renderer.gammaFactor = 2.2;
+  renderer.gammaOutput = true;
+
   container.appendChild( renderer.domElement );
 
 }
