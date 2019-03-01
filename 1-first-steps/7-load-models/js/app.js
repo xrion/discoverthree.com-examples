@@ -33,7 +33,7 @@ function init() {
 function createCamera() {
 
   camera = new THREE.PerspectiveCamera( 35, container.clientWidth / container.clientHeight, 1, 1000 );
-  camera.position.set( -50, 50, 150 );
+  camera.position.set( -1.5, 1.5, 6.5 );
 
 }
 
@@ -86,15 +86,13 @@ function loadModels() {
 
   // load the first model. Each model is loaded asynchronously,
   // so don't make any assumption about which one will finish loading first
-  const parrotPosition = new THREE.Vector3( 0, 0, 50 );
+  const parrotPosition = new THREE.Vector3( 0, 0, 2.5 );
   loader.load( 'models/Parrot.glb', gltf => onLoad( gltf, parrotPosition ), onProgress, onError );
 
-  // load the second model
-  const flamingoPosition = new THREE.Vector3( 150, 0, -200 );
+  const flamingoPosition = new THREE.Vector3( 7.5, 0, -10 );
   loader.load( 'models/Flamingo.glb', gltf => onLoad( gltf, flamingoPosition ), onProgress, onError );
 
-  // load the third model
-  const storkPosition = new THREE.Vector3( 0, -50, -200 );
+  const storkPosition = new THREE.Vector3( 0, -2.5, -10 );
   loader.load( 'models/Stork.glb', gltf => onLoad( gltf, storkPosition ), onProgress, onError );
 
 }
