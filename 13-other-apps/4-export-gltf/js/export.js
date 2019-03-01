@@ -12,13 +12,13 @@ function exportGLTF( input, animations ) {
   const gltfExporter = new GLTFExporter();
 
   const options = {
-    trs: document.getElementById( 'option_trs' ).checked,
-    onlyVisible: document.getElementById( 'option_visible' ).checked,
-    truncateDrawRange: document.getElementById( 'option_drawrange' ).checked,
-    binary: document.getElementById( 'option_binary' ).checked,
-    forceIndices: document.getElementById( 'option_forceindices' ).checked,
-    embedImages: document.getElementById( 'option_embedImages' ).checked,
-    forcePowerOfTwoTextures: document.getElementById( 'option_forcepot' ).checked,
+    trs: document.querySelector( '#option_trs' ).checked,
+    onlyVisible: document.querySelector( '#option_visible' ).checked,
+    truncateDrawRange: document.querySelector( '#option_drawrange' ).checked,
+    binary: document.querySelector( '#option_binary' ).checked,
+    forceIndices: document.querySelector( '#option_forceindices' ).checked,
+    embedImages: document.querySelector( '#option_embedImages' ).checked,
+    forcePowerOfTwoTextures: document.querySelector( '#option_forcepot' ).checked,
 
     // optional array of animation clips
     animations,
