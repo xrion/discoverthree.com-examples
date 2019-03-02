@@ -14,6 +14,9 @@ export default function createApp() {
   app.scene.background = new Color( 0x8FBCD4 );
   app.camera.position.set( 5, 5, 10 );
 
+  app.controls.autoRotate = true;
+  // app.controls.autoRotateSpeed = -0.2;
+
   return app;
 
 }

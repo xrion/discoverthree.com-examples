@@ -15,7 +15,7 @@ function createHemisphereLight() {
     // 0.3,
 
     // twilight
-    3,
+    5,
 
     // very dark overcast sky
     // 100,
@@ -40,7 +40,7 @@ function createDirectionalLight() {
 
   const direct = new DirectionalLight(
     0xFFFFFA,
-    15,
+    25,
   );
 
   direct.position.set( -4, 3, 4 );

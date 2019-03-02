@@ -6,7 +6,7 @@ export default function createApp() {
 
   app.init();
 
-  app.renderer.toneMappingExposure = 0.25;
+  app.renderer.toneMappingExposure = 0.4;
   app.camera.position.set( -20, 0, -20 );
 
   return app;

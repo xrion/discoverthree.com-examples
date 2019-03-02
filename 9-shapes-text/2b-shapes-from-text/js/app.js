@@ -13,8 +13,8 @@ export default function createApp() {
   app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x222222 );
 
-  app.camera.position.set( 15, 5, 20 );
-  app.controls.target.x = 0.5;
+  app.camera.position.set( 11, 5, 12 );
+  app.controls.target.x = 1;
 
   return app;
 

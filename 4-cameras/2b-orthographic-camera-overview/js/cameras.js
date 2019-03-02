@@ -31,7 +31,7 @@ function createOverViewCamera() {
   const container = document.querySelector( '#scene-container' );
 
   const overviewCamera = new PerspectiveCamera( 35, container.clientWidth / container.clientHeight, 1, 1000 );
-  overviewCamera.position.set( 100, 0, 100 );
+  overviewCamera.position.set( 50, 50, 100 );
   overviewCamera.lookAt( 0, 0, 0 );
   overviewCamera.far = 1000;
   overviewCamera.updateProjectionMatrix();

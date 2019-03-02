@@ -12,7 +12,7 @@ function createOverviewCamera( app ) {
 
   const overviewCamera = app.camera.clone();
 
-  overviewCamera.position.set( 150, 50, 100 );
+  overviewCamera.position.set( 50, 50, 50 );
 
   overviewCamera.lookAt( 0, 0, 0 );
 

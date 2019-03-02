@@ -7,6 +7,7 @@ function setupSimpleRotation( mesh, helper ) {
   mesh.userData.onUpdate = ( delta ) => {
 
     mesh.rotation.z -= delta;
+
     helper.update();
 
   };

@@ -8,7 +8,7 @@ function createLeaves( materials ) {
 
   const leaves = new Group();
 
-  for ( let i = 0; i < 100; i++ ) {
+  for ( let i = 0; i < 500; i++ ) {
 
     const sprite = new Sprite( materials.leaf.clone() );
 

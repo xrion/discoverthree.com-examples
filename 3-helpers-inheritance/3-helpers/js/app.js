@@ -12,7 +12,10 @@ export default function createApp() {
 
   app.renderer.toneMappingExposure = 1;
   app.scene.background = new Color( 0x8FBCD4 );
-  app.camera.position.set( 0, 0, 25 );
+  app.camera.position.set( 0, 2, 25 );
+
+  app.controls.autoRotate = true;
+  app.controls.autoRotateSpeed = 0.25;
 
   return app;
 

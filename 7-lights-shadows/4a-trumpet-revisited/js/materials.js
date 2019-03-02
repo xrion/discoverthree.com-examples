@@ -25,7 +25,7 @@ export default function createMaterials( environments ) {
       roughness: 0.05,
       color: brassColor,
       envMap: environments.sky,
-      envMapIntensity: 1,
+      envMapIntensity: 1.5,
     } ),
 
     silver: new MeshStandardMaterial( {
@@ -33,14 +33,14 @@ export default function createMaterials( environments ) {
       roughness: 0.05,
       color: silverColor,
       envMap: environments.sky,
-      envMapIntensity: 1,
+      envMapIntensity: 1.5,
     } ),
 
     plinth: new MeshStandardMaterial( {
       metalness: 0.5,
       roughness: 0.5,
       envMap: environments.sky,
-      envMapIntensity: 0.1,
+      envMapIntensity: 1.5,
     } ),
 
   };

@@ -14,7 +14,7 @@ export default function createApp() {
   app.renderer.shadowMap.enabled = true;
   app.renderer.shadowMap.type = PCFSoftShadowMap;
 
-  app.renderer.toneMappingExposure = 0.5;
+  app.renderer.toneMappingExposure = 0.7;
 
   app.camera.position.set( 2, 1, 1.5 );
 
