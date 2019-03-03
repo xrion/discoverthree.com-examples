@@ -3,7 +3,7 @@ import createAsyncLoader from './vendor/utility/createAsyncLoader.js';
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.js';
 
 
-export default async function loadGLTFModels() {
+export default async function loadModels() {
 
   const loader = createAsyncLoader( new GLTFLoader() );
 

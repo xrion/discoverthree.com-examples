@@ -3,7 +3,7 @@ import createAsyncLoader from './vendor/utility/createAsyncLoader.js';
 import { DRACOLoader } from './vendor/three/loaders/DRACOLoader.js';
 import { GLTFLoader } from './vendor/three/loaders/GLTFLoader.js';
 
-export default async function loadGLTFModels() {
+export default async function loadModels() {
 
   const gltfLoader = new GLTFLoader();
 
