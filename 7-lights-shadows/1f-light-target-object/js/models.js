@@ -7,22 +7,27 @@ export default async function loadModels() {
 
   const loader = createAsyncLoader( new GLTFLoader() );
 
-  let gltf = await loader.load( 'models/Horse.glb' );
+  // first, start all the async operation
+  const horsePromise = loader.load( 'models/Horse.glb' );
+  const duckPromise = loader.load( 'models/Duck.glb' );
+  const waltHeadPromise = loader.load( 'models/WaltHead.glb' );
 
-  const horse = gltf.scene.children[ 0 ];
-  horse.animations = gltf.animations;
+  // next, wait for them to complete
+  const horseResult = await horsePromise;
+  const duckResult = await duckPromise;
+  const waltHeadResult = await waltHeadPromise;
+
+  // finally, set up all the models
+  const horse = horseResult.scene.children[ 0 ];
+  horse.animations = horseResult.animations;
   horse.rotation.z = -Math.PI / 2;
   horse.position.set( -12, 0, 0 );
 
-  gltf = await loader.load( 'models/Duck.glb' );
-
-  const duck = gltf.scene.children[ 0 ].children[ 1 ];
+  const duck = duckResult.scene.children[ 0 ].children[ 1 ];
   duck.position.set( 10, 1, -10 );
   duck.scale.set( 0.03, 0.03, 0.03 );
 
-  gltf = await loader.load( 'models/WaltHead.glb' );
-
-  const head = gltf.scene.children[ 0 ];
+  const head = waltHeadResult.scene.children[ 0 ];
   head.position.set( 5, 10, 5 );
   head.scale.set( 0.1, 0.1, 0.1 );
 

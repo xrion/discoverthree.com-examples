@@ -40,20 +40,29 @@ export default async function loadModels() {
 
   const loader = createAsyncLoader( new GLTFLoader() );
 
-  // let gltf = await loader.load( 'models/Flamingo.glb' );
+  // first, start all the async operation
+  const parrotPromise = loader.load( 'models/Parrot.glb' );
+  // const flamingoPromise = loader.load( 'models/Flamingo.glb' );
+  const storkPromise = loader.load( 'models/Stork.glb' );
+
+  // next, wait for them to complete
+  const parrotResult = await parrotPromise;
+  // const flamingoResult = await flamingoPromise;
+  const storkResult = await storkPromise;
+
+  // finally, set up the models
+  const parrot = parrotResult.scene.children[ 0 ];
+  parrot.animations = parrotResult.animations;
+
+
+  // const flamingo = flamingoResult.scene.children[ 0 ];
+  // flamingo.animations = flamingoResult.animations;
+
+  const stork = storkResult.scene.children[ 0 ];
+  stork.animations = storkResult.animations;
 
   // const flamingo = gltf.scene.children[ 0 ];
   // flamingo.animations = gltf.animations;
-
-  let gltf = await loader.load( 'models/Parrot.glb' );
-
-  const parrot = gltf.scene.children[ 0 ];
-  parrot.animations = gltf.animations;
-
-  gltf = await loader.load( 'models/Stork.glb' );
-
-  const stork = gltf.scene.children[ 0 ];
-  stork.animations = gltf.animations;
 
   const bigParrot = parrot.clone();
   bigParrot.position.set( 0, 4.5, 2 );
