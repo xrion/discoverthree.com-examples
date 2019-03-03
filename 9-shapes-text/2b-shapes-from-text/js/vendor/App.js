@@ -1,4 +1,5 @@
 import {
+  Cache,
   Clock,
   PerspectiveCamera,
   Scene,
@@ -10,6 +11,9 @@ import {
 } from './three/controls/OrbitControls.js';
 
 import Stats from './stats.js';
+
+// enable the three.js caching mechanism
+Cache.enabled = true;
 
 // private variable that user can access via app.isRunning
 let _isRunning = false;
