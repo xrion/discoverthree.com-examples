@@ -1,3 +1,6 @@
+import {
+  Vector2
+} from './vendor/three/three.module.js';
 
 import {
   RenderPass,
@@ -26,7 +29,6 @@ import {
 import {
   FXAAShader,
 } from './vendor/three/shaders/FXAAShader.js';
-
 
 function setupNoAA( composers, app ) {
 
@@ -89,7 +91,9 @@ function setupSMAAShaderPass( composers, app ) {
   const renderPass = new RenderPass( app.scene, app.camera );
   composers.SMAA.addPass( renderPass );
 
-  const size = app.renderer.getSize();
+  const size = new Vector2();
+  app.renderer.getSize( size );
+
   const pixelRatio = app.renderer.getPixelRatio();
 
   const smaaShaderPass = new SMAAPass( size.width * pixelRatio, size.height * pixelRatio );
