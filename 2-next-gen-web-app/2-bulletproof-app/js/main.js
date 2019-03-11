@@ -10,13 +10,9 @@ import loadModels from './models.js';
 
 function initScene() {
 
-  const spec = {
-
+  const app = new App( {
     container: '#scene-container',
-
-  };
-
-  const app = new App( spec );
+  } );
 
   app.init();
 

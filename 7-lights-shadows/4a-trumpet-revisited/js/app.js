@@ -18,8 +18,8 @@ export default function createApp() {
 
   app.camera.position.set( 2, 1, 1.5 );
 
-  app.controls.autoRotate = true;
-  app.controls.autoRotateSpeed = -0.2;
+  // app.controls.autoRotate = true;
+  // app.controls.autoRotateSpeed = -0.2;
 
   return app;
 
