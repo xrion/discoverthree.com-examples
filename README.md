@@ -54,27 +54,27 @@ https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/4-
 https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/4-cameras/3k-transform-controls/
 
 SECTION 5
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-materials/1x-renderorder-occlusion/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-materials/4a-shader-material/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-materials/4b-shader-material-texture/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-materials/4c-fullscreen-shader/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-materials/4d-raw-shader-material/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/1a-hemispherelight/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/1b-directionallight/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/1c-spotlight/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/1d-pointlight/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/1e-light-target-set/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/1f-light-target-object/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/3a-directionallight-shadow/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/3b-spotlight-shadow/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/3c-pointlight-shadow/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/3d-shadow-material/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/5-lights-shadows/4a-trumpet-revisited/
 
 SECTION 6
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/6-textures/2a-environment-map-trumpet/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/6-materials/1x-renderorder-occlusion/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/6-materials/4a-shader-material/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/6-materials/4b-shader-material-texture/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/6-materials/4c-fullscreen-shader/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/6-materials/4d-raw-shader-material/
 
 SECTION 7
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/1a-hemispherelight/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/1b-directionallight/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/1c-spotlight/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/1d-pointlight/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/1e-light-target-set/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/1f-light-target-object/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/3a-directionallight-shadow/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/3b-spotlight-shadow/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/3c-pointlight-shadow/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/3d-shadow-material/
-https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-lights-shadows/4a-trumpet-revisited/
+https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/7-textures/2a-environment-map-trumpet/
 
 SECTION 8
 https://codesandbox.io/s/github/looeee/discoverthree.com-examples/tree/master/8-geometry/1a-geometry-concepts/
