@@ -12,6 +12,9 @@ export default function createApp() {
 
     renderer: {
 
+      // disable built-in AA since it doesn't work with post-processing
+      antialias: false,
+
       // we should disable gamma correction for
       // post processing, since gamma correction
       // needs to always be done as the final step
