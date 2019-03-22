@@ -1,3 +1,7 @@
+/*
+Author: Lewy Blue
+*/
+
 import {
   Cache,
   Clock,
