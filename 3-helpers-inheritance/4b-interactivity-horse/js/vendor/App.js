@@ -1,5 +1,5 @@
 /*
-Author: Lewy Blue
+Author: Lewy Blue, discoverthreejs.com
 */
 
 import {
