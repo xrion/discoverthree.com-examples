@@ -39,10 +39,14 @@ export default function createMaterials() {
 
   surface.onBeforeCompile = joints.onBeforeCompile = onBeforeCompile;
 
+  const surfaceClone = new PointsMaterial( { size: 0.025, color: 0xffffff } );
+
   return {
 
     surface,
+    surfaceClone,
     joints,
+
 
   };
 

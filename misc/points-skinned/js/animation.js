@@ -7,22 +7,22 @@ import {
 } from './vendor/three/three.module.js';
 
 let fadeOut = true;
-const speed = 0.005;
+const speed = 0.01;
 
 function setupAnimationClips( model, animations ) {
 
   const mixer = new AnimationMixer( model );
 
   const action = mixer.clipAction( animations[ 0 ] );
-  action.timeScale = 0.75;
+  // action.timeScale = 0.75;
   action.play();
 
   model.userData.onUpdate = ( delta ) => {
 
     mixer.update( delta );
 
-    if ( fadeOut && action.weight > 0 ) action.weight -= speed;
-    else if ( !fadeOut && action.weight < 1 ) action.weight += speed;
+    // if ( fadeOut && action.weight > 0 ) action.weight -= speed;
+    // else if ( !fadeOut && action.weight < 1 ) action.weight += speed;
 
   };
 
@@ -47,7 +47,7 @@ function dummyAnims( app, danceAction ) {
 
   const dummyTrack = new NumberKeyframeTrack(
     '.rotation[ x ]',
-    [ 0, 6 ],
+    [ 0, 7 ],
     [ 0, 1 ],
   );
 
@@ -83,22 +83,22 @@ function setupMorphTargetAnims( model ) {
     const twistAIndex = child.morphTargetDictionary.twistA;
     const twistAMorphTrack = new NumberKeyframeTrack(
       `.morphTargetInfluences[${twistAIndex}]`,
-      [ 2, 6, 10 ],
-      [ 0, 1, 0 ],
+      [ 1, 6, 10 ],
+      [ 0, 0.5, 0 ],
     );
 
     const twistBIndex = child.morphTargetDictionary.twistB;
     const twistBMorphTrack = new NumberKeyframeTrack(
       `.morphTargetInfluences[${twistBIndex}]`,
       [ 13, 17, 21 ],
-      [ 0, 1, 0 ],
+      [ 0, 0.5, 0 ],
     );
 
     const twistCIndex = child.morphTargetDictionary.twistC;
     const twistCMorphTrack = new NumberKeyframeTrack(
       `.morphTargetInfluences[${twistCIndex}]`,
       [ 23, 27, 31],
-      [ 0, 1, 0 ],
+      [ 0, 0.5, 0 ],
     );
 
     const animationClip = new AnimationClip(
