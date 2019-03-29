@@ -11,7 +11,7 @@ export default function createMaterials() {
     standardWhite: new MeshStandardMaterial(),
 
     standardWhiteRough: new MeshStandardMaterial( {
-      metalness: 0.1,
+      metalness: 0,
       roughness: 0.8,
     } ),
 

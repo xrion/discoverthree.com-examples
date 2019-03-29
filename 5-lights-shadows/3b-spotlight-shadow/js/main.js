@@ -1,10 +1,3 @@
-import {
-  Color,
-  BasicShadowMap,
-  PCFShadowMap,
-  PCFSoftShadowMap,
-} from './vendor/three/three.module.js';
-
 import createApp from './app.js';
 
 import createLights from './lights.js';
