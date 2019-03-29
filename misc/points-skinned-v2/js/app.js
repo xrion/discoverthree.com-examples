@@ -1,3 +1,7 @@
+import {
+  PCFSoftShadowMap,
+} from './vendor/three/three.module.js';
+
 import App from './vendor/App.js';
 
 export default function createApp() {
@@ -6,7 +10,12 @@ export default function createApp() {
 
   app.init();
 
-  app.camera.position.set( 0, 1, 4 );
+  app.renderer.shadowMap.enabled = true;
+  app.renderer.shadowMap.type = PCFSoftShadowMap;
+
+  app.renderer.toneMappingExposure = 0.6;
+
+  app.camera.position.set( 0, 1, 8 );
   app.controls.target.y = 1;
 
   return app;

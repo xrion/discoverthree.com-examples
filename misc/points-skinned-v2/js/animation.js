@@ -5,9 +5,9 @@ import {
   NumberKeyframeTrack,
   Vector3,
   Vector4,
-  Points,
 } from './vendor/three/three.module.js';
 
+import pointOnSpiral from './utilities/pointOnSpiral.js';
 
 function setupAnimationClips( model, animations ) {
 
@@ -27,47 +27,8 @@ function setupAnimationClips( model, animations ) {
 
 }
 
-function setupMorphTargetAnims( model ) {
-
-  model.traverse( ( child ) => {
-
-    if ( !child.morphTargetDictionary ) return;
-
-    const mixer = new AnimationMixer( child );
-
-    child.userData.onUpdate = ( delta ) => {
-
-      mixer.update( delta );
-
-    };
-
-
-    const dissolveIndex = child.morphTargetDictionary.dissolve;
-    const dissolveMorphTrack = new NumberKeyframeTrack(
-      `.morphTargetInfluences[${dissolveIndex}]`,
-      [ 2, 10, 15, 18],
-      [ 0, 0.8, 0, 0 ],
-    );
-
-    const animationClip = new AnimationClip(
-      'morph',
-      -1, // set automatically from the longest track
-      [
-
-        dissolveMorphTrack,
-      ],
-    );
-
-    const action = mixer.clipAction( animationClip );
-    action.play();
-
-  } );
-
-}
-
 function dissolve( points, surfaceClone ) {
 
-  // console.log( points.geometry.userData.height );
   const height = points.geometry.userData.height;
   const skeleton = points.skeleton;
 
@@ -94,6 +55,8 @@ function dissolve( points, surfaceClone ) {
 
   let offset = 0;
 
+  const endVertex = new Vector3();
+
   points.userData.onUpdate = ( delta ) => {
 
     // points.updateMatrixWorld();
@@ -101,9 +64,11 @@ function dissolve( points, surfaceClone ) {
 
     const hDiff = height - offset;
 
-    // if( hDiff < 0 ) return;
-
     for ( let i = 0; i < count; i++ ) {
+
+      const fraction = count / i;
+
+      const bOffset = 0.05 * ( -5 - i % 5 );
 
       position.fromBufferAttribute( positions, i );
       skinIndex.fromBufferAttribute( skinIndices, i );
@@ -112,59 +77,63 @@ function dissolve( points, surfaceClone ) {
       transformed.copy( position );
 
       tempSkinnedVertex.copy( transformed ).applyMatrix4( bindMatrix );
-      tempSkinned.set( 0, 0, 0 );
 
-      for ( let j = 0; j < 4; j++ ) {
+      if ( transformed.y + bOffset > hDiff ) {
 
-        const boneNdx = skinIndex.getComponent( j );
-        const weight = skinWeight.getComponent( j );
-        tempBoneMatrix.fromArray( skeleton.boneMatrices, boneNdx * 16 );
-        temp1.copy( tempSkinnedVertex );
-        tempSkinned.add( temp1.applyMatrix4( tempBoneMatrix ).multiplyScalar( weight ) );
+        pointOnSpiral( transformed, fraction, endVertex );
 
-      }
+        transformed.lerp( endVertex, transformed.y - hDiff );
 
-      transformed.copy( tempSkinned ).applyMatrix4( bindMatrixInverse );
-      transformed.applyMatrix4( points.matrixWorld );
+        if ( transformed.y <= 0 ) {
 
-
-      if ( transformed.y > hDiff ) {
-
-        if ( transformed.y - hDiff < 0.25 ) {
-
-          transformed.x += offset * Math.random() * Math.random();
-          transformed.y += offset * Math.random() * Math.random();
-          transformed.z += offset * Math.random() * Math.random();
-
-        } else {
-
-          transformed.set( 9999, 9999, 9999 );
+          transformed.y = 0;
 
         }
 
 
+      } else {
+
+        tempSkinned.set( 0, 0, 0 );
+
+        for ( let j = 0; j < 4; j++ ) {
+
+          const boneNdx = skinIndex.getComponent( j );
+          const weight = skinWeight.getComponent( j );
+          tempBoneMatrix.fromArray( skeleton.boneMatrices, boneNdx * 16 );
+          temp1.copy( tempSkinnedVertex );
+          tempSkinned.add( temp1.applyMatrix4( tempBoneMatrix ).multiplyScalar( weight ) );
+
+        }
+
+        transformed.copy( tempSkinned ).applyMatrix4( bindMatrixInverse );
+        transformed.applyMatrix4( points.matrixWorld );
 
       }
-
 
 
       transformed.toArray( clonePositions.array, i * 3 );
 
     }
 
-    offset += delta / 2;
+    // offset = ( offset + delta / 2 ) % 3;
+
 
     clonePositions.needsUpdate = true;
 
   };
+
+  window.addEventListener( 'mousemove', ( e ) => {
+
+    offset = -0.5 + e.screenX / window.innerWidth * 5;
+
+  } );
 
 
 }
 
 export default function setupAnimations( points, models ) {
 
-  const danceAction = setupAnimationClips( points.dancer, models.dancer.animations );
-  // setupMorphTargetAnims( points.dancer );
+  setupAnimationClips( points.dancer, models.dancer.animations );
 
   dissolve( points.dancer.getObjectByName( 'surface' ), points.surfaceClone );
   // dissolve( points.dancer.getObjectByName( 'joints' ) );

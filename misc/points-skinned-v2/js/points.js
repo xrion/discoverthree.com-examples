@@ -1,5 +1,6 @@
 import {
-  Group, Points,
+  Group,
+  Points,
 } from './vendor/three/three.module.js';
 
 import SkinnedPoints from './SkinnedPoints.js';
@@ -23,6 +24,8 @@ export default function createPoints( geometries, materials, models ) {
 
   const surfaceClone = new Points( geometries.surfaceClone, materials.surfaceClone );
   // surfaceClone.position.x = -2;
+  surfaceClone.castShadow = true;
+  surfaceClone.customDepthMaterial = materials.pointsCustomDepth;
 
   return {
 

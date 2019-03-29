@@ -1,35 +1,8 @@
 import {
+  BoxBufferGeometry,
   BufferGeometry,
-  Float32BufferAttribute,
-  Vector3,
+  CylinderBufferGeometry,
 } from './vendor/three/three.module.js';
-
-function morphDissolve( geometry ) {
-
-  const positions = geometry.attributes.position;
-
-  const dissolvePositions = [];
-
-  const vertex = new Vector3();
-
-  for ( let i = 0; i < positions.count; i++ ) {
-
-    vertex.fromBufferAttribute( positions, i );
-
-    vertex.x = 100 * Math.random();
-    vertex.z = 100 * Math.random();
-
-    vertex.toArray( dissolvePositions, dissolvePositions.length );
-
-  }
-
-  const dissolve = new Float32BufferAttribute( dissolvePositions, 3 );
-  dissolve.name = 'dissolve';
-
-  geometry.morphAttributes.position.push( dissolve );
-
-
-}
 
 export default function setupGeometry( models ) {
 
@@ -45,20 +18,21 @@ export default function setupGeometry( models ) {
   surface.translate( 0, -minY, 0 );
   joints.translate( 0, -minY, 0 );
 
-  surface.morphAttributes.position = [];
-  joints.morphAttributes.position = [];
-
-  morphDissolve( surface );
-  morphDissolve( joints );
-
   const surfaceClone = new BufferGeometry();
   surfaceClone.attributes.position = surface.attributes.position.clone();
+
+  const truncatedCone = new CylinderBufferGeometry( 10, 0, 100, 64, 1 );
+  truncatedCone.translate( 0, -50, 0 );
+
+  const box = new BoxBufferGeometry( 2, 2, 2, 4, 4, 4 );
 
   return {
 
     surface,
     surfaceClone,
     joints,
+    truncatedCone,
+    box,
 
   };
 
