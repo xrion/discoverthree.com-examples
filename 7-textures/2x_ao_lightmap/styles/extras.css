@@ -1,0 +1,58 @@
+
+#overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba( 0, 0, 0, 0.5);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 2;
+}
+
+#controls {
+  position: absolute;
+  max-width: 12rem;
+  width: auto;
+  height: auto;
+  top: 5rem;
+  right: 0rem;
+  padding: 0 1rem;
+  border: 1px solid grey;
+  background-color: rgba( 0, 0, 0, 0.5);
+  z-index: 1;
+  text-align: right;
+}
+
+#gui-container,
+#canvas-2d-container {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  height: 15rem;
+  width: 15rem;
+  z-index: 2;
+}
+
+p {
+  text-align: justify;
+}
+
+span, input, select {
+  margin-bottom: 1rem;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+#info {
+  position: absolute;
+  width: 100%;
+  bottom: 0.5rem;
+  text-align: center;
+  z-index: 1;
+}
