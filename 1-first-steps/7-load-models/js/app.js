@@ -118,7 +118,11 @@ function update() {
 
   const delta = clock.getDelta();
 
-  mixers.forEach( ( mixer ) => { mixer.update( delta ); } );
+  for ( const mixer of mixers ) {
+
+    mixer.update( delta );
+
+  }
 
 }
 

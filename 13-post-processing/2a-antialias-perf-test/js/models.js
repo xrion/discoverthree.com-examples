@@ -16,7 +16,7 @@ function createBirdsArray( birds ) {
   const positions = createSphericalPositions();
   const rotationAxis = new Vector3( 0, 1, 0 );
 
-  positions.forEach( ( position ) => {
+  for ( const position of positions ) {
 
     const protoBird = getRandomArrayElement( birds );
 
@@ -30,7 +30,7 @@ function createBirdsArray( birds ) {
 
     birdsArray.push( nextBird );
 
-  } );
+  }
 
   return birdsArray;
 

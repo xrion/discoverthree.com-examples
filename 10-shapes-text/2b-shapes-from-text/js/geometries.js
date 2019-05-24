@@ -8,7 +8,7 @@ function createGeometriesFromShapes( glyphs ) {
 
   // loop over the glyphs (letter shapes) and turn each into
   // a buffergeometry representing lines
-  glyphs.forEach( ( glyph ) => {
+  for ( const glyph of glyphs ) {
 
     // the points are an array of Vector2
     const points = glyph.getPoints();
@@ -38,7 +38,7 @@ function createGeometriesFromShapes( glyphs ) {
 
     geometries.push( geometry );
 
-  } );
+  }
 
   return geometries;
 

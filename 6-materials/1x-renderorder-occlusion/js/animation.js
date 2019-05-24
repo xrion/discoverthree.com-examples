@@ -37,12 +37,12 @@ function setupRandomizedFlyby( parrot ) {
 
   };
 
-  parrot.animations.forEach( ( clip ) => {
+  for ( const clip of parrot.animations ) {
 
     const action = mixer.clipAction( clip );
     action.play();
 
-  } );
+  }
 
 }
 

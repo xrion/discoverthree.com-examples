@@ -36,10 +36,10 @@ export default function setupAnimation( sprites ) {
 
   setupSimpleRotation( sprites.leaves );
 
-  sprites.leaves.children.forEach( ( sprite ) => {
+  for ( const sprite of sprites.leaves.children ) {
 
     setupSpriteMaterialRotation( sprite );
 
-  } );
+  }
 
 }

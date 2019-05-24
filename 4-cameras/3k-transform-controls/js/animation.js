@@ -38,14 +38,14 @@ function setupCircularRunningAnimation( horse ) {
 
   };
 
-  horse.animations.forEach( ( clip ) => {
+  for ( const clip of horse.animations ) {
 
     const action = mixer.clipAction( clip );
 
     // start the animations at a random point so that the horses run out off sync
     action.startAt( MathUtils.randFloat( 0, 0.5 ) ).play();
 
-  } );
+  }
 
 }
 
@@ -53,10 +53,10 @@ export default function setupAnimations( meshes, models ) {
 
   setupSimpleRotation( meshes.shapes );
 
-  models.horsesArray.forEach( ( model ) => {
+  for ( const model of models.horsesArray ) {
 
     setupCircularRunningAnimation( model );
 
-  } );
+  }
 
 }

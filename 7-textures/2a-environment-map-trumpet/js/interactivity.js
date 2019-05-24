@@ -4,7 +4,7 @@ function setupEnvMapToggle( materialsArray, environments ) {
 
   toggle.addEventListener( 'click', ( e ) => {
 
-    materialsArray.forEach( ( material ) => {
+    for ( const material of materialsArray ) {
 
       if ( e.target.checked ) {
 
@@ -18,8 +18,7 @@ function setupEnvMapToggle( materialsArray, environments ) {
 
       material.needsUpdate = true;
 
-    } );
-
+    }
 
   } );
 
@@ -35,11 +34,11 @@ function setupEnvMapStrengthSlider( materialsArray ) {
     value.textContent = slider.value;
     const newValue = parseFloat( slider.value );
 
-    materialsArray.forEach( ( material ) => {
+    for ( const material of materialsArray ) {
 
       material.envMapIntensity = newValue;
 
-    } );
+    }
 
     e.preventDefault();
 

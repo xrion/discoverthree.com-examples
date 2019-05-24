@@ -15,15 +15,14 @@ function setupAnimationClips( model, offset ) {
 
   };
 
-  model.animations.forEach( ( clip ) => {
+  for ( const clip of model.animations ) {
 
     const action = mixer.clipAction( clip );
 
     // set the birds to start at random times so that they  don't flap in sync
     action.startAt( offset ).play();
 
-
-  } );
+  }
 
 }
 
@@ -44,10 +43,10 @@ export default function setupAnimations( meshes, models, birdGroup ) {
 
   setupAnimationClips( models.parrot );
 
-  models.birdsArray.forEach( ( bird ) => {
+  for ( const bird of models.birdsArray ) {
 
     setupAnimationClips( bird, MathUtils.randFloat( 0, 1.2 ) );
 
-  } );
+  }
 
 }

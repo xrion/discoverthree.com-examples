@@ -127,7 +127,11 @@ class App {
 
     const delta = this.clock.getDelta();
 
-    this.mixers.forEach( ( mixer ) => { mixer.update( delta ); } );
+    for ( const mixer of this.mixers ) {
+
+      mixer.update( delta );
+
+    }
 
   }
 

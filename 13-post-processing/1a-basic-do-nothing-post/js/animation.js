@@ -12,12 +12,12 @@ function setupAnimationClips( model ) {
 
   };
 
-  model.animations.forEach( ( clip ) => {
+  for ( const clip of model.animations ) {
 
     const action = mixer.clipAction( clip );
     action.play();
 
-  } );
+  }
 
 }
 

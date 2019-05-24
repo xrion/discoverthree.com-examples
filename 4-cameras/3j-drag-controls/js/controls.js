@@ -21,11 +21,11 @@ function setMoving( selectedMesh, meshesArray, dragControls, orbitControls ) {
 
   selectedMesh.material = selectedMesh.userData.materials.highlight;
 
-  meshesArray.forEach( ( mesh ) => {
+  for ( const mesh of meshesArray ) {
 
     mesh.userData.animate = false;
 
-  } );
+  }
 
   dragControls.enabled = true;
   orbitControls.enabled = false;
@@ -34,13 +34,13 @@ function setMoving( selectedMesh, meshesArray, dragControls, orbitControls ) {
 
 function reset( meshesArray, dragControls, orbitControls ) {
 
-  meshesArray.forEach( ( mesh ) => {
+  for ( const mesh of meshesArray ) {
 
     mesh.userData.animate = true;
 
     mesh.material = mesh.userData.materials.main;
 
-  } );
+  }
 
   dragControls.enabled = false;
   orbitControls.enabled = true;

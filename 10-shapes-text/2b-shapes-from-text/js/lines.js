@@ -30,7 +30,7 @@ function createGlyphMeshes( glyphGeometries, materials ) {
 
   const textGroup = new Group();
 
-  glyphGeometries.forEach( ( geometry ) => {
+  for ( const geometry of glyphGeometries ) {
 
     // create a clone of our material and give it a random color
     const material = materials.basic.clone();
@@ -42,7 +42,7 @@ function createGlyphMeshes( glyphGeometries, materials ) {
 
     // spinAtRandomIntervals( lineMesh, 3000, 15000 );
 
-  } );
+  }
 
   centerGeomtriesByGroupDimension( textGroup );
 

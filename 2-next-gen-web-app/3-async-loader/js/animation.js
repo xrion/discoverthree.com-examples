@@ -12,21 +12,21 @@ function setupAnimationClips( model ) {
 
   };
 
-  model.animations.forEach( ( clip ) => {
+  for ( const clip of model.animations ) {
 
     const action = mixer.clipAction( clip );
     action.play();
 
-  } );
+  }
 
 }
 
 export default function setupAnimation( models ) {
 
-  Object.values( models ).forEach( ( model ) => {
+  for ( const model of Object.values( models ) ) {
 
     setupAnimationClips( model );
 
-  } );
+  }
 
 }

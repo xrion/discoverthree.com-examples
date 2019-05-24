@@ -4,11 +4,11 @@ function setupWireframeControl( materials ) {
 
   button.addEventListener( 'click', ( e ) => {
 
-    materials.forEach( ( material ) => {
+    for ( const material of materials ) {
 
       material.wireframe = !material.wireframe;
 
-    } );
+    }
 
     e.preventDefault();
 
