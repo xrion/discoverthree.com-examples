@@ -7,12 +7,12 @@ export default async function loadModels() {
 
   const loader = createAsyncLoader( new GLTFLoader() );
 
-  // first, start all the async operation
+  // first, start all the async operations
   const horsePromise = loader.load( 'models/Horse.glb' );
   const duckPromise = loader.load( 'models/Duck.glb' );
   const waltHeadPromise = loader.load( 'models/WaltHead.glb' );
 
-  // next, wait for them to complete
+  // ...wait for them to complete
   const horseResult = await horsePromise;
   const duckResult = await duckPromise;
   const waltHeadResult = await waltHeadPromise;
